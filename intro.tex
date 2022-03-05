@@ -22,23 +22,29 @@ This assertion ignores the impact of turnover on a project and the ability to co
 Confronted with turnover-induced knowledge loss, Robillard \cite{robillard_turnover-induced_2021} emphasizes developers leveraging artifacts from project history after a colleague’s departure to understand developer intent behind code a departed colleague wrote. 
 It therefore becomes all the more important to reduce the cost for developers in using artifacts from a project's history to obtain code rationale. 
 
-Project artifacts that be a source for answering code rationale questions include: (1) commit history and (2) information from issue tracking systems. 
-A common practice in software development is to explicitly reference issues from an issue tracking system in a commit message, where each commit is associated with an issue. 
+Project artifacts that can serve as a source for answering code rationale questions include: (1) commit history and (2) information from issue tracking systems. 
+Among reasons to investigate old commit history, developers do so to understand ``why is this [code] ‘this’ way,'' encompassing recovering rationale behind segments of code, verifying how an local, uncommitted changes impacts existing code, studying how a bug came into existence, or to reverse engineer requirements from code \cite{codoban_software_2015}. 
+Developers also use commit history to understand the evolution of a project, \eg  architectural patterns and decisions, requirements decisions, and frequently occurring bugs \cite{codoban_software_2015}.
+A typical practice in software development is to explicitly reference an issue ID from an issue tracking system in a commit message, where each commit is associated with an issue. 
 While commit history accessed from version control systems like \entity{git} gives direct information on lines of code changed at a point in time, the information from a commit's associated issue on an issue tracking platform such as JIRA \cite{jira} can provide context around a commit through the issue's discussion, labels, number of developers subscribed, and priority among other aspects.
 Through commit history and linked issues, we therefore get a change in time paired with a potential discussion or post at a point in time.
 
 There are many successful tools that exist to explore commit history and manage the use of VCS. For example, \entity{git}'s ``blame'' feature \cite{gitblame}, graphical user interfaces such as Sourcetree \cite{sourcetree} and GitExtensions \cite{gitextensions}. 
 Popular editors like Visual Studio Code \cite{vscode}, Eclipse \cite{eclipse}, and IntelliJ \cite{intellij} have \entity{git} integrations and plugins that streamline the usage of \entity{git} features, making it easier to explore a project's commit history. 
-However, with these tools, a developer still must manually identify referenced issues for an issue tracking system in a commit, visit the referenced issue externally in a browser, and maintain a mental model or narrative the developer constructs through a process of viewing code changes and digesting associated discussions that could provide rationale around a code change. 
+However, with these tools, a developer still must manually identify referenced issues for an issue tracking system in a commit, visit the referenced issue externally in a browser, and maintain a mental model or narrative the developer constructs through a process of viewing code changes and digesting associated discussions that could provide rationale around a code modification. 
 
 We illustrate the cognitive and temporal burden of the process through a scenario: a developer is viewing the commit history for a single file and wishes to gain a quick understanding of the purpose of the file or has questions about the way the code in the file was written, they may find several commits listed sequentially where some commits could be trivial refactoring, some commits introduce a new feature, and others fix bugs after the introduction of a feature. 
-In the interest of time, the developer would skim the commits to reduce their search space of interesting commits \cite{codoban_software_2015}. 
+In the interest of time, the developer would manually skim the commits to reduce the search space of commits \cite{codoban_software_2015}. 
 But still, they would need to manually visit the JIRA issue associated with the commits of interest, read through an issue's description or discussion for any indication on the motivation behind a change or insight on any particular design choices in the change.
 This process involves task switching between the editor or commit history view and the issue view, alongside maintaining a mental model of the events and discussion that took place chronologically in the file.
 
-In this thesis, we investigate the design of a tool to reduce the density of the commit history for a file in a project and to make it more convenient to locate and access JIRA information related to commit. 
+This thesis proposes the design of a tool to reduce the density of the commit history for a file in a project and to make it more convenient to locate and access discussions related to more informative commits. 
+The design of this tool will support a developer in answering questions on aspects that make a commit and its rationale more meaningful to examine, which can help to reduce the search space of commits. 
+% TODO: Still uncertain about framing this thesis. We want a tool that will have two panels: commits and discussions. Try to reduce one side through the other, therefore streamlining the process of looking at both in a single interface while also having less noise in a history to look at. We hypothesize that this will reduce cognitive and temporal load of trying to explore commit history as a means of answering code rationale questions. We develop certain heuristics about both commits and JIRA issues that are adjustable for exploring commit history.
+According to Codoban \etal 's \cite{codoban_software_2015} empirical survey of ... developers, 47\% of respondents found the high volume of commits in a project to be a challenge. 
+Diffs alone are also difficult to read as Codoban \etal \cite{codoban_software_2015} further report on participants' sentiment of it being difficult gain any insights or intent of changes from a diff and one must explore numerous diffs to understand a change. Noise in diffs also made them tedious to explore. 
 
-To investigate the usefulness of \dots .
+To evaluate the usefulness of \dots .
 
 This thesis makes $N$ contributions:
 \begin{itemize}
