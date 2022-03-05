@@ -7,34 +7,45 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-LaToza et al. \cite{latoza_maintaining_2006} found the most serious problem software developers face is understanding code rationale, followed by Ko et al. \cite{ko_information_2007} reporting the intent behind code being the most difficult information need to satisfy. 
+LaToza \etal \cite{latoza_maintaining_2006} found the most serious problem software developers face is understanding code rationale, followed by Ko \etal \cite{ko_information_2007} reporting the intent behind code being the most difficult information need to satisfy. 
 In further agreement, LaToza and Myers \cite{latoza_hard-answer_2010} unearth code rationale as the single most frequently reported “hard-to-answer” question category in software development. 
 Code rationale includes questions not clearly answered by examining code itself, such as algorithm choice, optimization choice, and hidden criteria that motivate design choices \cite{latoza_hard-answer_2010}. 
-Though developers often choose to forego investigating design documents due to difficulties and the cost of locating them and instead seek out knowledgeable colleagues \cite{latoza_maintaining_2006}, this practice becomes unsustainable in projects and companies at risk of turnover. 
-The danger of relying solely on colleagues for code rationale information is illustrated by LaToza et al. 's assumption of the existence of a quintessential ``team historian'' in a software development team \cite{latoza_maintaining_2006}:
+Though developers often choose to forego investigating design documents due to difficulties and the cost of locating them and instead seek out knowledgeable colleagues \cite{latoza_maintaining_2006}, the practice of seeking colleagues becomes unsustainable in projects at risk of turnover. 
+The danger of relying solely on colleagues for code rationale information is illustrated by LaToza \etal 's assertion of the existence of a quintessential ``team historian'' in a software development team \cite{latoza_maintaining_2006}:
 
 \begin{quote}
 Almost all teams have a team historian who is the go-to person for questions about the
 code. Often this person is the developer lead and has been with the code base the longest.
 \end{quote}
 
+This assertion ignores the impact of turnover on a project and the ability to confide in colleagues for code rationale information.
 Confronted with turnover-induced knowledge loss, Robillard \cite{robillard_turnover-induced_2021} emphasizes developers leveraging artifacts from project history after a colleague’s departure to understand developer intent behind code a departed colleague wrote. 
-It therefore becomes all the more important to reduce the cost for developers in using artifacts from project history in order to obtain code rationale. These artifacts can include commit history and information from issue tracking systems.
+It therefore becomes all the more important to reduce the cost for developers in using artifacts from a project's history to obtain code rationale. 
 
-% Comment on existing tools like git command-line usage and the integration of git usage tools in popular editors like VS Code and IntelliJ
+Project artifacts that be a source for answering code rationale questions include: (1) commit history and (2) information from issue tracking systems. 
+A common practice in software development is to explicitly reference issues from an issue tracking system in a commit message, where each commit is associated with an issue. 
+While commit history accessed from version control systems like \entity{git} gives direct information on lines of code changed at a point in time, the information from a commit's associated issue on an issue tracking platform such as JIRA \cite{jira} can provide context around a commit through the issue's discussion, labels, number of developers subscribed, and priority among other aspects.
+Through commit history and linked issues, we therefore get a change in time paired with a potential discussion or post at a point in time.
 
-% There is also interesting work that we will discuss in related work section on commit history exploration and issue tracking system information integration
+There are many successful tools that exist to explore commit history and manage the use of VCS. For example, \entity{git}'s ``blame'' feature \cite{gitblame}, graphical user interfaces such as Sourcetree \cite{sourcetree} and GitExtensions \cite{gitextensions}. 
+Popular editors like Visual Studio Code \cite{vscode}, Eclipse \cite{eclipse}, and IntelliJ \cite{intellij} have \entity{git} integrations and plugins that streamline the usage of \entity{git} features, making it easier to explore a project's commit history. 
+However, with these tools, a developer still must manually identify referenced issues for an issue tracking system in a commit, visit the referenced issue externally in a browser, and maintain a mental model or narrative the developer constructs through a process of viewing code changes and digesting associated discussions that could provide rationale around a code change. 
 
-% In this thesis, we investigate ...
+We illustrate the cognitive and temporal burden of the process through a scenario: a developer is viewing the commit history for a single file and wishes to gain a quick understanding of the purpose of the file or has questions about the way the code in the file was written, they may find several commits listed sequentially where some commits could be trivial refactoring, some commits introduce a new feature, and others fix bugs after the introduction of a feature. 
+In the interest of time, the developer would skim the commits to reduce their search space of interesting commits \cite{codoban_software_2015}. 
+But still, they would need to manually visit the JIRA issue associated with the commits of interest, read through an issue's description or discussion for any indication on the motivation behind a change or insight on any particular design choices in the change.
+This process involves task switching between the editor or commit history view and the issue view, alongside maintaining a mental model of the events and discussion that took place chronologically in the file.
 
-% To investigate the usefulness of ...
+In this thesis, we investigate the design of a tool to reduce the density of the commit history for a file in a project and to make it more convenient to locate and access JIRA information related to commit. 
 
-% This thesis makes X contributions:
+To investigate the usefulness of \dots .
+
+This thesis makes $N$ contributions:
 \begin{itemize}
-	\item TODO
+	\item \dots
 \end{itemize}
 
-% This thesis is structured as follows.
+This thesis is structured as follows. \dots
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \endinput
