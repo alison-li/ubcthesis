@@ -23,10 +23,11 @@ There exists a danger in relying solely on individuals for knowledge on intent b
 Confronted with turnover-induced knowledge loss, Robillard \cite{robillard_turnover-induced_2021} emphasizes developers leveraging artifacts from project history after a colleague’s departure to understand developer intent behind code a departed colleague wrote. 
 It therefore becomes all the more important to reduce the cost for developers in using artifacts from a project's history to obtain code rationale. 
 
-Project artifacts that can serve as a source for answering code rationale questions include: (1) commit history and (2) information from issue tracking systems. 
+Project artifacts that can serve as a source for answering code rationale questions include: (1) commit history and (2) information from issue tracking systems or issue repository. 
 Among reasons to investigate old commit history, developers do so to understand ``why is this [code] ‘this’ way,'' encompassing recovering rationale behind segments of code, verifying how an local, uncommitted changes impacts existing code, studying how a bug came into existence, or to reverse engineer requirements from code \cite{codoban_software_2015}. 
 Developers also use commit history to understand the evolution of a project, \eg  architectural patterns and decisions, requirements decisions, and frequently occurring bugs \cite{codoban_software_2015}.
-A typical practice in software development is to explicitly reference an issue ID from an issue tracking system in a commit message, where each commit is associated with an issue. \autoref{fig:Kafka-Commit-Message} demonstrates a commit message in the open source Apache Kafka project, which uses this practice. For example, \jira{KAFKA-3715:}{Add granular metrics to Kafka Streams and add hierarhical \sic logging levels to Metrics} is the subject of one commit in the \class{KafkaStreams} class in the open source Apache Kafka project. The bold portion identifies the key for the Jira issue associated with the commit.
+A typical practice in software development is to explicitly reference an issue ID from an issue tracking system in a commit message, where each commit is associated with an issue. Apache Kafka is one example of an open-source project, which uses this practice.\footnote{\url{https://kafka.apache.org/}, verified 3/7/2022, Apache Kafka is an open source streaming platform used for working with streaming data. Apache Kafka is most commonly used for real-time data processing.}\footnote{\url{https://kafka.apache.org/contributing}, verified 3/7/2022.}
+For example, \colorbox{lightgray}{\jira{KAFKA-3715:}{Add granular metrics to Kafka Streams and add hierarhical \sic logging levels to Metrics}} is the subject of one commit in the \class{KafkaStreams} class in the open source Apache Kafka project. The bold portion identifies the key for the Jira issue associated with the commit, which can be viewed on the Apache Software Foundation's Jira instance.\footnote{\url{https://issues.apache.org/}, verified 3/7/2022.}
 
 While commit history accessed from version control systems like \entity{git} gives direct information on lines of code changed at a point in time, the information from a commit's associated issue on an issue tracking platform such as Jira \cite{jira} can provide context around a commit through the issue's discussion, labels, number of developers subscribed, and priority among other aspects.
 Through the commit history for a file and its linked Jira issues, we therefore get a change in time paired with a potential discussion or post at a point in time.
@@ -56,7 +57,7 @@ Finally, \jira{KAFKA-12648} and \jira{KAFKA-12648} refactor the \class{Topology}
 
 
 \begin{figure}
-\begin{flushleft}
+\begin{RaggedRight}
 	\jira{KAFKA-12648:}{introduce TopologyConfig and TaskConfig for topology-level overrides (\#11272)} \\
 	\textcolor{gray}{\jira{KAFKA-10546:}{Deprecate old PAPI (\#10869)}} \\
 	\jira{KAFKA-12648:}{basic skeleton API for NamedTopology (\#10615)} \\
@@ -81,7 +82,7 @@ Finally, \jira{KAFKA-12648} and \jira{KAFKA-12648} refactor the \class{Topology}
 	\caption{The commit history, shown by each commit message's subject, for the \file{Topology.java} file in the open source Apache Kafka project. 		The history is in descending order, from the most recent commit to the oldest commit.
 		In total, the \class{Topology} class has 21 commits in its commit history. The greyed out commits contain changes deemed not meaningful due 		to being modifications only to documentation, annotations, imports, or newlines. Commits explicitly labelled as ``MINOR'' have also greyed 			out.}
 	\label{fig:Topology-Commit-History}
-\end{flushleft}
+\end{RaggedRight}
 \end{figure}
 
 With this example, we have shown the developer must manually reduce the search space of commits in the \class{Topology} class from 21 commits to 9 relevant commits. 
@@ -94,22 +95,23 @@ This results in a temporal cost of determining non-trivial commits and a cogniti
 This thesis investigates the design of a tool to reduce the density of the commit history for a file in a project and to make it more convenient to locate and access discussions related to a commit. 
 We develop a set of heuristics on code changes and Jira issues that are customizable for supporting a developer in gauging the relevance of commits and related Jira issues when seeking answers to code rationale questions pertaining to a file.
 The design of the tool allows exploration of how effective the heuristics and the control of the heuristics are for streamlining the process of viewing both commits and associated Jira issues in one interface, while also reducing the noise in a file's commit history.
-We also examine how effective the control of these heuristics are for supporting a developer in constructing a cleaner timeline of changes in a file's history, providing cleaner insight into the evolution of code in a file that can further help to answer questions about the code evolution in a file and the rationale behind the different changes in its evolution. 
-For example, with trivial commits de-emphasized in a file's commit history, a user might be able to see more transparently which commits were part of the introductions of features and which commits in between feature introductions were bug fixes to a feature.
-A developer new to a particular section of the code base that the file belongs to could then gain an understanding of any trends or historical bugs in that file.
+We also examine how effective the control of these heuristics are for supporting a developer in constructing a clearer timeline of changes in a file's history, making it easier to gain insight into the evolution of code in a file that can further help to answer questions about the code evolution in a file and the rationale behind the different changes in its evolution. 
+For example, with trivial commits de-emphasized in a file's commit history, a user might be able to see more clearly which commits introduced features in a file or introduced preliminary code associated with as part of a feature implementation and which commits in between feature introductions were bug fixes or updates to a feature.
+A developer who is new to a particular section of the code base that the file belongs to could then gain an understanding of any trends or historical bugs in that file.
 
-To evaluate the usefulness of the tool and to obtain user feedback on the design of the tool and its heuristics, \dots .
+To evaluate the usefulness of the tool and to obtain user feedback on the design of the tool and its heuristics, \dots \FIXME{To be written later}.
 
 This thesis makes $N$ contributions:
 \begin{itemize}
-	\item \dots
+	\item \dots \FIXME{To be written later}
 \end{itemize}
 
 This thesis is structured as follows. 
 \autoref{ch:Related-Work} contextualizes the motivation behind this thesis and its contributions through related work. 
-\autoref{ch:Development} describes the development of the tool through the our developed heuristics, its design, and the predictions we make about the questions the tool is effective at answering. \autoref{ch:Evaluation} details the evaluation on the usefulness of the tool.
+\autoref{ch:Development} describes the development of the tool through the our developed heuristics, its design, and the predictions we make about the questions the tool will be effective in answering. 
+\autoref{ch:Evaluation} details the evaluation on the usefulness of the tool.
 \autoref{ch:Discussion} discusses the results of the evaluation and approaches to improving the tool.
-\autoref{ch:Conclusion} concludes the thesis.
+\autoref{ch:Conclusion} concludes the thesis and provides suggestions for future work.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \endinput
