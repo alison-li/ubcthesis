@@ -35,7 +35,7 @@ For example, \colorbox{lightgray}{\jira{KAFKA-3715:}{Add granular metrics to Kaf
 While commit history accessed from version control systems like \entity{git} gives direct information on lines of code changed at a point in time, the information from a commit's associated issue on an issue tracking platform such as Jira \cite{jira} can provide context around a commit through the issue's discussion, labels, number of developers subscribed, and priority among other aspects.
 Through the commit history for a file and its linked Jira issues, we therefore get a change in time paired with a potential discussion or post at a point in time.
 There are many tools that exist to explore commit history and manage the use of VCS. For example, \entity{git}'s ``blame'' feature \cite{gitblame}, graphical user interfaces such as Sourcetree \cite{sourcetree} and GitExtensions \cite{gitextensions}. 
-Popular editors like Visual Studio Code \cite{vscode}, Eclipse \cite{eclipse}, and IntelliJ IDEA \cite{intellij} have \entity{git} integrations and plugins that make the usage of \entity{git} more convenient and thereby make it easier to examine commits in a project's history. 
+Popular editors like Visual Studio Code \cite{vscode}, Eclipse \cite{eclipse}, and IntelliJ IDEA \cite{intellij} have native \entity{git} integrations and plugins that make the usage of \entity{git} more convenient and thereby make it easier to examine commits in a project's history. 
 
 However, even with these tools, Codoban \etal's \cite{codoban_software_2015} survey of 217 developers found 47\% of respondents reporting the high volume of commits in a project to be a challenge of navigating commit history. 
 Diffs alone are also difficult to read as Codoban \etal \cite{codoban_software_2015} further report on participants' sentiment of it being hard to gain any insights or intent of changes from a diff and one must explore numerous diffs to understand a change. 
@@ -45,16 +45,31 @@ Moreover, even with these tools, a developer still must manually identify meanin
 We illustrate the cognitive and temporal burden of the process through a scenario.
 Suppose a developer is working on the open source project Apache Kafka. 
 This project mandates all non-trivial changes must have a corresponding Jira issue. 
-The developer views the commit history for the file \file{Topology.java}, constituting a Java class. 
+The developer views the commit history for the file \file{Topology.java}, constituting a Java class \FIXME{Explain the purpose or give a sense describing this class as an evolution of design}. 
 When viewing the commit history for the \class{Topology} class, the developer sees 21 commits.
-Among these commits, 9 are trivial changes that affect documentation, annotations, imports, or newlines. 
-Of the remaining 12 commits, 3 commits explicitly indicate they are minor changes.
-Excluding minor commits, this leaves the developer with 9 commits to manually inspect the Jira issues for, as shown in \autoref{fig:Topology-Commit-History}.
-\FIXME{Make clear that this is difficult and time-consuming even though the way I am describing it makes it sound easy?}
-For the remaining 9 issues, the developer performs another manual process of inspecting the changes and the Jira issue description and discussion for each commit.
+The commit history in terms of the commit message subject for each commit is shown in \autoref{fig:Topology-Commit-History}.
 
-\FIXME{Consider whether it is better to explain the issues or give an overview of what you learn about the file from them. i.e., the point is to get across the rationale.}
-The developer pieces together the following for their understanding of the file: 
+To gain a sense of how the class has evolved over time and for further understanding of the motivations behind code changes in the class, the developer manually inspects the diff between each of the 21 commits to understand how the code has evolved across commits.
+While examining each commit, the developer must switch contexts between the view for viewing \class{Topology}'s commit history and a view for visiting a commit's referenced Jira issue.
+Throughout this process of looking through each commit, the developer comes across several commits that are trivial, composed only of changes affecting documentation, annotations, imports, or newlines. 
+Despite some of these commits having commit message subjects that seem potentially meaningful such as introducing the implementation of a feature, the developer finds they trivially affect the `Topology` file. 
+For example, \colorbox{lightgray}{\jira{KAFKA-7021:}{Reuse source based on config (\#5163)}} describes \dots but insofar as \class{Topology} is concerned, the commit simply removes a newline, not impacting any behaviour in the class. 
+Another example is \colorbox{lightgray}{\jira{KAFKA-5671:}{Add StreamsBuilder and Deprecate KStreamBuilder}} which changes \dots but in \class{Topology}, the commit only adds a missing \code{@param} tag to the documentation for one method and adds documentation for another method.
+Even when attempting to save time by not viewing a Jira issue for a trivial commit, the developer for the remaining commits might find a lack of explanation in the Jira issue description or comments that could help provide rationale for changes over time in the \class{Topology} class, which is a point of inefficiency for the developer.
+
+For each commit and visited Jira issue, the developer must maintain a mental narrative of the file's evolution and the rationale behind each change at different points in time. 
+This results in a temporal cost of determining non-trivial commits and a cognitive cost of maintaining a mental model of the interactions and decisions behind changes in a file. 
+In total, our approach explained further in \autoref{ch:Development} shows that 12 of 21 commits can be considered unimportant in the context of the \class{Topology} class. 
+Among the 21 commits, 9 commits only affect documentation, annotations, and newlines.
+If this were indicated in advance to the developer, this could have made the developer's search more efficient by considering the indication and have the choice to skip examining these commits.
+Moreover, providing the developer with ease of access to a sample of information in the Jira issue or metrics such as number of comments or Jira issue priority to the developer in the same view as the one they use to view the file's commit history could ease the cognitive burden of the process of examining each Jira issue independently and in the context of each other.
+We also see 3 of the commits explicitly indicate in their commit message subject they are minor changes, and can be eliminated from the pool of potentially useful commits in the file's history for understanding its evolution.
+Excluding the minor commits, this would leave the developer with 9 potentially helpful commits -- less than half the number of commits in the file's commit history -- to visit the Jira issues for.
+This suggests the developer would benefit greatly from an automatic and more streamlined approach to determining non-trivial commits to look at.
+Additionally, the ability to glean the Jira issue information could help the developer more efficiently decide which commits they can prioritize exploring for understanding the evolution and rationale behind changes in the \class{Topology} class.
+
+\FIXME{We define the class' role and describe its evolution earlier. Explain how the remaining 9 commits can help a developer gain understanding. Remember the focus in on getting rationale efficiently and more easily from being able to glean the remaining issues. Contextualize the Kafka project for the reader.}
+If such a tool could spotlight the remaining 9 of 21 commits to prioritize examining, the developer would be able to efficiently piece together the following for their understanding of the \class{Topology} class' evolution and motivations: 
 \jira{KAFKA-5670} introduces the \class{Topology} class as a refactoring due to leakage of internal methods in the Kafka Streams API that should not be public.
 \jira{KAFKA-5650} updates the \class{Topology} class to use newly added interfaces added to reduce heavy method overloading.
 \jira{KAFKA-5873} is a follow-up adjustment to the method signature modified in \jira{KAFKA-5650}.
@@ -92,14 +107,8 @@ Finally, \jira{KAFKA-12648} and \jira{KAFKA-12648} refactor the \class{Topology}
 \end{RaggedRight}
 \end{figure}
 
-With this example, we have shown the developer must manually reduce the search space of commits in the \class{Topology} class from 21 commits to 9 relevant commits. 
-This is done by browsing the diffs between each commit to gain a sense of how substantial the change in a commit was while also reading through the message if it provides any meaningful information.
-According to Codoban \etal \cite{codoban_software_2015}, this is a strategy developers already employ to try to overcome the high density of commits and noise in commit history. 
-Even after this work of reducing the commit search space, the developer still must manually go through the Jira issues associated with each commit for any indication on the motivation behind a change or insight on any particular design choices in the change.
-For each commit and Jira issue, the developer maintains a mental narrative of the file's evolution. 
-This results in a temporal cost of determining non-trivial commits and a cognitive cost of maintaining a mental model of the interactions and decisions behind changes in a file.
-
 We hypothesize a developer could more effectively access the code rationale for a file if the commit history view for a file de-emphasized commits containing less meaningful changes and, in turn, brought the remaining commits to the fore and provided ease of access to the Jira issue information associated with them.
+This approach to presenting a commit history would reduce the cognitive and temporal costs of software history examination. % TODO: Can add some sentences here referencing related work and how the approach proposed in this differs.
 This thesis investigates the design of a tool to spotlight potentially meaningful commits and de-emphasize less meaningful commits in the commit history for a file in a project and to make it more convenient to locate and access relevant discussions referenced in a commit. 
 We develop a set of heuristics on code changes and Jira issues that are customizable for supporting a developer in gauging the relevance of commits and related Jira issues when seeking answers to code rationale questions pertaining to a file.
 The design of the tool allows exploration of how effective the heuristics and the control of the heuristics are for streamlining the process of viewing both commits and associated Jira issues in one interface, while also reducing the noise in a file's commit history.
