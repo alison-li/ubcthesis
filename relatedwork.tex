@@ -1,17 +1,45 @@
 \chapter{Related Work}
 \label{ch:Related-Work}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Code Rationale}
-\label{sec:Code-Rationale}
+Many empirical studies have established code rationale as a highly sought after category of information lacking effective support for answering them. \cite{latoza_maintaining_2006, latoza_hard-answer_2010, ko_information_2007}
+Rationale questions ask why code was implemented a certain way, why alternative implementations were not chosen, and what the hidden criteria might have been behind motivating design choices about code. \cite{latoza_hard-answer_2010}
+From a survey of software developers, LaToza \etal \cite{latoza_maintaining_2006} found 66\% of respondents found understanding the rationale behind a piece of code to be a serious problem, 
+while 82\% agree it takes a lot of effort to understand ``why the code is implemented the way it is.''
+Further, 51\% agree understanding the history of a piece of a code to be a serious problem. \cite{latoza_maintaining_2006}
+In agreement, Ko \etal's observational study of 17 software developers found it was rarely enough for developers to understand the cause of a program behaviour. \cite{ko_information_2007}
+Developers also often sought after the historical reason for a program's current implementation. \cite{ko_information_2007}
+
+A source of information that can be helpful for answering code rationale questions is the revision history for code and the issues from a project's issue tracking system. 
+Despite being difficult to answer, developers tried to answer code rationale questions through through code change histories and bug reports, especially if knowledgeable colleagues are unavailable. \FIXME{In this thesis, we explore an approach to \dots}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Commit History Exploration}
-\label{sec:Commit-History-Expl}
+Existing tool support for revision history exploration.
+
+\entity{git} ``blame''
+GitLens for Visual Studio.
+GitToolBox for IntelliJ IDEA.
+
+
+Through interviews and surveys, Codoban \etal \cite{codoban_software_2015} found existing history exploration tools to be limited in being only temporal, despite developers often using revision history for recovering rationale behind code and for understanding the evolution of a project.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Issue Tracking Systems}
-\label{sec:Issue-Tracking-Sys}
+Approaches that improve on revision history.
+
+\cite{servant_history_2012}
+\cite{kawrykow_non-essential_2011}
+\cite{bradley_supporting_2011}
+\cite{grund_codeshovel_2021}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Approaches that use or incorporate issue tracking system information.
+
+\cite{cubranic_hipikat_2005}
+\cite{rastkar_why_2013}
+\cite{moreno_arena_2017}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+What this thesis does differently.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \endinput
