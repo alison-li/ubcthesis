@@ -9,8 +9,8 @@
 
 Rarely does a developer join a team at the inception of a code base. 
 This being the case, developers navigating a team's source code for the first time often ask the question: ``why was this code written this way?'' inquiring about the motivations behind the code left by former and current colleagues.
-LaToza \etal \cite{latoza_maintaining_2006} found the most serious problem software developers face is understanding code rationale, followed by Ko \etal \cite{ko_information_2007} reporting the intent behind code being the most difficult information need to satisfy. 
-In further agreement, LaToza and Myers \cite{latoza_hard-answer_2010} unearth code rationale as the single most frequently reported “hard-to-answer” question category in software development. 
+LaToza \etal found the most serious problem software developers face is understanding code rationale \cite{latoza_maintaining_2006}, followed by Ko \etal reporting the intent behind code being the most difficult information need to satisfy \cite{ko_information_2007}. 
+In further agreement, LaToza and Myers unearth code rationale as the single most frequently reported “hard-to-answer” question category in software development \cite{latoza_hard-answer_2010}. 
 Code rationale includes questions not clearly answered by examining code itself, such as algorithm choice, optimization choice, and hidden criteria that motivate design choices \cite{latoza_hard-answer_2010}. 
 One common information source LaToza \etal report on is colleagues. 
 However, the practice of seeking knowledgeable colleagues is challenging in projects experiencing turnover. 
@@ -23,7 +23,7 @@ code. Often this person is the developer lead and has been with the code base th
 
 What does one do when such a historian does not exist in a team? Or when a team experiences turnover?
 There is a danger in relying solely on individuals for knowledge on intent behind the code in a large software system.
-Confronted with turnover-induced knowledge loss, Robillard \cite{robillard_turnover-induced_2021} emphasizes developers leveraging artifacts from project history after a colleague’s departure to understand developer intent behind code a departed colleague wrote. 
+Confronted with turnover-induced knowledge loss, Robillard emphasizes developers leveraging artifacts from project history after a colleague’s departure to understand developer intent behind code a departed colleague wrote \cite{robillard_turnover-induced_2021}. 
 However, developers often choose to forego investigating design documents due to the difficulties and cost of locating them \cite{latoza_maintaining_2006}.
 It therefore becomes all the more important to reduce the cost for developers in using artifacts from a project's history to obtain code rationale. 
 
@@ -45,7 +45,7 @@ For example, \entity{git}'s ``blame'' feature \cite{gitblame}, graphical user in
 Popular editors like Visual Studio Code \cite{vscode}, Eclipse \cite{eclipse}, and IntelliJ IDEA \cite{intellij} have native \entity{git} integrations and plugins that make the usage of \entity{git} more convenient and thereby make it easier to examine commits in a project's history. 
 However, to the best of our knowledge, none of these tools provide support for easily gaining a synthesized view of the contents in a commit and the Jira information associated with a commit.
 
-Despite a wealth of tools supporting \entity{git} integration, Codoban \etal's \cite{codoban_software_2015} survey of 217 developers found 47\% of respondents reporting the high volume of commits in a project to be a challenge of navigating commit history. 
+Despite a wealth of tools supporting \entity{git} integration, Codoban \etal's survey of 217 developers found 47\% of respondents reporting the high volume of commits in a project to be a challenge of navigating commit history \cite{codoban_software_2015}. 
 Noise \eg white spaces, line-endings, tangled commits where a commit has unrelated changes, \etc in diffs between commits make software history exploration inefficient. 
 Ultimately, a developer still must manually identify meaningful commits, visit and read through the referenced issue, and maintain a mental model or narrative the developer constructs through a process of viewing code changes and keeping up with associated discussions that could provide the motivation for a code modification. 
 
