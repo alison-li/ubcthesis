@@ -25,9 +25,9 @@ However, Codoban \etal's participants reported diffs were difficult to read due 
 
 Graphical user interfaces (\entity{gui}) for \entity{git} like GitExtensions \cite{gitextensions} and Sourcetree \cite{sourcetree} streamline a view of revisions alongside diffs, saving the user from manually executing calls of \entity{git} ``blame'' and ``diff.'' 
 Native \entity{git} integrations and third-party plugins for popular code editors have made the use of these \entity{git} features more convenient. 
-For example, IntelliJ IDEA \cite{intellij} has a view for displaying the \entity{git} history of a project, similar to calling \entity{git} ``log.''
-IntelliJ also has a view specifically for showing the commit history for a single file or directory \cite{intellij-showhistory}.
-Third-party plugins such as GitToolBox for IntelliJ and GitLens for Visual Studio can also integrate information from \entity{git} ``blame'' by directly inlining a preview of the commit message and the author of the revision that last modified the line in a file.
+For example, IntelliJ IDEA \cite{intellij} has a tool window for displaying the \entity{git} history of a project, similar to calling \entity{git} ``log.''
+IntelliJ also has a tool window tab specifically for showing the commit history for a single file or directory \cite{intellij-showhistory}.
+Third-party plugins such as GitToolBox \cite{gittoolbox} for IntelliJ and GitLens \cite{gitlens} for Visual Studio can also integrate information from \entity{git} ``blame'' by directly inlining a preview of the commit message and the author of the revision that last modified the line in a file.
 
 While \entity{gui}s make it more convenient to inspect revisions one at a time and refer or jump to different revisions at different points in time, they do not address the concern of having to go through several diffs, many which can be irrelevant to a code snippet of interest, to find a meaningful explanation for the change.
 Moreover, plugins that make the information retrieved from \entity{git} commands more accessible still only cover the temporal view of software history.
@@ -54,8 +54,8 @@ For reasoning about the evolution of source code, CodeShovel \cite{grund_codesho
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Incorporating Issue Tracking Systems}
 
-To supplement the code change information from software revision histories, previous work has also incorporated the use of peripheral project artifacts as richer sources of code rationale information. A common source of code rationale information is in a project's issue tracking system as issues can contain useful discussion such as the hypothesized causes of bugs, approaches to fixing the bugs, and the motivation behind a feature implementation. 
-Issue tracking systems such as Jira also support extensive organization for issues, which can designate Jira issues belonging to different levels of abstraction.
+Previous work has explored using peripheral project artifacts as richer sources of code rationale information. A common source of code rationale information is a project's issue tracking system because these issues can contain useful discussion in the form of comments such as the hypothesized causes of bugs, approaches to fixing the bugs, and the motivation behind a feature implementation. 
+Issue tracking systems like Jira also support extensive organization for issues, which can designate Jira issues belonging to different levels of abstraction.
 For example, an issue on Jira can be categorized as a bug, task, sub-task of a larger task, story, or epic \cite{jira-issue-types}.
 Jira issues can also be linked to each other by relationships such as ``caused by'' or ``relates to.''
 
