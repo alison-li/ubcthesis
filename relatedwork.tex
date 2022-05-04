@@ -2,22 +2,22 @@
 \label{ch:Related-Work}
 
 Rationale questions ask why code was implemented a certain way, why alternative implementations were not chosen, and what the hidden criteria might have been behind motivating design choices about code \cite{latoza_hard-answer_2010}.
-Many empirical studies have established code rationale as a highly sought after category of information lacking effective support for answering them \cite{latoza_maintaining_2006, latoza_hard-answer_2010, ko_information_2007}. 
+Many empirical studies have established code rationale as a highly sought after category of information that is effective tool support to answer them \cite{latoza_maintaining_2006, latoza_hard-answer_2010, ko_information_2007}. 
 From a survey of software developers, LaToza \etal found 66\% of respondents reported understanding the intent behind a piece of code to be a serious problem, 
 while 82\% report that it takes considerable effort to understand ``why the code is implemented the way it is'' \cite{latoza_maintaining_2006}.
 Further, 51\% agree understanding the history of a piece of a code to be a serious problem \cite{latoza_maintaining_2006}.
 In support of LaToza \etal's findings, Ko \etal's observational study of 17 software developers found it was rarely enough for developers to understand the cause of a program's behaviour, as developers also sought after the historical reason for a program's current implementation \cite{ko_information_2007}.
 
-Two particular sources of information helpful for answering code rationale questions is a software project's revision history and the issues from a project's issue tracking system. 
+Two particular sources of information helpful for answering code rationale questions are a software project's revision history and the issues from a project's issue tracking system. 
 In the absence of knowledgeable colleagues, several studies observe and show consensus on developers seeking answers to code rationale questions through code change histories and bug reports \cite{ko_information_2007, codoban_software_2015, robillard_turnover-induced_2021}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Existing Support for Revision History Exploration}
 
 Through interviews and surveys, Codoban \etal discovered existing history exploration tools to be limited by only presenting a linear, sequential view of history \cite{codoban_software_2015}.
+Current tools related to \entity{vcs} assume all history is equally important with a flat, non-hierarchical structure and only provide a temporal view of committed changes \cite{codoban_software_2015}.
 In other words, these tools only provide a temporal view of software revision history.
-Developers frequently use revision history for recovering rationale behind code and for understanding the evolution of a project, which a temporal view alone does not effectively support \cite{codoban_software_2015}.
-However, Codaban \etal observe current tools related to \entity{vcs} assume all history is equally important with a flat, non-hierarchical structure and only provide a temporal view of committed changes \cite{codoban_software_2015}.
+However, developers frequently use revision history for recovering rationale behind code and for understanding the evolution of a project, which a temporal view alone does not effectively support \cite{codoban_software_2015}.
 
 Existing \entity{git} commands as tools for exploring revision history such as ``blame'' \cite{gitblame} annotate each line in a file with information about the revision and the author that last modified a particular line.
 If a developer was investigating the design choice for a particular variable's value, the most recent revisions that last affected a particular line might not give this insight.
@@ -70,6 +70,7 @@ Another tool recognizing Jira as a source of code rationale information is ARENA
 ARENA summarizes the code changes between releases to answer \emph{what} changed in a newer release and uses the information from Jira to explain \emph{why}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Summary}
 
 One side of previous work has focused on improving software history exploration by making revision history a primary source of code change information easier to navigate and obtain the \emph{what} of code change.
 While this work has made it more convenient to explore software history by reducing the search space of changes, the cognitive burden of understanding the change still lies with the developer as these focus more on using source code and the changes in revisions.
