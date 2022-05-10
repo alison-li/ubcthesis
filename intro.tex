@@ -79,7 +79,7 @@ For efficiency, the developer could choose not to view the referenced Jira issue
 
 For each commit and visited Jira issue, the developer must maintain a mental narrative of the file's evolution and the rationale behind each change at different points in time. 
 This results in a temporal cost of determining non-trivial commits to discard during exploration and a cognitive cost of maintaining a mental model of the interactions and decisions behind changes in a file. 
-In total, our heuristic-based approach, explained further in \autoref{ch:Development}, shows 12 of 21 commits can be considered unimportant to the \class{Topology} class. 
+In total, our heuristic-based approach, explained further in \autoref{sec:Heuristics}, shows 12 of 21 commits can be considered unimportant to the \class{Topology} class. 
 We find 9 commits only affect documentation, annotations, and newlines.
 If this were indicated in advance to the developer, this could have made the developer's search more efficient by considering the indication and have the choice to skip examining these commits.
 Moreover, providing the developer with ease of access to a sample of information in the Jira issue or metrics such as number of comments or Jira issue priority to the developer in the same view as the one they use to view the file's commit history could ease the cognitive burden of the process of examining each Jira issue independently and in the context of each other.
@@ -132,7 +132,7 @@ We hypothesize a developer could more effectively access the code rationale for 
 This approach to presenting a commit history would reduce the cognitive and temporal costs of software history examination. % TODO: Can add some sentences here referencing related work and how the approach proposed in this differs.
 This thesis investigates the design of a tool to spotlight potentially meaningful commits and de-emphasize less meaningful commits in the commit history for a file in a project and to make it more convenient to locate and access relevant discussions referenced in a commit. 
 
-We develop a set of heuristics on code changes and Jira issues that are customizable for supporting a developer in gauging the relevance of commits and related Jira issues when seeking answers to code rationale questions pertaining to a file.
+We develop a set of heuristics on code changes and Jira issues that for supporting a developer in gauging the relevance of commits and related Jira issues when seeking answers to code rationale questions pertaining to a file.
 The design of the tool allows exploration of how effective the heuristics and the control of the heuristics are for streamlining the process of viewing both commits and associated Jira issues in one interface, while also reducing the noise in a file's commit history.
 We also examine how effective the control of these heuristics are for supporting a developer in constructing a clearer timeline of changes in a file's history, making it easier to gain insight into the evolution of code in a file that can further help to answer questions about the code evolution in a file and the rationale behind the different changes in its evolution. 
 For example, with trivial commits de-emphasized in a file's commit history, a user might be able to see more clearly which commits introduced features in a file and which commits in between feature introductions were bug fixes or updates to a feature.
@@ -147,7 +147,7 @@ This thesis makes $N$ contributions:
 
 This thesis is structured as follows. 
 \autoref{ch:Related-Work} contextualizes the motivation behind this thesis and its contributions through related work. 
-\autoref{ch:Development} describes the development of the tool through our developed heuristics, its design, and the predictions we make about the questions the tool is effective at answering. 
+\autoref{ch:Intelligent-History} describes the development of the tool through our developed heuristics, its design, and the predictions we make about the questions the tool is effective at answering. 
 \autoref{ch:Evaluation} details the evaluation on the usefulness of the tool.
 \autoref{ch:Discussion} discusses the results of the evaluation and approaches to improving the tool.
 \autoref{ch:Conclusion} concludes the thesis and provides suggestions for future work.

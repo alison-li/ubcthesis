@@ -1,0 +1,42 @@
+\chapter{Intelligent History}
+\label{ch:Intelligent-History}
+
+To enable the investigation of our hypothesis, we developed Intelligent History, a prototype plugin for IntelliJ IDEA.
+We describe the design and features of Intelligent History in \autoref{sec:Design} and elaborate on the implementation
+for suggesting potentially more meaningful comments in \autoref{sec:Heuristics}.
+In \autoref{sec:Predictions}, we discuss the use cases we envision Intelligent History to be able to effectively support.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Design}
+\label{sec:Design}
+
+As part of an effort to reduce the cognitive and temporal costs of software history exploration, we chose to develop a plugin to augment the existing rich features an \entity{IDE} already provides.
+Unlike a stand-alone desktop or web application, a plugin would minimize the number of external windows a developer needs to maintain an explore to gain context around revisions since the information Intelligent History offers would be integrated within the \entity{IDE}.
+The IntelliJ \entity{IDE} provides a built-in Git client \entity{GUI} for navigating a software project's revision history and navigating revisions.
+
+We designed Intelligent History to support the following questions a developer might ask when searching for code rationale information in a file's revision history:
+
+\begin{enumerate}
+    \item ``Which commits are likely to be meaningful for understanding the decisions and choices involved in the evolution of this file?''
+    \item ``Is there an interesting discussion that motivated an interesting commit?''
+\end{enumerate}
+
+Intelligent History has the following features:
+
+\begin{itemize}
+    \item \dots
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Heuristics}
+\label{sec:Heuristics}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Predictions}
+\label{sec:Predictions}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\endinput
+
+Any text after an \endinput is ignored.
+You could put scraps here or things in progress.
