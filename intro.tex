@@ -122,14 +122,15 @@ These commits raise limitations in the Kafka Streams API and user desire for mor
 	\jira{KAFKA-5650;}{add StateStoreBuilder interface and implementations} \\
 	\textcolor{gray}{\jira{KAFKA-5671:}{Add StreamsBuilder and Deprecate KStreamBuilder}} \\
 	\jira{KAFKA-5670:}{(KIP-120) Add Topology and deprecate TopologyBuilder} \\
-	\caption{The commit history, shown by each commit message's subject, for the \file{Topology.java} file in the open source Apache Kafka project. 		The history is in descending order, from the most recent commit to the oldest commit.
-		In total, the \class{Topology} class has 21 commits in its commit history. The greyed out commits contain changes deemed not meaningful due 		to being modifications only to documentation, annotations, imports, or newlines. Commits explicitly labelled as ``MINOR'' are also in grey.}
+	\caption{The commit history, shown by each commit message's subject, for the \file{Topology.java} file in the open source Apache Kafka project. The history is in descending order, from the most recent commit to the oldest commit.
+		In total, the \class{Topology} class has 21 commits in its commit history. The greyed out commits contain changes deemed not meaningful due to being modifications only to documentation, annotations, imports, or newlines. Commits explicitly labelled as ``MINOR'' are also in grey.}
 	\label{fig:Topology-Commit-History}
 \end{RaggedRight}
 \end{figure}
 
-We hypothesize a developer could more effectively access the code rationale for a file in a project if the commit history view for a file de-emphasized commits containing less meaningful changes and, in turn, brought the remaining commits to the fore and provided ease of access to the Jira issue information associated with them.
-This approach to presenting a commit history would reduce the cognitive and temporal costs of software history examination. % TODO: Can add some sentences here referencing related work and how the approach proposed in this differs.
+We hypothesize automatically identifying important commits and providing integrated access between commit and issue information could help a developer more effectively access the rationale for code.
+This approach to presenting a commit history would reduce the cognitive and temporal costs of software history examination. 
+% TODO: Can add some sentences here referencing related work and how the approach proposed in this differs.
 This thesis investigates the design of a tool to spotlight potentially meaningful commits and de-emphasize less meaningful commits in the commit history for a file in a project and to make it more convenient to locate and access relevant discussions referenced in a commit. 
 
 We develop a set of heuristics on code changes and Jira issues that for supporting a developer in gauging the relevance of commits and related Jira issues when seeking answers to code rationale questions pertaining to a file.
