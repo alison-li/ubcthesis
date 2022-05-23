@@ -51,7 +51,7 @@ Ultimately, a developer still must manually identify meaningful commits, visit a
 
 We illustrate the cognitive and temporal burden of the process through a scenario.
 Suppose a developer is working on the open source project Apache Kafka. 
-Apache Kafka is an open source streaming platform used for working with streaming data. Apache Kafka is most commonly used for real-time data processing and provides five core APIs: Producer, Consumer, Streams, Connect, and Admin.
+Apache Kafka is an open source streaming platform used for working with streaming data. Apache Kafka is most commonly used for real-time data processing and provides five core \entity{API}s: Producer, Consumer, Streams, Connect, and Admin.
 Apache Kafka requires all non-trivial changes to have a corresponding Jira issue. 
 The developer views the commit history for the file \file{Topology.java}.
 In the context of the Kafka architecture, a ``topology'' is a directed acyclic graph of stream processing nodes that defines the stream processing logic for an application using Apache Kafka.
@@ -89,15 +89,15 @@ This suggests the developer would benefit greatly from an automatic and more str
 Additionally, the ability to glean the Jira issue information could help the developer more efficiently decide which commits they can prioritize exploring for understanding the evolution and rationale behind changes in the \class{Topology} class.
 
 If such a tool could spotlight the remaining 9 of 21 commits to prioritize examining, the developer would be able to efficiently piece together the following about the \class{Topology} class. 
-There were several refactoring commits: \jira{KAFKA-5670} is the first commit in the file and introduces \class{Topology} as a refactoring of a former class due to leakage of internal methods in the Kafka Streams API that should not be public. 
+There were several refactoring commits: \jira{KAFKA-5670} is the first commit in the file and introduces \class{Topology} as a refactoring of a former class due to leakage of internal methods in the Kafka Streams \entity{API} that should not be public. 
 The next commit \jira{KAFKA-5650} updates the \class{Topology} class to use newly added interfaces for reducing heavy method overloading.
 Further commits \jira{KAFKA-12648} and \jira{KAFKA-12648} also explicitly state they refactor the \class{Topology} class to enable topology-specific user configuration.
 Since these are refactoring commits, a tool could help to further optimize a developer's search by mitigating the need to visit the referenced Jira issues to find this out if it could provide the ability to glimpse the Jira issue descriptions or metrics that could measure a Jira's level of importance, \eg the number of people subscribed to a Jira issue.
 If such a tool were available, the developer might be able to more easily see the more interesting changes and supporting rationale that occurred in \class{Topology}:
-\jira{KAFKA-4936} addresses a previous limitation in the Kafka Streams API where a stream's output topic had to be known prior, preventing the sending of output topics dynamically. 
+\jira{KAFKA-4936} addresses a previous limitation in the Kafka Streams \entity{API} where a stream's output topic had to be known prior, preventing the sending of output topics dynamically. 
 The Jira description leads further to a link on open questions on topic creation and configuration in light of many requests to add the feature.
 Similarly, \jira{KAFKA-7523} committed after describes another topology configuration-related shortcoming and adds support for state stores to each processor node in a topology.
-These commits raise limitations in the Kafka Streams API and user desire for more configuration support regarding topologies in Kafka, which lead to interesting discussion that a present developer viewing the history could read and understand as a historical concern surrounding the \class{Topology} class.
+These commits raise limitations in the Kafka Streams \entity{API} and user desire for more configuration support regarding topologies in Kafka, which lead to interesting discussion that a present developer viewing the history could read and understand as a historical concern surrounding the \class{Topology} class.
 
 \begin{figure}
 \begin{RaggedRight}

@@ -2,7 +2,8 @@
 \label{ch:Intelligent-History}
 
 To enable the investigation of our hypothesis, we developed Intelligent History,\footnote{\url{https://github.com/Alison-Li/intelligent-history}, verified 5/22/2022.} a prototype plugin for IntelliJ IDEA.
-We describe the design and features of Intelligent History in \autoref{sec:Design} and elaborate on the implementation
+Intelligent History uses the IntelliJ Platform \entity{SDK}.\footnote{\url{https://www.jetbrains.com/opensource/idea/}, verified 5/23/2022}
+We describe the design and features of Intelligent History in \autoref{sec:Design} and elaborate on the implementation of heuristics
 for suggesting potentially more meaningful comments in \autoref{sec:Heuristics}.
 In \autoref{sec:Predictions}, we discuss the use cases we envision Intelligent History to be able to effectively support.
 
@@ -15,23 +16,25 @@ Unlike a stand-alone desktop or web application, a plugin minimizes the number o
 The IntelliJ \entity{IDE} provides a built-in Git client \entity{GUI} for navigating a software project's revision history and navigating revisions. 
 In particular, the ``Show History'' feature in IntelliJ is available for directories and files, and displays a history of commits that have affected a single file or directory.
 \autoref{fig:IntelliJ-Overview} shows IntelliJ with a file's commit history visible.
+
 As a plugin, Intelligent History integrates with IntelliJ's ``Show History'' feature seamlessly as the plugin adds actions that can be invoked from a toolbar in IntelliJ's existing interface for exploring a file's commit history. 
 This makes the features of Intelligent History complimentary to IntelliJ's existing version control interface.
-
 We designed Intelligent History to support the following questions a developer might ask when searching for code rationale information in a file's revision history:
 
-\begin{enumerate}
+\begin{enumerate}[label={(\arabic*)}]
     \item ``Which commits are likely to be meaningful for understanding the decisions and choices involved in the evolution of this file?''
     \item ``Is there an interesting discussion or rationale that motivated the changes in a commit?''
 \end{enumerate}
 
-Intelligent History has the following features:
+Intelligent History has the following features implemented as \emph{actions} in the IntelliJ Platform \entity{SDK}, which the user can invoke:
 
-\begin{itemize}
-    \item Commit highlighting to automatically detect and distinguish important commits from less important commits. The determination of less important commits is based on a set heuristics in the form regular expressions applied to the diff content of commits.
-    \item A ``diff metadata'' summary, which shows the categorization of code changes detected in a commit according to the heuristics used for determining less important commits.
-    \item Integrated Jira issue retrieval and presentation, along with metadata information about the Jira issue.
-\end{itemize}
+\begin{enumerate}[label=(\Alph*)]
+    \item \textit{Highlight Important Changes}: A toggleable action that automatically detects less important commits and applies highlighting on a file's commit history to distinguish potentially important commits from less important commits. The determination of less important commits is based on a set heuristics in the form regular expressions applied to the diff content of commits. The implementation of this heuristics-checking is described further in \autoref{sec:Heuristics}. As a demonstration, \dots \FIXME{Add reference to figure.}
+    \item \textit{Show Diff Metadata}: Shows a ``diff metadata'' summary for a user-selected commit in a file's commit history. This summary contains a categorization of code changes in a commit's diff content and the number of lines detected in a diff according to the heuristics used for determining less important commits. For example, \dots \FIXME{Add reference to figure.}
+    \item \textit{Show Jira Issue}: Extracts the Jira issue ID for a user-selected commit in a file's commit history and fetches and displays the Jira issue information in a dedicated tool window. The Jira issue ID is extracted from a commit's message using regular expressions. Along with the Jira issue information, this action also provides a ``Jira metadata'' summary of the Jira issue, including statistics on the number of comments on the Jira issue made by commit author, the total number of comments on the Jira issue exluding bot comments, the total number of unique people involved in the Jira issue based on comments including the Jira issue assignee, the number of people subscribed to the Jira issue (``watches''), the number of votes on the Jira issue, the number issue links, and the number of sub-tasks. For example, \dots \FIXME{Add reference to figure.}
+\end{enumerate}
+
+These actions added by the Intelligent History plugin are indicated in \autoref{fig:Intelligent-History-Overview}.
 
 \begin{figure}
     \includegraphics[width=\textwidth]{./images/intellij-overview.png}
@@ -39,6 +42,12 @@ Intelligent History has the following features:
         IntelliJ IDEA overview with the built-in Git client displayed on the bottom half. Shows the commit history for the \class{Topology} class in Apache Kafka.
     }
     \label{fig:IntelliJ-Overview}
+\end{figure}
+
+\begin{figure}
+    \FIXME{Add annotated figure.}
+    \caption{Overview of the actions added by the Intelligent History plugin. (A) indicates \textit{Highlight Important Changes}, (B) denotes \textit{Show Diff Metadata}, and (C) marks \textit{Show Jira Issue}.}
+    \label{fig:Intelligent-History-Overview}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
