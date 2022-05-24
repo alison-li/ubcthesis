@@ -3,8 +3,9 @@
 
 To enable the investigation of our hypothesis, we developed \toolname{Intelligent History},\footnote{\url{https://github.com/Alison-Li/intelligent-history}, verified 5/22/2022.} a prototype plugin for IntelliJ IDEA.
 \toolname{Intelligent History} uses the IntelliJ Platform \entity{SDK}.\footnote{\url{https://www.jetbrains.com/opensource/idea/}, verified 5/23/2022}
-We describe the design and features of \toolname in \autoref{sec:Design} and elaborate on the implementation of heuristics
+We describe the design and features of \toolname{Intelligent History} in \autoref{sec:Design} and elaborate on the implementation of heuristics
 for suggesting potentially more meaningful comments in \autoref{sec:Heuristics}.
+We also further elaborate on the metadata information \toolname{Intelligent History} extracts and provides on Jira issues in \autoref{sec:Issue-Metadata}. 
 In \autoref{sec:Predictions}, we discuss the use cases we envision \toolname{Intelligent History} to be able to effectively support.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -12,7 +13,8 @@ In \autoref{sec:Predictions}, we discuss the use cases we envision \toolname{Int
 \label{sec:Design}
 
 As part of an effort to reduce the cognitive and temporal costs of software history exploration, we chose to develop a plugin to augment the existing rich features an \entity{IDE} already provides.
-Unlike a stand-alone desktop or web application, a plugin minimizes the number of external application windows a developer needs to maintain and explore to gain context around revisions since the information \toolname{Intelligent History} offers would be integrated within the \entity{IDE}.
+Unlike a stand-alone desktop or web application, a plugin minimizes the number of external application windows a developer needs to maintain and explore to gain context around revisions. 
+This is because the information \toolname{Intelligent History} offers would be integrated within the \entity{IDE}, reducing the switching a developer would need to perform between a separate browser window for searching an issue tracking system and their \entity{IDE} for examining code and revision history.
 The IntelliJ \entity{IDE} provides a built-in Git client \entity{GUI} for navigating a software project's revision history and inspecting revisions. 
 In particular, the ``Show History'' feature in IntelliJ is available for directories and files, and displays a history of commits that have affected a single file or directory.
 \autoref{fig:IntelliJ-Overview} shows IntelliJ with a file's commit history visible.
@@ -22,16 +24,16 @@ This makes the features of \toolname{Intelligent History} complimentary to Intel
 We designed \toolname{Intelligent History} to support the following questions a developer might ask when searching for code rationale information in a file's revision history:
 
 \begin{enumerate}[label={(\arabic*)}]
-    \item ``Which commits are likely to be meaningful for understanding the decisions and choices involved in the evolution of this file?''
-    \item ``Is there an interesting discussion or rationale that motivated the changes in a commit?''
+    \item \textit{Which commits are likely to be meaningful for understanding the decisions and choices involved in the evolution of this file?}
+    \item \textit{Is there an interesting discussion or rationale that motivated the changes in a commit?}
 \end{enumerate}
 
 \toolname{Intelligent History} has the following features implemented as \emph{actions} in the IntelliJ Platform \entity{SDK}, which the user can invoke:
 
 \begin{enumerate}[label=(\Alph*)]
     \item \textit{Highlight Important Changes}: A toggleable action that automatically detects less important commits and applies highlighting on a file's commit history to distinguish potentially important commits from less important commits. The determination of less important commits is based on a set heuristics in the form regular expressions applied to the diff content of commits. The implementation of this heuristics-checking is described further in \autoref{sec:Heuristics}. As a demonstration, \dots \FIXME{Add reference to figure.}
-    \item \textit{Show Diff Metadata}: An action that displays a ``diff metadata'' pop-up summary for a user-selected commit in a file's commit history. This summary contains a categorization of code changes in a commit's diff content and the number of lines detected in a diff according to the heuristics used for determining less important commits. For example, \dots \FIXME{Add reference to figure.}
-    \item \textit{Show Jira Issue}: An action that extracts the Jira issue ID for a user-selected commit in a file's commit history and fetches and displays the Jira issue information in a dedicated tool window. The Jira issue ID is extracted from a commit's message using regular expressions. Along with the Jira issue information, this action also provides a ``Jira metadata'' summary of the Jira issue, including statistics on the number of comments on the Jira issue made by commit author, the total number of comments on the Jira issue exluding bot comments, the total number of unique people involved in the Jira issue based on comments including the Jira issue assignee, the number of people subscribed to the Jira issue (``watches''), the number of votes on the Jira issue, the number issue links, and the number of sub-tasks. For example, \dots \FIXME{Add reference to figure.}
+    \item \textit{Show Diff Metadata}: An action that displays a metadata pop-up summary on the diff for a user-selected commit in a file's commit history. This summary contains a categorization of code changes in a commit's diff content and the number of lines detected in a diff according to the heuristics used for determining less important commits. The details on this categorization is also further explained in \autoref{sec:Heuristics}. As an example, \dots \FIXME{Add reference to figure.}
+    \item \textit{Show Jira Issue}: An action that extracts the Jira issue ID for a user-selected commit in a file's commit history and fetches and displays the Jira issue information in a dedicated tool window. The Jira issue ID is extracted from a commit's message using regular expressions. Along with the Jira issue information, this action also provides a meatdata summary of the Jira issue, which includes metrics on the number of comments on the Jira issue made by commit author, the total number of comments on the Jira issue exluding bot comments, the total number of unique people involved in the Jira issue based on comments including the Jira issue assignee, the number of people subscribed to the Jira issue (``watches''), the number of votes on the Jira issue, the number issue links, and the number of sub-tasks. We further describe these metrics in \autoref{sec:Issue-Metadata}. For example, \dots \FIXME{Add reference to figure.}
 \end{enumerate}
 
 These actions added by the \toolname{Intelligent History} plugin are indicated in \autoref{fig:Intelligent-History-Overview}.
@@ -46,7 +48,9 @@ These actions added by the \toolname{Intelligent History} plugin are indicated i
 
 \begin{figure}
     \FIXME{Add annotated figure.}
-    \caption{Overview of the actions added by the \toolname{Intelligent History} plugin. (A) indicates \textit{Highlight Important Changes}, (B) denotes \textit{Show Diff Metadata}, and (C) marks \textit{Show Jira Issue}.}
+    \caption{
+        Overview of the actions added by the \toolname{Intelligent History} plugin. We use the following labels: (A) indicates \textit{Highlight Important Changes}, (B) denotes \textit{Show Diff Metadata}, and (C) marks \textit{Show Jira Issue}.
+    }
     \label{fig:Intelligent-History-Overview}
 \end{figure}
 
@@ -72,20 +76,27 @@ Our approach for detecting trivial commits uses the following categories for cod
     \item \textit{Other}: \dots
 \end{itemize}
 
-We formulated these categories based on \dots \FIXME{Elaborate on the categories and they were formed.}
+We formulated these categories based on \dots \FIXME{Elaborate on the categories and how they were formed.}
 
 We use the \entity{java-diff-utils} \cite{java-diff-utils} library to extract the deltas between two states of a file in the form of lines. 
 The library provides source lines and target lines. \FIXME{Elaborate on the diff analysis technique.}
-This information for a user-selected commit is exposed in a pop-up when the user invokes the \textit{Show Diff Metadata}.
+This categorical information for a user-selected commit is exposed in a pop-up when the user invokes the \textit{Show Diff Metadata} action provided by \toolname{Intelligent History}.
 For example, \dots \FIXME{Add and reference a figure demonstrating the popup and the diff content}.
 
 Although we formulated a fixed set of patterns specific to Java, \dots \FIXME{Consider moving this to a section on suggestions for future work? Comment on potential for user-defined patterns.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Issue Metadata}
+\label{sec:Issue-Metadata}
+
+\FIXME{Elaborate on the metadata provided in the Jira tool window.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Predictions}
 \label{sec:Predictions}
 
-We describe how we predict a user might be able to use the actions from \toolname{Intelligent History}.
+With the interface of \toolname{Intelligent History} established in \autoref{fig:Intelligent-History-Overview}, we describe how we anticipate a user might be able to use the actions from \toolname{Intelligent History}. 
+In \autoref{sec:Design}, we outlined the three actions a user can invoke while examining a file's history using IntelliJ's built-in file revision history view: (A) \textit{Highlight Important Changes}; (B) \textit{Show Diff Metadata}; and (C) \textit{Show Jira Issue}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \endinput
