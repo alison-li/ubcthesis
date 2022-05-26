@@ -3,14 +3,25 @@
 
 To enable the investigation of our hypothesis, we developed \toolname{Intelligent History},\footnote{\url{https://github.com/Alison-Li/intelligent-history}, verified 5/22/2022.} a prototype plugin for IntelliJ IDEA.
 \toolname{Intelligent History} uses the IntelliJ Platform \entity{SDK}.\footnote{\url{https://www.jetbrains.com/opensource/idea/}, verified 5/23/2022}
-We describe the design and features of \toolname{Intelligent History} in \autoref{sec:Design} and elaborate on the implementation of heuristics
+We describe the design principles of the approach that motivated the development of \toolname{Intelligent History} in \autoref{sec:Design-Principles}. 
+In \autoref{sec:Implementation}, we demonstrate how these design principles were realized in the implementation of \toolname{Intelligent History} and elaborate on the heuristics \toolname{Intelligent History} uses
 for suggesting potentially more meaningful comments in \autoref{sec:Heuristics}.
 We also further elaborate on the metadata information \toolname{Intelligent History} extracts and provides on Jira issues in \autoref{sec:Issue-Metadata}. 
 In \autoref{sec:Predictions}, we discuss the use cases we envision \toolname{Intelligent History} to be able to effectively support.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Design}
-\label{sec:Design}
+\section{Design Principles}
+\label{sec:Design-Principles}
+
+The core concepts behind our approach is to \dots
+
+\subsection{Reducing the Search Space of Commits}
+
+\subsection{Minimizing the Distance between Commits and Issues}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Implementation}
+\label{sec:Implementation}
 
 As part of an effort to reduce the cognitive and temporal costs of software history exploration, we chose to develop a plugin to augment the existing rich features an \entity{IDE} already provides.
 Unlike a stand-alone desktop or web application, a plugin minimizes the number of external application windows a developer needs to maintain and explore to gain context around revisions. 
@@ -96,7 +107,7 @@ Although we formulated a fixed set of patterns specific to Java, \dots \FIXME{Co
 \label{sec:Predictions}
 
 With the interface of \toolname{Intelligent History} established in \autoref{fig:Intelligent-History-Overview}, we describe how we anticipate a user might be able to use the actions from \toolname{Intelligent History}. 
-In \autoref{sec:Design}, we outlined the three actions a user can invoke while examining a file's history using IntelliJ's built-in file revision history view: (A) \textit{Highlight Important Changes}; (B) \textit{Show Diff Metadata}; and (C) \textit{Show Jira Issue}.
+In \autoref{sec:Implementation}, we outlined the three actions a user can invoke while examining a file's history using IntelliJ's built-in file revision history view: (A) \textit{Highlight Important Changes}; (B) \textit{Show Diff Metadata}; and (C) \textit{Show Jira Issue}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \endinput
