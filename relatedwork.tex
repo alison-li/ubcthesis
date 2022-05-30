@@ -8,7 +8,7 @@ while 82\% report that it takes considerable effort to understand ``why the code
 Further, 51\% agree understanding the history of a piece of a code to be a serious problem \cite{latoza_maintaining_2006}.
 In support of LaToza \etal's findings, Ko \etal's observational study of 17 software developers found it was rarely enough for developers to understand the cause of a program's behaviour, as developers also sought after the historical reason for a program's current implementation \cite{ko_information_2007}.
 
-Two particular sources of information helpful for answering code rationale questions are a software project's revision history and the issues from a project's issue tracking system. 
+Two particular sources of information helpful for answering code rationale questions are a software project's revision history and the issues from a project's issue tracking system (\entity{ITS}). 
 In the absence of knowledgeable colleagues, several studies observe and show consensus on developers seeking answers to code rationale questions through code change histories and bug reports \cite{ko_information_2007, codoban_software_2015, robillard_turnover-induced_2021}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -59,8 +59,8 @@ For reasoning about the evolution of source code, CodeShovel \cite{grund_codesho
 \section{Incorporating Issue Tracking Systems}
 
 Previous work has explored using non-source code project artifacts to enrich existing code rationale information embedded in source code. 
-A common source of code rationale information is a project's issue tracking system because these issues can contain useful discussion in the form of comments such as the hypothesized causes of bugs, approaches to fixing the bugs, and the motivation behind a feature implementation. 
-Issue tracking systems like Jira also support extensive organization for issues, which can designate Jira issues belonging to different levels of abstraction.
+A common source of code rationale information is a project's issue repository because these issues can contain useful discussion in the form of comments such as the hypothesized causes of bugs, approaches to fixing the bugs, and the motivation behind a feature implementation. 
+Issue repositories like Jira also support extensive organization for issues, which can designate Jira issues belonging to different levels of abstraction.
 For example, an issue on Jira can be categorized as a bug, task or sub-task of a larger task, story, or epic \cite{jira-issue-types}.
 Jira issues can also be linked to each other by relationships such as ``caused by'' or ``relates to.''
 
@@ -75,7 +75,7 @@ ARENA summarizes the code changes between releases to answer \emph{what} changed
 One side of previous work has focused on improving software history exploration by making revision history a primary source of code change information easier to navigate and obtain the \emph{what} of code change.
 While this work has made it more convenient to explore software history by reducing the search space of changes, the cognitive burden of understanding the change still lies with the developer as these focus more on using source code and the changes in revisions.
 Using only the source changes contained in revisions and the commit messages in a revision history means any generated outcome lacks the context a change took place in.
-Meanwhile, the other side of previous work incorporates a project's issue tracking system for elaborating on the \emph{why} of code change but still lacks support for providing the developer with the efficiency to navigate commits themselves and associate meaningful changes with rationale.
+Meanwhile, the other side of previous work incorporates a project's issue repository for elaborating on the \emph{why} of code change but still lacks support for providing the developer with the efficiency to navigate commits themselves and associate meaningful changes with rationale.
 This thesis explores the development of an approach for making the exploration of the revision history for a given file more efficient by emphasizing potentially more meaningful commits, while also making access to the Jira issue information relevant to each commit in a file's revision history more convenient.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -27,11 +27,11 @@ Confronted with turnover-induced knowledge loss, Robillard emphasizes developers
 However, developers often choose to forego investigating design documents due to the difficulties and cost of locating them \cite{latoza_maintaining_2006}.
 It therefore becomes all the more important to reduce the cost for developers in using artifacts from a project's history to obtain code rationale. 
 
-Project artifacts that can serve as a source for answering code rationale questions include: (1) revision history and (2) information from issue tracking systems or issue repository. 
+Project artifacts that can serve as a source for answering code rationale questions include: (1) revision history and (2) information from issue tracking systems (\entity{ITS}) or issue repositories. 
 Developers investigate commit history to understand ``why is this [code] ‘this’ way'' as viewing code changes at points in time can help to recover the motivation behind segments of code.
 In particular, investigating commit history can help a developer understand the evolution of source code, which is helpful for uncovering architectural patterns and decisions, requirements decisions, and frequently occurring bugs \cite{codoban_software_2015}.
 Commits can also be accompanied by issues in a project issue repository. 
-A typical practice in software development is to explicitly reference an issue ID from an issue tracking system in a commit message, where each commit is associated with an issue. Apache Kafka is one example of an open-source project, which uses this practice.\footnote{\url{https://kafka.apache.org/}, verified 3/7/2022.} \footnote{\url{https://kafka.apache.org/contributing}, verified 3/7/2022.}
+A typical practice in software development is to explicitly reference an issue ID from an \entity{ITS} in a commit message, where each commit is associated with an issue. Apache Kafka is one example of an open-source project, which uses this practice.\footnote{\url{https://kafka.apache.org/}, verified 3/7/2022.} \footnote{\url{https://kafka.apache.org/contributing}, verified 3/7/2022.}
 For example, 
 $$
 \colorbox{lightgray}{\jira{KAFKA-3715:}{Add granular metrics to Kafka Streams and add hierarhical \sic logging levels to Metrics}}
