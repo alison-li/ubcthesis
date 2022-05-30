@@ -48,13 +48,13 @@ Consequently, in implementing Intelligent History, we have chosen to automate th
 For example, a commit that is present in the history for a single file $F$ may have modified multiple other files but to the extent that $F$ is concerned, the commit may have only added a newline at the end of a file.
 
 The detection of less important commits in Intelligent History is based on heuristics.
-Under Kawrykow and Robillard's definition of a \emph{non-essential} change as cosmetic in nature, generally behaviour-preserving, and unlikely to provide further insight into the roles or relationships of program elements \cite{kawrykow_non-essential_2011}, we proposed four categories of changes to use for identifying less important commits based their diff content.
+Under Kawrykow and Robillard's definition of a \emph{non-essential} change as cosmetic in nature, generally behaviour-preserving, and unlikely to provide further insight into the roles or relationships of program elements \cite{kawrykow_non-essential_2011}, we devise four categories of changes to use for identifying less important commits based their diff content.
 Specific to Java source code, we regard a commit as less important if the changed lines in a commit's diff contains only changes related to: \emph{documentation}, \emph{annotations}, \emph{newlines}, and \emph{import} statements.
-These heuristics are conservative to mitigiate false positives and for generalizability across projects.
+These heuristics are conservative to mitigate false positives in terms of a less important change and to maintain generalizability across projects.
 We categorize the changed lines in a diff by applying regular expression matching of patterns on each line.
 The details of how Intelligent History uses heuristics to determine less important commits are discussed in \autoref{sec:Heuristics}.
 
-\subsection{Minimizing the Distance between Commits and Issues}
+\subsection{Minimizing the Distance Between Commits and Issues}
 \label{subsec:Minimize-Commit-Issue-Distance}
 
 Several studies confirm developers look through change histories and associated issue or bug reports for hints about code implementation and rationale \cite{ko_information_2007,robillard_turnover-induced_2021, rastkar_why_2013}.
