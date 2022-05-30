@@ -1,4 +1,126 @@
 %% ACADEMIC
+@inproceedings{falleri_fine-grained_2014,
+	author = {Falleri, Jean-R\'{e}my and Morandat, Flor\'{e}al and Blanc, Xavier and Martinez, Matias and Monperrus, Martin},
+	title = {Fine-Grained and Accurate Source Code Differencing},
+	year = {2014},
+	isbn = {9781450330138},
+	publisher = {Association for Computing Machinery},
+	address = {New York, NY, USA},
+	url = {https://doi.org/10.1145/2642937.2642982},
+	doi = {10.1145/2642937.2642982},
+	abstract = {At the heart of software evolution is a sequence of edit actions, called an edit script, made to a source code file. Since software systems are stored version by version, the edit script has to be computed from these versions, which is known as a complex task. Existing approaches usually compute edit scripts at the text granularity with only add line and delete line actions. However, inferring syntactic changes from such an edit script is hard. Since moving code is a frequent action performed when editing code, it should also be taken into account. In this paper, we tackle these issues by introducing an algorithm computing edit scripts at the abstract syntax tree granularity including move actions. Our objective is to compute edit scripts that are short and close to the original developer intent. Our algorithm is implemented in a freely-available and extensible tool that has been intensively validated.},
+	booktitle = {Proceedings of the 29th ACM/IEEE International Conference on Automated Software Engineering},
+	pages = {313–324},
+	numpages = {12},
+	keywords = {ast, tree differencing, program comprehension, software evolution},
+	location = {Vasteras, Sweden},
+	series = {ASE '14}
+}
+
+@article{pawlik_RTED_2011,
+	author = {Pawlik, Mateusz and Augsten, Nikolaus},
+	title = {RTED: A Robust Algorithm for the Tree Edit Distance},
+	year = {2011},
+	issue_date = {December 2011},
+	publisher = {VLDB Endowment},
+	volume = {5},
+	number = {4},
+	issn = {2150-8097},
+	url = {https://doi.org/10.14778/2095686.2095692},
+	doi = {10.14778/2095686.2095692},
+	abstract = {We consider the classical tree edit distance between ordered labeled trees, which is defined as the minimum-cost sequence of node edit operations that transform one tree into another. The state-of-the-art solutions for the tree edit distance are not satisfactory. The main competitors in the field either have optimal worst-case complexity, but the worst case happens frequently, or they are very efficient for some tree shapes, but degenerate for others. This leads to unpredictable and often infeasible runtimes. There is no obvious way to choose between the algorithms.In this paper we present RTED, a robust tree edit distance algorithm. The asymptotic complexity of RTED is smaller or equal to the complexity of the best competitors for any input instance, i.e., RTED is both efficient and worst-case optimal. We introduce the class of LRH (Left-Right-Heavy) algorithms, which includes RTED and the fastest tree edit distance algorithms presented in literature. We prove that RTED outperforms all previously proposed LRH algorithms in terms of runtime complexity. In our experiments on synthetic and real world data we empirically evaluate our solution and compare it to the state-of-the-art.},
+	journal = {Proc. VLDB Endow.},
+	month = {dec},
+	pages = {334–345},
+	numpages = {12}
+}
+
+@article{fluri_change_2007,
+	author={Fluri, Beat and Wursch, Michael and PInzger, Martin and Gall, Harald},
+	journal={IEEE Transactions on Software Engineering}, 
+	title={Change Distilling:Tree Differencing for Fine-Grained Source Code Change Extraction}, 
+	year={2007},
+	volume={33},
+	number={11},
+	pages={725-743},
+	doi={10.1109/TSE.2007.70731}
+}
+
+@inproceedings{ortu_jira_2015,
+	author = {Ortu, Marco and Destefanis, Giuseppe and Adams, Bram and Murgia, Alessandro and Marchesi, Michele and Tonelli, Roberto},
+	title = {The JIRA Repository Dataset: Understanding Social Aspects of Software Development},
+	year = {2015},
+	isbn = {9781450337151},
+	publisher = {Association for Computing Machinery},
+	address = {New York, NY, USA},
+	url = {https://doi.org/10.1145/2810146.2810147},
+	doi = {10.1145/2810146.2810147},
+	abstract = {Issue tracking systems store valuable data for testing hypotheses concerning maintenance, building statistical prediction models and recently investigating developers "affectiveness". In particular, the Jira Issue Tracking System is a proprietary tracking system that has gained a tremendous popularity in the last years and offers unique features like the project management system and the Jira agile kanban board. This paper presents a dataset extracted from the Jira ITS of four popular open source ecosystems (as well as the tools and infrastructure used for extraction) the Apache Software Foundation, Spring, JBoss and CodeHaus communities. Our dataset hosts more than 1K projects, containing more than 700K issue reports and more than 2 million issue comments. Using this data, we have been able to deeply study the communication process among developers, and how this aspect affects the development process. Furthermore, comments posted by developers contain not only technical information, but also valuable information about sentiments and emotions. Since sentiment analysis and human aspects in software engineering are gaining more and more importance in the last years, with this repository we would like to encourage further studies in this direction.},
+	booktitle = {Proceedings of the 11th International Conference on Predictive Models and Data Analytics in Software Engineering},
+	articleno = {1},
+	numpages = {4},
+	keywords = {Mining software repository, Issue Report, Affective Analysis},
+	location = {Beijing, China},
+	series = {PROMISE '15}
+}
+
+@inproceedings{hassan_road_2008,
+	author={Hassan, Ahmed E.},
+	booktitle={2008 Frontiers of Software Maintenance}, 
+	title={The road ahead for Mining Software Repositories}, 
+	year={2008},
+	volume={},
+	number={},
+	pages={48-57},
+	doi={10.1109/FOSM.2008.4659248}
+}
+
+@inproceedings{cubranic_hipikat_2003,
+	author = {\v{C}ubrani\'{c}, Davor and Murphy, Gail C.},
+	title = {Hipikat: Recommending Pertinent Software Development Artifacts},
+	year = {2003},
+	isbn = {076951877X},
+	publisher = {IEEE Computer Society},
+	address = {USA},
+	abstract = {A newcomer to a software project must typically come up-to-speed on a large, varied amount of information about the project before becoming productive. Assimilating this information in the open-source context is difficult because a newcomer cannot rely on the mentoring approach that is commonly used in traditional software developments. To help a newcomer to an open-source project become productive faster, we propose Hipikat, a tool that forms an implicit group memory from the information stored in a project's archives, and that recommends artifacts from the archives that are relevant to a task that a newcomer is trying to perform. To investigate this approach, we have instantiated the Hipikat tool for the Eclipse open-source project. In this paper, we describe the Hipikat tool, we report on a qualitative study conducted with a Hipikat mock-up on a medium-sized in-house project, and we report on a case study in which Hipikat recommendations were evaluated for a task on Eclipse.},
+	booktitle = {Proceedings of the 25th International Conference on Software Engineering},
+	pages = {408–418},
+	numpages = {11},
+	location = {Portland, Oregon},
+	series = {ICSE '03}
+}
+
+@inproceedings{herzig_tangled_2013,
+	author={Herzig, Kim and Zeller, Andreas},
+	booktitle={2013 10th Working Conference on Mining Software Repositories (MSR)}, 
+	title={The impact of tangled code changes}, 
+	year={2013},
+	volume={},
+	number={},
+	pages={121-130},
+	doi={10.1109/MSR.2013.6624018}
+}
+
+@article{murphy-hill_refactor_2012,
+	author={Murphy-Hill, Emerson and Parnin, Chris and Black, Andrew P.},
+	journal={IEEE Transactions on Software Engineering}, 
+	title={How We Refactor, and How We Know It}, 
+	year={2012},
+	volume={38},
+	number={1},
+	pages={5-18},
+	doi={10.1109/TSE.2011.41}
+}
+
+@book{shull_guide_2007,
+	author = {Shull, Forrest and Singer, Janice and Sj\o{}berg, Dag I.K.},
+	title = {Guide to Advanced Empirical Software Engineering},
+	year = {2007},
+	isbn = {184800043X},
+	publisher = {Springer-Verlag},
+	address = {Berlin, Heidelberg}
+}
+
 @inproceedings{dyer_boa_2013,
 	author={Dyer, Robert and Nguyen, Hoan Anh and Rajan, Hridesh and Nguyen, Tien N.},
 	booktitle={2013 35th International Conference on Software Engineering (ICSE)}, 
@@ -298,4 +420,11 @@
   year          = "2022",
   url           = {https://gitlens.amod.io/},
   note			= "Accessed April 5, 2022"
+}
+
+@online{java-diff-utils,
+  title         = {java-diff-utils},
+  year          = "2022",
+  url           = {https://java-diff-utils.github.io/java-diff-utils/},
+  note			= "Accessed May 23, 2022"
 }

@@ -19,4 +19,6 @@
 doc.pdf
 diss.pdf
 diss.synctex.gz
-images/.DS_Store
+.DS_Store
+diss.fls
+diss.fdb_latexmk
