@@ -1,4 +1,51 @@
 %% ACADEMIC
+@inproceedings{falleri_fine-grained_2014,
+	author = {Falleri, Jean-R\'{e}my and Morandat, Flor\'{e}al and Blanc, Xavier and Martinez, Matias and Monperrus, Martin},
+	title = {Fine-Grained and Accurate Source Code Differencing},
+	year = {2014},
+	isbn = {9781450330138},
+	publisher = {Association for Computing Machinery},
+	address = {New York, NY, USA},
+	url = {https://doi.org/10.1145/2642937.2642982},
+	doi = {10.1145/2642937.2642982},
+	abstract = {At the heart of software evolution is a sequence of edit actions, called an edit script, made to a source code file. Since software systems are stored version by version, the edit script has to be computed from these versions, which is known as a complex task. Existing approaches usually compute edit scripts at the text granularity with only add line and delete line actions. However, inferring syntactic changes from such an edit script is hard. Since moving code is a frequent action performed when editing code, it should also be taken into account. In this paper, we tackle these issues by introducing an algorithm computing edit scripts at the abstract syntax tree granularity including move actions. Our objective is to compute edit scripts that are short and close to the original developer intent. Our algorithm is implemented in a freely-available and extensible tool that has been intensively validated.},
+	booktitle = {Proceedings of the 29th ACM/IEEE International Conference on Automated Software Engineering},
+	pages = {313–324},
+	numpages = {12},
+	keywords = {ast, tree differencing, program comprehension, software evolution},
+	location = {Vasteras, Sweden},
+	series = {ASE '14}
+}
+
+@article{pawlik_RTED_2011,
+	author = {Pawlik, Mateusz and Augsten, Nikolaus},
+	title = {RTED: A Robust Algorithm for the Tree Edit Distance},
+	year = {2011},
+	issue_date = {December 2011},
+	publisher = {VLDB Endowment},
+	volume = {5},
+	number = {4},
+	issn = {2150-8097},
+	url = {https://doi.org/10.14778/2095686.2095692},
+	doi = {10.14778/2095686.2095692},
+	abstract = {We consider the classical tree edit distance between ordered labeled trees, which is defined as the minimum-cost sequence of node edit operations that transform one tree into another. The state-of-the-art solutions for the tree edit distance are not satisfactory. The main competitors in the field either have optimal worst-case complexity, but the worst case happens frequently, or they are very efficient for some tree shapes, but degenerate for others. This leads to unpredictable and often infeasible runtimes. There is no obvious way to choose between the algorithms.In this paper we present RTED, a robust tree edit distance algorithm. The asymptotic complexity of RTED is smaller or equal to the complexity of the best competitors for any input instance, i.e., RTED is both efficient and worst-case optimal. We introduce the class of LRH (Left-Right-Heavy) algorithms, which includes RTED and the fastest tree edit distance algorithms presented in literature. We prove that RTED outperforms all previously proposed LRH algorithms in terms of runtime complexity. In our experiments on synthetic and real world data we empirically evaluate our solution and compare it to the state-of-the-art.},
+	journal = {Proc. VLDB Endow.},
+	month = {dec},
+	pages = {334–345},
+	numpages = {12}
+}
+
+@article{fluri_change_2007,
+	author={Fluri, Beat and Wursch, Michael and PInzger, Martin and Gall, Harald},
+	journal={IEEE Transactions on Software Engineering}, 
+	title={Change Distilling:Tree Differencing for Fine-Grained Source Code Change Extraction}, 
+	year={2007},
+	volume={33},
+	number={11},
+	pages={725-743},
+	doi={10.1109/TSE.2007.70731}
+}
+
 @inproceedings{ortu_jira_2015,
 	author = {Ortu, Marco and Destefanis, Giuseppe and Adams, Bram and Murgia, Alessandro and Marchesi, Michele and Tonelli, Roberto},
 	title = {The JIRA Repository Dataset: Understanding Social Aspects of Software Development},
