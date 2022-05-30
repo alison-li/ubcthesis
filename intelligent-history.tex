@@ -3,7 +3,7 @@
 
 To enable the investigation of our hypothesis, we developed \toolname{Intelligent History},\footnote{\url{https://github.com/Alison-Li/intelligent-history}, verified 5/22/2022.} a prototype plugin for IntelliJ IDEA.
 \toolname{Intelligent History} uses the IntelliJ Platform \entity{SDK}.\footnote{\url{https://www.jetbrains.com/opensource/idea/}, verified 5/23/2022}
-We describe the design principles of the approach that motivated the development of \toolname{Intelligent History} in \autoref{sec:Design-Principles}. 
+We describe the design goals of the approach that motivated the development of \toolname{Intelligent History} in \autoref{sec:Design-Goals}. 
 In \autoref{sec:Implementation}, we demonstrate how these design principles were realized in the implementation of \toolname{Intelligent History}. 
 We elaborate on the heuristics \toolname{Intelligent History} uses
 for suggesting potentially more meaningful comments in \autoref{sec:Heuristics}.
@@ -11,43 +11,45 @@ We also expound the metadata information \toolname{Intelligent History} extracts
 Finally, we discuss the use cases we envision \toolname{Intelligent History} to be able to effectively support in \autoref{sec:Predictions}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Design Principles}
-\label{sec:Design-Principles}
+\section{Design Goals}
+\label{sec:Design-Goals}
 
-The design of our approach in \toolname{Intelligent History} is guided by two motivating principles: 
+The design of our approach in \toolname{Intelligent History} is guided by two goals: 
 
 \begin{enumerate}[label={(\arabic*)}]
     \item Navigating the software revision history of large software repositories should be more efficient when searching for code rationale information;
     \item The process of synthesizing of code rationale information through examining commits and issues should be less cognitively burdensome.
 \end{enumerate}
 
-To achieve (1), we propose the specification for a method that automatically reduces the number of commits a developer must inspect to obtain code rationale information (\autoref{subsec:Reducing-Commit-Search-Space}).
+To achieve (1), we propose the specification for a method to automatically reduce the number of commits a developer must inspect to obtain code rationale information (\autoref{subsec:Reducing-Commit-Search-Space}).
 To address (2), we describe a requirement for consolidating the contextual information for source code within the \entity{IDE} the developer uses (\autoref{subsec:Minimize-Commit-Issue-Distance}).
 
 \subsection{Reducing the Search Space of Commits}
 \label{subsec:Reducing-Commit-Search-Space}
 
-As Codoban \etal's study noted, the high volume of changes presented in the commit history for a code base results in information overload for developers \cite{codoban_software_2015}.
+As Codoban \etal's study noted, the high volume of changes presented in the commit history for a software project's code base results in information overload for developers \cite{codoban_software_2015}.
 The study observed that a strategy developers employ and perform manually is reducing the number of commits they expect to analyze before diving deeper into specific commits.
-To reduce the number of commits, developers sometimes recall a date range in which a change was made and only examine commits from the date range.
+To reduce the number of commits, developers may recall a date range in which a change was made and only examine commits from the date range.
 Developers filter commits based on certain keywords and skim the diffs in commits to look for only the commits that are relevant to their current task.
 Combined with the strategy of reducing the search space of commits, developers describe iterating through past versions of a file to find when specific functionality was implemented.
 This makes seeking information about the rationale for how a change affected a code segment, the broader modification a change was part of, and how the code segment interacted with surrounding code at a specific point in time more difficult.
 
-Given that the filtering functionality based on commit messages is already an available feature in existing version control \entity{gui} applications and in IntelliJ IDEA's native Git interface, we propose to use a technique that automatically reduces the search space of commits using the diffs for each commit.
+Given that the filtering functionality based on commit messages is already an available feature in existing version control \entity{gui} applications and in IntelliJ IDEA's native Git interface, we propose a technique to automatically reduce the search space of commits using the diffs of each commit.
+Noise in diffs, such as white spaces and line-endings, add wasted time when sifting through several commits \cite{codoban_software_2015}.
+Rather than filtering commits out of a file's revision history, our approach determines commits that are less likely to be interesting based on the code changes made and indicates this visually to the developer.
 This would make the process of skimming commits based on the change they introduce more efficient as developers would have less commits to manually skim if a tool could indicate commits containing trivial code changes in advance.
-As Codoban \etal indicate, noise in diffs such as white spaces and line-endings adds wasted time when sifting through several commits.
 
 In particular, \emph{tangled changes} pose an obstacle to efficient software revision history exploration and is a significant source of noise in commit history \cite{herzig_tangled_2013}.
 There exists a generally accepted principle that a commit should only contain changes for a single task.
 However, tangled changes refer to a set of changes for two or more tasks. 
 For example, Murphy-Hill \etal found that refactorings are often committed with changes for separate tasks \cite{murphy-hill_refactor_2012}. 
-From a study of five open-source Java projects, Herzig and Zeller revealed up to 15\% of all bug fixes to consist of tangled changes and on average, at least 16.6\% of all source files are incorrectly associated with bug reports \cite{herzig_tangled_2013}.
+From a study of five open-source Java projects, Herzig and Zeller revealed up to 15\% of all bug fixes to consist of tangled changes and on average, at least 16.6\% of all source files are incorrectly associated with bug reports \cite{herzig_tangled_2013}. Consequently, in implementing \toolname{Intelligent History}, we have chosen to automate the determination of code changes we consider to be wasteful to a developer's time when traversing the commit history for a single file. For example, a commit that is present in the history for a single file $F$ may have modified multiple other files but insofar as $F$ is concerned, the commit may have only added a newline at the end of a file.
 
-Consequently, in implementing \toolname{Intelligent History}, we have chosen to automate the detection of certain categories of code changes we consider to be wasteful for a developer's time when traversing the commit history for a single file.
-These categories include \dots.
-Our developed set of categories are conservative in order to mitigiate false positives.
-\FIXME{Continue this.}
+The detection of less important commits in \toolname{Intelligent History} is based on heuristics.
+Specific to Java source code, we define a commit as less important if the changed lines in a commit's diff contains only changes related to: \emph{documentation}, \emph{annotations}, \emph{newlines}, and \emph{import} statements.
+These heuristics are conservative to mitigiate false positives and for generalizability across projects.
+We categorize the changed lines in a diff by applying regular expression matching of patterns on each line.
+The details of how \toolname{Intelligent History} uses heuristics to determine less important commits are discussed in \autoref{sec:Heuristics}.
 
 \subsection{Minimizing the Distance between Commits and Issues}
 \label{subsec:Minimize-Commit-Issue-Distance}
