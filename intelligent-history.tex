@@ -73,12 +73,20 @@ Moreover, reducing the distance between commits and issues would also encourage 
 \section{The Intelligent History Plugin}
 \label{sec:Implementation}
 
-As part of an effort to reduce the cognitive and temporal costs of software history exploration, we chose to develop a plugin to augment the existing rich features an \entity{IDE} already provides.
+As part of the effort to reduce the cognitive and temporal costs of software history exploration, we chose to develop a plugin to augment the existing rich features an \entity{IDE} already provides.
 Unlike a stand-alone desktop or web application, a plugin minimizes the number of external application windows a developer needs to maintain and explore to gain context around revisions. 
 This is because the information Intelligent History offers would be integrated within the \entity{IDE}, reducing the number of switches a developer has to perform between a separate browser window for searching an \entity{ITS} and their \entity{IDE} for examining source code and revision history.
 The IntelliJ \entity{IDE} provides a built-in Git client \entity{GUI} for navigating a software project's revision history and inspecting revisions. 
 In particular, the ``Show History'' feature in IntelliJ is available for directories and files, and displays a history of commits that have affected a single file or directory.
 \autoref{fig:IntelliJ-Overview} shows IntelliJ with a file's commit history visible.
+
+\begin{figure}[ht]
+    \includegraphics[width=\textwidth]{./images/intellij-overview.png}
+    \caption{
+        IntelliJ IDEA overview with the commit history for the currently open \class{Topology} class visible in the bottom half tool window.
+    }
+    \label{fig:IntelliJ-Overview}
+\end{figure}
 
 As a plugin, Intelligent History integrates with IntelliJ's ``Show History'' feature seamlessly as the plugin adds actions that can be invoked from a toolbar in IntelliJ's existing interface for exploring a file's commit history. 
 This makes the features of Intelligent History complimentary to IntelliJ's existing version control interface.
@@ -92,25 +100,17 @@ We designed Intelligent History to support the following questions a developer m
 Intelligent History has the following features implemented as \emph{actions} in the IntelliJ Platform \entity{SDK}, which the user can invoke:
 
 \begin{enumerate}[label=(\Alph*)]
-    \item \textit{Highlight Important Changes}: A toggleable action that automatically detects less important commits and applies highlighting on a file's commit history to distinguish potentially important commits from less important commits. The determination of less important commits is based on a set of heuristics in the form regular expressions applied to the diff content of commits. The implementation of this heuristics-checking is described further in \autoref{sec:Heuristics}. As a demonstration, \dots \FIXME{Add reference to figure.}
-    \item \textit{Show Diff Metadata}: An action that displays a pop-up summary of metadata information on the diff for a user-selected commit in a file's commit history. This summary contains a categorization of code changes in a commit's diff content and the number of lines detected in a diff according to the heuristics used for determining less important commits. The details on this categorization is also further explained in \autoref{sec:Heuristics}. As an example, \dots \FIXME{Add reference to figure.}
-    \item \textit{Show Jira Issue}: An action that extracts the Jira issue ID for a user-selected commit in a file's commit history and fetches and displays the Jira issue information in a dedicated tool window. The Jira issue ID is extracted from a commit's message using regular expressions. Along with the Jira issue information, this action also provides a meatdata summary of the Jira issue, which includes metrics on the number of comments on the Jira issue made by commit author, the total number of comments on the Jira issue exluding bot comments, the total number of unique people involved in the Jira issue based on comments including the Jira issue assignee, the number of people subscribed to the Jira issue (``watches''), the number of votes on the Jira issue, the number issue links, and the number of sub-tasks. We further describe these metrics in \autoref{sec:Issue-Metadata}. For example, \dots \FIXME{Add reference to figure.}
+    \item \textit{Highlight Important Changes}: A toggleable action that automatically detects less important commits and applies highlighting on a file's commit history to distinguish potentially important commits from less important commits. The determination of less important commits is based on a set of heuristics in the form regular expressions applied to the diff content of commits. The implementation of this heuristics-checking is described further in \autoref{sec:Heuristics}. \autoref{fig:Intelligent-History-A} demonstrates the highlighting action toggled on and applied to the commit history for a class.
+    \item \textit{Show Diff Metadata}: An action that displays a pop-up summary of metadata information on the diff for a user-selected commit in a file's commit history. This summary contains a categorization of code changes in a commit's diff content and the number of lines detected in a diff according to the heuristics used for determining less important commits. The details on this categorization is also further explained in \autoref{sec:Heuristics}. \autoref{fig:Intelligent-History-B} shows an example of the metadata popup invoked for a selected commit.
+    \item \textit{Show Jira Issue}: An action that extracts the Jira issue ID for a user-selected commit in a file's commit history and fetches and displays the Jira issue information in a dedicated tool window. The Jira issue ID is extracted from a commit's message using regular expressions. Along with the Jira issue information, this action also provides a meatdata summary of the Jira issue, which includes metrics on the number of comments on the Jira issue made by commit author, the total number of comments on the Jira issue exluding bot comments, the total number of unique people involved in the Jira issue based on comments including the Jira issue assignee, the number of people subscribed to the Jira issue (``watches''), the number of votes on the Jira issue, the number issue links, and the number of sub-tasks. We further describe these metrics in \autoref{sec:Issue-Metadata}. \autoref{fig:Intelligent-History-C} illustrates the tool window showing the information extracted for an automatically identified Jira ID from a selected commit.
 \end{enumerate}
 
-These actions added by the Intelligent History plugin are indicated in \autoref{fig:Intelligent-History-Overview}.
+These actions added by the Intelligent History plugin are indicated in \autoref{fig:Intelligent-History-Overview}, where the actions are presented as icons in IntelliJ's \entity{VCS} file history tool bar.
 
-\begin{figure}
-    \includegraphics[width=\textwidth]{./images/intellij-overview.png}
-    \caption{
-        IntelliJ IDEA overview with the built-in Git client displayed on the bottom half. Shows the commit history for the \class{Topology} class in Apache Kafka.
-    }
-    \label{fig:IntelliJ-Overview}
-\end{figure}
-
-\begin{figure}
+\begin{figure}[h]
     \includegraphics[width=\textwidth]{./images/intelligent-history-overview.png}
     \caption{
-        Overview of the actions added by the Intelligent History plugin. We use the following labels: (A) indicates \textit{Highlight Important Changes}; (B) denotes \textit{Show Diff Metadata}; and (C) marks \textit{Show Jira Issue}.
+        Overview of the actions added by the Intelligent History plugin. We use the following labels: (A) \textit{Highlight Important Changes}; (B) \textit{Show Diff Metadata}; and (C) \textit{Show Jira Issue}.
     }
     \label{fig:Intelligent-History-Overview}
 \end{figure}
@@ -123,6 +123,26 @@ For distinguishing potentially important commits from less important or trivial 
 When referring to a commit's diff content, we mean the diff between the old version of a Java class in one commit, and the new version of the Java class after a commit has modified it.
 This approach involves scanning the lines between commits for matches to a set of Java code patterns, which describe categories of trivial code changes.
 Each pattern is expressed by a form of regular expressions.
+
+\begin{figure}[h]
+    \includegraphics[width=\textwidth]{./images/intelligent-history-A.png}
+    \caption{
+        Feature (A) \emph{Highlight Important Changes} of Intelligent History in the toggled on state. Less important commits have been highlighted to blend with the foreground to make potentially more interesting commits stand out.
+    }
+    \label{fig:Intelligent-History-A}
+\end{figure}
+
+\begin{figure}[h]
+    \centering%
+    \subfloat[\centering Popup \label{subfig:Intelligent-History-B-Popup}]{{\includegraphics[width=4cm]{./images/intelligent-history-B-a.png}}}%
+    \qquad
+    \subfloat[\centering Diff \label{subfig:Intelligent-History-B-Diff}]{{\includegraphics[width=10cm]{./images/intelligent-history-B-b.png}}}%
+    \caption{
+        Feature (B) \emph{Show Diff Metadata} invoked on commit \commit{c3475081}.\textsuperscript{*}
+    }%
+    \scriptsize\textsuperscript{*} \url{https://github.com/apache/kafka/commit/c3475081c5e8228e9bd3a45022a93d61e542f72e}
+    \label{fig:Intelligent-History-B}%
+\end{figure}
 
 While using regular expressions sacrifices some degree of accuracy on what is considered a ``trivial'' line of code change to a user,
 regular expressions have the advantage of being lightweight in efficiency and interpretability over other approaches to detecting code changes in programs such as abstract syntax tree (\entity{AST}) matching and differencing techniques \cite{murphy_lightweight_1996}.
@@ -154,16 +174,26 @@ We compare an empty set, representing an empty string, with the state of $F$ in 
 For each pair of commits, we take the contents of file $F$ in each commit and  obtain a list of deltas and apply regular expression pattern matching on each string in a delta's list of source lines and list of target lines to count the number of lines that match a category.
 
 This categorical information for a user-selected commit is exposed as \emph{diff metadata} in a pop-up when the user invokes the \textit{Show Diff Metadata} action provided by Intelligent History.
-For example, \dots \FIXME{Add and reference a figure demonstrating the popup content alongside a commit's diff}.
+\autoref{subfig:Intelligent-History-B-Popup} illustrates the metadata information in a popup for the diff presented in \autoref{subfig:Intelligent-History-B-Diff}.
+As shown in \autoref{subfig:Intelligent-History-B-Diff}, the commit \commit{   16b2ce7d} for \class{Topology.java} consists of deleting an \code{import} statement, inserting an \code{import} statement, and the modification of a JavaDoc comment.
 Exposing this metadata to the user allows the user to obtain a summary about the lines changed from one commit to another commit and to also understand how Intelligent History highlights commits in a file's commit history.
-
-Although we formulated a fixed set of patterns specific to Java, \dots \FIXME{Consider moving this to a section on suggestions for future work? Comment on potential for user-defined patterns.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Issue Metadata}
 \label{sec:Issue-Metadata}
 
 \FIXME{Elaborate on the metadata provided in the Jira tool window.}
+
+\begin{figure}[h]
+    \center
+    \includegraphics[width=10cm]{./images/intelligent-history-C.png}
+    \caption{
+        Feature (C) \emph{Show Jira Issue} invoked on commit \commit{908a6d2a}.\textsuperscript{*}
+        Shows the explicitly referenced Jira issue's title, assignee, reporter, description, priority, and metadata in a tool window. A hyperlink to the Jira issue is also provided.
+    }
+    \scriptsize\textsuperscript{*} \url{https://github.com/apache/kafka/commit/908a6d2ad7807642b917231769c8d3b6a0c1ad16}
+    \label{fig:Intelligent-History-C}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Predictions}
