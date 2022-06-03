@@ -42,7 +42,7 @@ A developer would still need to go through several commits and diffs and meanwhi
 There have been many approaches to improving a developer's experience when exploring revision history in a software project. While these approaches do not focus on supporting code rationale questions, they do address the concern of improving the revision history for code changes in a software project.
 
 Kawrykow and Robillard \cite{kawrykow_non-essential_2011} propose a technique for detecting non-essential changes in software history and therefore an approach to finding more meaningful representations of software changes.
-Kawrykow and Robillard define ``non-essential'' changes as changes which are cosmetic in nature, generally behaviour-preserving, and unlikely to yield further insight into the roles of or relationships between the program entities they modify \cite{kawrykow_non-essential_2011}. 
+In their work, ``non-essential'' changes refer to changes which are cosmetic in nature, generally behaviour-preserving, and unlikely to yield further insight into the roles of or relationships between the program entities they modify. 
 The approach in this thesis explores the use of heuristics for a similar purpose in reducing the number of trivial commits a developer must go through in a file's revision history when searching for code rationale information on why the code in a file looks the way it does.
 
 Bradley and Murphy \cite{bradley_supporting_2011} investigate two user interfaces, Deep Intellisense and Rationalizer, for supporting software history exploration.
@@ -64,7 +64,7 @@ Issue repositories like Jira also support extensive organization for issues, whi
 For example, an issue on Jira can be categorized as a bug, task or sub-task of a larger task, story, or epic \cite{jira-issue-types}.
 Jira issues can also be linked to each other by relationships such as ``caused by'' or ``relates to.''
 
-Rastkar and Murphy applied multi-document summarization techniques on Jira issues at different levels of abstraction to generate summaries providing motivational information behind a code change \cite{rastkar_why_2013}.
+Rastkar and Murphy \cite{rastkar_why_2013} applied multi-document summarization techniques on Jira issues at different levels of abstraction to generate summaries providing motivational information behind a code change.
 While Rastkar and Murphy's approach is a step towards finding and providing developers with the ``why'' of code changes, the approach alone does not provide the ability to view and explore commits alongside the summaries.
 Another tool recognizing Jira as a source of code rationale information is ARENA \cite{moreno_arena_2017}, which aims to answer the \emph{what} and \emph{why} of code change between releases by using the commits in a project's versioning system and the issues from the project's Jira instance to automatically generate release notes. 
 ARENA summarizes the code changes between releases to answer \emph{what} changed in a newer release and uses the information from Jira to explain \emph{why}.
