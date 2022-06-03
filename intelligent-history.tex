@@ -108,7 +108,7 @@ These actions added by the Intelligent History plugin are indicated in \autoref{
 \end{figure}
 
 \begin{figure}
-    % \includegraphics[width=\textwidth]{./images/intelligent-history-overview.png}
+    \includegraphics[width=\textwidth]{./images/intelligent-history-overview.png}
     \caption{
         Overview of the actions added by the Intelligent History plugin. We use the following labels: (A) indicates \textit{Highlight Important Changes}; (B) denotes \textit{Show Diff Metadata}; and (C) marks \textit{Show Jira Issue}.
     }
@@ -148,13 +148,14 @@ For a delta that represents an insertion, the source lines would be empty, while
 For a delta that represents a deletion, the target lines would be empty, while the source lines would contain a list of the lines deleted in version $B$.
 
 For each commit in a file's commit history, beginning from the oldest commit to the most recent commit, we obtain the set of deltas for each sequential pair of commits.
-Suppose we have a file $F$ and a set of commits representing its commit history as $\{C_{1}, C_{2}, C_{3}, \dots, C_{n}\}$, where $C_{i}$ is a commit that affects $F$ and $i = 1, 2, 3, \dots, n$ denotes the oldest commit to the most recent commit in $F$'s commit history.
-We use \entity{java-diff-utils} to obtain the diffs for the state of $F$ in the pairs $\{\emptyset, C_{1}\}$, $\{C_{1}, C_{2}\}$, $\{C_{2}, C_{3}\}$, \dots, $\{C_{n-1}, C_{n}\}$.
-We compare an empty set, representing an empty string, with the state of $F$ in the first commit $C_{1}$ since $C_{1}$ presumably introduces the file $F$.
-For each pair, we obtain a list of deltas and analyze each string in a delta's list of source lines and list of target lines using regular expression pattern matching to count the number of lines that match a category.
+Suppose we have a file $F$ and an ordered set of commits representing its commit history as $\{C_{1}, C_{2}, C_{3}, \dots, C_{n}\}$, where $C_{i}$ is a commit that affects $F$ and $i = 1, 2, 3, \dots, n$ denotes the oldest commit to the most recent commit in $F$'s commit history.
+We use \entity{java-diff-utils} to obtain the diffs for the state of $F$ in the commit pairs $\{\varnothing, C_{1}\}$, $\{C_{1}, C_{2}\}$, $\{C_{2}, C_{3}\}$, \dots, $\{C_{n-1}, C_{n}\}$.
+We compare an empty set, representing an empty string, with the state of $F$ in the first commit $C_{1}$ since the first commit in a file presumably introduces the file $F$ and its initial content.
+For each pair of commits, we take the contents of file $F$ in each commit and  obtain a list of deltas and apply regular expression pattern matching on each string in a delta's list of source lines and list of target lines to count the number of lines that match a category.
 
-This categorical information for a user-selected commit is exposed in a pop-up when the user invokes the \textit{Show Diff Metadata} action provided by Intelligent History.
-For example, \dots \FIXME{Add and reference a figure demonstrating the popup and the diff content}.
+This categorical information for a user-selected commit is exposed as \emph{diff metadata} in a pop-up when the user invokes the \textit{Show Diff Metadata} action provided by Intelligent History.
+For example, \dots \FIXME{Add and reference a figure demonstrating the popup content alongside a commit's diff}.
+Exposing this metadata to the user allows the user to obtain a summary about the lines changed from one commit to another commit and to also understand how Intelligent History highlights commits in a file's commit history.
 
 Although we formulated a fixed set of patterns specific to Java, \dots \FIXME{Consider moving this to a section on suggestions for future work? Comment on potential for user-defined patterns.}
 
