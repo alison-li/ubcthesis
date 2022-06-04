@@ -122,7 +122,7 @@ These actions added by the Intelligent History plugin are indicated in \autoref{
     \label{fig:Intelligent-History-A}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[hp]
     \centering%
     \subfloat[\centering Popup \label{subfig:Intelligent-History-B-Popup}]{{\includegraphics[width=4cm]{./images/intelligent-history-B-a.png}}}%
     \qquad
@@ -134,9 +134,9 @@ These actions added by the Intelligent History plugin are indicated in \autoref{
     \label{fig:Intelligent-History-B}%
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[hp]
     \center
-    \includegraphics[width=10cm]{./images/intelligent-history-C.png}
+    \includegraphics[width=7cm]{./images/intelligent-history-C.png}
     \caption{
         Feature (C) \textit{Show Jira Issue} invoked on commit \commit{908a6d2a}.\textsuperscript{*}
         Shows the explicitly referenced Jira issue's title, assignee, reporter, description, priority, and metadata in a tool window. A hyperlink to the Jira issue is also provided.
@@ -184,7 +184,7 @@ We compare an empty set, representing an empty string, with the state of $F$ in 
 For each pair of commits, we take the contents of file $F$ in each commit and  obtain a list of deltas and apply regular expression pattern matching on each string in a delta's list of source lines and list of target lines to count the number of lines that match a category.
 
 This categorical information for a user-selected commit is exposed as \emph{diff metadata} in a pop-up when the user invokes the \textit{Show Diff Metadata} action provided by Intelligent History.
-\autoref{subfig:Intelligent-History-B-Popup} illustrates the metadata information in a popup for the diff presented in \autoref{subfig:Intelligent-History-B-Diff}.
+\autoref{subfig:Intelligent-History-B-Popup} illustrates the metadata information in a popup for the diff presented in Figure \autoref{subfig:Intelligent-History-B-Diff}.
 As shown in \autoref{subfig:Intelligent-History-B-Diff}, the commit \commit{   16b2ce7d} for \class{Topology.java} consists of deleting an \code{import} statement, inserting an \code{import} statement, and the modification of a JavaDoc comment.
 Exposing this metadata to the user allows the user to obtain a summary about the lines changed from one commit to another commit and to also understand how Intelligent History highlights commits in a file's commit history.
 
@@ -192,7 +192,7 @@ Exposing this metadata to the user allows the user to obtain a summary about the
 \section{Predictions}
 \label{sec:Predictions}
 
-With the interface of Intelligent History established in \autoref{fig:Intelligent-History-Overview}, we describe how we anticipate a user might be able to use the actions from Intelligent History. 
+With the features of Intelligent History established in \autoref{sec:Implementation}, we describe how we anticipate a user might be able to use the actions from Intelligent History. 
 In \autoref{sec:Implementation}, we outlined the three actions a user can invoke while examining a file's history using IntelliJ's built-in file revision history view: (A) \textit{Highlight Important Changes}; (B) \textit{Show Diff Metadata}; and (C) \textit{Show Jira Issue}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
