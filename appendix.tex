@@ -1,5 +1,53 @@
 \chapter{Supporting Materials}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Evaluation Setup Instructions}
+\label{sec:Setup-Instructions}
+
+\FIXME{Add the instructions.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Question Set A}
+\label{sec:Question-Set-A}
+
+Open and examine the following Java class from the Apache Kafka repository:
+\class{Topology.java}\footnote{\url{https://github.com/apache/kafka/blob/trunk/streams/src/main/java/org/apache/kafka/streams/Topology.java}}
+
+\begin{enumerate}
+    \item Using commit message information and/or Jira issue information, can you describe the motivation behind why the code segment on lines 717-722 was introduced and the benefit to the user of the Kafka API?
+    \item There are several overloaded methods called `addSink` in this class. \item In your own words, can you describe in what context were these overloaded methods introduced to this class? Can you reference the commit (by hash) that introduced these methods and the associated Jira issue in your explanation?
+    \item What was the motivation behind the most recent commit (fbe7fb94) made to this class?
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Question Set B}
+\label{sec:Question-Set-B}
+
+Open and examine the following Java class from the Apache Kafka repository:
+\class{StreamsBuilder.java}\footnote{\url{https://github.com/apache/kafka/blob/trunk/streams/src/main/java/org/apache/kafka/streams/StreamsBuilder.java}}
+
+\begin{enumerate}
+    \item Can you provide the commit hash for 2 changes that were introduced to improve some functionality in this class (i.e. not cosmetic such as removing repeated words, removing deprecated code, or adding/modifying/removing documentation and comments)? For each commit, can you explain the commit author’s motivation behind the commit?
+    \item Why is the `build` method in this class overloaded? Specifically, why was the overloaded build method in lines 623-630 introduced?
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Interview Questions}
+\label{sec:Interview-Questions}
+
+\begin{enumerate}
+    \item How many years of software development experience do you have, both professionally and non-professionally?
+    \item In your development experience, have you often looked at commits and the issues associated with them (e.g. GitHub issues/pull requests, Jira issues, Bugzilla, etc.)?
+        \item In what scenarios or kinds of tasks do you typically look at commits and issues?
+    \item What types of code changes or content in diffs do you think are less useful or more useful when trying to understand why a developer wrote code a certain way or made a particular change? 
+    \item Are there any particular contexts or examples from your experience you can think of?
+    \item For the task involving use of the plugin, which features did you find helpful/unhelpful to your exploration?
+    \item Are there any comments or feedback you would like to provide?
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\endinput
+
 This would be any supporting material not central to the dissertation.
 For example:
 \begin{itemize}
