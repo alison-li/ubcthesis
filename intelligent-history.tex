@@ -2,28 +2,15 @@
 \label{ch:Intelligent-History}
 
 To enable the investigation of our hypothesis, we developed Intelligent History,\footnote{\url{https://github.com/Alison-Li/intelligent-history}, verified 5/22/2022.} a prototype plugin for IntelliJ IDEA \entity{IDE}.
-Intelligent History uses the IntelliJ Platform \entity{SDK}.\footnote{\url{https://www.jetbrains.com/opensource/idea/}, verified 5/23/2022}
 We describe the design goals of the approach that motivated the development of Intelligent History in \autoref{sec:Design-Goals}. 
 In \autoref{sec:Implementation}, we demonstrate how these design principles were realized in the implementation of Intelligent History. 
 We elaborate on the heuristics Intelligent History uses
 for suggesting potentially more meaningful comments in \autoref{sec:Heuristics}.
+Finally, we walk through an example in \autoref{sec:Use-Case} to illustrate how Intelligent History can be used for obtaining code rationale information effectively from a file's revision history.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Design Goals}
 \label{sec:Design-Goals}
-
-The design of our approach in Intelligent History is guided by two goals: 
-
-\begin{enumerate}[label={(\arabic*)}]
-    \item Navigating the software revision history of large software repositories should be more efficient when searching for code rationale information;
-    \item The process of synthesizing of code rationale information through examining commits and issues should be less cognitively burdensome.
-\end{enumerate}
-
-To achieve (1), we propose the specification for a method to automatically reduce the number of commits a developer must inspect to obtain code rationale information (\autoref{subsec:Reducing-Commit-Search-Space}).
-To address (2), we describe a requirement for consolidating the contextual information for source code within the \entity{IDE} that the developer uses (\autoref{subsec:Minimize-Commit-Issue-Distance}).
-
-\subsection{Reducing the Search Space of Commits}
-\label{subsec:Reducing-Commit-Search-Space}
 
 As Codoban \etal observed in their study, the high volume of changes presented in the commit history for a software project results in information overload for developers \cite{codoban_software_2015}.
 The study found that developers manually employed various strategies that would reduce the number of commits they needed to closely analyze.
@@ -32,18 +19,34 @@ Developers filter commits based on certain keywords and skim the diffs in commit
 Combined with the strategy of reducing the search space of commits, developers describe iterating through past versions of a file to find when specific functionality was implemented.
 This makes locating information about the rationale for how a change affected a code segment, the broader modification a change was part of, and how the code segment interacted with surrounding code at a specific point in time more difficult.
 
-Given that the filtering functionality based on commit messages is already an available feature in existing version control \entity{gui} applications and in IntelliJ IDEA's native Git interface, we propose a technique to automatically reduce the search space of commits using the diffs of each commit.
-Noise in diffs, such as white spaces and line-endings, add wasted time when sifting through several commits \cite{codoban_software_2015}.
-Rather than filtering commits out of a file's revision history, our approach determines commits that are less likely to be interesting based on the code changes made and visually indicates this to the developer.
-This could make the process of skimming commits based on the change they introduce more efficient as developers would have less commits to manually skim if a tool could indicate commits containing trivial code changes in advance.
+The design of our approach in Intelligent History is guided by two goals: 
+
+\begin{enumerate}[label={(\arabic*)}]
+    \item Developers need an approach that can automatically distinguish potentially interesting commits from less important commits;
+    \item Developers need better access to code rationale information when examining commits and explicitly referenced issues.
+\end{enumerate}
+
+To achieve (1), we propose an approach to automatically reduce the number of commits a developer must inspect to obtain code rationale information (\autoref{subsec:Reducing-Commit-Search-Space}).
+To address (2), we describe a requirement for integrating the contextual information for source code within the \entity{IDE} that the developer uses (\autoref{subsec:Minimize-Commit-Issue-Distance}).
+
+\subsection{Reducing the Search Space of Commits}
+\label{subsec:Reducing-Commit-Search-Space}
+
+We propose a technique to relieve information overload by automatically reduce the search space of commits.
+Specifically, our technique involves analyzing the diffs between commits in a file's commit history to determine which commits may be less important in terms of the code changes made in the diff.
+Our technique conveys this visually through applying highlighting on a file's commit history by colouring less important commits with a background colour, allowing the remaining commits to appear more prominently in the foreground.
+Diffs that solely contain changes such as white spaces and line-endings, are inefficient for a developer sifting through several commits \cite{codoban_software_2015}.
+We highlight the commits that have a diff containing code changes beyond a set of trivial changes and fade the other less important commits into the background.
+We retain all commits in the file history to increase the confidence of the developer in our approach.
+The entire history remains visible for the developer to browse and the highlighting can be interpreted as a suggestion.
 
 In particular, \emph{tangled changes} pose an obstacle to efficient software revision history exploration and is a significant source of noise in commit history \cite{herzig_tangled_2013}.
 There exists a generally accepted principle that a commit should only contain changes for a single task.
 However, tangled changes refer to a set of changes for two or more tasks. 
 Murphy-Hill \etal \cite{murphy-hill_refactor_2012} found refactorings are often committed with changes for separate tasks. 
 From a study of five open-source Java projects, Herzig and Zeller \cite{herzig_tangled_2013} revealed up to 15\% of all bug fixes to consist of tangled changes and on average, at least 16.6\% of all source files are incorrectly associated with bug reports. 
-Consequently, we have implemented Intelligent History at the file-level by automating the determination of less important code changes pertaining to a given file. 
-For example, a commit that is present in the history for a single file $F$ may have modified multiple other files but to the extent that $F$ is concerned, the commit may have only added a newline at the end of a file.
+To simplify the determination of a less important commit, we have chosen to implement Intelligent History to operate at the file-level by automating the determination of less important code changes made to a specific file. 
+For example, a commit that is present in the history for a single file $F$ may have modified multiple other files, and be present in the commit history for other files, but to the extent that $F$ is concerned, the commit may have only added a newline at the end of a file.
 
 The detection of less important commits in Intelligent History is based on heuristics.
 Under Kawrykow and Robillard's definition of a \emph{non-essential} change being cosmetic in nature, generally behaviour-preserving, and unlikely to provide further insight into the roles or relationships of program elements \cite{kawrykow_non-essential_2011}, we devise four categories of changes to use for identifying less important commits based their diff content.
@@ -56,16 +59,15 @@ The details of how Intelligent History uses heuristics to determine less importa
 \label{subsec:Minimize-Commit-Issue-Distance}
 
 Several studies confirm developers look through change histories and associated issue or bug reports for hints about code implementation and rationale \cite{ko_information_2007,robillard_turnover-induced_2021, rastkar_why_2013}.
-The information in issue repositories represent a \emph{group memory} for a software project, which is a valuable repository of information that current members of a project can use as a source of rationale and benefit from as it contains past experiences \cite{cubranic_hipikat_2003,hassan_road_2008}.
+The issues in issue repositories is a valuable source that current members of a project can use for obtaining rationale information as it contains past discussions about design \cite{brunet_design_2014,hassan_road_2008}.
 Issues and bug reports from an issue tracking system (\entity{ITS}) typically contain a title, description, administrative metadata such as the status of an issue, priority, and comments discussing the task an issue is created for.
 In comments, developers discuss issues by providing insight into technical details and opinions that enrich code changes involved in a task with the ``why'' of certain design choices in those changes \cite{ortu_jira_2015}.
 
 Some software projects have adopted a convention of adding a prefix referencing an issue in a commit's subject message \cite{rastkar_why_2013,moreno_arena_2017}.
 Although the practice of explicitly linking each commit to an issue is helpful when looking for relevant issues from an \entity{ITS}, the developer still experiences cognitive load from switching between their \entity{IDE} and browser when reading and synthesizing the information from several issues.
-A software developer examining several issues related to several commits also must maintain a mental model that interleaves the contextual information discovered from issues with code changes in diffs.
+A software developer examining several issues related to several commits also must maintain a mental model that interleaves the contextual information discovered from issues with code changes in diffs \FIXME{Figure would be helpful?}.
 In some cases, an issue may not contain any discussion at all or the description in an issue may either be missing or too vague to yield any insight on a specific code change or the evolution of code changes in a file.
-Thus, we found it crucial for Intelligent History to minimize the number of actions a developer takes to navigate from a commit to its associated issue.
-Moreover, reducing the distance between commits and issues would also encourage a developer's search for rationale information to be more efficient when obtaining a glimpse of several issues at a time.
+Thus, in the design of Intelligent History, we found it crucial to co-present commits with issue information in the \entity{IDE}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The Intelligent History Plugin}
@@ -73,10 +75,10 @@ Moreover, reducing the distance between commits and issues would also encourage 
 
 As part of the effort to reduce the cognitive and temporal costs of software history exploration, we chose to develop a plugin to augment the existing rich features an \entity{IDE} already provides.
 Unlike a stand-alone desktop or web application, a plugin minimizes the number of external application windows a developer needs to maintain and explore to gain context around revisions. 
-This is because the information Intelligent History offers would be integrated within the \entity{IDE}, reducing the number of switches a developer has to perform between a separate browser window for searching an \entity{ITS} and their \entity{IDE} for examining source code and revision history.
+This is because the information Intelligent History offers would be integrated within the \entity{IDE}, reducing the number of switches a developer has to perform between a separate browser window for searching an issue tracking system (\entity{ITS}) and their \entity{IDE} for examining source code and revision history.
 The IntelliJ \entity{IDE} provides a built-in Git client \entity{GUI} for navigating a software project's revision history and inspecting revisions. 
 In particular, the ``Show History'' feature in IntelliJ is available for directories and files, and displays a history of commits that have affected a single file or directory.
-\autoref{fig:IntelliJ-Overview} shows IntelliJ with a file's commit history visible.
+\autoref{fig:IntelliJ-Overview} shows IntelliJ with a file's commit history visible \FIXME{It would be good to label the figure}.
 
 \begin{figure}[ht]
     \includegraphics[width=\textwidth]{./images/intellij-overview.png}
@@ -86,6 +88,7 @@ In particular, the ``Show History'' feature in IntelliJ is available for directo
     \label{fig:IntelliJ-Overview}
 \end{figure}
 
+We developed Intelligent History using the IntelliJ Platform \entity{SDK}.\footnote{\url{https://www.jetbrains.com/opensource/idea/}, verified 5/23/2022}
 As a plugin, Intelligent History integrates with IntelliJ's ``Show History'' feature seamlessly as the plugin adds actions that can be invoked from a toolbar in IntelliJ's existing interface for exploring a file's commit history. 
 This makes the features of Intelligent History complimentary to IntelliJ's existing version control interface.
 We designed Intelligent History to support the following questions a developer might ask when searching for code rationale information in a file's revision history:
@@ -95,15 +98,14 @@ We designed Intelligent History to support the following questions a developer m
     \item \textit{Is there an interesting discussion or rationale that motivated the changes in a commit?}
 \end{enumerate}
 
-Intelligent History has the following features implemented as \emph{actions} in the IntelliJ Platform \entity{SDK}, which the user can invoke:
+The features of Intelligent History are implemented as \emph{actions} in the IntelliJ Platform \entity{SDK} and are indicated in \autoref{fig:Intelligent-History-Overview}, where the actions are presented as icons in IntelliJ's \entity{VCS} file history tool bar.
+Intelligent History has the following actions, which the user can invoke:
 
 \begin{enumerate}[label=(\Alph*)]
     \item \textit{Highlight Important Changes}: A toggleable action that automatically detects less important commits and applies highlighting on a file's commit history to visually distinguish potentially important commits from less important commits. The determination of less important commits is based on a set of heuristics in the form regular expressions applied to the diff content of commits. The implementation of this heuristics-checking approach is described further in \autoref{sec:Heuristics}. \autoref{fig:Intelligent-History-A} demonstrates the highlighting action toggled on and applied to the commit history for a class.
-    \item \textit{Show Diff Metadata}: An action that displays a pop-up summary of metadata information on the diff for a user-selected commit in a file's commit history. This summary contains a categorization of code changes in a commit's diff content and the number of lines detected in a diff according to the heuristics used for determining less important commits. The details on this categorization is also further explained in \autoref{sec:Heuristics}. \autoref{fig:Intelligent-History-B} shows an example of the metadata pop-up invoked for a selected commit.
-    \item \textit{Show Jira Issue}: An action that extracts the Jira issue ID for a user-selected commit in a file's commit history and fetches and displays the Jira issue information in a dedicated tool window. The Jira issue ID is extracted from a commit's message using regular expressions. Along with the Jira issue information, this action also provides a meatdata summary of the Jira issue, which includes metrics on the number of comments on the Jira issue made by commit author, the total number of comments on the Jira issue exluding bot comments, the total number of unique people involved in the Jira issue based on comments including the Jira issue assignee, the number of people subscribed to the Jira issue (``watches''), the number of votes on the Jira issue, the number issue links, and the number of sub-tasks. \autoref{fig:Intelligent-History-C} illustrates the tool window showing the information extracted for an automatically identified Jira ID from a selected commit.
+    \item \textit{Show Diff Metadata}: \FIXME{This description should motivate why such a summary would be helpful.} An action that displays a pop-up summary of metadata information on the diff for a user-selected commit in a file's commit history. This summary contains a categorization of code changes in a commit's diff content and the number of lines detected in a diff according to the heuristics used for determining less important commits. The details on this categorization is also further explained in \autoref{sec:Heuristics}. \autoref{fig:Intelligent-History-B} shows an example of the metadata pop-up invoked for a selected commit.
+    \item \textit{Show Jira Issue}: An action that extracts the Jira issue ID for a user-selected commit in a file's commit history and fetches and displays the Jira issue information in a dedicated tool window. The Jira issue ID is extracted from a commit's message using regular expressions. Along with the Jira issue information, this action also provides a metadata summary of the Jira issue, which includes metrics on the number of comments on the Jira issue made by commit author, the total number of comments on the Jira issue exluding bot comments, the total number of unique people involved in the Jira issue based on comments including the Jira issue assignee, the number of people subscribed to the Jira issue (``watches''), the number of votes on the Jira issue, the number issue links, and the number of sub-tasks. \autoref{fig:Intelligent-History-C} illustrates the tool window showing the information extracted for an automatically identified Jira ID from a selected commit.
 \end{enumerate}
-
-These actions added by the Intelligent History plugin are indicated in \autoref{fig:Intelligent-History-Overview}, where the actions are presented as icons in IntelliJ's \entity{VCS} file history tool bar.
 
 \begin{figure}[h]
     \includegraphics[width=\textwidth]{./images/intelligent-history-overview.png}
@@ -127,7 +129,7 @@ These actions added by the Intelligent History plugin are indicated in \autoref{
     \qquad
     \subfloat[\centering Diff \label{subfig:Intelligent-History-B-Diff}]{{\includegraphics[width=12cm]{./images/intelligent-history-B-b.png}}}%
     \caption{
-        Feature (B) \textit{Show Diff Metadata} invoked on commit \commit{c3475081}.\textsuperscript{*}
+        \FIXME{Make it clear (a) is the popup and (b) is the diff.} Feature (B) \textit{Show Diff Metadata} invoked on commit \commit{c3475081}.\textsuperscript{*}
     }%
     \scriptsize\textsuperscript{*} \url{https://github.com/apache/kafka/commit/c3475081c5e8228e9bd3a45022a93d61e542f72e}
     \label{fig:Intelligent-History-B}%
@@ -153,12 +155,14 @@ When referring to a commit's diff content, we mean the diff between the old vers
 This approach involves scanning the lines between commits for matches to a set of Java code patterns, which describe categories of trivial code changes.
 Each pattern is expressed by a form of regular expressions.
 
-While using regular expressions sacrifices some degree of accuracy on what is considered a ``trivial'' line of code change to a user,
+\FIXME{Is it the reg ex or is the fact that heuristics are based on empirical observation?} While using regular expressions sacrifices some degree of accuracy on what is considered a ``trivial'' line of code change to a user,
 regular expressions have the advantage of being lightweight in efficiency and interpretability over other approaches to detecting code changes in programs such as abstract syntax tree (\entity{AST}) matching and differencing techniques \cite{murphy_lightweight_1996}.
-Though the advantage of \entity{AST}-level granularity is that it produces edit scripts that directly refer to the structure of code, \entity{AST} matching and differencing techniques having negative performance on runtime and memory consumption, which discouraged us from using them \cite{fluri_change_2007,pawlik_RTED_2011,falleri_fine-grained_2014}.
+Though the advantage of \entity{AST}-level granularity is that it produces edit scripts that directly refer to the structure of code, \entity{AST} matching and differencing techniques can have negative performance on runtime and memory consumption, which discouraged us from using them \cite{fluri_change_2007,pawlik_RTED_2011,falleri_fine-grained_2014}.
 The goal of our approach is to understand if a minimal set of patterns for expressing trivial code changes can be effective at supporting a software developer in more efficiently navigating software history when searching for code rationale information.
 
 Represented as regular expressions for the Java programming language, our approach for detecting trivial commits uses the following categories for a line of code that has been changed and expressed in a diff: 
+
+\FIXME{Explain what motivated each choice.}
 
 \begin{itemize}
     \item \textit{Documentation}: Changes that insert, delete, or modify lines representing single-line or multi-line comments.
@@ -188,11 +192,11 @@ As shown in \autoref{subfig:Intelligent-History-B-Diff}, the commit \commit{   1
 Exposing this metadata to the user allows the user to obtain a summary about the lines changed from one commit to another commit and to also understand how Intelligent History highlights commits in a file's commit history.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \section{Predictions}
-% \label{sec:Predictions}
+\section{Use Case}
+\label{sec:Use-Case}
 
-% With the features of Intelligent History established in \autoref{sec:Implementation}, we describe how we anticipate a user might be able to use the actions from Intelligent History. 
-% In \autoref{sec:Implementation}, we outlined the three actions a user can invoke while examining a file's history using IntelliJ's built-in file revision history view: (A) \textit{Highlight Important Changes}; (B) \textit{Show Diff Metadata}; and (C) \textit{Show Jira Issue}.
+With the features of Intelligent History established in \autoref{sec:Implementation}, we describe how we anticipate a user might be able to use the actions from Intelligent History. 
+In \autoref{sec:Implementation}, we outlined the three actions a user can invoke while examining a file's history using IntelliJ's built-in file revision history view: (A) \textit{Highlight Important Changes}; (B) \textit{Show Diff Metadata}; and (C) \textit{Show Jira Issue}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \endinput
