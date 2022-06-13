@@ -104,10 +104,10 @@ Intelligent History has the following actions, which the user can invoke:
 \begin{enumerate}[label=(\Alph*)]
     \item \textit{Highlight Important Changes}: A toggleable action that automatically detects less important commits and applies highlighting on a file's commit history to visually distinguish potentially important commits from less important commits. The determination of less important commits is based on a set of heuristics in the form regular expressions applied to the diff content of commits. The implementation of this heuristics-checking approach is described further in \autoref{sec:Heuristics}. \autoref{fig:Intelligent-History-A} demonstrates the highlighting action toggled on and applied to the commit history for a class.
     \item \textit{Show Diff Metadata}: An action that displays a pop-up summary of metadata information on the diff for a user-selected commit in a file's commit history. This summary contains a categorization of code changes in a commit's diff content and the number of lines detected in a diff according to the heuristics used for determining less important commits. This information is provided to raise the developer's confidence in Intelligent History's highlighting as it exposes the statistics behind the approach Intelligent History uses for fading out certain commits in the file commit history. The details of this categorization is also further explained in \autoref{sec:Heuristics}. \autoref{fig:Intelligent-History-B} shows an example of the metadata pop-up invoked for a selected commit.
-    \item \textit{Show Jira Issue}: An action that extracts the Jira issue ID for a user-selected commit in a file's commit history and fetches and displays the Jira issue information in a dedicated tool window. The Jira issue ID is extracted from a commit's message using regular expressions. Along with the Jira issue information, this action also provides a metadata summary of the Jira issue, which includes metrics on the number of comments on the Jira issue made by commit author, the total number of comments on the Jira issue exluding bot comments, the total number of unique people involved in the Jira issue based on comments including the Jira issue assignee, the number of people subscribed to the Jira issue (``watches''), the number of votes on the Jira issue, the number issue links, and the number of sub-tasks. \autoref{fig:Intelligent-History-C} illustrates the tool window showing the information extracted for an automatically identified Jira ID from a selected commit.
+    \item \textit{Show Jira Issue}: An action that extracts the Jira issue \entity{ID} for a user-selected commit in a file's commit history and fetches and displays the Jira issue information in a dedicated tool window. The Jira issue ID is extracted from a commit's message using regular expressions. Along with the Jira issue information, this action also provides a metadata summary of the Jira issue, which includes metrics on the number of comments on the Jira issue made by commit author, the total number of comments on the Jira issue exluding bot comments, the total number of unique people involved in the Jira issue based on comments including the Jira issue assignee, the number of people subscribed to the Jira issue (``watches''), the number of votes on the Jira issue, the number issue links, and the number of sub-tasks. \autoref{fig:Intelligent-History-C} illustrates the tool window showing the information extracted for an automatically identified Jira \entity{ID} from a selected commit.
 \end{enumerate}
 
-\begin{figure}[h]
+\begin{figure}
     \includegraphics[width=\textwidth]{./images/intelligent-history-overview.png}
     \caption{
         Overview of the actions added by the Intelligent History plugin. We use the following labels: (A) \textit{Highlight Important Changes}; (B) \textit{Show Diff Metadata}; and (C) \textit{Show Jira Issue}.
@@ -115,7 +115,7 @@ Intelligent History has the following actions, which the user can invoke:
     \label{fig:Intelligent-History-Overview}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}
     \includegraphics[width=\textwidth]{./images/intelligent-history-A.png}
     \caption{
         Feature (A) \textit{Highlight Important Changes} of Intelligent History in the toggled on state. Less important commits have been highlighted to blend with the foreground to make potentially more interesting commits stand out.
@@ -123,7 +123,7 @@ Intelligent History has the following actions, which the user can invoke:
     \label{fig:Intelligent-History-A}
 \end{figure}
 
-\begin{figure}[hp]
+\begin{figure}
     \centering%
     \subfloat[\centering Pop-up \label{subfig:Intelligent-History-B-Popup}]{{\includegraphics[width=4cm]{./images/intelligent-history-B-a.png}}}%
     \qquad
@@ -135,7 +135,7 @@ Intelligent History has the following actions, which the user can invoke:
     \label{fig:Intelligent-History-B}%
 \end{figure}
 
-\begin{figure}[hp]
+\begin{figure}
     \center
     \includegraphics[width=7cm]{./images/intelligent-history-C.png}
     \caption{
@@ -197,7 +197,28 @@ Exposing this metadata to the user allows the user to obtain a summary about the
 With the features of Intelligent History established in \autoref{sec:Implementation}, we describe how we anticipate a user might be able to use the actions from Intelligent History. 
 In \autoref{sec:Implementation}, we outlined the three actions a user can invoke while examining a file's history using IntelliJ's built-in file revision history view: (A) \textit{Highlight Important Changes}; (B) \textit{Show Diff Metadata}; and (C) \textit{Show Jira Issue}.
 
-\FIXME{Walk through an example that is used in the user study.}
+Suppose a developer who is new to the Apache Kafka project would like to obtain an overview of changes so far that have improved some functionality or usability of the \code{StreamsBuilder}\footnote{\url{https://github.com/apache/kafka/blob/trunk/streams/src/main/java/org/apache/kafka/streams/StreamsBuilder.java}} class over time.
+The commit history for \code{StreamsBuilder} contains a total of 45 commits.
+Upon invoking feature (A), 19 of the commits become faded in the commit history.
+Further, the developer can select any commit from the commit history and call feature (B) to understand how Intelligent History's highlighting has been applied on the \code{StreamsBuilder} commit history.
+Browsing through the remaining 26 highlighted commits in the \code{StreamsBuilder} commit history, the developer can scan the messages of the commits to identify potentially interesting commit titles.
+For any commits of interest that have a commit message prefixed with a Jira issue \entity{ID}, the developer can use (C) to access a summary of the Jira issue information within their \entity{IDE}.
+
+The Jira issues open in a separate tool window in IntelliJ as tabs to allow the developer to view several issues at a time and compare them.
+The developer scans commit messages and the diffs for the 26 highlighted commits in the \code{StreamsBuilder} commit history.
+Among these 26 commits that reference Jira issue, the developer wishes to locate commits that contain information about the motivation and design choices involved in the changes they see in the diff.
+When a commit message is unsufficient for providing information about the rationale behind a commit, the developer invokes (C).
+On the first 4 highlighted commits in the commit history, the developer is able to skip needing to perform an in-depth investigation into the Jira issues for commits with empty or un-informative Jira issue descriptions since the developer can know this beforehand using without leaving the \entity{IDE} by invoking feature (C) on each highlighted commit.
+
+For the fifth commit in the history, the developer sees refactorings in the diff for 
+
+\begin{center}
+    \jira{KAFKA-5873:}{add materialized overloads to StreamsBuilder} 
+\end{center}
+
+to the overloaded \code{table}, \code{globalTable}, and \code{addGlobalStore} methods in the \code{StreamsBuilder} class as the diff contains changes to their method signatures and bodies.
+The developer reads the commit message: ``Add overloads for `table' and `globalTable' that use `Materialized' '' and finds it to be lacking in terms of explaining why this was done.
+The developer invokes (C) and is able to obtain a reference to \entity{KIP}-182, a Kafka Improvement Proposal (\entity{KIP})\footnote{Kafka Improvement Proposals (\entity{KIP}s) in the Apache Kafka project are documents intended to capture the thought process behind major features introdcued and changes impacting the public Kafka \entity{API}s. \entity{KIPs} contain the following sections: Motivation, Proposed Change, New or Changed Public Interfaces, Migration Plan and Compatbility, and Rejected Alternatives.} stating the purpose of the change was to address the overall accumulation of heavy method overloading in the interfaces associated with the Kafka Streams Domain Specific Language (\entity{DSL}), making it harder for consumers of the \entity{API} who use a modern \entity{IDE} to discover the interfaces and hence, was a usability problem.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \endinput
