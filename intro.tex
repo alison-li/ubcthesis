@@ -33,9 +33,11 @@ In particular, investigating commit history can help a developer understand the 
 Commits can also be accompanied by issues in a project issue repository. 
 A typical practice in software development is to explicitly reference an issue ID from an \entity{ITS} in a commit message, where each commit is associated with an issue. Apache Kafka is one example of an open-source project, which uses this practice.\footnote{\url{https://kafka.apache.org/}, verified 3/7/2022.} \footnote{\url{https://kafka.apache.org/contributing}, verified 3/7/2022.}
 For example, 
-$$
-\colorbox{lightgray}{\jira{KAFKA-3715:}{Add granular metrics to Kafka Streams and add hierarhical \sic logging levels to Metrics}}
-$$
+
+\begin{center}
+	\jira{KAFKA-3715:}{Add granular metrics to Kafka Streams and add hierarhical \sic logging levels to Metrics}
+\end{center}
+
 is the subject of one commit in the \class{KafkaStreams} class in the open source Apache Kafka project. The bold portion identifies the key for the Jira issue associated with the commit, which can be viewed on the Apache Software Foundation's Jira instance.\footnote{\url{https://issues.apache.org/}, verified 3/7/2022.}
 
 While commit history accessed from version control systems like Git provides information on lines of code changed at a point in time, the information from a commit's associated issue on an issue tracking platform such as Jira \cite{jira} can provide context around a commit through the issue's discussion, labels, number of developers subscribed, and priority among other aspects.
@@ -65,14 +67,18 @@ These commits are composed only of changes affecting documentation, annotations,
 
 Despite some of these commits having commit message subjects that seem potentially meaningful such as introducing the implementation of a feature, the developer finds they trivially affect the \class{Topology} class. 
 For example, 
-$$
-\colorbox{lightgray}{\jira{KAFKA-7021:}{Reuse source based on config (\#5163)}} 
-$$
+
+\begin{center}
+	\jira{KAFKA-7021:}{Reuse source based on config (\#5163)}
+\end{center}
+
 describes largely fixing behaviours in other Kafka classes and adding unit tests for the fixed behaviour but insofar as \class{Topology} is concerned, the commit simply removes a newline, not impacting any behaviour in the class. 
 Another example is 
-$$
-\colorbox{lightgray}{\jira{KAFKA-5671:}{Add StreamsBuilder and Deprecate KStreamBuilder}} 
-$$
+
+\begin{center}
+	\jira{KAFKA-5671:}{Add StreamsBuilder and Deprecate KStreamBuilder}
+\end{center}
+
 which refactors a separate class but in \class{Topology}, the commit only adds a missing \code{@param} tag to the documentation for one method and adds documentation for another method.
 Although changes that revise documentation could be useful for understanding evolution in class documentation, these types of changes could also be long outdated and add to the noise in commit history that a developer must skim through when searching for code rationale related to present code.
 For efficiency, the developer could choose not to view the referenced Jira issues for trivial commits if they knew in advance that these commits were trivial.
