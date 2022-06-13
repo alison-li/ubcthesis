@@ -17,7 +17,7 @@ Open and examine the following Java class from the Apache Kafka repository:
 
 \begin{enumerate}
     \item Using commit message information and/or Jira issue information, can you describe the motivation behind why the code segment on lines 717 to 722 was introduced and the benefit to the user of the Kafka \entity{API}?
-    \item There are several overloaded methods called \code{addSink} in this class. In your own words, can you describe in what context were these overloaded methods introduced to this class? Can you reference the commit that introduced these methods and the associated Jira issue in your explanation?
+    \item There are several overloaded methods called \code{addSink} in this class. In your own words, can you describe in what context were these overloaded methods introduced to this class?
     \item What was the motivation behind the most recent commit (\commit{fbe7fb94}) made to this class?
 \end{enumerate}
 
@@ -28,7 +28,7 @@ Open and examine the following Java class from the Apache Kafka repository:
 \class{StreamsBuilder.java}\footnote{\url{https://github.com/apache/kafka/blob/trunk/streams/src/main/java/org/apache/kafka/streams/StreamsBuilder.java}}
 
 \begin{enumerate}
-    \item Can you provide the commit hash for two changes that were introduced to improve some functionality in this class (\ie not cosmetic such as removing repeated words, removing deprecated code, or adding/modifying/removing documentation and comments)? For each commit, can you explain the commit author’s motivation behind the commit?
+    \item Can you find two commits that represent changes that were introduced to improve some functionality in this class and justify why you chose them? The changes can not be cosmetic such as removing repeated words, removing deprecated code, or adding/modifying/removing documentation and comments. 
     \item Why is the \code{build} method in this class overloaded? Specifically, why was the overloaded build method in lines 623 to 630 introduced?
 \end{enumerate}
 
