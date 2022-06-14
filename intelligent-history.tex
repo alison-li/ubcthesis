@@ -194,7 +194,7 @@ For each commit in a file's commit history, beginning from the oldest commit to 
 Suppose we have a file $F$ and an ordered set of commits representing its commit history as $\{C_{1}, C_{2}, C_{3}, \dots, C_{n}\}$, where $C_{i}$ is a commit that affects $F$ and $i = 1, 2, 3, \dots, n$ denotes the oldest commit to the most recent commit in $F$'s commit history.
 We use \entity{java-diff-utils} to obtain the diffs for the state of $F$ in the commit pairs $\{\varnothing, C_{1}\}$, $\{C_{1}, C_{2}\}$, $\{C_{2}, C_{3}\}$, \dots, $\{C_{n-1}, C_{n}\}$.
 We compare an empty set, representing an empty string, with the state of $F$ in the first commit $C_{1}$ since the first commit in a file presumably introduces the file $F$ and its initial content.
-For each pair of commits, we take the contents of file $F$ in each commit and  obtain a list of deltas and apply regular expression pattern matching on each string in a delta's list of source lines and list of target lines to count the number of lines that match a category.
+For each pair of commits, we take the contents of file $F$ in each individual commit in a pair, obtain a list of deltas, and apply regular expression pattern matching on each string in a delta's list of source lines and list of target lines to count the number of lines that match a category.
 
 This categorical information for a user-selected commit is exposed as \emph{diff metadata} in a pop-up when the user invokes the \textit{Show Diff Metadata} action provided by Intelligent History.
 \autoref{subfig:Intelligent-History-B-Popup} illustrates the metadata information in a pop-up for the diff presented in Figure \autoref{subfig:Intelligent-History-B-Diff}.
@@ -208,7 +208,7 @@ Exposing this metadata to the user allows the user to obtain a summary about the
 With the features of Intelligent History established in \autoref{sec:Implementation}, we describe how we anticipate a user might be able to use the actions from Intelligent History. 
 In \autoref{sec:Implementation}, we outlined the three actions a user can invoke while examining a file's history using IntelliJ's built-in file revision history view: (A) \textit{Highlight Important Changes}; (B) \textit{Show Diff Metadata}; and (C) \textit{Show Jira Issue}.
 
-Suppose a developer who is new to the Apache Kafka project would like to obtain an overview of changes so far that have improved some functionality or usability of the \code{StreamsBuilder}\footnote{\url{https://github.com/apache/kafka/blob/trunk/streams/src/main/java/org/apache/kafka/streams/StreamsBuilder.java}} class over time.
+Suppose a developer who is new to the Apache Kafka project would like to obtain an overview of changes so far that have improved some functionality or usability of the \code{StreamsBuilder}\footnote{\url{https://github.com/apache/kafka/blob/trunk/streams/src/main/java/org/apache/kafka/streams/StreamsBuilder.java}, verified 6/14/2022.} class over time.
 The commit history for \code{StreamsBuilder} contains a total of 45 commits.
 Upon invoking feature (A), 19 of the commits become faded in the commit history.
 Further, the developer can select any commit from the commit history and call feature (B) to understand how Intelligent History's highlighting has been applied on the \code{StreamsBuilder} commit history.
@@ -221,7 +221,7 @@ Among these 26 commits that reference Jira issue, the developer wishes to locate
 When a commit message is unsufficient for providing information about the rationale behind a commit, the developer invokes (C).
 On the first 4 highlighted commits in the commit history, the developer is able to skip needing to perform an in-depth investigation into the Jira issues for commits with empty or un-informative Jira issue descriptions since the developer can know this beforehand using without leaving the \entity{IDE} by invoking feature (C) on each highlighted commit.
 
-For the fifth commit in the history, the developer sees refactorings in the diff for commit \commit{f2b74aa1}\footnote{\url{https://github.com/apache/kafka/commit/f2b74aa1c36bf2882006c14f7cbd56b493f39d26}} with the message:
+For the fifth commit in the history, the developer sees refactorings in the diff for commit \commit{f2b74aa1}\footnote{\url{https://github.com/apache/kafka/commit/f2b74aa1c36bf2882006c14f7cbd56b493f39d26}, verified 6/14/2022.} with the message:
 
 \begin{center}
     \jira{KAFKA-5873:}{add materialized overloads to StreamsBuilder} 
