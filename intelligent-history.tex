@@ -177,7 +177,7 @@ Represented as regular expressions for the Java programming language, our approa
 \begin{itemize}
     \item \textit{Documentation}: Changes that insert, delete, or modify lines representing Javadoc documentation and single-line or multi-line comments. We consider changes made to documentation in code as cosmetic.
     \item \textit{Annotation}: \sloppy Changes that insert, delete, or modify lines representing \code{@Deprecated} annotations or \code{@SuppressWarnings} annotations. The \code{@Deprecated} annotation indicates elements that should no longer be used but remain in source code to avoid breaking backward compatibility. We consider the marking of deprecated code as generally behaviour-preserving. The \code{@SuppressWarnings} annotation indicates named compiler warnings that should be hidden in the annotated element. We consider the marking of  suppressed elements as generally behaviour-preserving.
-    \item \textit{Import}: Changes which involve the insertion, deletion, or modification of \code{import} statements. We consider changes related to import statements to be involved in refactoring and unlikely to yield any further insight.
+    \item \textit{Import}: Changes which involve the insertion, deletion, or modification of \code{import} statements. We consider these changes to be related refactoring, which is generally behaviour-preserving and unlikely to yield any further insight.
     \item \textit{Newline}: Changes involving the insertion or deletion of newlines. We consider these changes as behaviour-preserving and unlikely to yield any further insight.
     \item \textit{Other}: Any change not classified by the above categories. If a commit has a diff containing at least one change that is not classified by any of the above categories, then the commit is regarded as potentially interesting. Else, a commit is considered less interesting and will be presented as a faded out commit when the user invokes the \emph{Highlight Import Changes} action.
 \end{itemize}
@@ -221,7 +221,7 @@ Among these 26 commits that reference Jira issue, the developer wishes to locate
 When a commit message is unsufficient for providing information about the rationale behind a commit, the developer invokes (C).
 On the first 4 highlighted commits in the commit history, the developer is able to skip needing to perform an in-depth investigation into the Jira issues for commits with empty or un-informative Jira issue descriptions since the developer can know this beforehand using without leaving the \entity{IDE} by invoking feature (C) on each highlighted commit.
 
-For the fifth commit in the history, the developer sees refactorings in the diff for 
+For the fifth commit in the history, the developer sees refactorings in the diff for commit \commit{f2b74aa1}\footnote{\url{https://github.com/apache/kafka/commit/f2b74aa1c36bf2882006c14f7cbd56b493f39d26}} with the message:
 
 \begin{center}
     \jira{KAFKA-5873:}{add materialized overloads to StreamsBuilder} 
@@ -234,7 +234,7 @@ The developer invokes (C) and is able to obtain a reference to \entity{KIP}-182,
 Similar to our illustration of the developer's process of finding and synthesizing information about the change history of \code{StreamsBuilder} through the first 5 commits of its commit history, the developer can continue to use this these features of Intelligent History on the rest of the highlighted commits to efficiently locate and access rationale information for changes over time.
 The use of feature (A) allows the developer to reduce the number of commits they would have to manually skim to check if the commit contains a meaningful change, while feature (B) provides the developer with the option to retrieve a quick summary of how Intelligent History's highlighting approach to the file's commit history.
 Finally, the developer can use feature (C) on commits of interest to check if the Jira issue associated with the commit can further enrich a commit's message and diff without further explanation on the motivation and rationale behind a commit's changes.
-Overall, this reduces the time it would take for a developer to manually determine relevant commits and minimizes the switches the developer would need to make between their \entity{IDE} and browser to find and read the associated Jira issue.
+Overall, the features of Intelligent History reduces the time it would take for a developer in this example to manually determine relevant commits and minimizes the switches the developer would need to make between their \entity{IDE} and browser to find and read the associated Jira issue.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \endinput
