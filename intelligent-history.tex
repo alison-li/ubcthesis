@@ -65,7 +65,18 @@ In comments, developers discuss issues by providing insight into technical detai
 
 Some software projects have adopted a convention of adding a prefix referencing an issue in a commit's subject message \cite{rastkar_why_2013,moreno_arena_2017}.
 Although the practice of explicitly linking each commit to an issue is helpful when looking for relevant issues from an \entity{ITS}, the developer still experiences cognitive load from switching between their \entity{IDE} and browser when reading and synthesizing the information from several issues.
-A software developer examining several issues related to several commits also must maintain a mental model that interleaves the contextual information discovered from issues with code changes in diffs \FIXME{Figure would be helpful?}.
+A software developer examining several issues related to several commits also must maintain a mental model that interleaves the contextual information discovered from issues with code changes in diffs.
+\autoref{fig:Cognitive-Load} demonstrates how the distributed nature of commits and issue information can result in cognitive load for a developer browsing the commit history for a file, while also synthesizing the information gained from checking issues related to commits in a separate application.
+
+\begin{figure}
+    \center
+    \includegraphics[width=\textwidth]{./images/cognitive-load.png}
+    \caption{
+        Three Jira issues opened in individual browser windows (left) for three commits from the file commit history (right) of the \code{Topology} class in Apache Kafka. Illustrates the distributed nature of code change and rationale information between the \entity{IDE} and browser.
+    }
+    \label{fig:Cognitive-Load}
+\end{figure}
+
 In some cases, an issue may not contain any discussion at all or the description in an issue may either be missing or too vague to yield any insight on a specific code change or the evolution of code changes in a file.
 Thus, in the design of Intelligent History, we found it crucial to co-present commits with issue information in the \entity{IDE}.
 
@@ -83,7 +94,7 @@ In particular, the ``Show History'' feature in IntelliJ is available for directo
 \begin{figure}
     \includegraphics[width=\textwidth]{./images/intellij-overview.png}
     \caption{
-        IntelliJ IDEA overview with the commit history for the currently open \class{Topology} class visible in the bottom half tool window.
+        IntelliJ IDEA overview with the commit history for the currently open \class{Topology} class from Apache Kafka visible in the bottom half tool window.
     }
     \label{fig:IntelliJ-Overview}
 \end{figure}
