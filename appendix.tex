@@ -34,32 +34,6 @@ You may also see the acronym ``KIP'' referenced in some commits or Jira issues i
 \end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Question Sets}
-
-\subsection{Set A}
-\label{subsec:Question-Set-A}
-
-Open and examine the following Java class from the Apache Kafka repository:
-\class{Topology.java}\footnote{\url{https://github.com/apache/kafka/blob/trunk/streams/src/main/java/org/apache/kafka/streams/Topology.java}}
-
-\begin{enumerate}
-    \item Using commit message information and/or Jira issue information, can you describe the motivation behind why the code segment on lines 717 to 722 was introduced and the benefit to the user of the Kafka \entity{API}?
-    \item There are several overloaded methods called \code{addSink} in this class. In your own words, can you describe in what context were these overloaded methods introduced to this class?
-    \item What was the motivation behind the most recent commit (\commit{fbe7fb94}) made to this class?
-\end{enumerate}
-
-\subsection{Set B}
-\label{subsec:Question-Set-B}
-
-Open and examine the following Java class from the Apache Kafka repository:
-\class{StreamsBuilder.java}\footnote{\url{https://github.com/apache/kafka/blob/trunk/streams/src/main/java/org/apache/kafka/streams/StreamsBuilder.java}}
-
-\begin{enumerate}
-    \item Can you find two commits that represent changes that were introduced to improve some functionality in this class and justify why you chose them? The changes can not be cosmetic such as removing repeated words, removing deprecated code, or adding/modifying/removing documentation and comments. 
-    \item Why is the \code{build} method in this class overloaded? Specifically, why was the overloaded build method in lines 623 to 630 introduced?
-\end{enumerate}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Interview Questions}
 \label{sec:Interview-Questions}
 
