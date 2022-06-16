@@ -72,7 +72,7 @@ A software developer examining several issues related to several commits also mu
     \center
     \includegraphics[width=\textwidth]{./images/cognitive-load.png}
     \caption{
-        Three Jira issues opened in individual browser windows (left) for three commits from the file commit history (right) of the \code{Topology} class in Apache Kafka. Illustrates the distributed nature of code change and rationale information between the \entity{IDE} and browser.
+        Three Jira issues opened in individual browser windows (left), corresponding to three commits in the file commit history (centre) of the \code{Topology} class in Apache Kafka. The diffs of each commit (right) must also be maintained in the developer's mental model of the changes in history. Illustrates the distributed nature of code change and rationale information between the \entity{IDE} and browser.
     }
     \label{fig:Cognitive-Load}
 \end{figure}
@@ -161,7 +161,8 @@ Intelligent History has the following actions, which the user can invoke:
 \section{Heuristics for Analyzing Diffs}
 \label{sec:Heuristics}
 
-For distinguishing potentially important commits from less important or trivial commits, we employ a heuristical approach based on empirical observation to categorize the lines of change in a commit's diff content.
+For distinguishing potentially important commits from less important or trivial commits, we employ a heuristical approach based on empirical observation of file revision histories in the Apache Kafka project.
+We identify patterns in the diffs of commits and categorize the lines of change to determine less important or interesting commits in a file's revision history.
 When referring to a commit's diff content, we mean the diff between the old version of a Java class in one commit, and the new version of the Java class after a commit has modified it.
 This approach involves scanning the lines between commits for matches to a set of Java code patterns, which describe categories of trivial code changes.
 Each pattern is expressed by a form of regular expressions.
