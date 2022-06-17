@@ -57,10 +57,10 @@ Apache Kafka is an open source streaming platform used for working with streamin
 Apache Kafka requires all non-trivial changes to have a corresponding Jira issue. 
 The developer views the commit history for the file \file{Topology.java}.
 In the context of the Kafka architecture, a ``topology'' is a directed acyclic graph of stream processing nodes that defines the stream processing logic for an application using Apache Kafka.
-When viewing the commit history for the \class{Topology} class, the developer sees 21 commits.
+When viewing the commit history for the \class{Topology} class, the developer sees 22 commits.
 The commit history in terms of the commit message subject for each commit is shown in \autoref{fig:Topology-Commit-History}.
 
-To gain a sense of how \class{Topology} has evolved over time and for further understanding the motivations behind code changes in the class, the developer manually inspects the diff between each of the 21 commits to understand how the code has evolved across commits.
+To gain a sense of how \class{Topology} has evolved over time and for further understanding the motivations behind code changes in the class, the developer manually inspects the diff between each of the 22 commits to understand how the code has evolved across commits.
 While examining each commit, the developer must switch contexts between the view for viewing \class{Topology}'s commit history and a view for visiting a commit's referenced Jira issue.
 Throughout this process of looking through each commit, the developer comes across several commits that they consider trivial for gaining insight to code rationale. 
 These commits are composed only of changes affecting documentation, annotations, imports, or newlines. 
@@ -85,7 +85,7 @@ For efficiency, the developer could choose not to view the referenced Jira issue
 
 For each commit and visited Jira issue, the developer must maintain a mental narrative of the file's evolution and the rationale behind each change at different points in time. 
 This results in a temporal cost of determining non-trivial commits to discard during exploration and a cognitive cost of maintaining a mental model of the interactions and decisions behind changes in a file. 
-In total, our heuristic-based approach, explained further in \autoref{sec:Heuristics}, shows 12 of 21 commits can be considered unimportant to the \class{Topology} class. 
+In total, our heuristic-based approach, explained further in \autoref{sec:Heuristics}, shows 9 of 22 commits can be considered unimportant to the \class{Topology} class. 
 We find 9 commits only affect documentation, annotations, and newlines.
 If this were indicated in advance to the developer, this could have made the developer's search more efficient by considering the indication and have the choice to skip examining these commits.
 Moreover, providing the developer with ease of access to a sample of information in the Jira issue or metrics such as number of comments or Jira issue priority to the developer in the same view as the one they use to view the file's commit history could ease the cognitive burden of the process of examining each Jira issue independently and in the context of each other.
@@ -94,7 +94,7 @@ Excluding these commits, this leaves the developer with 9 potentially helpful co
 This suggests the developer would benefit greatly from an automatic and more streamlined approach to determining non-trivial commits to look at.
 Additionally, the ability to glean the Jira issue information could help the developer more efficiently decide which commits they can prioritize exploring for understanding the evolution and rationale behind changes in the \class{Topology} class.
 
-If such a tool could spotlight the remaining 9 of 21 commits to prioritize examining, the developer would be able to efficiently piece together the following about the \class{Topology} class. 
+If such a tool could spotlight the remaining 13 of 22 commits to prioritize examining, the developer would be able to efficiently piece together the following about the \class{Topology} class. 
 There were several refactoring commits: \jira{KAFKA-5670} is the first commit in the file and introduces \class{Topology} as a refactoring of a former class due to leakage of internal methods in the Kafka Streams \entity{API} that should not be public. 
 The next commit \jira{KAFKA-5650} updates the \class{Topology} class to use newly added interfaces for reducing heavy method overloading.
 Further commits \jira{KAFKA-12648} and \jira{KAFKA-12648} also explicitly state they refactor the \class{Topology} class to enable topology-specific user configuration.
@@ -107,6 +107,7 @@ These commits raise limitations in the Kafka Streams \entity{API} and user desir
 
 \begin{figure}
 \begin{RaggedRight}
+	\jira{KAFKA-9847:}{add config to set default store type (KIP-591) (\#11705)} \\
 	\jira{KAFKA-12648:}{introduce TopologyConfig and TaskConfig for topology-level overrides (\#11272)} \\
 	\textcolor{gray}{\jira{KAFKA-10546:}{Deprecate old PAPI (\#10869)}} \\
 	\jira{KAFKA-12648:}{basic skeleton API for NamedTopology (\#10615)} \\
@@ -116,20 +117,22 @@ These commits raise limitations in the Kafka Streams \entity{API} and user desir
 	\jira{KAFKA-10436:}{Implement KIP-478 Topology changes (\#9221)} \\
 	\jira{KAFKA-10379:}{Implement the KIP-478 StreamBuilder\#addGlobalStore() (\#9148)} \\
 	\jira{KAFKA-7523:}{Add ConnectedStoreProvider to Processor API (\#6824)} \\
-	\textcolor{gray}{\jira{MINOR:}{Fix generic types in StreamsBuilder and Topology (\#8273)}} \\
+	\jira{MINOR:}{Fix generic types in StreamsBuilder and Topology (\#8273)} \\
 	\textcolor{gray}{\jira{KAFKA-6161}{Add default implementation to close() and configure() for Serdes (\#5348)}} \\
 	\textcolor{gray}{\jira{MINOR:}{Return correct instance of SessionWindowSerde (\#5546)}} \\
 	\textcolor{gray}{\jira{KAFKA-7021:}{Reuse source based on config (\#5163)}} \\
 	\jira{KAFKA-4936:}{Add dynamic routing in Streams (\#5018)} \\
 	\textcolor{gray}{\jira{MINOR:}{Add missing generics and surpress warning annotations (\#4518)}} \\
-	\textcolor{gray}{\jira{MINOR:}{add suppress warnings annotations in Streams API}} \\
+	\jira{MINOR:}{add suppress warnings annotations in Streams API} \\
 	\textcolor{gray}{\jira{MINOR:}{JavaDoc improvements for new state store API}} \\
 	\jira{KAFKA-5873;}{add materialized overloads to StreamsBuilder} \\
 	\jira{KAFKA-5650;}{add StateStoreBuilder interface and implementations} \\
 	\textcolor{gray}{\jira{KAFKA-5671:}{Add StreamsBuilder and Deprecate KStreamBuilder}} \\
 	\jira{KAFKA-5670:}{(KIP-120) Add Topology and deprecate TopologyBuilder} \\
-	\caption{The commit history, shown by each commit message's subject, for the \file{Topology.java} file in the open source Apache Kafka project. The history is in descending order, from the most recent commit to the oldest commit.
-		In total, the \class{Topology} class has 21 commits in its commit history. The greyed out commits contain changes deemed not meaningful due to being modifications only to documentation, annotations, imports, or newlines. Commits explicitly labelled as ``MINOR'' are also in grey.}
+	\caption{The commit history, shown by each commit message's subject, for \class{Topology} class in the open source Apache Kafka project. 
+		The history is in descending order, from the most recent commit to the oldest commit.
+		In total, \class{Topology} has 22 commits in its commit history. The greyed out commits contain changes deemed not meaningful due to being modifications only to documentation, annotations, imports, or newlines.
+	}
 	\label{fig:Topology-Commit-History}
 \end{RaggedRight}
 \end{figure}
