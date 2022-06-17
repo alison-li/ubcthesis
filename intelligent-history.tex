@@ -171,7 +171,7 @@ To assess the performance of our regular expression patterns, we apply them on t
 We first manually identified the set of commits we considered trivial according to Kawrykow and Robillard's definition of non-essential changes \cite{kawrykow_non-essential_2011} and devised a set of regular expressions to cover the patterns we observed in these lines of changes.
 Recall in \autoref{fig:Topology-Commit-History}, the heuristics-based approach determines 41\% (9 out of 22) of the commits in the commit history for \class{Topology} to be less important.
 For the commit history of \class{StreamsBuilder}, the heuristics-based approach detects 19 out of 45  (42\%) commits from the commit history to be less important.
-The raw diff metadata information for the commit history of \class{Topology} and \class{StreamsBuilder} respectively are available at \autoref{sec:Topology-Diff-Metadata} and \autoref{sec:StreamsBuilder-Diff-Metadata}.
+The raw diff metadata information for the commit history of \class{Topology} and \class{StreamsBuilder} respectively are available at Appendix \ref{sec:Topology-Diff-Metadata} and Appendix \ref{sec:StreamsBuilder-Diff-Metadata}.
 
 While using heuristics for developing the regular expression patterns sacrifices some degree of accuracy on what is considered a ``trivial'' line of code change to a user,
 our heuristics as regular expression patterns have the advantage of being lightweight for efficiently analyzing diffs over other approaches to detecting code changes in programs such as abstract syntax tree (\entity{AST}) matching and differencing techniques.
@@ -205,7 +205,7 @@ For each pair of commits, we take the contents of file $F$ in each individual co
 
 This categorical information for a user-selected commit is exposed as \emph{diff metadata} in a pop-up when the user invokes the \textit{Show Diff Metadata} action provided by Intelligent History.
 \autoref{subfig:Intelligent-History-B-Popup} illustrates the metadata information in a pop-up for the diff presented in Figure \autoref{subfig:Intelligent-History-B-Diff}.
-As shown in \autoref{subfig:Intelligent-History-B-Diff}, the commit \commit{   16b2ce7d} for \class{Topology.java} consists of deleting an \code{import} statement, inserting an \code{import} statement, and the modification of a Javadoc comment.
+As shown in \autoref{subfig:Intelligent-History-B-Diff}, the commit \commit{16b2ce7d} for \class{Topology.java} consists of deleting an \code{import} statement, inserting an \code{import} statement, and the modification of a Javadoc comment.
 Exposing this metadata to the user allows the user to obtain a summary about the lines changed from one commit to another commit and to also understand how Intelligent History highlights commits in a file's commit history.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
