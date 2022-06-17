@@ -14,37 +14,69 @@ We describe our methodology designed to address these research questions in \aut
 We discuss the threats to validity of our evaluation in \autoref{sec:Threads-to-Validity}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Methodology}
+\section{Method}
 \label{sec:Methodology}
 
-We conducted semi-structured interviews, which involved asking a series of open-ended, task-oriented questions from two questions sets to maintain a concentrated discussion while also permitting
+We designed the user study as a semi-structured interview consisting of two parts with an estimated duration of 1 to 1.5 hours.
+A semi-structured interview allows us to maintain a concentrated discussion while also permitting
 interesting responses and reasoning behind the responses \cite{shull_guide_2007}.
+The study revolves around finding answers to two sets of questions related to motivation and rationale behind changes in the Apache Kafka repository.
+The briefing for the study and the setup instructions can be found in Appendix \ref{sec:Briefing-and-Setup}.
 
-\subsection{Question Sets}
+The first part of the session involved asking two sets of open-ended, task-oriented questions, which are presented in \autoref{tab:Question-Sets}.
+We prepare two sets of questions, each pertaining to a different Java class from the Apache Kafka project, to allow the participant to complete an initial set of questions without the use of the Intelligent History plugin and a second set of questions permitting use of the Intelligent History plugin.
+\FIXME{Describe how the questions were designed and the difference between the sets.}
+\FIXME{Describe the task sets and shuffling of the order of the sets as well as the set allowing use of the plugin. Describe the evaluation criteria or sample answers used to gauge ``correctness'' or completion for each question.}
 
-Task sets and evaluation criteria.
+\begin{table}[]
+  \begin{tabular}{@{}ccl@{}}
+  \toprule
+  Set                                      & Class Name                                           & \multicolumn{1}{c}{Question}                                                                                                                                                                                                                                                                                                                                            \\ \midrule
+  \multicolumn{1}{|c|}{\multirow{3}{*}{A}} & \multicolumn{1}{c|}{\multirow{3}{*}{\class{Topology}}}       & \multicolumn{1}{p{8cm}|}{\begin{tabular}[c]{@{}p{8cm}}\small Can you describe the motivation behind why the code segment on lines 717 to 722 was introduced and the benefit to the user of the Kafka \entity{API}?\end{tabular}}                                                                                                                                                             \\ \cmidrule(l){3-3} 
+  \multicolumn{1}{|c|}{}                   & \multicolumn{1}{c|}{}                                & \multicolumn{1}{p{8cm}|}{\begin{tabular}[c]{@{}p{8cm}}\small There are several overloaded methods called \code{addSink} in this class. Can you describe in what context were these overloaded methods introduced to this class?\end{tabular}}                                                                                                                                             \\ \cmidrule(l){3-3} 
+  \multicolumn{1}{|c|}{}                   & \multicolumn{1}{c|}{}                                & \multicolumn{1}{p{8cm}|}{\small What was the motivation behind the most recent commit (\commit{fbe7fb94}) made to this class?}                                                                                                                                                                                                                                                               \\ \midrule
+  \multicolumn{1}{|c|}{\multirow{2}{*}{B}} & \multicolumn{1}{c|}{\multirow{2}{*}{\class{StreamsBuilder}}} & \multicolumn{1}{p{8cm}|}{\begin{tabular}[c]{@{}p{8cm}}\small Can you find two commits that represent changes that were introduced to improve some functionality in this class and justify why you chose them? The changes can not be cosmetic such as removing repeated words, removing deprecated code, or adding/modifying/removing documentation and comments.\end{tabular}} \\ \cmidrule(l){3-3} 
+  \multicolumn{1}{|c|}{}                   & \multicolumn{1}{c|}{}                                & \multicolumn{1}{p{8cm}|}{\small Why is the \code{build} method in this class overloaded? Specifically, why was the overloaded build method in lines 623 to 630 introduced?}                                                                                                                                                                                                                \\ \bottomrule
+  \end{tabular}
+  \caption{TODO}
+  \label{tab:Question-Sets}
+\end{table}
 
-\subsection{Measures}
+The second part of the session consisted of asking a series of open-ended follow-up questions to gather information about the participant's background with respect to software development and experience in examining commits and issues from an issue tracking system (\entity{ITS}).
+We also asked participants to compare their experience in completing the question sets without and with the use of Intelligent History.
+The follow-up interview questions are available at Appendix \ref{sec:Interview-Questions}.
+
+We record all semi-structured interview sessions for review and note-taking purposes and document each session with a summary. 
 
 \subsection{Participants}
 
-We recruited $N$ participants, focusing on software developers with at least 1 year of experience in software development.
+We recruited $N$ participants, focusing on software developers with at least 1 year of experience in software development, which can include non-professional and professional development experience.
 Participants were compensated with entry to a raffle to win 1 of 5 Amazon gift cards valued at $\$40$ \entity{CAD} each for a 1 to 1.5 hour session.
-\FIXME{Describe years of experience.}
+\FIXME{Include years of experience and maybe a table with pseudonyms.}
 
-\subsection{Procedure}
+\subsection{Analysis}
+
+\FIXME{Describe quantitative measures}. We instrumented Intelligent History to collect logs on \dots
+
+\FIXME{Describe qualitative measures.} We conduct a follow-up interview to obtain qualitative data on \dots
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
 \label{sec:Results}
 
-\subsection{Quantitative Analysis}
+\subsection{Summary}
 
-\subsection{Qualitative Analysis}
+\subsection{RQ1}
+
+\subsection{RQ2}
+
+\subsection{RQ3}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Threats to Validity}
 \label{sec:Threads-to-Validity}
+
+\FIXME{Hawthorne effect, sample size, tool usage for second set of questions}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \endinput
