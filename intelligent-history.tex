@@ -175,7 +175,7 @@ The raw diff metadata information for each commit in the commit history of \clas
 
 While using heuristics for developing the regular expression patterns sacrifices some degree of accuracy on what is considered a ``trivial'' line of code change to a user,
 our heuristics as regular expression patterns have the advantage of being lightweight for efficiently analyzing diffs over other approaches to detecting code changes in programs such as abstract syntax tree (\entity{AST}) matching and differencing techniques.
-The categories of code changes expressd as regular exoressions also  make the highlighting on the history interpretable as the developer is able to understand why certain commits become faded with the highlighting.
+The categories of code changes expressed as regular exoressions also make the reasoning behind the highlighting of the commit history highly interpretable as the developer is shown why certain commits become faded with the highlighting.
 Though the advantage of \entity{AST}-level granularity is that it produces edit scripts that directly refer to the structure of code, \entity{AST} matching and differencing techniques can have negative performance on runtime and memory consumption, which discouraged us from using them \cite{fluri_change_2007,pawlik_RTED_2011,falleri_fine-grained_2014}.
 The goal of our approach is to understand if a minimal set of patterns for expressing trivial code changes can be effective at supporting a software developer in more efficiently navigating software history when searching for code rationale information.
 
