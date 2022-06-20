@@ -170,7 +170,7 @@ Each pattern is expressed by a form of regular expressions.
 To assess the performance of our regular expression patterns, we apply them on two Java classes from the Apache Kafka repository and attempt to maximize coverage of the proportion of trivial commits.
 We first manually identified the set of commits we considered trivial according to Kawrykow and Robillard's definition of non-essential changes \cite{kawrykow_non-essential_2011} and devised a set of categories, represented by regular expressions, to cover the patterns we observed in these lines of changes.
 Recall in \autoref{fig:Topology-Commit-History}, the heuristics-based approach determines 41\% (9 out of 22) of the commits in the commit history for \class{Topology} to be less important.
-For the commit history of \class{StreamsBuilder}, the heuristics-based approach detects 19 out of 45  (42\%) commits from the commit history to be less important.
+For the commit history of \class{StreamsBuilder}, the heuristics-based approach detects 42\% (19 out of 45) of the commits from the commit history to be less important.
 The raw diff metadata information for each commit in the commit history of \class{Topology} and \class{StreamsBuilder} respectively are available at Appendix \ref{sec:Topology-Diff-Metadata} and Appendix \ref{sec:StreamsBuilder-Diff-Metadata}.
 
 While using heuristics for developing the regular expression patterns sacrifices some degree of accuracy on what is considered a ``trivial'' line of code change to a user,
