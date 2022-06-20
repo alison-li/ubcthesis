@@ -204,7 +204,7 @@ We compare an empty set, representing an empty string, with the state of $F$ in 
 For each pair of commits, we take the contents of file $F$ in each individual commit in a pair, obtain a list of deltas, and apply regular expression pattern matching on each string in a delta's list of source lines and list of target lines to count the number of lines that match a category.
 
 This categorical information for a user-selected commit is exposed as \emph{diff metadata} in a pop-up when the user invokes the \textit{Show Diff Metadata} action provided by Intelligent History.
-\autoref{subfig:Intelligent-History-B-Popup} illustrates the metadata information in a pop-up for the diff presented in Figure \autoref{subfig:Intelligent-History-B-Diff}.
+\autoref{subfig:Intelligent-History-B-Popup} illustrates the metadata information in a pop-up for the diff presented in \autoref{subfig:Intelligent-History-B-Diff}.
 As shown in \autoref{subfig:Intelligent-History-B-Diff}, the commit \commit{16b2ce7d} for \class{Topology.java} consists of deleting an \code{import} statement, inserting an \code{import} statement, and the modification of a Javadoc comment.
 Exposing this metadata to the user allows the user to obtain a summary about the lines changed from one commit to another commit and to also understand how Intelligent History highlights commits in a file's commit history.
 
