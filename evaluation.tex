@@ -32,8 +32,6 @@ As shown in \autoref{tab:Question-Sets}, set A asks questions regarding the moti
 The \class{Topology} class contains 22 commits and the \class{StreamsBuilder} class contains 45 commits respectively.
 We limited the number of questions per class based on the number of commits in each class' commit history and to accomodate participants' varying preferences for and familiarity with exploring commit history in general.
 
-\FIXME{Describe that we came up with sample answers used to gauge ``correctness'' or completion for each question? Should this be included in the appendix?}
-
 We shuffle the set of questions such that half the participants received and completed set A first \emph{without} awareness of the plugin, and set B afterwards \emph{with} introduction to the plugin.
 The remaining half of the participants received set B first \emph{without} the plugin, and set A \emph{with} the plugin.
 We perform this shuffling of question sets to avoid having the features of Intelligent History be more favourable for one set of questions to another.
@@ -61,7 +59,7 @@ This will allow us to further understand how Intelligent History performs for di
   \label{tab:Question-Sets}
 \end{table}
 
-The second part of the session consisted of asking a series of open-ended questions to gather information about the participant's background with respect to software development and experience in examining commits and issues from an issue tracking system (\entity{ITS}).
+The second part of the session consisted of asking a series of open-ended interview questions to gather information about the participant's background with respect to software development and experience in examining commits and issues from an issue tracking system (\entity{ITS}).
 We also asked participants to compare their experience in completing the question sets without and with the use of Intelligent History.
 The interview questions are available at Appendix \ref{sec:Interview-Questions}.
 As part of the semi-structured nature of the study, the author of this thesis as the interviewer would also ask improvised follow-up questions related to the participants' experience with using revision history and obtaining code rationale information. 
@@ -105,9 +103,14 @@ In terms of the participants' total years of experience in software development,
 
 \subsection{Analysis}
 
-\FIXME{Describe quantitative measures}. We instrumented Intelligent History to collect logs on \dots
+We instrumented Intelligent History to log timestamps and events occuring within the IDE.
+In particular, we logged the commits a participant examined for each question and the features of Intelligent History that the participant invoked.
+This would allow us to obtain quantitative information on the number of commits a participant investigated to answer a question and how the participant interacted with the Intelligent History plugin for answering the question set in which they were permitted to use its features.
+On the basis of the session recordings and logs, we constructed graphs for each participant's session to visualize how they explored commit history to answer the question sets and the impact of Intelligent History on their exploration.
+\FIXME{Include sample commit/exploration graphs.}
 
-\FIXME{Describe qualitative measures.} We conduct a follow-up interview to obtain qualitative data on \dots
+From conducting a follow-up interview of each participant after they completed the question sets, we obtained qualitative information regarding each participant's background and familiarity with working in a project that uses an issue tracking system (\entity{ITS}) and their thoughts and experience with using Intelligent History.
+\FIXME{Explain how the commit graphs were used to formulate themes related to commit history exploration and also created themes based on the qualitative responses from participants.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
@@ -115,8 +118,57 @@ In terms of the participants' total years of experience in software development,
 
 \subsection{Summary}
 
-% Compare metrics for set A, separated by results without plugin and with plugin
-% Compare metrics set B, separated by results without plugin and with plugin
+\FIXME{Comment on the results and how the figures were produced to convey them.}
+
+\begin{landscape}
+\begin{table}[p]
+  \begin{tabular}{@{}cccccccccccccccc@{}}
+    \toprule
+    \multicolumn{1}{l}{}       & \multicolumn{9}{c}{Set A (without plugin)}                                                                                                                                              & \multicolumn{6}{c}{Set B (with plugin)}                                                                                                     \\ \midrule
+                               & \multicolumn{3}{c}{a} & \multicolumn{3}{c}{b}                                                          & \multicolumn{3}{c}{c}                                                          & \multicolumn{3}{c}{a}                                      & \multicolumn{3}{c}{b}                                                          \\ \midrule
+    Pseudo-initial             & \%CE  & \%HC  & \#AS  & \multicolumn{1}{l}{\%CE} & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} & \multicolumn{1}{l}{\%CE} & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} & \%CE & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} & \multicolumn{1}{l}{\%CE} & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} \\ \midrule
+    A                          & 40.9  & 55.6  & 1     & 27.3                     & 83.3                     & 1                        & ?                        & ?                        & ?                        & 15.6 & 100.0                    & 0                        & 6.7                      & 100.0                    & 0                        \\
+    C                          & 4.5   & 83.3  & 1     & 27.3                     & 83.3                     & 1                        & ?                        & ?                        & ?                        & 6.7  & 100.0                    & 0                        & 0.0                      & 0.0                      & 0                        \\
+    E                          & 36.3  & 62.5  & 1     & 68.1                     & 66.7                     & 1                        & ?                        & ?                        & ?                        & 35.6 & 100.0                    & 1                        & 8.9                      & 100.0                    & 0                        \\
+    G                          & 86.3  & 57.9  & 1     & 36.3                     & 75.0                     & 1                        & ?                        & ?                        & ?                        & 13.3 & 100.0                    & 3                        & 6.7                      & 100.0                    & 1                        \\
+    I                          & 4.5   & 83.3  & 1     & 36.3                     & 75.0                     & 1                        & ?                        & ?                        & ?                        & 6.7  & 100.0                    & 0                        & 6.7                      & 100.0                    & 0                        \\ \midrule
+    \multicolumn{1}{l}{Mean}   & 34.5  & 68.5  & 1     & 39.1                     & 76.7                     & 1                        & ?                        & ?                        & ?                        & 15.6 & 100.0                    & 0.8                      & 5.8                      & 80.0                     & 0.2                      \\
+    \multicolumn{1}{l}{Median} & 36.3  & 62.5  & 1     & 36.3                     & 75.0                     & 1                        & ?                        & ?                        & ?                        & 13.3 & 100.0                    & 0.0                      & 6.7                      & 100.0                    & 0.0                      \\ \bottomrule
+  \end{tabular}
+  \caption{
+    Summary of results for participants who received question set A first to complete without the plugin and question set B after to complete with the plugin.
+    For each question set and question, the table shows the percentage of commits from the commit history that the participant examined (\%CE), 
+    the percentage of the participant's examined commits that would be or were highlighted by the plugin (\%HC),
+    and the number of application switches between the \entity{IDE} and the browser (\#AC) that the participant made.
+  }
+  \label{tab:Results-Quantitative-AB}
+\end{table}
+\end{landscape}
+
+\begin{landscape}
+  \begin{table}[p]
+    \begin{tabular}{@{}cccccccccccccccc@{}}
+      \toprule
+      \multicolumn{1}{l}{}       & \multicolumn{9}{c}{Set A (with plugin)}                                                                                                                                                 & \multicolumn{6}{c}{Set B (without plugin)}                                                                                                  \\ \midrule
+                                 & \multicolumn{3}{c}{a} & \multicolumn{3}{c}{b}                                                          & \multicolumn{3}{c}{c}                                                          & \multicolumn{3}{c}{a}                                      & \multicolumn{3}{c}{b}                                                          \\ \midrule
+      Pseudo-initial             & \%CE  & \%HC  & \#AS  & \multicolumn{1}{l}{\%CE} & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} & \multicolumn{1}{l}{\%CE} & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} & \%CE & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} & \multicolumn{1}{l}{\%CE} & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} \\ \midrule
+      B                          & 4.5   & 100.0 & 1     & 9.0                      & 100.0                    & 0                        & ?                        & ?                        & ?                        & 35.6 & 37.5                     & 2                        & 4.4                      & 100.0                    & 0                        \\
+      D                          & 31.8  & 100.0 & 1     & 13.3                     & 100.0                    & 1                        & ?                        & ?                        & ?                        &      &                          &                          &                          &                          &                          \\
+      F                          &       &       &       &                          &                          &                          & ?                        & ?                        & ?                        &      &                          &                          &                          &                          &                          \\
+      H                          &       &       &       &                          &                          &                          & ?                        & ?                        & ?                        &      &                          &                          &                          &                          &                          \\
+      J                          &       &       &       &                          &                          &                          & ?                        & ?                        & ?                        &      &                          &                          &                          &                          &                          \\ \midrule
+      \multicolumn{1}{l}{Mean}   &       &       &       &                          &                          &                          & ?                        & ?                        & ?                        &      &                          &                          &                          &                          &                          \\
+      \multicolumn{1}{l}{Median} &       &       &       &                          &                          &                          & ?                        & ?                        & ?                        &      &                          &                          &                          &                          &                          \\ \bottomrule
+    \end{tabular}
+    \caption{
+      Summary of results for participants who received question set B first to complete without the plugin and question set A after to complete with permitted use of the plugin.
+      For each question set and question, the table shows the percentage of commits from the commit history that the participant examined (\%CE), 
+      the percentage of the participant's examined commits that would be or were highlighted by the plugin (\%HC),
+      and the number of application switches between the \entity{IDE} and the browser (\#AC) that the participant made.
+    }
+    \label{tab:Results-Quantitative-BA}
+  \end{table}
+  \end{landscape}
 
 \subsection{RQ1}
 
