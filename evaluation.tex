@@ -5,8 +5,8 @@ We hypothesized identifying important commits automatically and providing integr
 To evaluate our hypothesis, we conducted a user study in the form of a semi-structured interview and devised the following research questions:
 
 \begin{itemize}[leftmargin=*]
-    \item[] \label{itm:RQ1} \textbf{Research Question 1 (\entity{RQ1}):} \textit{Does highlighting important commits help software developers explore a file’s revision history more efficiently?}
-    \item[] \label{itm:RQ2} \textbf{Research Question 2 (\entity{RQ2}):} \textit{Does highlighting important commits cause software developers to be more efficient at exploring a file’s revision history than a conventional linear, temporal, flat view of revision history?}
+    \item[] \label{itm:RQ1} \textbf{Research Question 1 (\entity{RQ1}):} \textit{Does highlighting important commits help software developers explore a file’s revision history more effectively?}
+    \item[] \label{itm:RQ2} \textbf{Research Question 2 (\entity{RQ2}):} \textit{Does highlighting important commits help software developers explore a file’s revision history more efficiently?}
     \item[] \label{itm:RQ3} \textbf{Research Question 3 (\entity{RQ3}):} \textit{How useful is direct integration of issue information in the IDE for helping a developer search for code rationale information?}
   \end{itemize}
 
@@ -26,27 +26,25 @@ We expected the participants to interact with commit and issue information found
 
 The first part of the user study session consisted of asking questions from two sets of open-ended, task-oriented questions, which are presented in \autoref{tab:Question-Sets}.
 We prepared two sets of questions, each pertaining to a different Java class from the Apache Kafka project.
-This would facilitate an experience where the participant would complete an initial set of questions without being allowed to use the features of Intelligent History plugin.
+This facilitated an experiment where the participant would complete an initial set of questions without being allowed to use the features of Intelligent History plugin.
 After completing the initial provided set of questions, the participant is introduced to the features of the Intelligent History plugin and permitted to use them to help them answer the second set of questions.
 As shown in \autoref{tab:Question-Sets}, set A asks questions regarding the motivation behind particular changes in \class{Toplogy}, while set B asks the participant to identify potentially important or meaningful commits from the history and about motivation behind a specific method in \class{StreamsBuilder}.
 The \class{Topology} class contains 22 commits and the \class{StreamsBuilder} class contains 45 commits respectively.
 We limited the number of questions per class based on the number of commits in each class' commit history and to accomodate participants' varying preferences for and familiarity with exploring commit history in general.
 
-The participants answered each question verbally with the author, who served as an observer and interviewer.
+The participants answered each question verbally to the author, who served as an observer and interviewer for each participant's session.
 Upon sufficient answering of a question, the observer would provide the next question.
 The criteria for sufficient answer was based on the participant's ability to provide a justification to their answer through referencing relevant parts of the source code, commits, and Jira issues.
 Participants were permitted to think aloud and were also prompted by the observer who would occassionally ask the participant about their approach to how would they find the information to answer the question.
 
-We shuffle the set of questions such that half the participants received and completed set A first \emph{without} awareness of the plugin, and set B afterwards \emph{with} introduction to the plugin.
-The remaining half of the participants received set B first \emph{without} the plugin, and set A \emph{with} the plugin.
-We perform this shuffling of question sets to avoid having the features of Intelligent History be more favourable for one set of questions to another.
-There is some overlap between the sets, particularly with questions A(b) and B(b) from \autoref{tab:Question-Sets}.
-However, we anticipate the features of Intelligent History to be most useful for participants that receive set B as the question set they will be allowed to use the Intelligent History plugin to aid their search for answering.
-In particular, question B(a) from \autoref{tab:Question-Sets} expects the participant to examine the diffs, messages, and Jira issue for each commit in order to identify two changes that they can justify have a certain intent, which is to improve some functionality in \class{StreamsBuilder}. 
-Other questions such as 
-This will allow us to further understand how Intelligent History performs for different tasks and how Intelligent History fits to the participants' individual approaches to realistic tasks.
+We divided the 10 participants into two groups of five participants such that one group received and completed set A first \emph{without} using the Intelligent History plugin, and set B afterwards \emph{with} introduction to the plugin and its features.
+The other group received set B first to complete \emph{without} the plugin, and set A to complete \emph{with} permitted use of the plugin.
+We swapped the order of the question sets for each group to study the performance of Intelligent History in assisting participants with answering questions from the different question sets.
+There is overlap between the sets, specifically with questions A(b) and B(b) from \autoref{tab:Question-Sets}.
+However, we anticipated the features of Intelligent History to provide the most utility to participants that receive set B as the question set they will be allowed to use Intelligent History for.
+Question B(a) from \autoref{tab:Question-Sets} expects the participant to examine the diffs, messages, and Jira issue for each commit in order to identify two changes that they can justify have a certain intent, which is to improve some functionality in \class{StreamsBuilder}. 
 
-\begin{table}[]
+\begin{table}[h]
   \caption{
     The question sets used in the user study. 
     Set A pertains to the \class{Topology} class and set B relates to the \class{StreamsBuilder} class.
@@ -81,8 +79,8 @@ Participants were compensated with entrance to a raffle for 1 of 5 Amazon gift c
 The participant is always introduced to the features of the Intelligent History plugin after completing the first of questions and is permitted to use the plugin features for the second set of questions.
 The role for each participant indicates their occupation title at the time of the user study.
 We generalized the participants' roles to ensure their anonymity.
-Among 10 participants, 4 were students and 6 were full-time developers.
-In terms of the participants' total years of experience in software development, the mean is 5.2 years and the median is 4.3 years.
+Among 10 participants, 4 were students and 6 were full-time developers or engineers.
+In terms of the participants' total years of experience in software development, the mean was 5.2 years and the median was 4.3 years.
 
 \begin{table}[h]
   \caption{
@@ -107,39 +105,72 @@ In terms of the participants' total years of experience in software development,
 \end{table}
 
 \subsection{Analysis}
+\label{subsec:Analysis}
 
 For quantitative analysis, we instrumented Intelligent History to log timestamps and events occuring within the IDE.
-We logged the commits a participant examined for each question and the features of Intelligent History that the participant invoked.
-This allowed us to obtain quantitative information on the number of commits a participant investigated to answer a question and how the participant interacted with the Intelligent History plugin for answering the question set in which they were permitted to use its features.
-A summary of the quantitative data we collected is captured in \autoref{tab:Results-Quantitative-AB} and \autoref{tab:Results-Quantitative-BA}.
-\FIXME{Statistical significance test?}
+We logged the commits a participant examined for each question and the actions of Intelligent History that the participant invoked,
+including the toggling of \textit{Highlight Important Changes} and the invocation of \textit{Show Diff Metadata} and \textit{Show Jira Metadata}.
+This allows us to record the number of commits a participant investigated to answer a question and how the participant interacted with the Intelligent History plugin for answering the question set in which they were permitted to use its features.
+We would also be able to trace which specific commits a participant examined as part of their search and if a commit was or would have been highlighted by Intelligent History.
+From the quantitative metrics, we record the proportion of commits from a file's commit history that a participant examined to answer each question.
+We also record the proportion of a participant's examined commits that are highlighted commits according to Intelligent History.
 
-Using the session screen recordings and logs, we constructed directed graphs for each participant's session to visualize how they explored commit history to answer the question sets and the impact of Intelligent History on their exploration.
-A sample of two graphs for participants F and H's exploration to answer question B(a) from \autoref{tab:Question-Sets} is shown in \autoref{fig:Exploration-Graphs}.
-Nodes are represented by commit hashes and Jira issue IDs while edges express the participant's movement from examining one commit to another.
+After obtaining the quantitative data, we conduct a single-tailed, two-sample $t$-test to test for statistical significance in difference between the proportion of commits from the commit history examined by the group of participants that completed a question set \emph{without} Intelligent History and the group of participants that completed the same question set \emph{with} Intelligent History.
+We use the null hypothesis ($H_{0}$): 
+\textit{The mean proportion of commits from a commit history examined by the group without Intelligent History and the group with Intelligent History are equal.}
+For each question asked in the user study, we compute the $t$-value and $p$-value for the group that completed the question \emph{without} Intelligent History and the group that completed the question \emph{with} Intelligent History.
+For the significance level $\alpha = 0.05$, we reject the null hypothesis if $p < 0.05$.
+We performed this $t$-test for each question and compared the group who completed the question without Intelligent History and the group who completed with Intelligent History.
+
+For qualitative analysis, we used the session recordings and logs to construct directed graphs for each participant's session to visualize how they explored commit history to answer the question sets and the impact of Intelligent History on their exploration.
+We regard these graphs as commit history exploration graphs and constructed a set of these graphs for each participant, one for each question the participant worked on.
+Nodes in the graph are represented by commit hashes and Jira issue IDs while edges express the participant's movement from examining one commit to another.
 Bold commit hashes indicate commits that would be highlighted by Intelligent History, while light hashes indicate non-highlighted commits.
-Italicized commit hashes are those where the participant was heard reading the commit message subject aloud but did not investigate further by explicitly selecting the commit for further viewing.
-The green checkmark indicates when a participant provided an answer to the question and the globe icon represents when a participant has made an application switch between the \entity{IDE} and their browser to further examine the Jira issue.
+Italicized commit hashes are those for which the participant was heard reading or skimming the commit message subject aloud but did not investigate further by explicitly selecting the commit for further viewing.
+We use a green checkmark to signal when a participant provided an answer to the question and a globe icon to show when a participant has made an application switch between the \entity{IDE} and their browser to further examine a Jira issue.
 
-As an example of how we devised themes for the participants' exhibited approaches for software history exploration, \autoref{subfig:Exploration-Graph-A} illustrates the participant F's approach to finding two meaningful commits as per question B(a) without using Intelligent History.
-The commit history exploration graph for participant F shows they examined 19 out of 45 commits.
-Participant F began their search by scanning the commit message subjects to reduce their search and performed backtracking to review previously examined commits.
-We characterize the structure of the graph for participant F as cyclic with skimming.
-Meanwhile, the commit history graph for participant H shown in \autoref{subfig:Exploration-Graph-B}, who answered the same question without Intelligent History, shows they examined 10 out of 45 commits.
-Participant H exhibited an approach where they examined each commit sequentially in chronological order.
-We charcterize the structure of the graph for participant H and their commit history exploration approach as linear to describe the participant's sequential or chronological exploration of the commit history.
+To analyze the participants' responses to the open-ended interview questions, we create a set of flowcharts to illustrate the relationship between the participant's experience with looking at issues and commits,
+the commit history exploration approach they exhibitied when searching for the answers to the question sets, and the features of Intelligent History they expressed the most enthusiasm for.
+We determined a participant's commit history exploration approach based on the structure of the commit history graphs produced for each participant.
+Each participant tended to use the same commit history exploration strategy throughout their tasks, irrespective of the nature of the question asked and the presence of Intelligent History.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
 \label{sec:Results}
 
-\subsection{Summary}
-
-The quantitative results collected through logs and screen recordings are displayed in \autoref{tab:Results-Quantitative-AB} for participants who received question set A first, then B.
+We summarize the quantitative results collected through logs and screen recordings are in \autoref{tab:Results-Quantitative-AB} for participants who received question set A first, then B.
 Similarly, the results for participants who received question B, then A are shown in \autoref{tab:Results-Quantitative-BA}.
+The results of the $t$-tests are summarized in \autoref{tab:t-test}.
+
+\begin{table}[h]
+  \caption{
+    Results of the single-tailed, two-sample $t$-tests at $\alpha = 0.05$.
+  }
+  \centering
+  \begin{tabular}{@{}ccllc@{}}
+    \toprule
+    Set                                     & Question               & \multicolumn{1}{c}{$t$-value} & \multicolumn{1}{c}{$p$-value} & $H_{0}$ \\ \midrule
+    \multicolumn{1}{c|}{\multirow{2}{*}{A}} & \multicolumn{1}{c|}{a} & 1.53                        & 0.08                        & Accept   \\ \cmidrule(l){2-5} 
+    \multicolumn{1}{c|}{}                   & \multicolumn{1}{c|}{b} & 2.13                        & 0.03                        & Reject   \\ \midrule
+    \multicolumn{1}{c|}{\multirow{2}{*}{B}} & \multicolumn{1}{c|}{a} & 2.37                        & 0.02                        & Reject   \\ \cmidrule(l){2-5} 
+    \multicolumn{1}{c|}{}                   & \multicolumn{1}{c|}{b} & -0.66                       & 0.26                        & Accept   \\ \bottomrule
+  \end{tabular}
+  \label{tab:t-test}
+\end{table}
+
+We described constructing commit history exploration graphs in \autoref{subsec:Analysis}. 
+A sample of two commit history exploration graph we constructed to illustrate participants F and H’s exploration to answer question B(a) from \autoref{tab:Question-Sets} is shown in \autoref{fig:Exploration-Graphs}.
+As an example of how we devised themes for the participants' exhibited approaches for commit history exploration, \autoref{subfig:Exploration-Graph-A} illustrates the participant F's approach to finding two meaningful commits as per question B(a) without using Intelligent History.
+The commit history exploration graph for participant F shows they examined 19 out of 45 commits.
+Participant F began their search by scanning the commit message subjects to reduce their search and performed backtracking to review previously examined commits.
+We characterize the structure of the graph for participant F as cyclic with skimming.
+Meanwhile, the commit history graph for participant H shown in \autoref{subfig:Exploration-Graph-B}, who answered the same question without Intelligent History, shows they examined 10 out of 45 commits.
+Participant H exhibited an approach where they examined each commit sequentially in chronological order.
+We characterize the structure of the graph for participant H and their commit history exploration approach as linear to describe the participant's sequential or chronological exploration of the commit history.
 
 \begin{landscape}
   \begin{table}[p]
+    \footnotesize
     \caption{
       Summary of results for participants who received question set A first to complete without the plugin and question set B after to complete with the plugin.
       For each question set and question, the table shows the percentage of commits from the commit history that the participant examined (\%CE), 
@@ -147,18 +178,19 @@ Similarly, the results for participants who received question B, then A are show
       the number of application switches between the \entity{IDE} and the browser (\#AC) that the participant made,
       and the number of Jira issues the participant viewed or accessed (\#IV).
     }
+    \centering
     \begin{tabular}{@{}ccccccccccccccccc@{}}
       \toprule
-      \multicolumn{1}{l}{}                & \multicolumn{8}{c}{Set A (without plugin)}                                                                                                                  & \multicolumn{8}{c}{Set B (with plugin)}                                                                                                                                                            \\ \midrule
-      \multicolumn{1}{c|}{}               & \multicolumn{4}{c|}{a}                         & \multicolumn{4}{c|}{b}                                                                                     & \multicolumn{4}{c|}{a}                                                                 & \multicolumn{4}{c}{b}                                                                                     \\ \midrule
-      \multicolumn{1}{c|}{Pseudo-initial} & \%CE & \%HC & \#AS & \multicolumn{1}{l|}{\#IV} & \multicolumn{1}{l}{\%CE} & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} & \multicolumn{1}{l|}{\#IV} & \%CE & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} & \multicolumn{1}{l|}{\#IV} & \multicolumn{1}{l}{\%CE} & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} & \multicolumn{1}{l}{\#IV} \\ \midrule
-      \multicolumn{1}{c|}{A}              & 40.9 & 55.6 & 1    & \multicolumn{1}{c|}{1}    & 27.3                     & 83.3                     & 1                        & \multicolumn{1}{c|}{1}    & 15.6 & 100.0                    & 0                        & \multicolumn{1}{c|}{4}    & 6.7                      & 100.0                    & 0                        & 1                        \\
-      \multicolumn{1}{c|}{C}              & 4.5  & 83.3 & 1    & \multicolumn{1}{c|}{1}    & 27.3                     & 83.3                     & 1                        & \multicolumn{1}{c|}{1}    & 6.7  & 100.0                    & 0                        & \multicolumn{1}{c|}{2}    & 0.0                      & 0.0                      & 0                        & 0                        \\
-      \multicolumn{1}{c|}{E}              & 36.3 & 62.5 & 1    & \multicolumn{1}{c|}{1}    & 68.1                     & 66.7                     & 1                        & \multicolumn{1}{c|}{1}    & 35.6 & 100.0                    & 1                        & \multicolumn{1}{c|}{3}    & 8.9                      & 100.0                    & 0                        & 1                        \\
-      \multicolumn{1}{c|}{G}              & 86.3 & 57.9 & 1    & \multicolumn{1}{c|}{1}    & 36.3                     & 75.0                     & 1                        & \multicolumn{1}{c|}{1}    & 13.3 & 100.0                    & 3                        & \multicolumn{1}{c|}{5}    & 6.7                      & 100.0                    & 1                        & 2                        \\
-      \multicolumn{1}{c|}{I}              & 4.5  & 83.3 & 1    & \multicolumn{1}{c|}{1}    & 36.3                     & 75.0                     & 1                        & \multicolumn{1}{c|}{1}    & 6.7  & 100.0                    & 0                        & \multicolumn{1}{c|}{2}    & 6.7                      & 100.0                    & 0                        & 1                        \\ \midrule
-      \multicolumn{1}{l|}{Mean}           & 34.5 & 68.5 & 1    & \multicolumn{1}{c|}{1}    & 39.1                     & 76.7                     & 1                        & \multicolumn{1}{c|}{1}    & 15.6 & 100.0                    & 0.8                      & \multicolumn{1}{c|}{3.2}  & 5.8                      & 80.0                     & 0.2                      & 1                        \\
-      \multicolumn{1}{l|}{Median}         & 36.3 & 62.5 & 1    & \multicolumn{1}{c|}{1}    & 36.3                     & 75.0                     & 1                        & \multicolumn{1}{c|}{1}    & 13.3 & 100.0                    & 0.0                      & \multicolumn{1}{c|}{3.0}  & 6.7                      & 100.0                    & 0.0                      & 1                        \\ \bottomrule
+      \multicolumn{1}{l}{}                & \multicolumn{8}{c}{Set A (without plugin)}                                                                                                                            & \multicolumn{8}{c}{Set B (with plugin)}                                                                                                                                                                 \\ \midrule
+      \multicolumn{1}{c|}{}               & \multicolumn{4}{c|}{a}                                   & \multicolumn{4}{c|}{b}                                                                                     & \multicolumn{4}{c|}{a}                                                                      & \multicolumn{4}{c}{b}                                                                                     \\ \midrule
+      \multicolumn{1}{c|}{Pseudo-initial} & \%CE      & \%HC      & \#AS & \multicolumn{1}{l|}{\#IV} & \multicolumn{1}{l}{\%CE} & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} & \multicolumn{1}{l|}{\#IV} & \%CE      & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} & \multicolumn{1}{l|}{\#IV} & \multicolumn{1}{l}{\%CE} & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} & \multicolumn{1}{l}{\#IV} \\ \midrule
+      \multicolumn{1}{c|}{A}              & 40.9 (9)  & 55.6 (5)  & 1    & \multicolumn{1}{c|}{1}    & 27.3 (6)                 & 83.3 (5)                 & 1                        & \multicolumn{1}{c|}{1}    & 15.6 (7)  & 100.0 (7)                & 0                        & \multicolumn{1}{c|}{4}    & 6.7 (3)                  & 100.0 (3)                & 0                        & 1                        \\
+      \multicolumn{1}{c|}{C}              & 4.5 (1)   & 100.0 (1) & 1    & \multicolumn{1}{c|}{1}    & 27.3 (6)                 & 83.3 (5)                 & 1                        & \multicolumn{1}{c|}{1}    & 6.7 (3)   & 100.0 (3)                & 0                        & \multicolumn{1}{c|}{2}    & 0.0 (0)                  & N/A                      & 0                        & 0                        \\
+      \multicolumn{1}{c|}{E}              & 36.3 (8)  & 62.5 (5)  & 1    & \multicolumn{1}{c|}{1}    & 68.1 (15)                & 66.7 (10)                & 1                        & \multicolumn{1}{c|}{1}    & 35.6 (16) & 100.0 (16)               & 1                        & \multicolumn{1}{c|}{3}    & 8.9 (4)                  & 100.0 (4)                & 0                        & 1                        \\
+      \multicolumn{1}{c|}{G}              & 86.3 (19) & 57.9 (11) & 1    & \multicolumn{1}{c|}{1}    & 36.3 (8)                 & 75.0 (6)                 & 1                        & \multicolumn{1}{c|}{1}    & 13.3 (6)  & 100.0 (6)                & 3                        & \multicolumn{1}{c|}{5}    & 6.7 (3)                  & 100.0 (3)                & 1                        & 2                        \\
+      \multicolumn{1}{c|}{I}              & 4.5 (1)   & 83.3 (5)  & 1    & \multicolumn{1}{c|}{1}    & 36.3 (8)                 & 75.0 (6)                 & 1                        & \multicolumn{1}{c|}{1}    & 6.7 (3)   & 100.0 (3)                & 0                        & \multicolumn{1}{c|}{2}    & 6.7 (3)                  & 100.0 (3)                & 0                        & 1                        \\ \midrule
+      \multicolumn{1}{l|}{Mean}           & 34.5      & 68.5      & 1    & \multicolumn{1}{c|}{1}    & 39.1                     & 76.7                     & 1                        & \multicolumn{1}{c|}{1}    & 15.6      & 100.0                    & 0.8                      & \multicolumn{1}{c|}{3.2}  & 5.8                      & 100.0                    & 0.2                      & 1                        \\
+      \multicolumn{1}{l|}{Median}         & 36.3      & 62.5      & 1    & \multicolumn{1}{c|}{1}    & 36.3                     & 75.0                     & 1                        & \multicolumn{1}{c|}{1}    & 13.3      & 100.0                    & 0.0                      & \multicolumn{1}{c|}{3.0}  & 6.7                      & 100.0                    & 0.0                      & 1                        \\ \bottomrule
     \end{tabular}
     \label{tab:Results-Quantitative-AB}
   \end{table}
@@ -166,22 +198,24 @@ Similarly, the results for participants who received question B, then A are show
 
 \begin{landscape}
   \begin{table}[p]
+    \footnotesize
     \caption{
       Summary of results for participants who received question set B first to complete without the plugin and question set A after to complete with permitted use of the plugin.
       The same columns as shown in \autoref{tab:Results-Quantitative-AB} are used.
     }
+    \centering
     \begin{tabular}{@{}ccccccccccccccccc@{}}
       \toprule
-      \multicolumn{1}{l}{}                & \multicolumn{8}{c}{Set A (with plugin)}                                                                                                                      & \multicolumn{8}{c}{Set B (without plugin)}                                                                                                                                                         \\ \midrule
-      \multicolumn{1}{c|}{}               & \multicolumn{4}{c|}{a}                          & \multicolumn{4}{c|}{b}                                                                                     & \multicolumn{4}{c|}{a}                                                                 & \multicolumn{4}{c}{b}                                                                                     \\ \midrule
-      \multicolumn{1}{c|}{Pseudo-initial} & \%CE & \%HC  & \#AS & \multicolumn{1}{l|}{\#IV} & \multicolumn{1}{l}{\%CE} & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} & \multicolumn{1}{l|}{\#IV} & \%CE & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} & \multicolumn{1}{l|}{\#IV} & \multicolumn{1}{l}{\%CE} & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} & \multicolumn{1}{l}{\#IV} \\ \midrule
-      \multicolumn{1}{c|}{B}              & 4.5  & 100.0 & 1    & \multicolumn{1}{c|}{1}    & 9.0                      & 100.0                    & 0                        & \multicolumn{1}{c|}{1}    & 35.6 & 37.5                     & 2                        & \multicolumn{1}{c|}{2}    & 4.4                      & 100.0                    & 0                        & 0                        \\
-      \multicolumn{1}{c|}{D}              & 31.8 & 100.0 & 1    & \multicolumn{1}{c|}{1}    & 13.3                     & 100.0                    & 1                        & \multicolumn{1}{c|}{1}    & 20.0 & 55.6                     & 2                        & \multicolumn{1}{c|}{2}    & 8.9                      & 100.0                    & 2                        & 2                        \\
-      \multicolumn{1}{c|}{F}              & 4.5  & 100.0 & 1    & \multicolumn{1}{c|}{1}    & 13.6                     & 100.0                    & 1                        & \multicolumn{1}{c|}{1}    & 42.2 & 42.1                     & 1                        & \multicolumn{1}{c|}{1}    & 2.2                      & 100.0                    & 1                        & 1                        \\
-      \multicolumn{1}{c|}{H}              & 4.5  & 100.0 & 1    & \multicolumn{1}{c|}{1}    & 31.8                     & 85.7                     & 1                        & \multicolumn{1}{c|}{1}    & 22.2 & 50.0                     & 3                        & \multicolumn{1}{c|}{3}    & 8.9                      & 100.0                    & 1                        & 1                        \\
-      \multicolumn{1}{c|}{J}              & 4.5  & 100.0 & 1    & \multicolumn{1}{c|}{1}    & 31.8                     & 100.0                    & 0                        & \multicolumn{1}{c|}{1}    & 46.7 & 71.4                     & 2                        & \multicolumn{1}{c|}{2}    & 6.7                      & 100.0                    & 1                        & 1                        \\ \midrule
-      \multicolumn{1}{l|}{Mean}           & 10.0 & 100.0 & 1    & \multicolumn{1}{c|}{1}    & 19.9                     & 97.1                     & 0.6                      & \multicolumn{1}{c|}{1}    & 33.3 & 51.3                     & 2                        & \multicolumn{1}{c|}{2}    & 6.2                      & 100.0                    & 1                        & 1                        \\
-      \multicolumn{1}{l|}{Median}         & 4.5  & 100.0 & 1    & \multicolumn{1}{c|}{1}    & 13.6                     & 100.0                    & 1                        & \multicolumn{1}{c|}{1}    & 35.6 & 50.0                     & 2                        & \multicolumn{1}{c|}{2}    & 6.7                      & 100.0                    & 1                        & 1                        \\ \bottomrule
+      \multicolumn{1}{l}{}                & \multicolumn{8}{c}{Set A (with plugin)}                                                                                                                              & \multicolumn{8}{c}{Set B (without plugin)}                                                                                                                                                              \\ \midrule
+      \multicolumn{1}{c|}{}               & \multicolumn{4}{c|}{a}                                  & \multicolumn{4}{c|}{b}                                                                                     & \multicolumn{4}{c|}{a}                                                                      & \multicolumn{4}{c}{b}                                                                                     \\ \midrule
+      \multicolumn{1}{c|}{Pseudo-initial} & \%CE     & \%HC      & \#AS & \multicolumn{1}{l|}{\#IV} & \multicolumn{1}{l}{\%CE} & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} & \multicolumn{1}{l|}{\#IV} & \%CE      & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} & \multicolumn{1}{l|}{\#IV} & \multicolumn{1}{l}{\%CE} & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} & \multicolumn{1}{l}{\#IV} \\ \midrule
+      \multicolumn{1}{c|}{B}              & 4.5 (1)  & 100.0 (1) & 1    & \multicolumn{1}{c|}{1}    & 9.0 (2)                  & 100.0 (2)                & 0                        & \multicolumn{1}{c|}{1}    & 35.6 (16) & 37.5 (6)                 & 2                        & \multicolumn{1}{c|}{2}    & 4.4 (2)                  & 100.0 (1)                & 0                        & 0                        \\
+      \multicolumn{1}{c|}{D}              & 31.8 (7) & 100.0 (1) & 1    & \multicolumn{1}{c|}{1}    & 13.3 (6)                 & 100.0 (1)                & 1                        & \multicolumn{1}{c|}{1}    & 20.0 (9)  & 55.6 (5)                 & 2                        & \multicolumn{1}{c|}{2}    & 8.9 (4)                  & 100.0 (4)                & 2                        & 2                        \\
+      \multicolumn{1}{c|}{F}              & 4.5 (1)  & 100.0 (1) & 1    & \multicolumn{1}{c|}{1}    & 13.6 (3)                 & 100.0 (3)                & 1                        & \multicolumn{1}{c|}{1}    & 42.2 (19) & 42.1 (8)                 & 1                        & \multicolumn{1}{c|}{1}    & 2.2 (1)                  & 100.0 (1)                & 1                        & 1                        \\
+      \multicolumn{1}{c|}{H}              & 4.5 (1)  & 100.0 (1) & 1    & \multicolumn{1}{c|}{1}    & 31.8 (7)                 & 85.7 (6)                 & 1                        & \multicolumn{1}{c|}{1}    & 22.2 (10) & 50.0 (5)                 & 3                        & \multicolumn{1}{c|}{3}    & 8.9 (4)                  & 100.0 (4)                & 1                        & 1                        \\
+      \multicolumn{1}{c|}{J}              & 4.5 (1)  & 100.0 (1) & 1    & \multicolumn{1}{c|}{1}    & 31.8 (7)                 & 100.0 (7)                & 0                        & \multicolumn{1}{c|}{1}    & 46.7 (21) & 71.4 (15)                & 2                        & \multicolumn{1}{c|}{2}    & 6.7 (3)                  & 100.0 (3)                & 1                        & 1                        \\ \midrule
+      \multicolumn{1}{l|}{Mean}           & 10.0     & 100.0     & 1    & \multicolumn{1}{c|}{1}    & 19.9                     & 97.1                     & 0.6                      & \multicolumn{1}{c|}{1}    & 33.3      & 51.3                     & 2                        & \multicolumn{1}{c|}{2}    & 6.2                      & 100.0                    & 1                        & 1                        \\
+      \multicolumn{1}{l|}{Median}         & 4.5      & 100.0     & 1    & \multicolumn{1}{c|}{1}    & 13.6                     & 100.0                    & 1                        & \multicolumn{1}{c|}{1}    & 35.6      & 50.0                     & 2                        & \multicolumn{1}{c|}{2}    & 6.7                      & 100.0                    & 1                        & 1                        \\ \bottomrule
     \end{tabular}
     \label{tab:Results-Quantitative-BA}
   \end{table}
@@ -199,7 +233,7 @@ Similarly, the results for participants who received question B, then A are show
 \end{figure}
 
 \begin{figure}
-  \includegraphics[width=14cm]{./images/flow-chart.png}
+  \includegraphics[width=13cm]{./images/flow-chart.png}
   \caption{
     The relationship between how often a participant looks at commits and issues, the approach they exhibited to exploring commit history, and the features of Intelligent History they showed the most enthusiasm for.
   }
@@ -209,8 +243,9 @@ Similarly, the results for participants who received question B, then A are show
 \begin{landscape}
   \begin{figure}
     \caption{
-      TODO
+      A tabular form of \autoref{fig:Results-Qualitative}.
     }
+    \centering
     \begin{tabular}{@{}cccl@{}}
       \toprule
       \textbf{Pseudo-initial} & \textbf{\begin{tabular}[c]{@{}c@{}}How often do you look \\ at commits and issues?\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Commit history \\ exploration approach\end{tabular}} & \multicolumn{1}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Favourable features \\ of Intelligent History\end{tabular}}} \\ \midrule
@@ -241,6 +276,8 @@ Similarly, the results for participants who received question B, then A are show
 
 There are a number of aspects of this user study that impact the construct validity of our results.
 Firstly, since the participants were observed throughout the study by the interviewer, the participants' behaviour, opinions, and feedback about the Intelligent History plugin are subject to the Hawthorne effect.
+
+The limited participant size of 10 people affects external validity.
 
 \FIXME{Hawthorne effect, sample size, tool usage for second set of questions -- we did this to mitigate bias or impression of conducting the study a certain way, lack of external validity due to the controlled environment with prescribed questions.}
 
