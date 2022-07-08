@@ -87,7 +87,7 @@ In terms of the participants' total years of experience in software development,
     Participants by pseudo-initial, total years of experience (YoE) with separation by professional (p) and non-professional (n-p) experience, current role, and the question set the participant received first and second.
   }
   \centering
-  \begin{tabular}{@{}cclcc@{}}
+  \begin{tabular}{@{}c|clcc@{}}
   \toprule
   \multicolumn{1}{l}{Pseudo-initial} & \multicolumn{1}{l}{YoE (p/n-p)} & \multicolumn{1}{c}{Role} & \multicolumn{1}{l}{First Set} & \multicolumn{1}{l}{Second Set} \\ \midrule
   A                                  & 4.0 (1.0/3.0)                   & Firmware Developer       & A                             & B                               \\
@@ -131,24 +131,27 @@ We use a green checkmark to signal when a participant provided an answer to the 
 
 To analyze the participants' responses to the open-ended interview questions, we create a set of flowcharts to illustrate the relationship between the participant's experience with looking at issues and commits,
 the commit history exploration approach they exhibitied when searching for the answers to the question sets, and the features of Intelligent History they expressed the most enthusiasm for.
-We determined a participant's commit history exploration approach based on the structure of the commit history graphs produced for each participant.
-Each participant tended to use the same commit history exploration strategy throughout their tasks, irrespective of the nature of the question asked and the presence of Intelligent History.
+We determined a participant's commit history exploration approach based on the structure of the commit history graphs we produced for each participant.
+Each participant tended to use the same commit history exploration strategy throughout the study, irrespective of the nature of the question asked and the presence of Intelligent History.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
 \label{sec:Results}
 
-We summarize the quantitative results collected through logs and screen recordings are in \autoref{tab:Results-Quantitative-AB} for participants who received question set A first, then B.
+We summarize the quantitative results collected through logs and screen recordings in \autoref{tab:Results-Quantitative-AB} for participants who received question set A first, then B.
 Similarly, the results for participants who received question B, then A are shown in \autoref{tab:Results-Quantitative-BA}.
+\FIXME{Comment on the results.}
+
 The results of the $t$-tests are summarized in \autoref{tab:t-test}.
+\FIXME{Comment on the results.}
 
 \begin{table}[h]
   \caption{
     Results of single-tailed, two-sample $t$-tests at $\alpha = 0.05$ to determine if there is a significant difference between the proportion of commits examined from a commit history
-    with Intelligent History and without.
+    with and without Intelligent History.
   }
   \centering
-  \begin{tabular}{@{}ccllc@{}}
+  \begin{tabular}{@{}ccccc@{}}
     \toprule
     Set                                     & Question               & \multicolumn{1}{c}{$t$-value} & \multicolumn{1}{c}{$p$-value} & $H_{0}$ \\ \midrule
     \multicolumn{1}{c|}{\multirow{2}{*}{A}} & \multicolumn{1}{c|}{a} & 1.53                        & 0.08                        & Accept   \\ \cmidrule(l){2-5} 
@@ -159,18 +162,8 @@ The results of the $t$-tests are summarized in \autoref{tab:t-test}.
   \label{tab:t-test}
 \end{table}
 
-We described constructing commit history exploration graphs in \autoref{subsec:Analysis}. 
-A sample of two commit history exploration graph we constructed to illustrate participants F and H’s exploration to answer question B(a) from \autoref{tab:Question-Sets} is shown in \autoref{fig:Exploration-Graphs}.
-As an example of how we devised themes for the participants' exhibited approaches for commit history exploration, \autoref{subfig:Exploration-Graph-A} illustrates the participant F's approach to finding two meaningful commits as per question B(a) without using Intelligent History.
-The commit history exploration graph for participant F shows they examined 19 out of 45 commits.
-Participant F began their search by scanning the commit message subjects to reduce their search and performed backtracking to review previously examined commits.
-We characterize the structure of the graph for participant F as cyclic with skimming.
-Meanwhile, the commit history graph for participant H shown in \autoref{subfig:Exploration-Graph-B}, who answered the same question without Intelligent History, shows they examined 10 out of 45 commits.
-Participant H exhibited an approach where they examined each commit sequentially in chronological order.
-We characterize the structure of the graph for participant H and their commit history exploration approach as linear to describe the participant's sequential or chronological exploration of the commit history.
-
 \begin{landscape}
-  \begin{table}[p]
+  \begin{table}
     \footnotesize
     \caption{
       Summary of results for participants who received question set A first to complete without the plugin and question set B after to complete with the plugin.
@@ -198,7 +191,7 @@ We characterize the structure of the graph for participant H and their commit hi
 \end{landscape}
 
 \begin{landscape}
-  \begin{table}[p]
+  \begin{table}
     \footnotesize
     \caption{
       Summary of results for participants who received question set B first to complete without the plugin and question set A after to complete with permitted use of the plugin.
@@ -222,7 +215,17 @@ We characterize the structure of the graph for participant H and their commit hi
   \end{table}
 \end{landscape}
 
-\begin{figure}
+We described constructing commit history exploration graphs in \autoref{subsec:Analysis}. 
+A sample of two commit history exploration graph we constructed to illustrate participants F and H’s exploration to answer question B(a) from \autoref{tab:Question-Sets} is shown in \autoref{fig:Exploration-Graphs}.
+As a demonstration of how we devised themes for the participants' exhibited approaches for commit history exploration, \autoref{subfig:Exploration-Graph-A} illustrates the participant F's approach to finding two meaningful commits as per question B(a) without using Intelligent History.
+The commit history exploration graph for participant F shows they examined 19 out of 45 commits.
+Participant F began their search by scanning the commit message subjects to reduce their search and performed backtracking to review previously examined commits.
+We characterize the structure of the graph for participant F as cyclic with skimming.
+Meanwhile, the commit history graph for participant H shown in \autoref{subfig:Exploration-Graph-B}, who answered the same question without Intelligent History, shows they examined 10 out of 45 commits.
+Participant H exhibited an approach where they examined each commit sequentially in chronological order.
+We characterize the structure of the graph for participant H and their commit history exploration approach as linear to describe the participant's sequential or chronological exploration of the commit history.
+
+\begin{figure}[h]
   \centering%
   \subfloat[\centering Participant F's commit history exploration in answering question B(a) \emph{without} Intelligent History. \label{subfig:Exploration-Graph-A}]{{\includegraphics[width=5.5cm]{./images/graph-sample-A.png}}}%
   \qquad
@@ -233,21 +236,35 @@ We characterize the structure of the graph for participant H and their commit hi
   \label{fig:Exploration-Graphs}%
 \end{figure}
 
-\begin{figure}
-  \includegraphics[width=13cm]{./images/flow-chart.png}
+The flowchart showing the relationship between each participant's background related to looking at commits and issues,
+the commit history exploration approach they used, and their preferred aspects of Intelligent History is displayed in \autoref{fig:Flow-Chart-Individual}.
+The aggregated version is presented in \autoref{fig:Flow-Chart-Aggregate}.
+The tabular form of \autoref{fig:Flow-Chart-Individual} is recorded in \autoref{tab:Flow-Chart-Tabular}.
+\FIXME{This section could be worded better. Comment on the results.}
+
+\begin{figure}[h]
+  \includegraphics[width=12cm]{./images/flow-chart-ind.png}
   \caption{
     The relationship between how often a participant looks at commits and issues, the approach they exhibited to exploring commit history, and the features of Intelligent History they showed the most enthusiasm for.
   }
-  \label{fig:Results-Qualitative}
+  \label{fig:Flow-Chart-Individual}
+\end{figure}
+
+\begin{figure}[h]
+  \includegraphics[width=12cm]{./images/flow-chart-aggr.png}
+  \caption{
+    TODO
+  }
+  \label{fig:Flow-Chart-Aggregate}
 \end{figure}
 
 \begin{landscape}
   \begin{figure}
     \caption{
-      A tabular form of \autoref{fig:Results-Qualitative}.
+      A tabular form of \autoref{fig:Flow-Chart-Individual}.
     }
     \centering
-    \begin{tabular}{@{}cccl@{}}
+    \begin{tabular}{@{}c|ccl@{}}
       \toprule
       \textbf{Pseudo-initial} & \textbf{\begin{tabular}[c]{@{}c@{}}How often do you look \\ at commits and issues?\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Commit history \\ exploration approach\end{tabular}} & \multicolumn{1}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Favourable features \\ of Intelligent History\end{tabular}}} \\ \midrule
       A                       & Sometimes                                                                                        & Cyclic and Backtracking                                                                 & (C) Show Jira Metadata                                                                                             \\ \midrule
@@ -261,15 +278,24 @@ We characterize the structure of the graph for participant H and their commit hi
       I                       & Sometimes                                                                                        & Linear                                                                                  & (C) Show Jira Metadata                                                                                             \\ \midrule
       J                       & Rarely                                                                                           & Commit Message Skimming                                                                 & (B) Highlight Important Commits                                                                                    \\ \bottomrule
     \end{tabular}
-    \label{tab:Results-Quantitative}
+    \label{tab:Flow-Chart-Tabular}
   \end{figure}
 \end{landscape}
 
 \subsection{RQ1}
 
+\textbf{\entity{RQ1}:} 
+\textit{Does highlighting important commits help software developers explore a file’s revision history more effectively?}
+
 \subsection{RQ2}
 
+\textbf{\entity{RQ2}:} 
+\textit{Does highlighting important commits help software developers explore a file’s revision history more efficiently?}
+
 \subsection{RQ3}
+
+\textbf{\entity{RQ3}:} 
+\textit{How useful is direct integration of issue information in the IDE for helping a developer search for code rationale information?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Threats to Validity}
