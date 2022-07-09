@@ -24,8 +24,11 @@ The study involved having participants explore the commit history of two Java cl
 The briefing for the study and the setup instructions can be found in Appendix \ref{sec:Briefing-and-Setup}.
 We expected the participants to interact with commit and issue information found in the commit history in order to be able to answer these questions.
 
-The first part of the user study session consisted of asking questions from two sets of open-ended, task-oriented questions, which are presented in \autoref{tab:Question-Sets}.
-We prepared two sets of questions, each pertaining to a different Java class from the Apache Kafka project.
+The first part of the user study session consisted of asking questions from two sets of questions about the motivation behind certain changes and aspects about specific Java classes from Apache Kafka.
+These questions are presented in \autoref{tab:Question-Sets} and require exploring and locating particular commits in a given Java class' commit history to try to find code rationale information through inspecting the commits' full commit messages,
+diffs, and any relevant Jira issues.
+In cases where a Jira issue referenced a Kafka Improvement Proposal (\entity{KIP}), we allowed the participant to visit these \entity{KIP}s in the browser.
+Each question set pertains to a different Java class from the Apache Kafka project.
 This facilitated an experiment where the participant would complete an initial set of questions without being allowed to use the features of Intelligent History plugin.
 After completing the initial provided set of questions, the participant is introduced to the features of the Intelligent History plugin and permitted to use them to help them answer the second set of questions.
 As shown in \autoref{tab:Question-Sets}, set A asks questions regarding the motivation behind particular changes in \class{Toplogy}, while set B asks the participant to identify potentially important or meaningful commits from the history and about motivation behind a specific method in \class{StreamsBuilder}.
