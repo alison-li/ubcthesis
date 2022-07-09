@@ -197,11 +197,13 @@ Participant H exhibited an approach where they examined each commit sequentially
 We characterize the structure of the graph for participant H and their commit history exploration approach as linear to describe the participant's sequential or chronological exploration of the commit history.
 
 The flowchart showing the relationship between each participant's background related to looking at commits and issues,
-the commit history exploration approach they used, and their preferred aspects of Intelligent History is displayed in \autoref{fig:Flow-Chart-Individual}.
-We also present an aggregated version in \autoref{fig:Flow-Chart-Aggregate} and a tabular form in \autoref{tab:Flow-Chart-Tabular}.
-\FIXME{Sankey diagram for aggregate version?}
+the commit history exploration approach they used, and their preferred features provided by Intelligent History is displayed in \autoref{fig:Flow-Chart-Individual}.
+The features of Intelligent History are the actions we detailed in \autoref{sec:Implementation}, which are 
+(A) \textit{Highlight Important Changes}; (B) \textit{Show Diff Metadata}; and (C) textit{Show Jira Metadata}.
+We also present an aggregated version as a Sankey diagram in \autoref{fig:Flow-Chart-Aggregate} and a tabular form in \autoref{tab:Flow-Chart-Tabular} for clarity.
 
 \begin{figure}[h]
+  \centering
   \includegraphics[width=12cm]{./images/flow-chart-ind.png}
   \caption{
     The relationship between how often a participant looks at commits and issues, the approach they exhibited to exploring commit history overall, and the features of Intelligent History they showed the most enthusiasm for.
@@ -210,12 +212,21 @@ We also present an aggregated version in \autoref{fig:Flow-Chart-Aggregate} and 
 \end{figure}
 
 \begin{figure}[h]
-  \includegraphics[width=12cm]{./images/flow-chart-aggr.png}
+  \centering
+  \includegraphics[width=10cm]{./images/flow-chart-aggr.png}
   \caption{
-    TODO: Sankey diagram instead?
+    Sankey diagram to represent the information in \autoref{fig:Flow-Chart-Individual} and \autoref{tab:Flow-Chart-Tabular}
   }
   \label{fig:Flow-Chart-Aggregate}
 \end{figure}
+
+The majority of participants, 7 out of 10, preferred feature (A) from Intelligent History the most,
+whereas the remaining 3 participants preferred feature (C).
+None of the participants chose feature (B), though this was anticipated as this feature was provided to give the user context as to how Intelligent History highlights commits in feature (A).
+Of the 3 participants who often look at commits and issues, none demonstrated commit message skimming as a strategy for exploring commit history.
+Similarly, of the 3 participants who rarely look at commits and issues, none employ an commit history exploration approach that could be described as cyclic and backtracking.
+There does not appear to be any concrete associations between the background of a participant with regard to looking at commits and issues,
+their exhibited approach to exploring commit history, and the feature of Intelligent History they had a strong preference for.
 
 \begin{landscape}
   \begin{figure}
@@ -226,17 +237,17 @@ We also present an aggregated version in \autoref{fig:Flow-Chart-Aggregate} and 
     \centering
     \begin{tabular}{@{}c|ccc@{}}
       \toprule
-      \textbf{Pseudo-initial} & \textbf{\begin{tabular}[c]{@{}c@{}}How often do you look\\ at commits and issues?\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Commit history\\ exploration approach\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Favourable features of\\ Intelligent History\end{tabular}}    \\ \midrule
-      A                       & Sometimes                                                                                       & Cyclic and Backtracking                                                                & (C) Show Jira Metadata                                                                           \\ \midrule
-      B                       & Often                                                                                           & Cyclic and Backtracking                                                                & \begin{tabular}[c]{@{}c@{}}(A) Highlight Important Commits\\ (C) Show Jira Metadata\end{tabular} \\ \midrule
-      C                       & Often                                                                                           & Linear                                                                                 & (C) Show Jira Metadata                                                                           \\ \midrule
-      D                       & Sometimes                                                                                       & Commit Message Skimming                                                                & (A) Highlight Important Commits                                                                  \\ \midrule
-      E                       & Rarely                                                                                          & Commit Message Skimming                                                                & (A) Highlight Important Commits                                                                  \\ \midrule
-      F                       & Often                                                                                           & Cyclic and Backtracking                                                                & (A) Highlight Important Commits                                                                  \\ \midrule
-      G                       & Sometimes                                                                                       & Cyclic and Backtracking                                                                & \begin{tabular}[c]{@{}c@{}}(C) Show Jira Metadata\\ (A) Highlight Important Commits\end{tabular} \\ \midrule
-      H                       & Rarely                                                                                          & Linear                                                                                 & \begin{tabular}[c]{@{}c@{}}(A) Highlight Important Commits\\ (C) Show Jira Metadata\end{tabular} \\ \midrule
-      I                       & Sometimes                                                                                       & Linear                                                                                 & (C) Show Jira Metadata                                                                           \\ \midrule
-      J                       & Rarely                                                                                          & Commit Message Skimming                                                                & (A) Highlight Important Commits                                                                  \\ \bottomrule
+      \textbf{Pseudo-initial} & \textbf{\begin{tabular}[c]{@{}c@{}}How often do you look\\ at commits and issues?\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Commit history\\ exploration approach\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Favourable features of\\ Intelligent History\end{tabular}} \\ \midrule
+      A                       & Sometimes                                                                                       & Cyclic and Backtracking                                                                & (C) Show Jira Metadata                                                                        \\ \midrule
+      B                       & Often                                                                                           & Cyclic and Backtracking                                                                & (A) Highlight Important Changes                                                               \\ \midrule
+      C                       & Often                                                                                           & Linear                                                                                 & (C) Show Jira Metadata                                                                        \\ \midrule
+      D                       & Sometimes                                                                                       & Commit Message Skimming                                                                & (A) Highlight Important Changes                                                               \\ \midrule
+      E                       & Rarely                                                                                          & Commit Message Skimming                                                                & (A) Highlight Important Changes                                                               \\ \midrule
+      F                       & Often                                                                                           & Cyclic and Backtracking                                                                & (A) Highlight Important Changes                                                               \\ \midrule
+      G                       & Sometimes                                                                                       & Cyclic and Backtracking                                                                & (C) Show Jira Metadata                                                                        \\ \midrule
+      H                       & Rarely                                                                                          & Linear                                                                                 & (A) Highlight Important Changes                                                               \\ \midrule
+      I                       & Sometimes                                                                                       & Linear                                                                                 & (C) Show Jira Metadata                                                                        \\ \midrule
+      J                       & Rarely                                                                                          & Commit Message Skimming                                                                & (A) Highlight Important Changes                                                               \\ \bottomrule
     \end{tabular}
     \label{tab:Flow-Chart-Tabular}
   \end{figure}
