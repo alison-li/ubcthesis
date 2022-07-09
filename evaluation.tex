@@ -10,12 +10,12 @@ To evaluate our hypothesis, we conducted a user study in the form of a semi-stru
     \item[] \label{itm:RQ3} \textbf{Research Question 3 (\entity{RQ3}):} \textit{How useful is direct integration of issue information in the IDE for helping a developer search for code rationale information?}
   \end{itemize}
 
-We describe our methodology designed to address these research questions in \autoref{sec:Methodology} and answer the research questions using the results of the evaluation in \autoref{sec:Results}.
+We describe our methodology designed to address these research questions in \autoref{sec:Method} and answer the research questions using the results of the evaluation in \autoref{sec:Results}.
 We discuss the threats to validity of our evaluation in \autoref{sec:Threads-to-Validity}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Method}
-\label{sec:Methodology}
+\label{sec:Method}
 
 We designed the user study as an explorative, semi-structured interview composed of two parts with an estimated duration of 1 to 1.5 hours.
 A semi-structured interview format allows us to maintain a focused discussion while also eliciting interesting responses and reasoning from participants \cite{shull_guide_2007}.
@@ -113,7 +113,11 @@ including the toggling of \textit{Highlight Important Changes} and the invocatio
 This allows us to record the number of commits a participant investigated to answer a question and how the participant interacted with the Intelligent History plugin for answering the question set in which they were permitted to use its features.
 We would also be able to trace which specific commits a participant examined as part of their search and if a commit was or would have been highlighted by Intelligent History.
 From the quantitative metrics, we record the proportion of commits from a file's commit history that a participant examined to answer each question.
-We also record the proportion of a participant's examined commits that are highlighted commits according to Intelligent History.
+For each question a participant answers, we also record the proportion of a participant's examined commits that are highlighted commits according to Intelligent History,
+the number of application switches a user makes between the \entity{IDE} and their browser for viewing Jira issues,
+and the number of Jira issues that a participant viewed or accessed.
+For the question set in which the participant was permitted to use Intelligent History, we consider the invocation of the \textit{Show Jira Metadata} feature as viewing a Jira issue
+as the content of the issue is accessed from within the \entity{IDE}.
 
 After obtaining the quantitative data, we conduct a single-tailed, two-sample $t$-test to test for statistical significance in difference between the proportion of commits from the commit history examined by the group of participants that completed a question set \emph{without} Intelligent History and the group of participants that completed the same question set \emph{with} Intelligent History.
 We use the null hypothesis ($H_{0}$): 
@@ -140,10 +144,27 @@ Each participant tended to use the same commit history exploration strategy thro
 
 We summarize the quantitative results collected through logs and screen recordings in \autoref{tab:Results-Quantitative-AB} for participants who received question set A first, then B.
 Similarly, the results for participants who received question B, then A are shown in \autoref{tab:Results-Quantitative-BA}.
-\FIXME{Comment on the results.}
+As stated in \autoref{sec:Method}, set A corresponds to the \class{Topology} class, which contains 22 commits in its commit history, 
+while set B corresponds to the \class{StreamsBuilder} class, which contains 45 commits in its commit history.
 
-The results of the $t$-tests are summarized in \autoref{tab:t-test}.
-\FIXME{Comment on the results.}
+Overall, participants who did not use Intelligent History examined a higher mean proportion of commits to answer both questions (a) and (b) from set A and question (a) from set B.
+The mean proportion of commits examined for question B(b) by participants who did not Intelligent History and participants who did use Intelligent History appear to be close at 6.2\% and 5.8\% respectively.
+This may be attributed to the fact that the commit \commit{e09d6d79} that contains the information necessary for answering this question has the commit message subject: 
+
+\begin{center}
+  \jira{KAFKA-7027:}{Add overloaded build method to StreamsBuilder (\#5437)} 
+\end{center}
+
+Participants were informed that the initial commit in the commit history for the \class{StreamsBuilder} class introduced a set overloaded \code{build} methods already.
+Hence, participants were prompted or intuited to locate a particular commit that introduced further overloads later in the history.
+
+The results of the $t$-tests for determining significant statistical differences in the mean proportion of commits are summarized in \autoref{tab:t-test}.
+For questions A(a) and B(b), we fail to reject the null hypothesis, indicating that the mean proportion of commits examined by the group without Intelligent History and the group with Intelligent History are equal.
+\FIXME{Comment on the nature of the questions and maybe why this is true.}
+
+However, for questions A(b) and B(a), we reject the null hypothesis, indicating the mean proportion of commits examined by the group without Intelligent History and the group without Intelligent History are not equal.
+Thus, there is a significant difference in the mean proportion of commits examined between the group that does not use Intelligent History and the group that does use Intelligent History to answer questions A(b) and B(a).
+\FIXME{Comment on the nature of the questions and maybe why this is true.}
 
 \begin{table}[h]
   \caption{
@@ -154,10 +175,10 @@ The results of the $t$-tests are summarized in \autoref{tab:t-test}.
   \begin{tabular}{@{}ccccc@{}}
     \toprule
     Set                                     & Question               & \multicolumn{1}{c}{$t$-value} & \multicolumn{1}{c}{$p$-value} & $H_{0}$ \\ \midrule
-    \multicolumn{1}{c|}{\multirow{2}{*}{A}} & \multicolumn{1}{c|}{a} & 1.53                        & 0.08                        & Accept   \\ \cmidrule(l){2-5} 
+    \multicolumn{1}{c|}{\multirow{2}{*}{A}} & \multicolumn{1}{c|}{a} & 1.53                        & 0.08                        & Fail to reject   \\ \cmidrule(l){2-5} 
     \multicolumn{1}{c|}{}                   & \multicolumn{1}{c|}{b} & 2.13                        & 0.03                        & Reject   \\ \midrule
     \multicolumn{1}{c|}{\multirow{2}{*}{B}} & \multicolumn{1}{c|}{a} & 2.37                        & 0.02                        & Reject   \\ \cmidrule(l){2-5} 
-    \multicolumn{1}{c|}{}                   & \multicolumn{1}{c|}{b} & -0.66                       & 0.26                        & Accept   \\ \bottomrule
+    \multicolumn{1}{c|}{}                   & \multicolumn{1}{c|}{b} & -0.66                       & 0.26                        & Fail to reject   \\ \bottomrule
   \end{tabular}
   \label{tab:t-test}
 \end{table}
