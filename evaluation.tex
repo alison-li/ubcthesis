@@ -5,10 +5,10 @@ We hypothesized identifying important commits automatically and providing integr
 To evaluate our hypothesis, we conducted a user study in the form of a semi-structured interview and targeted the following research questions:
 
 \begin{itemize}[leftmargin=*]
-    \item[] \label{itm:RQ1} \textbf{Research Question 1 (\entity{RQ1}):} \textit{Does highlighting important commits help software developers explore a file’s revision history more effectively?}
-    \item[] \label{itm:RQ2} \textbf{Research Question 2 (\entity{RQ2}):} \textit{Does highlighting important commits help software developers explore a file’s revision history more efficiently?}
-    \item[] \label{itm:RQ3} \textbf{Research Question 3 (\entity{RQ3}):} \textit{How useful is direct integration of issue information in the IDE for helping a developer search for code rationale information?}
-  \end{itemize}
+    \item[] \RQ{1}{Does highlighting important commits help software developers explore a file’s revision history more effectively?}
+    \item[] \RQ{2}{Does highlighting important commits help software developers explore a file’s revision history more efficiently?}
+    \item[] \RQ{3}{How useful is direct integration of issue information in the IDE for helping a developer search for code rationale information?}
+\end{itemize}
 
 We describe our methodology designed to address these research questions in \autoref{sec:Method} and answer the research questions using the results of the evaluation in \autoref{sec:Results}.
 
@@ -148,6 +148,8 @@ Each participant tended to use the same commit history exploration strategy thro
 \section{Results}
 \label{sec:Results}
 
+\subsection{Quantitative Results}
+
 We summarize the quantitative results collected through logs and screen recordings in \autoref{tab:Results-Quantitative-AB} for participants who received question set A first, then B.
 Similarly, the results for participants who received question B, then A are shown in \autoref{tab:Results-Quantitative-BA}.
 As stated in \autoref{sec:Method}, set A corresponds to the \class{Topology} class, which contains 22 commits in its commit history, 
@@ -212,7 +214,7 @@ Overall, participants who did not use Intelligent History examined a higher mean
 The results of the $t$-tests for determining significant statistical differences in the mean proportion of commits are summarized in \autoref{tab:t-test}.
 For questions A1 and B2, we fail to reject the null hypothesis, which states that the mean proportion of commits examined by the group without Intelligent History and the group with Intelligent History are equal.
 However, for questions A2 and B1, we reject the null hypothesis, indicating the mean proportion of commits examined by the group without Intelligent History and the group without Intelligent History are not equal.
-Thus, there is a significant difference in the mean proportion of commits examined between the group that does not use Intelligent History and the group that does use Intelligent History to answer questions A(b) and B(a).
+Thus, there is a significant difference in the mean proportion of commits examined between the group that does not use Intelligent History and the group that does use Intelligent History to answer questions A2 and B1.
 
 \begin{table}[h]
   \caption{
@@ -231,6 +233,8 @@ Thus, there is a significant difference in the mean proportion of commits examin
   \label{tab:t-test}
 \end{table}
 
+\subsection{Qualitative Results}
+
 We described constructing commit history exploration graphs in \autoref{subsec:Analysis}. 
 A sample of two commit history exploration graph we constructed to illustrate participants \participant{F} and \participant{H}’s exploration to answer question B1 from \autoref{tab:Question-Sets} is shown in \autoref{fig:Exploration-Graphs}.
 
@@ -245,7 +249,7 @@ A sample of two commit history exploration graph we constructed to illustrate pa
   \label{fig:Exploration-Graphs}%
 \end{figure}
 
-As a demonstration of how we devised themes for the participants' exhibited approaches for commit history exploration, \autoref{subfig:Exploration-Graph-A} illustrates the participant F's approach to finding two meaningful commits as per question B(a) without using Intelligent History.
+As a demonstration of how we devised themes for the participants' exhibited approaches for commit history exploration, \autoref{subfig:Exploration-Graph-A} illustrates the participant F's approach to finding two meaningful commits as per question B1 without using Intelligent History.
 The commit history exploration graph for \participant{F} shows they examined 19 out of 45 commits.
 Participant \participant{F} began their search by scanning the commit message subjects to reduce their search and performed backtracking to review previously examined commits.
 We characterize the structure of the graph for \participant{F} as cyclic with skimming.
@@ -256,7 +260,7 @@ We characterize the structure of the graph for \participant{H} and their commit 
 The flowchart showing the relationship between each participant's background related to looking at commits and issues,
 the commit history exploration approach they used, and their preferred features provided by Intelligent History is displayed in \autoref{fig:Flow-Chart-Individual}.
 The features of Intelligent History are the actions we detailed in \autoref{sec:Implementation}, which are 
-(A) \textit{Highlight Important Changes}; (B) \textit{Show Diff Metadata}; and (C) textit{Show Jira Metadata}.
+(\feature{1}) \textit{Highlight Important Changes}; (\feature{2}) \textit{Show Diff Metadata}; and (\feature{3}) \textit{Show Jira Metadata}.
 We also present an aggregated version as a Sankey diagram in \autoref{fig:Flow-Chart-Aggregate} and a tabular form in \autoref{tab:Flow-Chart-Tabular} for clarity.
 
 \begin{figure}[h]
@@ -277,17 +281,21 @@ We also present an aggregated version as a Sankey diagram in \autoref{fig:Flow-C
   \label{fig:Flow-Chart-Aggregate}
 \end{figure}
 
-The majority of participants, 6 out of 10, preferred feature (A) from Intelligent History the most,
-whereas the other 4 participants preferred feature (C).
+Over half of the participants, 6 out of 10, preferred (\feature{1}) from Intelligent History the most,
+whereas the other 4 participants preferred (\feature{3}).
 Notably, all 5 of the participants who received question set A to answer with Intelligent History responded most positively to commit history highlighting as a feature, 
 whereas 4 out of the 5 participants who received question set B to answer with Intelligent History responded most positively to gaining quick access to Jira issue information within the \entity{IDE} as a feature.
 This indicates some level of correlation between the question set and the participants' most preferred features of Intelligent History.
 
-None of the participants chose feature (B), though this was anticipated as this feature was provided to give the user context as to how Intelligent History highlights commits in feature (A).
+None of the participants chose (\feature{2}), though this was anticipated as this feature was provided to give the user context as to how Intelligent History highlights commits in (\feature{1}).
 Of the 3 participants who often look at commits and issues, none demonstrated commit message skimming as a strategy for exploring commit history.
 Similarly, of the 3 participants who rarely look at commits and issues, none employ an commit history exploration approach that could be described as cyclic and backtracking.
 There does not appear to be any concrete associations between the background of a participant with regard to looking at commits and issues,
-their exhibited approach to exploring commit history, and the feature of Intelligent History they had a strong preference for.
+and their exhibited approach to exploring commit history.
+
+On the association between the commit history exploration approach a participant exhibited and their preferred feature from Intelligent History,
+3 out of 4 participants who demonstrated a cyclic and backtracking approach expressed preference for (\feature{1}),
+while all 3 participants who exhibited a commit message skimming strategy were most partial to (\feature{3}).
 
 \begin{landscape}
   \begin{figure}
@@ -296,19 +304,19 @@ their exhibited approach to exploring commit history, and the feature of Intelli
       A tabular form of \autoref{fig:Flow-Chart-Individual}.
     }
     \centering
-    \begin{tabular}{@{}c|ccc@{}}
+    \begin{tabular}{@{}c|ccl@{}}
       \toprule
-      \textbf{Pseudo-initial} & \textbf{\begin{tabular}[c]{@{}c@{}}How often do you look\\ at commits and issues?\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Commit history\\ exploration approach\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Favourable features of\\ Intelligent History\end{tabular}} \\ \midrule
-      A                       & Sometimes                                                                                       & Cyclic and Backtracking                                                                & (C) Show Jira Metadata                                                                        \\ \midrule
-      B                       & Often                                                                                           & Cyclic and Backtracking                                                                & (A) Highlight Important Changes                                                               \\ \midrule
-      C                       & Often                                                                                           & Linear                                                                                 & (C) Show Jira Metadata                                                                        \\ \midrule
-      D                       & Sometimes                                                                                       & Commit Message Skimming                                                                & (A) Highlight Important Changes                                                               \\ \midrule
-      E                       & Rarely                                                                                          & Commit Message Skimming                                                                & (A) Highlight Important Changes                                                               \\ \midrule
-      F                       & Often                                                                                           & Cyclic and Backtracking                                                                & (A) Highlight Important Changes                                                               \\ \midrule
-      G                       & Sometimes                                                                                       & Cyclic and Backtracking                                                                & (C) Show Jira Metadata                                                                        \\ \midrule
-      H                       & Rarely                                                                                          & Linear                                                                                 & (A) Highlight Important Changes                                                               \\ \midrule
-      I                       & Sometimes                                                                                       & Linear                                                                                 & (C) Show Jira Metadata                                                                        \\ \midrule
-      J                       & Rarely                                                                                          & Commit Message Skimming                                                                & (A) Highlight Important Changes                                                               \\ \bottomrule
+      \textbf{Pseudo-initial} & \textbf{\begin{tabular}[c]{@{}c@{}}How often do you look\\ at commits and issues?\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Commit history\\ exploration approach\end{tabular}} & \multicolumn{1}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Favourable feature of\\ Intelligent History\end{tabular}}} \\ \midrule
+      A                       & Sometimes                                                                                       & Cyclic and Backtracking                                                                & (\feature{3}) Show Jira Metadata                                                                                           \\ \midrule
+      B                       & Often                                                                                           & Cyclic and Backtracking                                                                & (\feature{1}) Highlight Important Changes                                                                                  \\ \midrule
+      C                       & Often                                                                                           & Linear                                                                                 & (\feature{3}) Show Jira Metadata                                                                                           \\ \midrule
+      D                       & Sometimes                                                                                       & Commit Message Skimming                                                                & (\feature{1}) Highlight Important Changes                                                                                  \\ \midrule
+      E                       & Rarely                                                                                          & Commit Message Skimming                                                                & (\feature{1}) Highlight Important Changes                                                                                  \\ \midrule
+      F                       & Often                                                                                           & Cyclic and Backtracking                                                                & (\feature{1}) Highlight Important Changes                                                                                  \\ \midrule
+      G                       & Sometimes                                                                                       & Cyclic and Backtracking                                                                & (\feature{3}) Show Jira Metadata                                                                                           \\ \midrule
+      H                       & Rarely                                                                                          & Linear                                                                                 & (\feature{1}) Highlight Important Changes                                                                                  \\ \midrule
+      I                       & Sometimes                                                                                       & Linear                                                                                 & (\feature{3}) Show Jira Metadata                                                                                           \\ \midrule
+      J                       & Rarely                                                                                          & Commit Message Skimming                                                                & (\feature{1}) Highlight Important Changes                                                                                  \\ \bottomrule
     \end{tabular}
     \label{tab:Flow-Chart-Tabular}
   \end{figure}
@@ -320,7 +328,9 @@ their exhibited approach to exploring commit history, and the feature of Intelli
 \label{subsec:RQ1}
 
 \RQ{1}{Does highlighting important commits help software developers explore a file’s revision history more effectively?}
-This research question is primarily concerned with the correctness of the participants' answers to the questions.
+This research question is primarily concerned with whether highlighting important commits as an approach improves the 
+correctness of the participants' answers to the questions from \autoref{tab:Question-Sets}.
+We found participants who used Intelligent History with their given question set 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -329,7 +339,7 @@ This research question is primarily concerned with the correctness of the partic
 
 \RQ{2}{Does highlighting important commits help software developers explore a file’s revision history more efficiently?}
 We define efficient as the proportion of commits from a file's commit history that a developer must examine before obtaining the answer to questions about the intent behind code changes.
-Under this definition, we could consider that commit history highlighting does help with efficiently exploring a file's commit history for questions related to identifying meaningful source changes and the rationale behind those changes when the developer must navigate a broad commit history for a file. 
+Under this definition, we found highlighting potentially important commits does help with efficiently exploring a file's commit history for questions related to identifying meaningful source changes and the rationale behind those changes when the developer must navigate a broad commit history for a file. 
 This is evidenced by the participants who used Intelligent History to answer A2 and B1 as they examined a significantly smaller proportion of a given file's commit history to obtain the code ratianale information needed for answering the questions asked in the user study.
 
 \begin{summary}[RQ2]
@@ -343,7 +353,7 @@ For question A2, participants who used Intelligent History examined a mean of 19
 while participants who did not use Intelligent History examined a mean of 39.1\% of the same commit history. 
 Moreover, of the participants who used Intelligent History and the proportion of commits they examined,
 a mean of 97.1\% of the commits they examined were highlighted commits.
-For the group that did not use Intelligent History, a mean of 76.1\% of the commits they examined would have been highlighted commits under Intelligent History's \textit{Highlight Important Changes} feature.
+For the group that did not use Intelligent History, a mean of 76.1\% of the commits they examined would have been highlighted commits under feature \feature{1} \textit{Highlight Important Commits} from Intelligent History.
 
 To answer question A2, participants needed to find a commit that introduced further \newline 
 \code{addSink} method overloads later in the commit history as participants were informed that the initial commit in the commit history for the \class{Topology} class introduced a set of overloaded \code{addSink} methods to begin with.
@@ -372,7 +382,8 @@ Specifically regarding answering A2, participant \participant{H} stated:
 
 Comparing their experiences for answering the question set without and with Intelligent History, 
 participants commented on the effect of commit history highlighting making commit history exploration faster by reducing the amount of irrelevant commits they would have examined \participants{DFHJ}.
-Participant \participant{D} stated: ``\textit{[The highlighting] allowed for me to skim through the necessary commits a lot quicker \dots and visually reduces the amount of clutter I had to look at.}''
+Participant \participant{D} mentioned: 
+``\textit{[The highlighting] allowed for me to skim through the necessary commits a lot quicker \dots and visually reduces the amount of clutter I had to look at.}''
 
 Meanwhile, in answering question B1, participants who used Intelligent History examined a mean of 15.6\% of the commit history for the \class{StreamsBuilder} class,
 whereas participants who did not use Intelligent History examined a mean of 33.3\% of the same commit history.
@@ -387,11 +398,11 @@ Participant \participant{E} said:
 
 \begin{quote}
   I think that the biggest benefit [of Intelligent History] was especially removing minor changes. 
-  It’s really handy; it filters a bunch of -- not garbage -- but noise in the commit history. 
+  It’s [the \textit{Highlight Important Changes} feature] really handy; it filters a bunch of -- not garbage -- but noise in the commit history. 
   With just this single feature [commit history highlighting], it’s already worth using the plugin.
 \end{quote}
 
-On the commit history highlighting feature, participant \participant{A} said:
+On the commit history highlighting feature, participant \participant{A} opined:
 
 \begin{quote}
   I liked the highlighting. 
@@ -444,7 +455,7 @@ Participant \participant{A} expresses a beneficial use case of commit history hi
 
 \RQ{3}{How useful is direct integration of issue information in the IDE for helping a developer search for code rationale information?}
 
-As mentioned in \autoref{subsec:RQ2} previously, 4 of the 5 participants who answered B1 using Intelligent History actually favoured the \textit{Show Jira Metadata} feature \participants{ACGI}.
+As mentioned in \autoref{subsec:RQ2} previously, 4 of the 5 participants from the group that answered question set B with Intelligent History actually favoured feature \feature{3} \textit{Show Jira Metadata} \participants{ACGI}.
 We anticipated question B1 to require the most application switching between the \entity{IDE} and browser and to have the highest number of mean Jira issues viewed.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
