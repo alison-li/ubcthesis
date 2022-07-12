@@ -60,8 +60,8 @@ Question B1 from \autoref{tab:Question-Sets} expects the participant to examine 
   Set                                      & Class Name                                                   & \multicolumn{1}{c}{Question}                                                                                                                                                                                                                                                                                                                                            \\ \midrule
   \multicolumn{1}{|c|}{\multirow{3}{*}{A}} & \multicolumn{1}{c|}{\multirow{2}{*}{\class{Topology}}}       & \multicolumn{1}{p{8cm}|}{\begin{tabular}[c]{@{}p{8cm}}\small A1. Can you describe the motivation behind why the code segment on lines 717 to 722 was introduced and the benefit to the user of the Kafka \entity{API}?\end{tabular}}                                                                                                                                                             \\ \cmidrule(l){3-3} 
   \multicolumn{1}{|c|}{}                   & \multicolumn{1}{c|}{}                                        & \multicolumn{1}{p{8cm}|}{\begin{tabular}[c]{@{}p{8cm}}\small A2. There are several overloaded methods called \code{addSink} in this class. Can you describe in what context were these overloaded methods introduced to this class?\end{tabular}}                                                                                                                                             \\ \cmidrule(l){3-3} 
-  \multicolumn{1}{|c|}{\multirow{2}{*}{B}} & \multicolumn{1}{c|}{\multirow{2}{*}{\class{StreamsBuilder}}} & \multicolumn{1}{p{8cm}|}{\begin{tabular}[c]{@{}p{8cm}}\small A1. Can you find two commits that introduced changes to improve some functionality in this class and justify why you chose them? The changes can not be cosmetic such as removing repeated words, removing deprecated code, or adding/modifying/removing documentation and comments.\end{tabular}} \\ \cmidrule(l){3-3} 
-  \multicolumn{1}{|c|}{}                   & \multicolumn{1}{c|}{}                                        & \multicolumn{1}{p{8cm}|}{\small A2. Why is the \code{build} method in this class overloaded? Specifically, why was the overloaded build method in lines 623 to 630 introduced?}                                                                                                                                                                                                                \\ \bottomrule
+  \multicolumn{1}{|c|}{\multirow{2}{*}{B}} & \multicolumn{1}{c|}{\multirow{2}{*}{\class{StreamsBuilder}}} & \multicolumn{1}{p{8cm}|}{\begin{tabular}[c]{@{}p{8cm}}\small B1. Can you find two commits that introduced changes to improve some functionality in this class and justify why you chose them? The changes can not be cosmetic such as removing repeated words, removing deprecated code, or adding/modifying/removing documentation and comments.\end{tabular}} \\ \cmidrule(l){3-3} 
+  \multicolumn{1}{|c|}{}                   & \multicolumn{1}{c|}{}                                        & \multicolumn{1}{p{8cm}|}{\small B2. Why is the \code{build} method in this class overloaded? Specifically, why was the overloaded build method in lines 623 to 630 introduced?}                                                                                                                                                                                                                \\ \bottomrule
   \end{tabular}
   \label{tab:Question-Sets}
 \end{table}
@@ -135,7 +135,7 @@ Each group contains 5 samples, hence the degrees of freedom for each $t$-test is
 For qualitative analysis, we used the session recordings and logs to construct directed graphs for each participant's session to visualize how they explored commit history to answer the question sets and the impact of Intelligent History on their exploration.
 We regard these graphs as commit history exploration graphs and constructed a set of these graphs for each participant, one for each question the participant worked on.
 Nodes in the graph are represented by commit hashes and Jira issue IDs while edges express the participant's movement from examining one commit to another.
-Bold commit hashes indicate commits that would be highlighted by Intelligent History, while light hashes indicate non-highlighted commits.
+Bold commit hashes denote commits that would be highlighted by Intelligent History, while light hashes indicate non-highlighted commits.
 Italicized commit hashes are those for which the participant was heard reading or skimming the commit message subject aloud but did not investigate further by explicitly selecting the commit for further viewing.
 We use a green checkmark to signal when a participant provided an answer to the question and a globe icon to show when a participant has made an application switch between the \entity{IDE} and their browser to further examine a Jira issue.
 
@@ -283,9 +283,9 @@ We also present an aggregated version as a Sankey diagram in \autoref{fig:Flow-C
 
 Over half of the participants, 6 out of 10, preferred (\feature{1}) from Intelligent History the most,
 whereas the other 4 participants preferred (\feature{3}).
-Notably, all 5 of the participants who received question set A to answer with Intelligent History responded most positively to commit history highlighting as a feature, 
-whereas 4 out of the 5 participants who received question set B to answer with Intelligent History responded most positively to gaining quick access to Jira issue information within the \entity{IDE} as a feature.
-This indicates some level of correlation between the question set and the participants' most preferred features of Intelligent History.
+Notably, all 5 of the participants who received question set A to answer with Intelligent History responded most positively to commit history highlighting in \feature{1} as a feature \participants{BDFHJ}, 
+whereas 4 out of the 5 participants who received question set B to answer with Intelligent History responded most positively to gaining quick access to Jira issue information within the \entity{IDE} in \feature{3} as a feature \participants{ACGI}.
+This signifies some degree of correlation between the question set and the participants' most preferred features of Intelligent History.
 
 None of the participants chose (\feature{2}), though this was anticipated as this feature was provided to give the user context as to how Intelligent History highlights commits in (\feature{1}).
 Of the 3 participants who often look at commits and issues, none demonstrated commit message skimming as a strategy for exploring commit history.
@@ -298,7 +298,7 @@ On the association between the commit history exploration approach a participant
 while all 3 participants who exhibited a commit message skimming strategy were most partial to (\feature{3}).
 
 \begin{landscape}
-  \begin{figure}
+  \begin{table}
     \footnotesize
     \caption{
       A tabular form of \autoref{fig:Flow-Chart-Individual}.
@@ -319,7 +319,7 @@ while all 3 participants who exhibited a commit message skimming strategy were m
       J                       & Rarely                                                                                          & Commit Message Skimming                                                                & (\feature{1}) Highlight Important Changes                                                                                  \\ \bottomrule
     \end{tabular}
     \label{tab:Flow-Chart-Tabular}
-  \end{figure}
+  \end{table}
 \end{landscape}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -367,10 +367,22 @@ Participants were not expected to be able to identify this commit based on its c
 However, participants were prompted or intuited to locate a particular commit that introduced further overloads later in the history to understand why additional overloads were introduced to the \class{Topology} class.
 This could be done through examining diffs of potentially interesting commits for commits that were made after the initial commit in the \class{StreamsBuilder} commit history.
 
-Interestingly, all of the participants who used Intelligent History to answer A2 responded most positively to the \textit{Highlight Important Changes} feature of Intelligent History \participants{BDFHJ} (see \autoref{tab:Participants} and \autoref{tab:Flow-Chart-Tabular}).
+Interestingly, all of the participants who used Intelligent History to answer A2 responded most positively to feature \feature{F1} from Intelligent History \participants{BDFHJ} (see \autoref{tab:Participants} and \autoref{tab:Flow-Chart-Tabular}).
 Participants commented on the utility of commit history highlighting for focusing their attention on commits that were highlighted, ignoring non-highlighted commits which they regarded as ``irrelevant'' or ``minor'' \participants{BF}.
-It may be worth noting that of these 5 participants, 2 employed a commit history exploration approach that could be described as cyclic and backtracking based on their commit history exploration graphs \participants{BF},
-2 use commit message skimming \participants{DJ}, and 1 used a linear approach \participants{H}.
+Participant \participant{B} stated that when looking at the commits that were faded out by the highlighting feature in Intelligent History,
+they agreed with the highlighting, commenting that the faded commits ``\textit{do not seem to be useful for this file [\file{Topology.java}] at all}''.
+\participant{B} further said:
+
+\begin{quote}
+  When I think to what I have to do at work, 
+  often you don’t know what kind of modification you’re looking for. 
+  Especially when automated tests break or something, 
+  you’re going to be looking for something that is very recent and if you’re on a popular file, 
+  there might be a lot of commits. 
+  But with this [commit history highlighting], 
+  you’d be able to easily filter out things that actually made differences rather than negligible changes.
+\end{quote}
+
 Specifically regarding answering A2, participant \participant{H} stated:
 
 \begin{quote}
@@ -410,6 +422,10 @@ On the commit history highlighting feature, participant \participant{A} opined:
   [\dots] Looking at the history without the highlighting is kind of overwhelming because it’s just like ``oh my god, this is a flood of commits, what are we going to do?'' 
   but when you get rid of the less important ones, it’s [\dots] much more manageable.
 \end{quote}
+
+It may be worth noting that of the 6 participants who expressed preference for feature \feature{1}, 
+2 employed a commit history exploration approach that could be described as cyclic and backtracking based on their commit history exploration graphs \participants{BF},
+3 used commit message skimming \participants{DJ}, and 1 used a linear approach \participants{H}.
 
 \subsubsection{Locating Rationale for a Code Fragment}
 
@@ -453,10 +469,73 @@ Participant \participant{A} expresses a beneficial use case of commit history hi
 \subsection{RQ3}
 \label{subsec:RQ3}
 
-\RQ{3}{How useful is direct integration of issue information in the IDE for helping a developer search for code rationale information?}
+\RQ{3}{How useful is direct integration of issue information in the \entity{IDE} for helping a developer search for code rationale information?}
+In our implementation of feature \feature{3}, we integrated a view of a Jira issue's title, description, reporter, assignee, priority,
+and metadata information related to the number of comments and linked issues to give the plugin user a glimpse or signal of how interesting a Jira issue might be for further examination.
+We found that the utility of direct integration of issue information is dependent on a participant's background with examing commits and issues,
+and the software history exploration approach they employ.
+The usefulness of direct integration of issue information is also dependent on what information is extracted from an issue and how it is presented in the \entity{IDE}.
 
-As mentioned in \autoref{subsec:RQ2} previously, 4 of the 5 participants from the group that answered question set B with Intelligent History actually favoured feature \feature{3} \textit{Show Jira Metadata} \participants{ACGI}.
+\begin{summary}[RQ3]
+  Direct integration of issue information helped participants contextualize source code changes ...
+\end{summary}
+
+\subsubsection{Breadth of Information and Contextualization}
+
 We anticipated question B1 to require the most application switching between the \entity{IDE} and browser and to have the highest number of mean Jira issues viewed.
+This is because B1 requires participants to examine the diffs of commits to ensure they consist of source code changes that comply with the criteria of improving some functionality or behaviour in the \class{StreamsBuilder} class.
+Participants were also asked to justify their answer by finding supporting evidence for the commit author's intent behind their change.
+
+The participant group who did not use Intelligent History with B1 had a mean number of application switches of 2.0,
+while the group who did use Intelligent History had a mean number of application switches of 0.8.
+The group who did not use Intelligent History with B1 viewed a mean of 2.0 Jira issues,
+while the group who did use Intelligent History with B1 viewed a mean of 3.2 Jira issues.
+We observe that participants who used Intelligent History for locating meaningful source code changes and finding the code rationale behind the changes
+were able to view more Jira issues with slightly less application switches than participants who did not use Intelligent History for the same task.
+
+Coincidentally, 4 of the 5 participants from the group that answered question set B with Intelligent History actually favoured feature (\feature{3}) \textit{Show Jira Metadata} \participants{ACGI}.
+Participant \participant{A} commented:
+
+\begin{quote}
+  I thought that the Jira integration was very helpful because you don’t have to go to Jira to look at all the stuff and deal with Jira. 
+  It’s [the issues] just in the \entity{IDE} which is nice; it’s [the plugin] quick and fast.
+\end{quote}
+
+Participant \participant{J} mentioned:
+
+\begin{quote}
+  Without the plugin, it was a little more annoying and time-consuming opening up the browser, 
+  looking for all of the issues, 
+  whereas with the plugin, 
+  it was already there [in the \entity{IDE}] and I can just take a quick look and see if it [the commit] might be relevant and I can take a deeper look if needed.
+\end{quote}
+
+Of the 4 participants who favoured (\feature{3}), none demonstrated a commit message skimming approach to exploring commit history in the user study.
+Only 1 of the participants reported looking at commits and issues often \participants{C},
+while 3 participants reported sometimes \participants{AGI}.
+Perhaps unsurprisingly, none of the participants who favoured (\feature{3}) reported looking at commits and issues rarely.
+
+While we observed there to be some notable difference in the group that used Intelligent History for question B1 and the group that did not use Intelligent History for the same question,
+there is less notable difference with question B2.
+Hence, we could comment that the primary question responsible for this bias is question B1.
+Given the nature of B1, we find direct integration of Jira issue information within the \entity{IDE} to be useful for \dots broad search and exploration of a commit history.
+As participant \participant{E} stated:
+``\textit{[The Jira issue integration] helps you contextualize the code change in a commit really quick.}''
+However, direct issue integration is potentially less useful for those with an approach based on skimming commit messages.
+
+\subsubsection{Issue Content and Presentation}
+
+Two participants mentioned a preference to see the full Jira issue information contextualized in the Jira interface \participants{DF}.
+While \participant{F} commented that they were accustomed to viewing Jira issues in the browser \participants{F},
+\participant{D} stated that they had a preference to view all items associated with a Jira issue, including all linked issues and pull requests:
+``\textit{When I’m looking at a Jira ticket, I look at everything associated with the ticket to try to get a much broader context.}''
+We found there may be some limitations related to \emph{what} information was presented in the integrated view of the Jira issue in the \entity{IDE}
+and the personal preferences and habits of the user.
+
+Similar in sentiment, participant \participant{G}, who favoured (\feature{3}), noted that it was primarily the hyperlinking of Jira issues for each commit
+that they found to be most helpful in the user study.
+\participant{G} observed that since some of the Jira issues included code fragments, it was difficult to read them in the \entity{IDE}.
+This indicates the presentation of the issue information may be an impediment to its utility.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \endinput
