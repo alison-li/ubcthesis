@@ -469,15 +469,18 @@ Participant \participant{A} expresses a beneficial use case of commit history hi
 \subsection{RQ3}
 \label{subsec:RQ3}
 
-\RQ{3}{How useful is direct integration of issue information in the \entity{IDE} for helping a developer search for code rationale information?}
+\RQ{3}{How useful is direct integration of issue information in the IDE for helping a developer search for code rationale information?}
 In our implementation of feature \feature{3}, we integrated a view of a Jira issue's title, description, reporter, assignee, priority,
 and metadata information related to the number of comments and linked issues to give the plugin user a glimpse or signal of how interesting a Jira issue might be for further examination.
-We found that the utility of direct integration of issue information is dependent on a participant's background with examing commits and issues,
+We found the utility of direct integration of issue information to be dependent on a participant's background with examing commits and issues,
 and the software history exploration approach they employ.
 The usefulness of direct integration of issue information is also dependent on what information is extracted from an issue and how it is presented in the \entity{IDE}.
 
 \begin{summary}[RQ3]
-  Direct integration of issue information helped participants contextualize source code changes ...
+  Direct integration of issue information helped participants contextualize source code changes and view more issues than without,
+  particularly when searching for interesting or meaningful changes across a file's commit history.
+  However, the utility of direct integration of issue information can be dependent on users' preferences preferences ond habits 
+  with regard to the content they prefer to see from issues and how they would like them to be presented.
 \end{summary}
 
 \subsubsection{Breadth of Information and Contextualization}
@@ -532,8 +535,8 @@ While \participant{F} commented that they were accustomed to viewing Jira issues
 We found there may be some limitations related to \emph{what} information was presented in the integrated view of the Jira issue in the \entity{IDE}
 and the personal preferences and habits of the user.
 
-Similar in sentiment, participant \participant{G}, who favoured (\feature{3}), noted that it was primarily the hyperlinking of Jira issues for each commit
-that they found to be most helpful in the user study.
+Similar in sentiment, participant \participant{G}, who favoured (\feature{3}), noted the hyperlinking of Jira issues for each commit
+was most helpful to them in the user study.
 \participant{G} observed that since some of the Jira issues included code fragments, it was difficult to read them in the \entity{IDE}.
 This indicates the presentation of the issue information may be an impediment to its utility.
 
