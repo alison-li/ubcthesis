@@ -25,6 +25,7 @@
 \newcommand{\class}[1]{\texttt{#1}}
 \newcommand{\code}[1]{\texttt{#1}}
 \newcommand{\commit}[1]{\texttt{#1}}
+\newcommand{\commitref}[2]{\texttt{#1}\footnote{\url{#2}}}
 \newcommand{\entity}[1]{\textsc{#1}}
 \newcommand{\jira}[2]{{\small \textsf{\textbf{#1}} \textsf{#2}}}
 \newcommand{\latexpackage}[1]{\href{http://www.ctan.org/macros/latex/contrib/#1}{\texttt{#1}}}
@@ -34,8 +35,10 @@
 
 % Specific to my thesis for repeated sections.
 \newcommand{\RQ}[2]{\textbf{\entity{RQ{#1}}:} \textit{#2}}
+\newcommand{\participant}[1]{\entity{\textbf{#1}}}
+\newcommand{\participants}[1]{\{\participant{#1}\}}
 
-\newtheorem{observation}{Observation}
+\newmdtheoremenv{observation}{Observation}
 
 % For making `\autoref` work with subfloats
 \newcommand{\subfigureautorefname}{\figureautorefname}

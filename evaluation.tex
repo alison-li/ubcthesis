@@ -27,6 +27,9 @@ We expected the participants to interact with commit and issue information found
 The first part of the user study session consisted of asking questions from two sets of questions about the motivation behind certain changes and aspects about specific Java classes from Apache Kafka.
 These questions are presented in \autoref{tab:Question-Sets} and require exploring and locating particular commits in a given Java class' commit history to try to find code rationale information through inspecting the commits' full commit messages,
 diffs, and any relevant Jira issues.
+For each answer the participant provides to a question, the participant must justify their answer by referencing a combination of source code changes from diffs,
+commit messages, and Jira issues from the Apache Kafka project.
+
 In cases where a Jira issue referenced a Kafka Improvement Proposal (\entity{KIP}), we allowed the participant to visit these \entity{KIP}s in the browser.
 Each question set pertains to a different Java class from the Apache Kafka project.
 This facilitated an experiment where the participant would complete an initial set of questions without being allowed to use the features of Intelligent History plugin.
@@ -43,9 +46,9 @@ Participants were permitted to think aloud and were also prompted by the observe
 We divided the 10 participants into two groups of five participants such that one group received and completed set A first \emph{without} using the Intelligent History plugin, and set B afterwards \emph{with} introduction to the plugin and its features.
 The other group received set B first to complete \emph{without} the plugin, and set A to complete \emph{with} permitted use of the plugin.
 We swapped the order of the question sets for each group to study the performance of Intelligent History in assisting participants with answering questions from the different question sets.
-There is overlap between the sets, specifically with questions A(b) and B(b) from \autoref{tab:Question-Sets}.
+There is overlap between the sets, specifically with questions A2 and B2 from \autoref{tab:Question-Sets}.
 However, we anticipated the features of Intelligent History to provide the most utility to participants that receive set B as the question set they will be allowed to use Intelligent History for.
-Question B(a) from \autoref{tab:Question-Sets} expects the participant to examine the diffs, messages, and Jira issue for each commit in order to identify two changes that they can justify have a certain intent, which is to improve some functionality in \class{StreamsBuilder}. 
+Question B1 from \autoref{tab:Question-Sets} expects the participant to examine the diffs, messages, and Jira issue for each commit in order to identify two changes that they can justify have a certain intent, which is to improve some functionality in \class{StreamsBuilder}. 
 
 \begin{table}[h]
   \caption{
@@ -56,10 +59,10 @@ Question B(a) from \autoref{tab:Question-Sets} expects the participant to examin
   \begin{tabular}{@{}ccl@{}}
   \toprule
   Set                                      & Class Name                                                   & \multicolumn{1}{c}{Question}                                                                                                                                                                                                                                                                                                                                            \\ \midrule
-  \multicolumn{1}{|c|}{\multirow{3}{*}{A}} & \multicolumn{1}{c|}{\multirow{2}{*}{\class{Topology}}}       & \multicolumn{1}{p{8cm}|}{\begin{tabular}[c]{@{}p{8cm}}\small (a) Can you describe the motivation behind why the code segment on lines 717 to 722 was introduced and the benefit to the user of the Kafka \entity{API}?\end{tabular}}                                                                                                                                                             \\ \cmidrule(l){3-3} 
-  \multicolumn{1}{|c|}{}                   & \multicolumn{1}{c|}{}                                        & \multicolumn{1}{p{8cm}|}{\begin{tabular}[c]{@{}p{8cm}}\small (b) There are several overloaded methods called \code{addSink} in this class. Can you describe in what context were these overloaded methods introduced to this class?\end{tabular}}                                                                                                                                             \\ \cmidrule(l){3-3} 
-  \multicolumn{1}{|c|}{\multirow{2}{*}{B}} & \multicolumn{1}{c|}{\multirow{2}{*}{\class{StreamsBuilder}}} & \multicolumn{1}{p{8cm}|}{\begin{tabular}[c]{@{}p{8cm}}\small (a) Can you find two commits that introduced changes to improve some functionality in this class and justify why you chose them? The changes can not be cosmetic such as removing repeated words, removing deprecated code, or adding/modifying/removing documentation and comments.\end{tabular}} \\ \cmidrule(l){3-3} 
-  \multicolumn{1}{|c|}{}                   & \multicolumn{1}{c|}{}                                        & \multicolumn{1}{p{8cm}|}{\small (b) Why is the \code{build} method in this class overloaded? Specifically, why was the overloaded build method in lines 623 to 630 introduced?}                                                                                                                                                                                                                \\ \bottomrule
+  \multicolumn{1}{|c|}{\multirow{3}{*}{A}} & \multicolumn{1}{c|}{\multirow{2}{*}{\class{Topology}}}       & \multicolumn{1}{p{8cm}|}{\begin{tabular}[c]{@{}p{8cm}}\small A1. Can you describe the motivation behind why the code segment on lines 717 to 722 was introduced and the benefit to the user of the Kafka \entity{API}?\end{tabular}}                                                                                                                                                             \\ \cmidrule(l){3-3} 
+  \multicolumn{1}{|c|}{}                   & \multicolumn{1}{c|}{}                                        & \multicolumn{1}{p{8cm}|}{\begin{tabular}[c]{@{}p{8cm}}\small A2. There are several overloaded methods called \code{addSink} in this class. Can you describe in what context were these overloaded methods introduced to this class?\end{tabular}}                                                                                                                                             \\ \cmidrule(l){3-3} 
+  \multicolumn{1}{|c|}{\multirow{2}{*}{B}} & \multicolumn{1}{c|}{\multirow{2}{*}{\class{StreamsBuilder}}} & \multicolumn{1}{p{8cm}|}{\begin{tabular}[c]{@{}p{8cm}}\small A1. Can you find two commits that introduced changes to improve some functionality in this class and justify why you chose them? The changes can not be cosmetic such as removing repeated words, removing deprecated code, or adding/modifying/removing documentation and comments.\end{tabular}} \\ \cmidrule(l){3-3} 
+  \multicolumn{1}{|c|}{}                   & \multicolumn{1}{c|}{}                                        & \multicolumn{1}{p{8cm}|}{\small A2. Why is the \code{build} method in this class overloaded? Specifically, why was the overloaded build method in lines 623 to 630 introduced?}                                                                                                                                                                                                                \\ \bottomrule
   \end{tabular}
   \label{tab:Question-Sets}
 \end{table}
@@ -150,11 +153,11 @@ We summarize the quantitative results collected through logs and screen recordin
 Similarly, the results for participants who received question B, then A are shown in \autoref{tab:Results-Quantitative-BA}.
 As stated in \autoref{sec:Method}, set A corresponds to the \class{Topology} class, which contains 22 commits in its commit history, 
 while set B corresponds to the \class{StreamsBuilder} class, which contains 45 commits in its commit history.
-Overall, participants who did not use Intelligent History examined a higher mean proportion of commits to answer both questions (a) and (b) from set A and question (a) from set B.
+Overall, participants who did not use Intelligent History examined a higher mean proportion of commits to answer both questions A1, A2, and B1.
 
 The results of the $t$-tests for determining significant statistical differences in the mean proportion of commits are summarized in \autoref{tab:t-test}.
-For questions A(a) and B(b), we fail to reject the null hypothesis, which states that the mean proportion of commits examined by the group without Intelligent History and the group with Intelligent History are equal.
-However, for questions A(b) and B(a), we reject the null hypothesis, indicating the mean proportion of commits examined by the group without Intelligent History and the group without Intelligent History are not equal.
+For questions A1 and B2, we fail to reject the null hypothesis, which states that the mean proportion of commits examined by the group without Intelligent History and the group with Intelligent History are equal.
+However, for questions A2 and B1, we reject the null hypothesis, indicating the mean proportion of commits examined by the group without Intelligent History and the group without Intelligent History are not equal.
 Thus, there is a significant difference in the mean proportion of commits examined between the group that does not use Intelligent History and the group that does use Intelligent History to answer questions A(b) and B(a).
 
 \begin{table}[h]
@@ -166,22 +169,22 @@ Thus, there is a significant difference in the mean proportion of commits examin
   \begin{tabular}{@{}ccccc@{}}
     \toprule
     Set                                     & Question               & \multicolumn{1}{c}{$t$-value} & \multicolumn{1}{c}{$p$-value} & $H_{0}$ \\ \midrule
-    \multicolumn{1}{c|}{\multirow{2}{*}{A}} & \multicolumn{1}{c|}{a} & 1.53                        & 0.08                        & Fail to reject   \\ \cmidrule(l){2-5} 
-    \multicolumn{1}{c|}{}                   & \multicolumn{1}{c|}{b} & 2.13                        & 0.03                        & Reject   \\ \midrule
-    \multicolumn{1}{c|}{\multirow{2}{*}{B}} & \multicolumn{1}{c|}{a} & 2.37                        & 0.02                        & Reject   \\ \cmidrule(l){2-5} 
-    \multicolumn{1}{c|}{}                   & \multicolumn{1}{c|}{b} & -0.66                       & 0.26                        & Fail to reject   \\ \bottomrule
+    \multicolumn{1}{c|}{\multirow{2}{*}{A}} & \multicolumn{1}{c|}{A1} & 1.53                        & 0.08                        & Fail to reject   \\ \cmidrule(l){2-5} 
+    \multicolumn{1}{c|}{}                   & \multicolumn{1}{c|}{A2} & 2.13                        & 0.03                        & Reject   \\ \midrule
+    \multicolumn{1}{c|}{\multirow{2}{*}{B}} & \multicolumn{1}{c|}{B1} & 2.37                        & 0.02                        & Reject   \\ \cmidrule(l){2-5} 
+    \multicolumn{1}{c|}{}                   & \multicolumn{1}{c|}{B2} & -0.66                       & 0.26                        & Fail to reject   \\ \bottomrule
   \end{tabular}
   \label{tab:t-test}
 \end{table}
 
 We described constructing commit history exploration graphs in \autoref{subsec:Analysis}. 
-A sample of two commit history exploration graph we constructed to illustrate participants F and H’s exploration to answer question B(a) from \autoref{tab:Question-Sets} is shown in \autoref{fig:Exploration-Graphs}.
+A sample of two commit history exploration graph we constructed to illustrate participants \participant{F} and \participant{H}’s exploration to answer question B1 from \autoref{tab:Question-Sets} is shown in \autoref{fig:Exploration-Graphs}.
 
 \begin{figure}[h]
   \centering%
-  \subfloat[\centering Participant F's commit history exploration in answering question B(a) \emph{without} Intelligent History. \label{subfig:Exploration-Graph-A}]{{\includegraphics[width=5.5cm]{./images/graph-sample-A.png}}}%
+  \subfloat[\centering \participant{F}'s commit history exploration in answering question B1 \emph{without} Intelligent History. \label{subfig:Exploration-Graph-A}]{{\includegraphics[width=5.5cm]{./images/graph-sample-A.png}}}%
   \qquad
-  \subfloat[\centering Participant H's commit history exploration in answering question B(a) \emph{without} Intelligent History. \label{subfig:Exploration-Graph-B}]{{\includegraphics[width=5.5cm]{./images/graph-sample-B.png}}}%
+  \subfloat[\centering \participant{H}'s commit history exploration in answering question B1 \emph{without} Intelligent History. \label{subfig:Exploration-Graph-B}]{{\includegraphics[width=5.5cm]{./images/graph-sample-B.png}}}%
   \caption{
     Commit history exploration graphs.
   }%
@@ -189,12 +192,12 @@ A sample of two commit history exploration graph we constructed to illustrate pa
 \end{figure}
 
 As a demonstration of how we devised themes for the participants' exhibited approaches for commit history exploration, \autoref{subfig:Exploration-Graph-A} illustrates the participant F's approach to finding two meaningful commits as per question B(a) without using Intelligent History.
-The commit history exploration graph for participant F shows they examined 19 out of 45 commits.
-Participant F began their search by scanning the commit message subjects to reduce their search and performed backtracking to review previously examined commits.
-We characterize the structure of the graph for participant F as cyclic with skimming.
-Meanwhile, the commit history graph for participant H shown in \autoref{subfig:Exploration-Graph-B}, who answered the same question without Intelligent History, shows they examined 10 out of 45 commits.
-Participant H exhibited an approach where they examined each commit sequentially in chronological order.
-We characterize the structure of the graph for participant H and their commit history exploration approach as linear to describe the participant's sequential or chronological exploration of the commit history.
+The commit history exploration graph for \participant{F} shows they examined 19 out of 45 commits.
+Participant \participant{F} began their search by scanning the commit message subjects to reduce their search and performed backtracking to review previously examined commits.
+We characterize the structure of the graph for \participant{F} as cyclic with skimming.
+Meanwhile, the commit history graph for \participant{H} shown in \autoref{subfig:Exploration-Graph-B}, who answered the same question without Intelligent History, shows they examined 10 out of 45 commits.
+Participant \participant{H} exhibited an approach where they examined each commit sequentially in chronological order.
+We characterize the structure of the graph for \participant{H} and their commit history exploration approach as linear to describe the participant's sequential or chronological exploration of the commit history.
 
 The flowchart showing the relationship between each participant's background related to looking at commits and issues,
 the commit history exploration approach they used, and their preferred features provided by Intelligent History is displayed in \autoref{fig:Flow-Chart-Individual}.
@@ -220,8 +223,12 @@ We also present an aggregated version as a Sankey diagram in \autoref{fig:Flow-C
   \label{fig:Flow-Chart-Aggregate}
 \end{figure}
 
-The majority of participants, 7 out of 10, preferred feature (A) from Intelligent History the most,
-whereas the remaining 3 participants preferred feature (C).
+The majority of participants, 6 out of 10, preferred feature (A) from Intelligent History the most,
+whereas the other 4 participants preferred feature (C).
+Notably, all 5 of the participants who received question set A to answer with Intelligent History responded most positively to commit history highlighting as a feature, 
+whereas 4 out of the 5 participants who received question set B to answer with Intelligent History responded most positively to gaining quick access to Jira issue information within the \entity{IDE} as a feature.
+This indicates some level of correlation between the question set and the participants' most preferred features of Intelligent History.
+
 None of the participants chose feature (B), though this was anticipated as this feature was provided to give the user context as to how Intelligent History highlights commits in feature (A).
 Of the 3 participants who often look at commits and issues, none demonstrated commit message skimming as a strategy for exploring commit history.
 Similarly, of the 3 participants who rarely look at commits and issues, none employ an commit history exploration approach that could be described as cyclic and backtracking.
@@ -268,7 +275,7 @@ their exhibited approach to exploring commit history, and the feature of Intelli
     \begin{tabular}{@{}ccccccccccccccccc@{}}
       \toprule
       \multicolumn{1}{l}{}                & \multicolumn{8}{c}{Set A (without plugin)}                                                                                                                            & \multicolumn{8}{c}{Set B (with plugin)}                                                                                                                                                                 \\ \midrule
-      \multicolumn{1}{c|}{}               & \multicolumn{4}{c|}{a}                                   & \multicolumn{4}{c|}{b}                                                                                     & \multicolumn{4}{c|}{a}                                                                      & \multicolumn{4}{c}{b}                                                                                     \\ \midrule
+      \multicolumn{1}{c|}{}               & \multicolumn{4}{c|}{A1}                                  & \multicolumn{4}{c|}{A2}                                                                                    & \multicolumn{4}{c|}{B1}                                                                     & \multicolumn{4}{c}{B2}                                                                                    \\ \midrule
       \multicolumn{1}{c|}{Pseudo-initial} & \%CE      & \%HC      & \#AS & \multicolumn{1}{l|}{\#IV} & \multicolumn{1}{l}{\%CE} & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} & \multicolumn{1}{l|}{\#IV} & \%CE      & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} & \multicolumn{1}{l|}{\#IV} & \multicolumn{1}{l}{\%CE} & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} & \multicolumn{1}{l}{\#IV} \\ \midrule
       \multicolumn{1}{c|}{A}              & 40.9 (9)  & 55.6 (5)  & 1    & \multicolumn{1}{c|}{1}    & 27.3 (6)                 & 83.3 (5)                 & 1                        & \multicolumn{1}{c|}{1}    & 15.6 (7)  & 100.0 (7)                & 0                        & \multicolumn{1}{c|}{4}    & 6.7 (3)                  & 100.0 (3)                & 0                        & 1                        \\
       \multicolumn{1}{c|}{C}              & 4.5 (1)   & 100.0 (1) & 1    & \multicolumn{1}{c|}{1}    & 27.3 (6)                 & 83.3 (5)                 & 1                        & \multicolumn{1}{c|}{1}    & 6.7 (3)   & 100.0 (3)                & 0                        & \multicolumn{1}{c|}{2}    & 0.0 (0)                  & N/A                      & 0                        & 0                        \\
@@ -293,7 +300,7 @@ their exhibited approach to exploring commit history, and the feature of Intelli
     \begin{tabular}{@{}ccccccccccccccccc@{}}
       \toprule
       \multicolumn{1}{l}{}                & \multicolumn{8}{c}{Set A (with plugin)}                                                                                                                              & \multicolumn{8}{c}{Set B (without plugin)}                                                                                                                                                              \\ \midrule
-      \multicolumn{1}{c|}{}               & \multicolumn{4}{c|}{a}                                  & \multicolumn{4}{c|}{b}                                                                                     & \multicolumn{4}{c|}{a}                                                                      & \multicolumn{4}{c}{b}                                                                                     \\ \midrule
+      \multicolumn{1}{c|}{}               & \multicolumn{4}{c|}{A1}                                 & \multicolumn{4}{c|}{A2}                                                                                    & \multicolumn{4}{c|}{B1}                                                                     & \multicolumn{4}{c}{B2}                                                                                    \\ \midrule
       \multicolumn{1}{c|}{Pseudo-initial} & \%CE     & \%HC      & \#AS & \multicolumn{1}{l|}{\#IV} & \multicolumn{1}{l}{\%CE} & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} & \multicolumn{1}{l|}{\#IV} & \%CE      & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} & \multicolumn{1}{l|}{\#IV} & \multicolumn{1}{l}{\%CE} & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} & \multicolumn{1}{l}{\#IV} \\ \midrule
       \multicolumn{1}{c|}{B}              & 4.5 (1)  & 100.0 (1) & 1    & \multicolumn{1}{c|}{1}    & 9.0 (2)                  & 100.0 (2)                & 0                        & \multicolumn{1}{c|}{1}    & 35.6 (16) & 37.5 (6)                 & 2                        & \multicolumn{1}{c|}{2}    & 4.4 (2)                  & 100.0 (1)                & 0                        & 0                        \\
       \multicolumn{1}{c|}{D}              & 31.8 (7) & 100.0 (1) & 1    & \multicolumn{1}{c|}{1}    & 13.3 (6)                 & 100.0 (1)                & 1                        & \multicolumn{1}{c|}{1}    & 20.0 (9)  & 55.6 (5)                 & 2                        & \multicolumn{1}{c|}{2}    & 8.9 (4)                  & 100.0 (4)                & 2                        & 2                        \\
@@ -308,54 +315,154 @@ their exhibited approach to exploring commit history, and the feature of Intelli
 \end{landscape}
 %% END: Large landscape tables
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{RQ1}
+\label{subsec:RQ1}
 
 \RQ{1}{Does highlighting important commits help software developers explore a file’s revision history more effectively?}
+This research question is primarily concerned with the correctness of the participants' answers to the questions.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{RQ2}
+\label{subsec:RQ2}
 
 \RQ{2}{Does highlighting important commits help software developers explore a file’s revision history more efficiently?}
+We define efficient as the proportion of commits from a file's commit history that a developer must examine before obtaining the answer to questions about the intent behind code changes.
+Under this definition, we could consider that commit history highlighting does help with efficiently exploring a file's commit history for questions related to identifying meaningful source changes and the rationale behind those changes when the developer must navigate a broad commit history for a file. 
+This is evidenced by the participants who used Intelligent History to answer A2 and B1 as they examined a significantly smaller proportion of a given file's commit history to obtain the code ratianale information needed for answering the questions asked in the user study.
 
-Both questions A(a) and B(b) are similar in nature as they require the participant to look at a specific segment of code given by line numbers.
-Participants who vocalized familiarity with using \entity{git} ``blame'' were permitted to use the native ``Show History for Selection'' feature in IntelliJ to narrow down the commits to look at.
-This native feature allowed participants to narrow down and view commits affecting selected fragments of source code.
+\begin{observation}
+  Commit history highlighting can be efficient in helping software developers efficiently explore commit history for code rationale information by examining a smaller proportion of the commits in a file's commit history.
+  In particular, commit history highlighting makes identifying and searching for meaningful source code changes across a broad commit history more efficient but has less impact when trying to find rationale information for specific code segments in a file.
+\end{observation}
 
-For question A(a), 6 participants (C, E, F, H, I, J) used the ``Show History for Selection'' feature,
-and the other 4 participants (A, B, D, G) manually found the commit that introduced the change and contained the rationale information by reading the commit mesage subjects and using the chronological information based on other commit timestamps.
-For question B(b), the failure to reject the null hypothesis may be attributed to the fact that the commit \commit{e09d6d79} that contains the information necessary for answering this question has the commit message subject: 
+\subsubsection{Navigating a Broad Commit History}
+
+For question A2, participants who used Intelligent History examined a mean of 19.9\% of the commit history for the \class{Topology} class,
+while participants who did not use Intelligent History examined a mean of 39.1\% of the same commit history. 
+Moreover, of the participants who used Intelligent History and the proportion of commits they examined,
+a mean of 97.1\% of the commits they examined were highlighted commits.
+For the group that did not use Intelligent History, a mean of 76.1\% of the commits they examined would have been highlighted commits under Intelligent History's \textit{Highlight Important Changes} feature.
+
+To answer question A2, participants needed to find a commit that introduced further \newline 
+\code{addSink} method overloads later in the commit history as participants were informed that the initial commit in the commit history for the \class{Topology} class introduced a set of overloaded \code{addSink} methods to begin with.
+The specific commit which does this is commit \commitref{f33e9a34}{https://github.com/apache/kafka/commit/f33e9a346e22e29bb66e0ea0f3442903d136ca67} with the following commit message title:
+
+\begin{center}
+  \jira{KAFKA-4936:}{Add dynamic routing in Streams (\#5018)} 
+\end{center}
+
+Participants were not expected to be able to identify this commit based on its commit message title alone.
+However, participants were prompted or intuited to locate a particular commit that introduced further overloads later in the history to understand why additional overloads were introduced to the \class{Topology} class.
+This could be done through examining diffs of potentially interesting commits for commits that were made after the initial commit in the \class{StreamsBuilder} commit history.
+
+Interestingly, all of the participants who used Intelligent History to answer A2 responded most positively to the \textit{Highlight Important Changes} feature of Intelligent History \participants{BDFHJ} (see \autoref{tab:Participants} and \autoref{tab:Flow-Chart-Tabular}).
+Participants commented on the utility of commit history highlighting for focusing their attention on commits that were highlighted, ignoring non-highlighted commits which they regarded as ``irrelevant'' or ``minor'' \participants{BF}.
+It may be worth noting that of these 5 participants, 2 employed a commit history exploration approach that could be described as cyclic and backtracking based on their commit history exploration graphs \participants{BF},
+2 use commit message skimming \participants{DJ}, and 1 used a linear approach \participants{H}.
+Specifically regarding answering A2, participant \participant{H} stated:
+
+\begin{quote}
+  [Highlighting commits] was amazing for speeding up what I had to search for. 
+  Especially, in finding that sink issue [in A2], if I didn’t have the pencil [Highlight Important Changes feature], 
+  I think I would have gone through all the commits backwards and just try to see what the diffs are 
+  but it removed a bunch of the ones that it [Intelligent History] deemed not useful and it ended up being correct so I just skipped over a bunch [of commits].
+\end{quote}
+
+Comparing their experiences for answering the question set without and with Intelligent History, 
+participants commented on the effect of commit history highlighting making commit history exploration faster by reducing the amount of irrelevant commits they would have examined \participants{DFHJ}.
+Participant \participant{D} stated: ``\textit{[The highlighting] allowed for me to skim through the necessary commits a lot quicker \dots and visually reduces the amount of clutter I had to look at.}''
+
+Meanwhile, in answering question B1, participants who used Intelligent History examined a mean of 15.6\% of the commit history for the \class{StreamsBuilder} class,
+whereas participants who did not use Intelligent History examined a mean of 33.3\% of the same commit history.
+Of the commits that the group who used Intelligent History examined for answering B1, a mean of 100.0\% of the commits were highlighted commits.
+For the group who did not use Intelligent history to answer B1, a mean of 51.3\% of the commits they examined would have been highlighted commits if they used Intelligent History.
+
+Question B1 necessitated for the participants to examine commits and diffs in the \class{StreamsBuilder} commit history to try to identify meaningful source code changes that were made to the class.
+We clarified a meaningful source code change to be a commit that changes or improves some functionality or behaviour in the class and expected participants to utilize the diffs and intent of a change's author to justify their answer.
+Despite the group of participants who used Intelligent History to answer B2 looking at less than half the proportion of commits that the group who did not use Intelligent History looked at (15.6\% compared to 33.3\%),
+only 1 participant emphasized commit history highlighting as a feature that made the strongest impression on them \participants{E}, whereas the remaining 4 participants showed a preference for the \textit{Show Jira Metadata} feature of Intelligent History instead \participants{ACGI}.
+Participant \participant{E} said:
+
+\begin{quote}
+  I think that the biggest benefit [of Intelligent History] was especially removing minor changes. 
+  It’s really handy; it filters a bunch of -- not garbage -- but noise in the commit history. 
+  With just this single feature [commit history highlighting], it’s already worth using the plugin.
+\end{quote}
+
+On the commit history highlighting feature, participant \participant{A} said:
+
+\begin{quote}
+  I liked the highlighting. 
+  It’s nice to not look at so many commits. 
+  [\dots] Looking at the history without the highlighting is kind of overwhelming because it’s just like ``oh my god, this is a flood of commits, what are we going to do?'' 
+  but when you get rid of the less important ones, it’s [\dots] much more manageable.
+\end{quote}
+
+\subsubsection{Locating Commits for a Code Fragment}
+
+As captured from the results of the $t$-test in \autoref{tab:t-test}, there was less significant difference in the proportion of commits examined by the groups for answering questions A1 and B2.
+Both questions A1 and B2 are similar in nature as they require the participant to inspect a specific section of code given by line numbers and attempt to locate commits relevant to these code segments.
+Participants who vocalized familiarity with using \entity{git} ``blame'' were shown and permitted to use the native ``Show History for Selection'' feature in IntelliJ to narrow down the commits to look at.
+This native feature enabled participants to view commits affecting selected fragments of source code.
+
+In recognition of the suitability of commit history highlighting for certain types of questions,
+2 participants who received question set B first without Intelligent History and received question set A after with Intelligent History commented on wishing to have been able to use Intelligent History's commit highlighting feature for question B1 instead as B1
+required manual exploration of a large commit history \participants{BD}.
+Participant \participant{B} mentioned:
+
+\begin{quote}
+  [For some of] the questions [I was] asked [\dots] the plugin didn’t help that much. 
+  For example, one of the questions in the \class{StreamsBuilder} class was to look for commits that improve things, 
+  so I feel like if I had to redo that task, then using the highlighting would have been useful.
+\end{quote}
+
+For question A1, 6 participants used the ``Show History for Selection'' feature \participants{CEFHIJ},
+and the other 4 participants manually found the commit that introduced the change and contained the rationale information by reading the commit mesage subjects and using the chronological information based on other commit timestamps \participants{ABDG}.
+For question B2, the failure to reject the null hypothesis may be attributed to the fact that the commit \commitref{e09d6d79}{https://github.com/apache/kafka/commit/e09d6d796f5a0b840519021d7f6435c65f88a60a} which contains the information necessary for answering this question has the message title: 
 
 \begin{center}
   \jira{KAFKA-7027:}{Add overloaded build method to StreamsBuilder (\#5437)} 
 \end{center}
 
-Hence, participants locating the commit that introduced the overloaded \code{build} method would be able to quickly narrow down the commit
-to answer the question without using the features of Intelligent History.
-Due to the nature of questions A(a) and B(b) and their answerability via other native features of IntelliJ, our samples may be insufficient for obtaining evidence to show a significant difference between the group that does not use Intelligent History and the group that does use Intelligent History for these particular questions that ask about specific sections of code from a Java class.
+Hence, participants used to using version control tools for similar questions encountered in every day work would be able to quickly narrow down the commit needed to answer the question without requiring traversal of the file's commit history.
+Due to the nature of A1 and B2 and their answerability via other native features of IntelliJ, our samples may be insufficient for obtaining evidence to show a significant difference in commit history exploration efficiency between the group that does not use Intelligent History and the group that does use Intelligent History for questions that ask about specific sections of code from a Java class.
+Thus, based on our analysis of A2 and B1, we make the observation that participants who use Intelligent History with its commit highlighting feature look at a smaller proportion of commits from a file's commit history when answering questions related to
+identifying and finding meaningful source code changes over a broad commit history.
+Participant \participant{A} expresses a beneficial use case of commit history highlighting for reducing the number commits a software developer examines:
 
-To answer question A(b), the participant would need to find a commit that introduced further \code{addSink} method overloads later in the commit history as participants were informed that the initial commit in the commit history for the \class{Topology} class introduced a set of overloaded \code{addSink} methods to begin with.
-Hence, participants were prompted or intuited to locate a particular commit that introduced further overloads later in the history to understand why additional  overloads were introduced to the \class{Topology} class.
-Several participants (A, D, E, G, I, J) strategically searched the commit history.
-For participants who used Intelligent History to answer A(b), the \textit{Highlight Important Changes} feature helped them by only looking at commits that were highlighted, ignoring non-highlighted commits.
-The other participants attempted to differentiate which \code{addSink} methods in class were not introduced as part of the initial overloads.
-They then used IntelliJ's ``Show History for Selection'' feature on an \code{addSink} overloaded method that was added later to try to find the commit that introduced one.
+\begin{quote}
+  If I was trying to get a sense of major changes in a file, like say there was an issue that came up in a file and I’m looking for where it could have gotten introduced, 
+  then that [highlighting commits] would be very useful because you get rid of all the changes that don’t matter. 
+\end{quote}
 
-Similarly, question B(a) necessitates for the participant to examine commits and diffs in the \class{StreamsBuilder} commit history to try identify meaningful source code changes that were made to the class.
-Given the larger size of the \class{StreamsBuilder} commit history at 45 commits, this question lead to more varying strategies.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{RQ3}
+\label{subsec:RQ3}
 
 \RQ{3}{How useful is direct integration of issue information in the IDE for helping a developer search for code rationale information?}
+
+As mentioned in \autoref{subsec:RQ2} previously, 4 of the 5 participants who answered B1 using Intelligent History actually favoured the \textit{Show Jira Metadata} feature \participants{ACGI}.
+We anticipated question B1 to require the most application switching between the \entity{IDE} and browser and to have the highest number of mean Jira issues viewed.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Threats to Validity}
 \label{sec:Threads-to-Validity}
 
-There are a number of aspects of this user study that impact the construct validity of our results.
+There are a number of aspects of this user study that impact the validity of our results.
 Firstly, since the participants were observed throughout the study by the interviewer, the participants' behaviour, opinions, and feedback about the Intelligent History plugin are subject to the Hawthorne effect.
+We attempted to mitigate bias in how a participant expects to use Intelligent History and the applicability of Intelligent History to any particular question set 
+by alternating the order of the questions each participant received and 
+fixing the use of the plugin to the second question set that each participant receives.
 
-The limited participant size of 10 people affects external validity.
+The experience of the participants with regard to experience in working in a project that uses an issue tracking system (\entity{ITS}) and closely associating issues to commits impacts internal validity.
+We tried to mitigate the impact of participant experience on internal validity by formulating questions that would require participants to justify their answers using source code and Jira issue information to
+encourage participants to view Jira issues.
 
-\FIXME{Hawthorne effect, sample size, tool usage for second set of questions -- we did this to mitigate bias or impression of conducting the study a certain way, lack of external validity due to the controlled environment with prescribed questions.}
+The limited participant size of 10 participants and the controlled experiment setting of the user study affects external validity.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \endinput
