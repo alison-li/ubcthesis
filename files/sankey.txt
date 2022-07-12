@@ -1,0 +1,19 @@
+Sankey diagram builder: https://sankeymatic.com/build/
+
+Often [3]
+Sometimes [4]
+Rarely [3]
+
+Often [1] Linear
+Often [2] Cyclic and Backtracking
+Sometimes [1] Linear
+Sometimes [2] Cyclic and Backtracking
+Sometimes [1] Commit Message Skimming
+Rarely [1] Linear
+Rarely [2] Commit Message Skimming
+
+Linear [1] (A) Highlight Important Changes
+Linear [2] (C) Show Jira Metadata
+Cyclic and Backtracking [3] (A) Highlight Important Changes
+Cyclic and Backtracking [1] (C) Show Jira Metadata
+Commit Message Skimming [3] (A) Highlight Important Changes
