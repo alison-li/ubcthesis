@@ -327,10 +327,43 @@ while all 3 participants who exhibited a commit message skimming strategy were m
 \subsection{RQ1}
 \label{subsec:RQ1}
 
-\RQ{1}{Does highlighting important commits help software developers explore a file’s revision history more effectively?}
-This research question is primarily concerned with whether highlighting important commits as an approach improves the 
-correctness of the participants' answers to the questions from \autoref{tab:Question-Sets}.
-We found participants who used Intelligent History with their given question set 
+\RQ{1}{Can we automatically identify the commits that software developers would want to examine?}
+
+Although the construction of the regular expressions for the purpose of developing a robust set of rules for filtering out diffs containing non-essential changes 
+was not the main goal of this thesis,
+we explore this research question to understand the performance of the underlying approach used in Intelligent History's commit highlighting feature (\feature{1}).
+
+In addition to the number of unique commits a participant examined as part of answering a question,
+we computed the proportion of those commits that would be highlighted commits according to Intelligent History.
+We did this to observe:
+(1) whether a large proportion of commits a participant inspects would be considered as important using Intelligent History
+and (2) the impact of Intelligent History's commit highlighting on what commits a participant examines when 
+they worked on a question set that allowed them to use the plugin.
+
+When participants had access to Intelligent History,
+the majority of commits they examined for a question set were highlighted commits.
+For A1, a mean of 100.0\% of the commits that particpants who used Intelligent History examined were highlighted commits.
+For A2, the mean was 97.1\% of the commits.
+Similarly for B1 and B2, a mean of 100.0\% of the commits that participants who used Intelligent History examined were highlighted commits.
+According to these results, we make the observation that highlighted commits influenced how participants selected commits from the commit history for further investigation, as
+these participants tended to only inspect the commits that Intelligent History highlighted. 
+
+We also found that for question sets that participants completed without Intelligent History,
+over half of the commits that participants examined would have been highlighted by Intelligent History.
+For A1, a mean of 68.5\% of the commits that the participants examined would be highlighted commits.
+For A2, a mean of 76.7\% of the commits that the participants examined would be highlighted commits.
+For B1 and B2 respectively, a mean of 51.3\% and 100.0\% of the commits that the participants examined would be highlighted commits.
+This indicates that even in cases where Intelligent History is not used and therefore does not influence the commits participants examine,
+there exists a some degree of overlap between the commits that participants choose to further investigate and the commits that Intelligent History highlights.
+
+In the follow-up interviews conducted, 
+several participants commented on how commit highlightling pointed out ``minor'' and ``irrelevant'' commits \participants{BDEFH}.
+Although participants were not asked to validate the commits that Intelligent History chose to highlight and to fade out from the commit history, 
+participant \participant{B} expressed agreement with the highlighting, noting that the faded commits ``\textit{do not seem to be useful for this file [the \class{Topology} class] at all}.''
+
+\begin{summary}[RQ1]
+  TODO
+\end{summary}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -338,14 +371,10 @@ We found participants who used Intelligent History with their given question set
 \label{subsec:RQ2}
 
 \RQ{2}{Does highlighting important commits help software developers explore a file’s revision history more efficiently?}
+
 We define efficient as the proportion of commits from a file's commit history that a developer must examine before obtaining the answer to questions about the intent behind code changes.
 Under this definition, we found highlighting potentially important commits does help with efficiently exploring a file's commit history for questions related to identifying meaningful source changes and the rationale behind those changes when the developer must navigate a broad commit history for a file. 
 This is evidenced by the participants who used Intelligent History to answer A2 and B1 as they examined a significantly smaller proportion of a given file's commit history to obtain the code ratianale information needed for answering the questions asked in the user study.
-
-\begin{summary}[RQ2]
-  Commit history highlighting can be efficient in helping software developers efficiently explore commit history for code rationale information by examining a smaller proportion of the commits in a file's commit history.
-  In particular, commit history highlighting makes identifying and searching for meaningful source code changes across a broad commit history more efficient but has less impact when trying to find rationale information for specific code segments in a file.
-\end{summary}
 
 \subsubsection{Navigating a Broad Commit History}
 
@@ -353,10 +382,9 @@ For question A2, participants who used Intelligent History examined a mean of 19
 while participants who did not use Intelligent History examined a mean of 39.1\% of the same commit history. 
 Moreover, of the participants who used Intelligent History and the proportion of commits they examined,
 a mean of 97.1\% of the commits they examined were highlighted commits.
-For the group that did not use Intelligent History, a mean of 76.1\% of the commits they examined would have been highlighted commits under feature \feature{1} \textit{Highlight Important Commits} from Intelligent History.
+For the group that did not use Intelligent History, a mean of 76.1\% of the commits they examined would have been highlighted commits under feature (\feature{1}) \textit{Highlight Important Changes} from Intelligent History.
 
-To answer question A2, participants needed to find a commit that introduced further \newline 
-\code{addSink} method overloads later in the commit history as participants were informed that the initial commit in the commit history for the \class{Topology} class introduced a set of overloaded \code{addSink} methods to begin with.
+To answer question A2, participants needed to find a commit that introduced further \code{addSink} method overloads later in the commit history as participants were informed that the initial commit in the commit history for the \class{Topology} class introduced a set of overloaded \code{addSink} methods to begin with.
 The specific commit which does this is commit \commitref{f33e9a34}{https://github.com/apache/kafka/commit/f33e9a346e22e29bb66e0ea0f3442903d136ca67} with the following commit message title:
 
 \begin{center}
@@ -369,9 +397,7 @@ This could be done through examining diffs of potentially interesting commits fo
 
 Interestingly, all of the participants who used Intelligent History to answer A2 responded most positively to feature \feature{F1} from Intelligent History \participants{BDFHJ} (see \autoref{tab:Participants} and \autoref{tab:Flow-Chart-Tabular}).
 Participants commented on the utility of commit history highlighting for focusing their attention on commits that were highlighted, ignoring non-highlighted commits which they regarded as ``irrelevant'' or ``minor'' \participants{BF}.
-Participant \participant{B} stated that when looking at the commits that were faded out by the highlighting feature in Intelligent History,
-they agreed with the highlighting, commenting that the faded commits ``\textit{do not seem to be useful for this file [\file{Topology.java}] at all}''.
-\participant{B} further said:
+Participant \participant{B} said:
 
 \begin{quote}
   When I think to what I have to do at work, 
@@ -396,6 +422,8 @@ Comparing their experiences for answering the question set without and with Inte
 participants commented on the effect of commit history highlighting making commit history exploration faster by reducing the amount of irrelevant commits they would have examined \participants{DFHJ}.
 Participant \participant{D} mentioned: 
 ``\textit{[The highlighting] allowed for me to skim through the necessary commits a lot quicker \dots and visually reduces the amount of clutter I had to look at.}''
+In a similar vein, participant \participant{J} commented:
+``\textit{[The highlighting] removed the obvious minor changes that I didn’t really need to look at.}''
 
 Meanwhile, in answering question B1, participants who used Intelligent History examined a mean of 15.6\% of the commit history for the \class{StreamsBuilder} class,
 whereas participants who did not use Intelligent History examined a mean of 33.3\% of the same commit history.
@@ -453,16 +481,25 @@ For question B2, the failure to reject the null hypothesis may be attributed to 
   \jira{KAFKA-7027:}{Add overloaded build method to StreamsBuilder (\#5437)} 
 \end{center}
 
-Hence, participants used to using version control tools for similar questions encountered in every day work would be able to quickly narrow down the commit needed to answer the question without requiring traversal of the file's commit history.
-Due to the nature of A1 and B2 and their answerability via other native features of IntelliJ, our samples may be insufficient for obtaining evidence to show a significant difference in commit history exploration efficiency between the group that does not use Intelligent History and the group that does use Intelligent History for questions that ask about specific sections of code from a Java class.
-Thus, based on our analysis of A2 and B1, we make the observation that participants who use Intelligent History with its commit highlighting feature look at a smaller proportion of commits from a file's commit history when answering questions related to
+Hence, participants familiar with using version control tools for similar questions encountered in every day work would be able to quickly narrow down the commit needed to answer the question without requiring traversal of the file's commit history.
+Due to the nature of A1 and B2 and the limited impact of commit highlighting on the participants' experience with answering these questions,
+our samples are insufficient for obtaining evidence to show a significant difference in commit history exploration efficiency between the group that does not use Intelligent History and the group that does use Intelligent History for questions that ask about specific sections of code from a Java class.
+
+Thus, based on our analysis of A2 and B1 where there was a significant difference in the proportion of commits examined by participants using Intelligent History, 
+we make the observation that participants who use Intelligent History with its commit highlighting feature look at a smaller proportion of commits from a file's commit history when answering questions related to
 identifying and finding meaningful source code changes over a broad commit history.
-Participant \participant{A} expresses a beneficial use case of commit history highlighting for reducing the number commits a software developer examines:
+In support of this observation, 
+participant \participant{A} expresses a beneficial use case of commit history highlighting for reducing the number commits a software developer examines:
 
 \begin{quote}
   If I was trying to get a sense of major changes in a file, like say there was an issue that came up in a file and I’m looking for where it could have gotten introduced, 
   then that [highlighting commits] would be very useful because it gets rid of all the changes that don’t matter. 
 \end{quote}
+
+\begin{summary}[RQ2]
+  Commit history highlighting can be efficient in helping software developers efficiently explore commit history for code rationale information by examining a smaller proportion of the commits in a file's commit history.
+  In particular, commit history highlighting makes identifying and searching for meaningful source code changes across a broad commit history more efficient but has less impact when trying to find rationale information for specific code segments in a file.
+\end{summary}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -470,18 +507,12 @@ Participant \participant{A} expresses a beneficial use case of commit history hi
 \label{subsec:RQ3}
 
 \RQ{3}{How useful is direct integration of issue information in the IDE for helping a developer search for code rationale information?}
+
 In our implementation of feature \feature{3}, we integrated a view of a Jira issue's title, description, reporter, assignee, priority,
 and metadata information related to the number of comments and linked issues to give the plugin user a glimpse or signal of how interesting a Jira issue might be for further examination.
 We found the utility of direct integration of issue information to be dependent on a participant's background with examing commits and issues,
 and the software history exploration approach they employ.
 The usefulness of direct integration of issue information is also dependent on what information is extracted from an issue and how it is presented in the \entity{IDE}.
-
-\begin{summary}[RQ3]
-  Direct integration of issue information helped participants contextualize source code changes and view more issues than without,
-  particularly when searching for interesting or meaningful changes across a file's commit history.
-  However, the utility of direct integration of issue information can be dependent on users' preferences preferences ond habits 
-  with regard to the content they prefer to see from issues and how they would like them to be presented.
-\end{summary}
 
 \subsubsection{Breadth of Information and Contextualization}
 
@@ -521,7 +552,7 @@ Perhaps unsurprisingly, none of the participants who favoured (\feature{3}) repo
 While we observed there to be some notable difference in the group that used Intelligent History for question B1 and the group that did not use Intelligent History for the same question,
 there is less notable difference with question B2.
 Hence, we could comment that the primary question responsible for this bias is question B1.
-Given the nature of B1, we find direct integration of Jira issue information within the \entity{IDE} to be useful for \dots broad search and exploration of a commit history.
+Given the nature of B1, we find direct integration of Jira issue information within the \entity{IDE} to be useful for broad search and exploration of a commit history.
 As participant \participant{E} stated:
 ``\textit{[The Jira issue integration] helps you contextualize the code change in a commit really quick.}''
 However, direct issue integration is potentially less useful for those with an approach based on skimming commit messages.
@@ -532,6 +563,10 @@ Two participants mentioned a preference to see the full Jira issue information c
 While \participant{F} commented that they were accustomed to viewing Jira issues in the browser \participants{F},
 \participant{D} stated that they had a preference to view all items associated with a Jira issue, including all linked issues and pull requests:
 ``\textit{When I’m looking at a Jira ticket, I look at everything associated with the ticket to try to get a much broader context.}''
+On the other hand,
+participant \participant{E} stated that they did not look at parts of an issue beyond the description and a few comments:
+``\textit{I wouldn’t bother that much with looking at the issue for other things like discussion, other than the description and perhaps the last two comments, 
+I wouldn’t look much further than that}.''
 We found there may be some limitations related to \emph{what} information was presented in the integrated view of the Jira issue in the \entity{IDE}
 and the personal preferences and habits of the user.
 
@@ -539,6 +574,13 @@ Similar in sentiment, participant \participant{G}, who favoured (\feature{3}), n
 was most helpful to them in the user study.
 \participant{G} observed that since some of the Jira issues included code fragments, it was difficult to read them in the \entity{IDE}.
 This indicates the presentation of the issue information may be an impediment to its utility.
+
+\begin{summary}[RQ3]
+  Direct integration of issue information helped participants contextualize source code changes and view more issues than without,
+  particularly when searching for interesting or meaningful changes across a file's commit history.
+  However, the utility of direct integration of issue information can be dependent on users' preferences preferences and habits 
+  with regard to the content they prefer to see from issues and how they would like them to be presented.
+\end{summary}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \endinput
