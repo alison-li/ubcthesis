@@ -73,7 +73,7 @@ As part of the semi-structured format of the study, we would ask follow-up quest
 For example, if the participant stated they had little experience with working in a project that used an issue tracking system (\entity{ITS}), we would ask the participant about how they typically find and obtain code rationale information.
 
 The interview sessions took place virtually over Zoom, where participants were asked to share their screen.
-We recorded all of the sessions for manual review and documented each session with a summary.
+We recorded all of the sessions and used the recordings to document each session with a summary.
 
 \subsection{Participants}
 
@@ -589,6 +589,60 @@ This indicates the presentation of the issue information may be an impediment to
   However, the utility of direct integration of issue information can be dependent on users' preferences preferences and habits 
   with regard to the content they prefer to see from issues and how they would like them to be presented.
 \end{summary}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Threats to Validity}
+
+\subsection{Construct Validity}
+
+The small range of the questions we asked is a threat to construct validity.
+Due to the laboratory setting of the user study and the time estimated for participants to perform environment setup,
+be introduced to the Apache Kafka project, Jira, the IntelliJ IDEA IDE, and the Intelligent History plugin,
+we restricted the number of questions asked to account for a total estimated session of 1 to 1.5 hours per participant.
+We formulated a small set of questions to relieve participants from a time limit and give them the freedom to explore the commit histories and examine commits at their own pace.
+
+Although the small range of questions allowed us to observe the participants closely for each question,
+we exclude other categories of questions and the ability to observe the consistency of the participants' commit history exploration strategies across a wider range of questions
+
+\subsection{Internal Validity}
+
+The presence of an observer in the user study sessions means the participants' behaviour, opinions, and feedback about the Intelligent History plugin are subject to the Hawthorne effect,
+which threatens internal validity.
+The presence of an observer could have caused participants to deviate from their regular work habits as the participants might have formed an expectation about how to behave or explore the commit history.
+We attempted to mitigate this effect by minimizing interjections and interaction with the participants during the sessions and allowing participants to self-report and provide feedback on their experience 
+participating in the user study during their follow-up interview.
+
+The introduction of the Intelligent History plugin to the participant could be a threat to internal validity.
+After being introduced to the features of Intelligent History, the participant could be biased to use or conduct themselves in the study a certain way.
+For example, toggling feature (\feature{1}) \textit{Highlight Important Changes} results in highlighting the commits in a commit history to distinguish less important commits from potentially more important commits.
+If we initially introduced Intelligent History to a participant for their first question set,
+and asked the participants to work on a second question set without Intelligent History,
+they may have tried to answer the questions in the same way they would have if they had access to Intelligent History.
+Consequently, in the follow-up interview, participants may have felt biased to feel a certain way about the plugin.
+
+We tried to mitigate bias in how a participant expects to use Intelligent History and the applicability of Intelligent History to any particular question set 
+by alternating the order of the questions each participant received and fixing the use of the plugin to the second question set that each participant receives.
+Though the participants might have felt biased after using the plugin,
+we would still be able to retain and collect data about how the participant approached exploring the commit history and answering the questions without being made aware of the plugin's features initially.
+
+The experience of the participants with regard to having worked on a project that uses an issue tracking system (\entity{ITS}) and closely associating issues to commits impacts internal validity.
+We tried to mitigate the impact of participant experience on internal validity by formulating questions that would require participants to justify their answers using source code and Jira issue information to
+encourage participants to view Jira issues.
+
+\subsection{External Validity}
+
+The sample size of 10 participants affects the generalizability of our results and is a threat to external validity.
+Collecting data for a larger sample size may lead to more robust conclusions about the relationship between a developer's experience with looking at issues and commits,
+the commit history exploration strategy or strategies they employ, and the approach they would prefer to navigating and searching a commit history.
+Nevertheless, a strength of our participant pool is representation as we obtained samples from 4 students and 6 full-time developers from different companies,
+representing a combination of participants from academia and industry.
+
+A field study to investigate and evaluate the performance of the approaches in Intelligent History might be needed to mitigate the threat to external validity.
+Rather than designing sets of questions pertaining to the commit history and issues available in one specific open-source repository,
+which was Apache Kafka in our user study,
+a field study to investigate how developers explore commit history with and without Intelligent History in the wild could lead to a more robust model for determining non-essential and essential commits,
+as well as gain a deeper understanding of how often developers use issues from an issue tracking system and how they prioritize the information in an issue.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \endinput
