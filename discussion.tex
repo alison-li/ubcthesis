@@ -45,9 +45,40 @@ commits in a commit history.
 
 \section{Code Rationale in Information Retrieval}
 
-The usability of issues for code rationale information retrieval needs to be improved.
+Our approach assumes a project uses Jira for tracking and managing issues and has
+a convention of explicitly referencing one Jira issue ID per commit.
+In an effort to reduce the distance between commits and issues in an \entity{IDE},
+our implementation in Intelligent History uses a regular expression pattern 
+to extract a Jira issue ID from a commit message title.
+However, we may wish to consider how we can adapt our technique for a wider range of
+issue tracking system (\entity{ITS}) beyond Jira.
 
-\FIXME{How well could the plugin perform without Jira?}
+Another concern about our approach is our reliance on issues
+as a source of code rationale information.
+This arose as a concern among two participants, who mentioned working within projects
+with commits that are not explicitly structured or associated with specific issues
+from an \entity{ITS} \participants{AH}.
+On how issues play a role in participant \participant{A}'s daily work, they said:
+
+\begin{quote}
+    I don’t actually typically look at issues. 
+    The issues aren’t generally helpful because a lot of the people on my team don’t really use Jira. 
+    It’s mostly my manager that uses Jira with the other managers. 
+    [The people on my team] get assigned stuff but they don’t really interact with the issue at all.
+\end{quote}
+
+Not only does the performance of our approach depend on the specific
+\entity{ITS} used and the practice of explicitly linking issues to commits,
+but also the availability of code rationale information in the issues themselves.
+As previously mentioned in \autoref{subsec:RQ3},
+participant \participant{E} raised a point about the discussion in an issue as difficult to grokk.
+Additionally, discussion about design, particularly in open-source projects,
+is highly distributed across commits, issues, and pull requests \cite{brunet_design_2014}.
+Participant \participant{J} mentioned:
+``\textit{Since each issue corresponded to a pull request, we usually put [rationale] information in the pull request. 
+The issue was just to explain the problem and the solution was in the pull request.}''
+Thus, we find that a direction for future work is to explore approaches for aggregating and pre-processing
+to improve the utility of an issue, and to present the aggregated or pre-processed information better in the \entity{IDE}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -70,12 +101,20 @@ such as by providing the metadata information upon a user hovering a commit.
 For the issue metadata information embedded in (\feature{3}) \textit{Show Jira Metadata},
 only two participants commented on using an issue's priority and other provided metrics added as part the presentation
 of a Jira issue in the \entity{IDE} to determine whether the issue was worth further investigation \participants{IJ}.
-Participant \participant{I} said: 
+Participant \participant{I} stated: 
 ``\textit{I liked how I was able to see the priority [of an issue] because if something has a higher priority, it usually involves heavier changes.}''
+Similarly, participant \participant{C} commented:
+``\textit{[The number of comments in an issue] might show you how active an issue is but the priority should be the main indicator.}''
+This indicates that developers may use certain aspects about an issue as a signal 
+for how meaningful a source code change might be and whether further reading into a change's associated issue
+could provide insight on the motivation behind the change.
 
-Rather than displaying this metadata information directly to the user,
+Rather than displaying the raw metadata information directly to the developer,
 a suggestion we make for future work is to explore how this metadata information
 can be used to measure the essentiality or non-essentiality of a commit.
+This could help inform us of how to improve the presentation of important
+commits, such as indicating the degree of importance for each commit 
+instead of a binary decision on a commit as trivial or not trivial.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \endinput
