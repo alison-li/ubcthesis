@@ -46,7 +46,7 @@ In particular, \emph{tangled changes} pose an obstacle to efficient software rev
 There exists a generally accepted principle that a commit should only contain changes for a single task.
 However, tangled changes refer to a set of changes for two or more tasks. 
 Murphy-Hill \etal \cite{murphy-hill_refactor_2012} found refactorings are often committed with changes for separate tasks. 
-From a study of five open-source Java projects, Herzig and Zeller \cite{herzig_tangled_2013} revealed up to 15\% of all bug fixes to consist of tangled changes and on average, at least 16.6\% of all source files are incorrectly associated with bug reports. 
+From a study of five open-source Java projects, Herzig and Zeller \cite{herzig_tangled_2013} revealed up to 15\% of all bug fixes to consist of tangled changes and on average, at least 16.5\% of all source files are incorrectly associated with bug reports. 
 To simplify the determination of a less important commit, we have chosen to implement Intelligent History to operate at the file-level by automating the determination of less important code changes made to a specific file. 
 For example, a commit that is present in the history for a single file $F$ may have modified multiple other files, and be present in the commit history for other files, but to the extent that $F$ is concerned, the commit may have only added a newline at the end of a file.
 
