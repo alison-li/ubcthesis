@@ -147,8 +147,8 @@ We anticipate this approach will make it more convenient for a developer to gain
 For example, with trivial commits de-emphasized in a file's commit history, a user might be able to see more clearly which commits introduced features in a file and which commits in between feature introductions were bug fixes or updates to a feature.
 A developer who is new to a particular section of the code base that the file belongs to could then gain an understanding of any trends or historical bugs in that file, or discussions from previous developers who might have foreseen future problems related to existing implementation in the file.
 
-To evaluate the effectiveness of our approach towards our hypothesis, we implement Intelligent History, a plugin for the IntelliJ IDEA \entity{IDE},
-and conduct a user study with 10 participants using Intelligent History to answer a series of questions.
+To evaluate the effectiveness of our approach towards our hypothesis, we present Intelligent History, a plugin for the IntelliJ IDEA \entity{IDE},
+and conduct a user study with 10 participants using Intelligent History to answer a series of code rationale information-finding questions.
 We targeted the following research questions:
 
 \begin{itemize}[leftmargin=*]
@@ -160,9 +160,12 @@ We targeted the following research questions:
 Based on the analysis of our data collected, \dots
 \FIXME{To be written later}.
 
-This thesis makes $N$ contributions:
+This thesis makes the following contributions:
 \begin{itemize}
-	\item \dots \FIXME{To be written later}
+	\item An approach to automatically distinguishing non-essential commits and reducing the distance between commits and issues in the \entity{IDE}, 
+		implemented as prototype tool called Intelligent History for IntelliJ IDEA.
+	\item A user study evaluating our approach through the examination of how software developers explore commit history and issues
+		for the purpose of finding information about the intent behind source code changes.
 \end{itemize}
 
 This thesis is structured as follows. 
