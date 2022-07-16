@@ -49,7 +49,7 @@ MINOR: Return correct instance of SessionWindowSerde (#5546)
 [DOCUMENTATION: 19, ANNOTATION: 0, IMPORT: 0, NEWLINE: 0, OTHER: 0]
 
 commit 35a0de32ee3823dfb548a1cd5d5faf4f7c99e4e0 1550768713 ----sp 
-KAFKA-6161 Add default implementation to close() and configure() for Serdes (#5348)                  
+KAFKA-6161 Add default implementation to close() and configure() for Serdes (#5348)
 [DOCUMENTATION: 0, ANNOTATION: 3, IMPORT: 0, NEWLINE: 1, OTHER: 0]
 
 commit 21cfd0b453c878780236f623249b3b5ddec52e6e 1584653355 ----sp 
@@ -170,7 +170,7 @@ KAFKA-7027: Add overloaded build method to StreamsBuilder (#5437)
 [DOCUMENTATION: 9, ANNOTATION: 0, IMPORT: 1, NEWLINE: 1, OTHER: 3]
 
 commit c19213ab4139aa1f56f89982448184a5c82f98a4 1533160878 ----sp
-KAFKA-6761: Construct Physical Plan using Graph, Reduce streams footprint part III (#5201)          
+KAFKA-6761: Construct Physical Plan using Graph, Reduce streams footprint part III (#5201)
 [DOCUMENTATION: 0, ANNOTATION: 0, IMPORT: 0, NEWLINE: 1, OTHER: 2]
 
 commit 3e64e5b9c03f13f58e6a049ff1fed039c6a15d69 1534294000 ----sp
@@ -274,7 +274,7 @@ KAFKA-12849: KIP-744 TaskMetadata ThreadMetadata StreamsMetadata as API (#10840)
 [DOCUMENTATION: 1, ANNOTATION: 0, IMPORT: 0, NEWLINE: 0, OTHER: 0]
 
 commit 908a6d2ad7807642b917231769c8d3b6a0c1ad16 1636572479 ----sp
-KAFKA-12648: introduce TopologyConfig and TaskConfig for topology-level overrides (#11272)          
+KAFKA-12648: introduce TopologyConfig and TaskConfig for topology-level overrides (#11272)
 [DOCUMENTATION: 0, ANNOTATION: 0, IMPORT: 1, NEWLINE: 2, OTHER: 11]
 
 commit fbe7fb941173c0907792a8b48e8e9122aabecbd8 1647483582 ----sp
@@ -283,86 +283,4 @@ KAFKA-9847: add config to set default store type (KIP-591) (#11705)
 \end{lstlisting}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Briefing and Setup Instructions}
-\label{sec:Briefing-and-Setup}
-
-\subsection{Briefing}
-\label{subsec:Briefing}
-
-Apache Kafka is an event streaming platform used to collect, process, and store streaming event data that has no discrete beginning or end, \eg real-time stock trades and social media feeds. 
-As part of Kafka’s contribution guidelines, a commit’s title/subject is usually of the form ``KAFKA-XXXX: Title,'' where ``KAFKA-XXXX'' is the relevant Jira issue ID and ``Title'' may be the Jira’s title or a more specific title describing the pull request itself. 
-For trivial cases where a Jira issue is not required, ``MINOR:'' or ``HOTFIX:'' is used as the commit’s title prefix.
-
-In this study, you will be exploring two Java classes and their commit histories from the Kafka project and answering a series of questions in a semi-structured interview format. The process of finding the answers to these questions can involve reading the commit messages for commits and visiting the relevant Jira issue on Apache’s Jira instance:
-\url{https://issues.apache.org/jira/browse/KAFKA-XXXX}.
-
-You may also see the acronym ``KIP'' referenced in some commits or Jira issues in Kafka. You may use and reference KIPs in your exploration and answers. These are Kafka Improvement Proposals (\entity{KIP}s) and can be found at: 
-\url{https://cwiki.apache.org/confluence/display/kafka/kafka+improvement+proposals}.
-
-\subsection{Setup Instructions}
-\label{sec:Setup-Instructions}
-
-\begin{enumerate}
-    \item Install IntelliJ IDEA, either Community (free) or Ultimate edition (if you already have a license). See: \url{https://www.jetbrains.com/idea}. If you already have IntelliJ installed, please confirm the version number. The version must be 2022.1 or greater, which you can verify by navigating to the top bar  ``Help'' → ``About'' (Windows) or top bar → ``IntelliJ IDEA'' → ``About IntelliJ IDEA'' (Mac).
-    \item Clone the Apache Kafka repository (roughly 200 MB on disk) or you can request the co-investigator to provide a ZIP of the repository: 
-    
-    \begin{center}
-        \code{git clone --single-branch --branch trunk https://github.com/apache/kafka.git}
-    \end{center}
-
-    \item Open the Kafka project in IntelliJ: ``File'' → ``Open''
-    \item To install the plugin, download \code{Intelligent.History-1.0.0.zip} at: \url{https://github.com/Alison-Li/intelligent-history/releases/tag/v1.0.0-eval}. Go to “Settings/Preferences” → ``Plugins'' → Gear Icon → ``Install Plugin from Disk\dots''
-    \item For the task involving the plugin: Go to ``Settings/Preferences'' → ``Tools'' → ``Intelligent History'' to configure the Jira settings. Alternatively, go to “Settings/Preferences’ → type ``Intelligent History'' in the search field to look for the plugin settings. The co-investigator will provide you with the information needed to fill in the fields.
-\end{enumerate}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Answer Key}
-\label{sec:Answer-Key}
-
-\begin{landscape}
-    \begin{table}[]
-        \centering
-        \footnotesize
-        \begin{tabular}{@{}cl@{}}
-        \toprule
-        Question & \multicolumn{1}{c}{Answer}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              \\ \midrule
-        A1       & \begin{tabular}[c]{@{}l@{}}The participant should find commit \commit{075bbcfe} and reference the Jira issue KAFKA-7523.\\ The change implicitly connects state stores to processors/transformers to avoid burdening the API user\\ with having to explicitly specify the stores.\end{tabular}                                                                                                                                                                                                                                                                                                                                                                   \\ \midrule
-        A2       & \begin{tabular}[c]{@{}l@{}}The participant should find commit \commit{f33e9a34} and reference the Jira issue KAFKA-4936.\\ The participant is expected to deliver a summary referencing the following motivation behind the change: \\ Allow users to dynamically choose which topic to send to at runtime, which can help remove the burden of having to update and restart KStreams applications. \end{tabular}                                                                                                                                                        \\ \midrule
-        B1       & \begin{tabular}[c]{@{}l@{}}Possible answers:\\ \commit{075b368d} (KAFKA-6958) allows the user to define custom names for processors with the KStreams DSL to make complex topologies easier to understand.\\ \commit{3e64e5b9} (KAFKA-6761) reduces the footprint of Kafka Streams, which reduces resource utilization. \\ \commit{c0353d8d} (KAFKA-6036) optimizes when to use logical materialization, related to reducing Kafka Streams footprint. \\ The participant should choose commits which improve some functionality in the \class{StreamsBuilder} class\\ and justify their answer by understanding commit author intent.\\ If the commit intends to fix a bug, the participant should describe the bug and how the commit resolved the bug.\\ The participant may not choose commits which only modify comments, fix typos, add newlines.\end{tabular} \\ \midrule
-        B2       & \begin{tabular}[c]{@{}l@{}}The participant should find commit \commit{e09d6d79} and reference the Jira issue KAFKA-7027.\\ The overloaded \code{build} method provides the option to accept user-defined configurations which have the required values for \\ building the Kafka topology.\\ This controls optimization by leaving the construction of the topology to the overloaded build \code{method}.\end{tabular}                                                                                                                                                                                                                                                        \\ \bottomrule
-        \end{tabular}
-    \end{table}
-\end{landscape}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Interview Questions}
-\label{sec:Interview-Questions}
-
-\begin{enumerate}
-    \item How many years of software development experience do you have, both professionally and non-professionally?
-    \item In your development experience, have you often looked at commits and the issues associated with them (e.g. GitHub issues/pull requests, Jira issues, Bugzilla, etc.)?
-        \begin{enumerate}
-            \item In what scenarios or kinds of tasks do you typically look at commits and issues?
-            \item How would you usually go about obtaining answers to questions about the intent behind the code you are reading?
-        \end{enumerate}
-    \item What types of code changes or content in diffs do you think are less useful or more useful when trying to understand why a developer wrote code a certain way or made a particular change? 
-        \begin{enumerate}
-            \item What changes in diffs do you think make a commit more important or less important to look at?
-        \end{enumerate}
-    \item For the task involving use of the plugin, which features did you find helpful/unhelpful to your exploration?
-    \item Are there any comments or feedback you would like to provide?
-\end{enumerate}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \endinput
-
-This would be any supporting material not central to the dissertation.
-For example:
-\begin{itemize}
-\item additional details of methodology and/or data;
-\item diagrams of specialized equipment developed.;
-\item copies of questionnaires and survey instruments.
-\end{itemize}
