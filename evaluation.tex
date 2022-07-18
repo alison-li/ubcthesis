@@ -162,20 +162,23 @@ As part of the semi-structured interview format, we would ask follow-up question
 and to probe further about unexpected responses \cite{shull_guide_2007}. 
 
 \begin{figure}[h]
-  \begin{enumerate}
-    \item How many years of software development experience do you have, both professionally and non-professionally?
-    \item In your development experience, have you often looked at commits and the issues associated with them (e.g. GitHub issues/pull requests, Jira issues, Bugzilla, etc.)?
-        \begin{enumerate}
-            \item In what scenarios or kinds of tasks do you typically look at commits and issues?
-            \item How would you usually go about obtaining answers to questions about the intent behind the code you are reading?
-        \end{enumerate}
-    \item What types of code changes or content in diffs do you think are less useful or more useful when trying to understand why a developer wrote code a certain way or made a particular change? 
-        \begin{enumerate}
-            \item What changes in diffs do you think make a commit more important or less important to look at?
-        \end{enumerate}
-    \item For the task involving use of the plugin, which features did you find helpful/unhelpful to your exploration?
-    \item Are there any comments or feedback you would like to provide?
-  \end{enumerate}
+  \begin{mdframed}
+    \footnotesize
+    \begin{enumerate}
+      \item How many years of software development experience do you have, both professionally and non-professionally?
+      \item In your development experience, have you often looked at commits and the issues associated with them (e.g. GitHub issues/pull requests, Jira issues, Bugzilla, etc.)?
+          \begin{enumerate}
+              \item In what scenarios or kinds of tasks do you typically look at commits and issues?
+              \item How would you usually go about obtaining answers to questions about the intent behind the code you are reading?
+          \end{enumerate}
+      \item What types of code changes or content in diffs do you think are less useful or more useful when trying to understand why a developer wrote code a certain way or made a particular change? 
+          \begin{enumerate}
+              \item What changes in diffs do you think make a commit more important or less important to look at?
+          \end{enumerate}
+      \item For the task involving use of the plugin, which features did you find helpful/unhelpful to your exploration?
+      \item Are there any comments or feedback you would like to provide?
+    \end{enumerate}
+\end{mdframed}
   \caption{The interview questions asked in the semi-structured interview part of the user study.}
   \label{fig:Interview-Questions}
 \end{figure}
@@ -267,14 +270,53 @@ for each participant's session to visualize how they explored commit history to 
 and the impact of Intelligent History on their exploration.
 We regard these graphs as commit history exploration graphs and constructed a set of these graphs for each participant, 
 one for each question the participant worked on.
-Nodes in the graph are represented by commit hashes and Jira issue IDs while edges express the participant's movement from examining one commit to another.
-Bold commit hashes denote commits that would be highlighted by Intelligent History, while light hashes indicate non-highlighted commits.
+We provide a sample of two commit history exploration graphs we constructed to illustrate 
+participants \participant{F} and \participant{H}’s exploration to answer question B1 
+from \autoref{tab:Question-Sets} in \autoref{fig:Exploration-Graphs}.
+Nodes in the graph are represented by commit hashes and Jira issue IDs, 
+while edges express the participant's movement from examining one commit to another.
+Bold commit hashes denote commits that would be highlighted by Intelligent History, 
+while light hashes indicate non-highlighted commits.
 Italicized commit hashes are those for which the participant was heard reading or skimming the commit message subject aloud, 
 but did not investigate further by explicitly selecting the commit for further viewing.
 We use a green checkmark to signal when a participant provided a sufficient answer to the question 
 and a globe icon to show when a participant made an application switch between the \entity{IDE} 
 and their browser to further examine a Jira issue.
-\FIXME{Need an example of graph here.}
+
+\begin{figure}[h]
+  \centering%
+  \subfloat[\centering \participant{B}'s commit history exploration in answering question B1 without Intelligent History. \label{subfig:Exploration-Graph-A}]{{\includegraphics[width=5.5cm]{./images/graph-sample-A.png}}}%
+  \qquad
+  \subfloat[\centering \participant{H}'s commit history exploration in answering question B1 without Intelligent History. \label{subfig:Exploration-Graph-B}]{{\includegraphics[width=5.5cm]{./images/graph-sample-B.png}}}%
+  \caption{
+    Commit history exploration graphs.
+  }%
+  \label{fig:Exploration-Graphs}%
+\end{figure}
+
+As a demonstration of how we devised categories for the participants' exhibited approaches for commit history exploration, 
+\autoref{subfig:Exploration-Graph-A} illustrates the participant \participant{B}'s approach to finding 
+two meaningful commits as per question B1 without using Intelligent History.
+The commit history exploration graph for \participant{B} shows they examined 16 out of 45 commits.
+Participant \participant{B} would examine a few commits at a time and 
+backtrack to previously seen commits after gaining a broad sense of the changes made over time to the file.
+We characterize the structure of the graph for \participant{B} as \textit{cyclic and backtracking}
+to describe the history exploration strategy they predominantly exhibited.
+Meanwhile, the commit history graph for \participant{H} shown in \autoref{subfig:Exploration-Graph-B}, 
+who answered the same question without Intelligent History, shows they examined 10 out of 45 commits.
+Participant \participant{H} exhibited an approach where they examined each commit sequentially in chronological order.
+We characterize the structure of the graph for \participant{H} and their commit history exploration approach as \textit{linear} 
+to describe the participant's sequential or chronological exploration of the commit history.
+
+\FIXME{Describe particular rules for categorization.}
+We determined a participant's commit history exploration approach based on the overall structure 
+of the commit history graphs that we produced for each participant and observation from the session recordings.
+A participant's commit history exploration approach is categorized as one of:
+\textit{linear} for directed acyclic graphs, 
+\textit{cyclic and backtracking} for directed cyclic graphs, 
+or \textit{commit message skimming} for graphs where, on average, at least half of the nodes were italicized commit hashes.
+When interviewed about comparing their experience with and without using Intelligent History,
+participants typically stated the feature of Intelligent History to which they responded most positively.
 
 To analyze the participants' responses to the open-ended, semi-structured interview questions, 
 we create a flowchart to illustrate the relationship between each participant's experience with looking at issues and commits,
@@ -283,14 +325,6 @@ and the features of Intelligent History for which they expressed the most enthus
 In the interviews, we asked participants how often they looked at commits and issues 
 and categorized their responses as: 
 \textit{often}, \textit{sometimes}, or \textit{rarely}.
-We determined a participant's commit history exploration approach based on the overall structure 
-of the commit history graphs that we produced for each participant and observation from the session recordings.
-The commit history exploration approach is categorized as:
-\textit{linear} for directed acyclic graphs, 
-\textit{cyclic and backtracking} for directed cyclic graphs, 
-or \textit{commit message skimming} for graphs where, on average, at least half of the nodes were italicized commit hashes.
-When interviewed about comparing their experience with and without using Intelligent History,
-participants typically stated the feature of Intelligent History to which they responded most positively.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
@@ -390,34 +424,6 @@ the group that does not use Intelligent History and the group that does use Inte
 We described constructing commit history exploration graphs in \autoref{subsec:Analysis}. 
 Each participant tended to use the same commit history exploration strategy throughout the study, 
 irrespective of the nature of the question asked and the presence of Intelligent History.
-A sample of two commit history exploration graphs we constructed to illustrate 
-participants \participant{F} and \participant{H}’s exploration to answer question B1 
-from \autoref{tab:Question-Sets} is shown in \autoref{fig:Exploration-Graphs}.
-
-\begin{figure}[h]
-  \centering%
-  \subfloat[\centering \participant{B}'s commit history exploration in answering question B1 without Intelligent History. \label{subfig:Exploration-Graph-A}]{{\includegraphics[width=5.5cm]{./images/graph-sample-A.png}}}%
-  \qquad
-  \subfloat[\centering \participant{H}'s commit history exploration in answering question B1 without Intelligent History. \label{subfig:Exploration-Graph-B}]{{\includegraphics[width=5.5cm]{./images/graph-sample-B.png}}}%
-  \caption{
-    Commit history exploration graphs.
-  }%
-  \label{fig:Exploration-Graphs}%
-\end{figure}
-
-As a demonstration of how we devised themes for the participants' exhibited approaches for commit history exploration, 
-\autoref{subfig:Exploration-Graph-A} illustrates the participant \participant{B}'s approach to finding 
-two meaningful commits as per question B1 without using Intelligent History.
-The commit history exploration graph for \participant{B} shows they examined 16 out of 45 commits.
-Participant \participant{B} would examine a few commits at a time and 
-backtrack to previously seen commits after gaining a broad sense of the changes made over time to the file.
-We characterize the structure of the graph for \participant{B} as \textit{cyclic and backtracking}
-to describe the history exploration strategy they predominantly exhibited.
-Meanwhile, the commit history graph for \participant{H} shown in \autoref{subfig:Exploration-Graph-B}, 
-who answered the same question without Intelligent History, shows they examined 10 out of 45 commits.
-Participant \participant{H} exhibited an approach where they examined each commit sequentially in chronological order.
-We characterize the structure of the graph for \participant{H} and their commit history exploration approach as \textit{linear} 
-to describe the participant's sequential or chronological exploration of the commit history.
 
 The flowchart showing the relationship between each participant's background related to looking at commits and issues,
 the commit history exploration approach they used, and their preferred features 
