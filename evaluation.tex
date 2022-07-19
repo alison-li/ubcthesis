@@ -555,9 +555,9 @@ we observe a degree of overlap between the commits that participants choose to f
 
 When participants had access to Intelligent History,
 nearly 100.0\% of the commits they examined for a question were highlighted commits.
-For A1, a mean of 100.0\% of the commits that particpants who used Intelligent History examined were highlighted commits.
-For A2, the mean was 97.1\% of the commits.
-Similarly for B1 and B2, a mean of 100.0\% of the commits that participants who used Intelligent History examined were highlighted commits.
+For A1, a mean of 100.0\% of the commits that particpants who used Intelligent History examined were highlighted commits (see \autoref{tab:Results-Quantitative-BA}).
+For A2, the mean was 97.1\% of the commits (see \autoref{tab:Results-Quantitative-BA}).
+Similarly for B1 and B2, a mean of 100.0\% of the commits that participants who used Intelligent History examined were highlighted commits (see \autoref{tab:Results-Quantitative-AB}).
 According to these results, we make the observation that highlighted commits heavily 
 influenced how participants selected commits from the commit history for further investigation, as
 nearly all of the commits that participants chose to inspect from the commit history were commits that Intelligent History highlighted.
@@ -586,14 +586,15 @@ noting that the faded commits ``\textit{do not seem to be useful for this file [
 
 \RQ{2}{Does highlighting important commits help software developers explore a file’s revision history more efficiently?}
 
-We define the measure for efficiency as the proportion of commits from a file's commit history that a developer must examine before obtaining the answer to questions about the intent behind code changes.
+We define the measure for efficiency as the proportion of commits from a file's commit history 
+that a developer must examine before obtaining the answer to questions about the intent behind code changes.
 We found highlighting to distinguish non-essential commits from other commits in a history
-did lead to a reduced percentage of commits examined when exploring a file's commit history 
+for questions A2 and B1 is accompanied by a reduced percentage of commits examined when exploring a file's commit history 
 for questions related to identifying meaningful source changes 
 and the rationale behind those changes when the developer must navigate a broad commit history for a file. 
-This is evidenced by the participants who used Intelligent History to answer questions A2 and B1 
-as they examined a significantly smaller proportion of a given file's commit history 
-to obtain the code ratianale information needed for answering the questions asked in the user study.
+However, for questions A1 and B2 which relate to finding the intent behind fragments of source code,
+we have insufficient evidence to show that there is a significant difference
+between the participant group that had highlighted commits and the group that did not have highlighted commits.
 
 \subsubsection{Navigating a Broad Commit History}
 
@@ -602,12 +603,8 @@ where there was a significant difference between
 the mean proportion of commits examined between the group of participants who used Intelligent History with a question 
 and the group who did not use Intelligent History.
 
-For question A2, participants who used Intelligent History examined a mean of 19.9\% of the commit history for the \class{Topology} class,
-while participants who did not use Intelligent History examined a mean of 39.1\% of the same commit history. 
-% Moreover, of the participants who used Intelligent History and the proportion of commits they examined,
-% a mean of 97.1\% of the commits they examined were highlighted commits.
-% For the group that did not use Intelligent History, a mean of 76.1\% of the commits they examined 
-% would have been highlighted commits under feature (\feature{1}) \textit{Highlight Important Changes} from Intelligent History.
+For question A2, participants who used Intelligent History examined a mean of 19.9\% of the commit history for the \class{Topology} class (see \autoref{tab:Results-Quantitative-BA}),
+while participants who did not use Intelligent History examined a mean of 39.1\% of the same commit history (see \autoref{tab:Results-Quantitative-AB}). 
 To answer A2, participants needed to find a commit that introduced further \code{addSink} method overloads later in the commit history as participants were informed that the initial commit in the commit history for the \class{Topology} class introduced a set of overloaded \code{addSink} methods to begin with.
 The specific commit which does this is commit \commitref{f33e9a34}{https://github.com/apache/kafka/commit/f33e9a346e22e29bb66e0ea0f3442903d136ca67} with the following commit message title:
 
@@ -616,16 +613,18 @@ The specific commit which does this is commit \commitref{f33e9a34}{https://githu
 \end{center}
 
 Participants were not expected to be able to identify this commit based on its commit message title alone.
-However, participants intuited to locate a particular commit that introduced further overloads later in the history 
+However, participants were informed that the first commit in the \class{Topology} class introduced a series of \class{addSink} overloads already.
+Hence, participants were encouraged to locate a particular commit that introduced overloads later in the history 
 to understand why additional overloads were introduced to the \class{Topology} class.
 This could be done through examining diffs of potentially interesting commits for commits 
 that were made after the initial commit in the \class{StreamsBuilder} commit history.
 
 Interestingly, all of the participants who used Intelligent History to answer question set A 
-responded most positively to feature (\feature{1}) from Intelligent History \participants{BDFHJ} 
+responded most positively to feature (\feature{1}) \textit{Highlight Important Changes} from Intelligent History \participants{BDFHJ} 
 (see \autoref{tab:Participants} and \autoref{tab:Flow-Chart-Tabular}).
 This could have been because the group of participants who answered question set B first without Intelligent History 
-and question set A after with Intelligent History would be able to reflect on how Intelligent History could have been useful for the other question set.
+and question set A after with Intelligent History would be able to reflect on how Intelligent History 
+could have been useful for the question which they did not Intelligent History with.
 Participants commented on the utility of commit history highlighting for focusing their attention on commits that were highlighted 
 and ignoring non-highlighted commits, which they regarded as ``irrelevant'' or ``minor'' \participants{BF}.
 Participant \participant{B} said:
@@ -656,10 +655,8 @@ Participant \participant{D} mentioned:
 In a similar vein, participant \participant{J} commented:
 ``\textit{[The highlighting] removed the obvious minor changes that I didn’t really need to look at.}''
 
-Meanwhile, in answering question B1, participants who used Intelligent History examined a mean of 15.6\% of the commit history for the \class{StreamsBuilder} class,
-whereas participants who did not use Intelligent History examined a mean of 33.3\% of the same commit history.
-% Of the commits that the group who used Intelligent History examined for answering B1, a mean of 100.0\% of the commits were highlighted commits.
-% For the group who did not use Intelligent history to answer B1, a mean of 51.3\% of the commits they examined would have been highlighted commits if they used Intelligent History.
+Meanwhile, in answering question B1, participants who used Intelligent History examined a mean of 15.6\% of the commit history for the \class{StreamsBuilder} class (see \autoref{tab:Results-Quantitative-AB}),
+whereas participants who did not use Intelligent History examined a mean of 33.3\% of the same commit history (see \autoref{tab:Results-Quantitative-BA}).
 Question B1 necessitated for the participants to examine commits and diffs in the \class{StreamsBuilder} commit history to try to identify meaningful source code changes that were made to the class.
 We clarified a meaningful source code change to be a commit that improves some functionality or behaviour in the class and expected participants to utilize the diffs and intent of a change's author to justify their answer.
 Despite the group of participants who used Intelligent History to answer B2 looking at less than half the proportion of commits that the group who did not use Intelligent History looked at (15.6\% compared to 33.3\%),
@@ -763,10 +760,10 @@ This is because B1 requires participants to examine the diffs of commits to ensu
 that comply with the criteria of improving some functionality or behaviour in the \class{StreamsBuilder} class.
 Participants were also asked to justify their answer by finding supporting evidence for the commit author's intent behind their change.
 
-The participant group who did not use Intelligent History with B1 had a mean number of application switches of 2.0,
-while the group who did use Intelligent History had a mean number of application switches of 0.8.
-The group who did not use Intelligent History with B1 viewed a mean of 2.0 Jira issues,
-while the group who did use Intelligent History with B1 viewed a mean of 3.2 Jira issues.
+The participant group who did not use Intelligent History with B1 had a mean number of application switches of 2.0 (see \autoref{tab:Results-Quantitative-BA}),
+while the group who did use Intelligent History with B1 had a mean number of application switches of 0.8 (see \autoref{tab:Results-Quantitative-AB}).
+The group who did not use Intelligent History with B1 viewed a mean of 2.0 Jira issues (see \autoref{tab:Results-Quantitative-BA}),
+while the group who did use Intelligent History with B1 viewed a mean of 3.2 Jira issues (see \autoref{tab:Results-Quantitative-AB}).
 We observe that participants who used Intelligent History for locating meaningful source code changes and finding the code rationale behind the changes
 were able to view more Jira issues with slightly less application switches than participants who did not use Intelligent History for the same task.
 
