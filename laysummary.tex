@@ -11,6 +11,18 @@
 
 \chapter{Lay Summary}
 
-This thesis investigates whether the automatic detection of important information in a 
-software system's history can help software developers to better answer 
-questions about motivation behind code.
+This thesis investigates how identifying non-important and important 
+revisions in a software system's revision history can help 
+software developers to better answer questions about the motivation behind code.
+Developers also may use issues, which are peripheral artifacts tied to revisions, 
+as a source of code rationale information.
+We introduce a plugin that consists of two approaches to address this.
+First, the approach uses the lines of code changes in a revision
+to determine if the revision solely contains code changes that the developer
+might consider as non-essential.
+Second, the approach attempts to reduce context switching between an \entity{IDE}
+and an application for viewing issue information, providing the developer with
+better access to an issue along with other metrics about the issue.
+To evaluate the plugin, we deployed a user study consisting of an
+observational study and a semi-structured interview.
+We collected data from a total of 10 software developers.

@@ -9,29 +9,38 @@
 % There is a single scholarly abstract for the entire work, and it must not exceed 350 words in length.
 
 Software developers traverse several commits and issues from issue tracking systems (\entity{ITS})
-when exploring software revision history in order to unearth questions about intent and rationale behind presently written code.
-This exploration of revision history and issues results in a cognitive and temporal burden as developers
-switch back-and-forth between their \entity{IDE}s and a project's \entity{ITS} to locate code rationale information
+when exploring software revision history in order to unearth questions about the rationale behind presently written code.
+This exploration results in a cognitive and temporal burden as developers
+context switch between their \entity{IDE}s and a project's \entity{ITS} to locate code rationale information
 associated with each commit.
-We hypothesize identifying important commits automatically and providing integrated access between commit and issue information could help a developer more effectively access the rationale behind code.
-To reduce the cognitive and temporal costs of software revision history exploration,
-we introduce an approach using regular expression patterns to reducing the search space of commits in a revision history to help
-signal to a developer beforehand which commits in a history may be worth further investigating.
-Additionally, our approach minimizes the distance between a developer's \entity{IDE} and relevant issues from an \entity{ITS}
+To reduce the costs of software revision history exploration,
+we introduce an approach using regular expression patterns to reduce the search space of commits in a revision history to signal to a developer which commits in a history merit further investigation.
+Additionally, our approach minimizes the distance between a developer's \entity{IDE} and issues from an \entity{ITS}
 by directly integrating issue information in the same context.
 We implemented these techniques in Intelligent History, a plugin for the IntelliJ IDEA \entity{IDE}.
-To evaluate the plugin, we conducted a laboratory user study in the form of a semi-structured interview and 
-recruited 10 participants, of which 6 were professional developers and 4 were students.
-We asked two sets of questions related to the intent behind code, requring the participants to explore of 
-commit histories found in the open-source Apache Kafka project.
+To evaluate the plugin, we conducted a user study consisting of an observational 
+study followed by a semi-structured interview and recruited 10 software developers.
+We asked two sets of questions related to the intent behind source code, requring the participants to explore 
+commit histories for two Java classes from the open-source Apache Kafka project.
 We also conduct a semi-structured interview on the participants' experiences with examining issues and commits 
 and their use of the plugin in the experiment.
-The results from our analysis shows that: \dots
+The results from our analysis shows that:
+(1) there was overlap between at least half of the commits
+that participants examined without Intelligent History and the commits that Intelligent History
+highlighted; (2) participants who used Intelligent History examined significantly
+less commits than participants who did not use Intelligent History;
+and (3) direct integration of issue information in the \entity{IDE}
+with Intelligent History might support developers who employ a commit history exploration approach
+we describe as \textit{linear} or \textit{cyclic and backtracking} to contextualize
+source code changes quickly and view slightly more issues than if they did not have
+direct issue integration.
+Our analysis demonstrates promise for the design and approach in Intelligent History
+for supporting developers in more effectively exploring a commit history to answer code rationale questions.
 
 % Consider placing version information if you circulate multiple drafts
-\vfill
-\begin{center}
-\begin{sf}
-\fbox{Revision: \today}
-\end{sf}
-\end{center}
+% \vfill
+% \begin{center}
+% \begin{sf}
+% \fbox{Revision: \today}
+% \end{sf}
+% \end{center}

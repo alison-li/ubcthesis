@@ -14,7 +14,7 @@ In further agreement, LaToza and Myers unearth code rationale as the single most
 Code rationale includes questions not clearly answered by examining code itself, such as algorithm choice, optimization choice, and hidden criteria that motivate design choices \cite{latoza_hard-answer_2010}. 
 One common information source LaToza \etal report on is colleagues. 
 However, the practice of seeking knowledgeable colleagues is challenging in projects experiencing turnover. 
-In the context of colleague turnover, LaToza \etal 's assertion of the existence of a quintessential ``team historian'' in a software development team \cite{latoza_maintaining_2006} becomes wishful thinking:
+In the context of colleague turnover, LaToza et al.'s assertion of the existence of a quintessential ``team historian'' in a software development team \cite{latoza_maintaining_2006} becomes wishful thinking:
 
 \begin{quote}
 Almost all teams have a team historian who is the go-to person for questions about the
@@ -47,7 +47,7 @@ For example, \entity{git} ``blame'' \cite{gitblame}, graphical user interfaces s
 Popular editors like Visual Studio Code \cite{vscode}, Eclipse \cite{eclipse}, and IntelliJ IDEA \cite{intellij} have native Git integrations and plugins that make the usage of Git more convenient and thereby make it easier to examine commits in a project's history. 
 However, to the best of our knowledge, none of these tools provide support for easily gaining a synthesized view of the contents in a commit and the Jira information associated with a commit.
 
-Despite a wealth of tools supporting Git integration, Codoban \etal's survey of 217 developers found 47\% of respondents reporting the high volume of commits in a project to be a challenge of navigating commit history \cite{codoban_software_2015}. 
+Despite a wealth of tools supporting Git integration, Codoban et al.'s survey of 217 developers found 47\% of respondents reporting the high volume of commits in a project to be a challenge of navigating commit history \cite{codoban_software_2015}. 
 Noise \eg white spaces, line-endings, tangled commits where a commit has unrelated changes, \etc in diffs between commits make software history exploration inefficient. 
 Ultimately, a developer still must manually identify meaningful commits, visit and read through the referenced issue, and maintain a mental model or narrative the developer constructs through a process of viewing code changes and keeping up with associated discussions that could provide the motivation for a code modification. 
 
@@ -157,8 +157,20 @@ We targeted the following research questions:
     \item[] \textbf{Research Question 3 (\entity{RQ3}):} \textit{How useful is direct integration of issue information in the IDE for helping a developer search for code rationale information?}
 \end{itemize}
 
-Based on the analysis of our data collected, \dots
-\FIXME{To be written later}.
+Our findings show that Intelligent History is able to highlight at least half of
+the commits that participants examine, showing promising performance for
+an automatic approach to distinguish non-trivial commits from potentially
+more meaningful commits based on regular expression patterns for heuristics.
+We also observe that participants who used Intelligent History examined significantly
+less commits than participants who did not use Intelligent History.
+Finally, we found that direct integration of issue information in the \entity{IDE}
+with Intelligent History might support developers who employ a commit history exploration approach
+we describe as \textit{linear} or \textit{cyclic and backtracking} to contextualize
+source code changes quickly and view slightly more issues than if they did not have
+direct issue integration. 
+However, the utility of direct issue integration remains to be explored with
+regard to \emph{what} information should be extracted from an issue
+and \emph{how} the information can be better presented in the \entity{IDE}.
 
 This thesis makes the following contributions:
 \begin{itemize}
@@ -170,9 +182,10 @@ This thesis makes the following contributions:
 
 This thesis is structured as follows. 
 \autoref{ch:Related-Work} contextualizes the motivation behind this thesis and its contributions through related work. 
-\autoref{ch:Intelligent-History} describes the development of the tool through our developed heuristics, its design, and the predictions we make about the questions the tool is effective at answering. 
-\autoref{ch:Evaluation} details the evaluation of Intelligent History and the threats to validty.
-\autoref{ch:Discussion} explores the implications and limitations of our findings and suggestions for future work.
+\autoref{ch:Intelligent-History} describes the development and implementation of the tool through our formulated heuristics, 
+its design motivations, and the predictions we make about the questions the tool is effective at answering. 
+\autoref{ch:Evaluation} details the evaluation of Intelligent History through a user study and the threats to validity of our results.
+\autoref{ch:Discussion} discusses the implications and limitations of our findings and suggestions for future work.
 \autoref{ch:Conclusion} concludes the thesis.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
