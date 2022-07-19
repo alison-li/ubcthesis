@@ -160,7 +160,8 @@ The second part of the session consisted of asking a series of open-ended interv
 the participant's background with respect to software development and experience in examining commits and issues from an issue tracking system.
 We also asked participants to compare their experience in completing the question sets without and with the use of Intelligent History.
 The interview questions are available in \autoref{fig:Interview-Questions}.
-As part of the semi-structured interview format, we would ask follow-up questions based on the participant's responses for further clarification 
+As part of the semi-structured interview format, 
+we would ask follow-up questions based on the participant's responses for further clarification 
 and to probe further about unexpected responses \cite{shull_guide_2007}. 
 
 \begin{figure}[h]
@@ -842,7 +843,14 @@ We formulated small sets of questions to relieve participants from a time limit
 and give them the freedom to explore the commit histories, inspect individual commits, and read Jira issues at their own pace.
 Although the small quantity of questions allowed us to observe the participants closely for each information-finding question,
 we risk the ability to observe the consistency of the participants' commit history exploration strategies
- across larger sets of questions to use without and with Intelligent History.
+across larger sets of questions to use without and with Intelligent History.
+
+The realism of the questions we asked also threatens construct validity.
+The questions we formulated in A1, A2, B1, and B2 and the commit history exploration 
+they require may not be reflective of the tasks software developers perform in practice.
+These questions or the activities required to answer them would typically be
+asked or performed in the context of a larger goal, 
+such as tracing the origin of a bug or seeking the introduction of a specific feature.
 
 \subsection{Internal Validity}
 
@@ -855,7 +863,8 @@ We attempted to mitigate this effect by minimizing observer interjections during
 though prior to the study, participants were encouraged to think aloud to describe their strategies 
 to finding the information necessary to answer the questions.
 We also provided participants with the opportunity to self-report, clarify their actions, 
-and provide feedback on their experience with participating in the user study during their follow-up interviews.
+and provide feedback on their experience with participating in the user study during the semi-structured interview
+portion of the user study.
 
 The introduction of the Intelligent History plugin to the participant could be a threat to internal validity.
 After being introduced to the features of Intelligent History, 
@@ -865,7 +874,8 @@ results in highlighting the commits in a commit history to distinguish less impo
 If we initially introduced Intelligent History to a participant for their first question set,
 and asked the participants to work on a second question set without Intelligent History,
 they may have tried to answer the questions in the same way they would have if they had access to Intelligent History.
-Consequently, in the follow-up interview, participants may have felt biased to feel a certain way about the plugin.
+Consequently, in the semi-structured interview part of the study, 
+participants may have felt biased to feel a certain way about the plugin.
 
 We tried to mitigate bias in how a participant expects to use Intelligent History 
 and the utility of Intelligent History to a particular question set 
@@ -892,8 +902,8 @@ Collecting data for a larger sample size may lead to more robust conclusions abo
 between a developer's experience with looking at issues and commits,
 the commit history exploration strategy or strategies they employ, 
 and the aspects of Intelligent History they found to be most useful.
-Nevertheless, a strength of our participant pool is representation as 
-we obtained samples from 4 students and 6 professional developers from different companies,
+Nevertheless, a strength of our participant pool is representation. 
+We obtained samples from 4 students and 6 professional developers from different companies,
 representing a combination of participants from academia and industry.
 
 A field study to investigate and evaluate the performance of the approaches in Intelligent History might also be needed to improve generalizability.
