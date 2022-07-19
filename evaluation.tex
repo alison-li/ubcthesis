@@ -53,13 +53,15 @@ The briefing for the study and the setup instructions can be found in Appendix \
 We expected the participants to interact with commit and issue information 
 found in the commit history in order to be able to answer these questions.
 
+\subsection{Observational Study}
+
 The observational study involved having participants explore the commit history of two Java classes 
 from the Apache Kafka project in the IntelliJ IDEA \entity{IDE} 
 to find answers to questions related to motivation and rationale behind changes in the classes.
 Apache Kafka is an event streaming platform used to collect, process, and store streaming event data.
 We chose to use Apache Kafka because the project's contribution guidelines mandates that
-each commit's message must be prefixed with a Jira issue ID, of the form ``KAFKA-XXXX,''
-excluding minor commits prefixed with ``MINOR'' or hotfixes prefixed with ``HOTFIX.''
+each commit's message must be prefixed with a Jira issue ID, of the form \issue{KAFKA-XXXX},
+excluding minor commits prefixed with \issue{MINOR} or hotfixes prefixed with \issue{HOTFIX}.
 This convention in Apache Kafka will allow the user to exercise all of the features of Intelligent History
 as meaningful commits will generally be associated with a Jira issue in the Apache Kafka project.
 
@@ -69,8 +71,8 @@ and changes that impact the public Kafka \entity{API}s.
 Commits in the Apache Kafka repository that include changes that are part of \entity{KIP}s will
 reference them in their commit messages.
 \entity{KIP}s typically have a section titled ``Motivation,''
-which can help participants who may be struggling to find indications of code rationale information
-in the commit history.
+which can help participants since our observational study will use the commit history 
+in Apache Kafka will involve asking the participants to find code rationale information.
 
 The observational part of the user study session consists of 
 asking the participants questions about two Java classes from Apache Kafka.
@@ -78,10 +80,32 @@ The questions are presented as A1, A2, B1, and B2 in \autoref{tab:Question-Sets}
 Questions A1 and A2 are from set A, while questions B1 and B2 are from set B.
 Set A asks about the \class{Topology} class from Apache Kafka and 
 set B asks about the \class{StreamsBuilder} class from Apache Kafka.
+The \class{Topology} class for set A contains 22 commits and the \class{StreamsBuilder} class for set B contains 45 commits.
+The questions are not timed and participants we allow participants to explore the commit history and read Jira issues at their own pace.
+We limit the number of questions to two questions per class based on the number of commits in each class' commit history and 
+to accomodate keeping the estimated duration of the study as a laboratory experiment within a reasonable amount of time.
+
 All questions require the participant to explore and locate particular commits or changes 
-in a Java class' commit history to try to find code rationale information.
-We expect the participant to inspect a commit's full message,
+from a Java class' commit history to try to find code rationale information that can
+help them formulate an answer to each question.
+For each question, we expect the participant to inspect a commit's full message,
 diffs, and any relevant Jira issues to be able to answer the questions.
+For example, to answer A2, participants must find a commit that introduced further \code{addSink} method overloads 
+later in the commit history to be able to find the intent behind the decision.
+The commit which does this is \commitref{f33e9a34}{https://github.com/apache/kafka/commit/f33e9a346e22e29bb66e0ea0f3442903d136ca67} 
+and has the following commit message title:
+
+\begin{center}
+  \jira{KAFKA-4936:}{Add dynamic routing in Streams (\#5018)} 
+\end{center}
+
+Participants are not expected to be able to identify this commit based on the commit message title alone.
+However, participants will be informed that the first commit in the \class{Topology} class introduced a series of \code{addSink} overloads already.
+Participants then might strategize by examining the diffs of commits
+that were made after the first commit in the \class{StreamsBuilder} commit history 
+that introduced an initial set of overloaded \code{addSink} methods.
+To find the intent behind this addition of methods,
+the participant would need to read the referenced Jira issue \issue{KAFKA-4936}.
 In cases where a Jira issue references a Kafka Improvement Proposal (\entity{KIP}), 
 we allow the participant to visit these \entity{KIP}s in the browser.
 
@@ -119,12 +143,6 @@ and set A to complete with the plugin.
 We swapped the order of the sets for the groups 
 to observe and collect data about the performance of Intelligent History for each set.
 
-The \class{Topology} class for set A contains 22 commits and the \class{StreamsBuilder} class for set B contains 45 commits.
-\FIXME{Give the reader a better sense of what the participant experienced and what we expect them to do to answer a question.}
-The questions were not timed and participants were permitted to explore the commit history and read Jira issues at their own pace.
-We limited the number of questions per class based on the number of commits in each class' commit history and 
-to accomodate keeping the estimated duration of the study as a laboratory experiment within a reasonable amount of time.
-
 To assess the quality and correctness of a participant's answer, 
 we prepared an answer key, which is available in \autoref{tab:Answer-Key}.
 For questions A1, A2, and B2, there were specific commits we identified as answers.
@@ -153,14 +171,16 @@ their confusion or approaches to a question.
       \begin{tabular}{@{}c|l@{}}
       \toprule
       Question & \multicolumn{1}{c}{Answer}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              \\ \midrule
-      A1       & \begin{tabular}[c]{@{}l@{}}The participant should find commit \commit{075bbcfe} and reference the Jira issue KAFKA-7523.\\ The change implicitly connects state stores to processors/transformers to avoid burdening the API user\\ with having to explicitly specify the stores.\end{tabular}                                                                                                                                                                                                                                                                                                                                                                   \\ \midrule
-      A2       & \begin{tabular}[c]{@{}l@{}}The participant should find commit \commit{f33e9a34} and reference the Jira issue KAFKA-4936.\\ The participant is expected to deliver a summary referencing the following motivation behind the change: \\ Allow users to dynamically choose which topic to send to at runtime, which can help remove the burden of having to update and restart KStreams applications. \end{tabular}                                                                                                                                                        \\ \midrule
-      B1       & \begin{tabular}[c]{@{}l@{}}Possible answers:\\ \commit{075b368d} (KAFKA-6958) allows the user to define custom names for processors with the KStreams DSL to make complex topologies easier to understand.\\ \commit{3e64e5b9} (KAFKA-6761) reduces the footprint of Kafka Streams, which reduces resource utilization. \\ \commit{c0353d8d} (KAFKA-6036) optimizes when to use logical materialization, related to reducing the Kafka Streams footprint. \\ The participant should choose commits which improve some functionality in the \class{StreamsBuilder} class\\ and justify their answer by understanding commit author intent.\\ If the commit intends to fix a bug, the participant should describe the bug and how the commit resolved the bug.\\ The participant may not choose commits which only modify comments, fix typos, add newlines.\end{tabular} \\ \midrule
-      B2       & \begin{tabular}[c]{@{}l@{}}The participant should find commit \commit{e09d6d79} and reference the Jira issue KAFKA-7027.\\ The overloaded \code{build} method provides the option to accept user-defined configurations which have the required values for \\ building the Kafka topology.\\ This controls optimization by leaving the construction of the topology to the overloaded build \code{method}.\end{tabular}                                                                                                                                                                                                                                                        \\ \bottomrule
+      A1       & \begin{tabular}[c]{@{}l@{}}The participant should find commit \commit{075bbcfe} and reference the Jira issue \issue{KAFKA-7523}.\\ The change implicitly connects state stores to processors/transformers to avoid burdening the API user\\ with having to explicitly specify the stores.\end{tabular}                                                                                                                                                                                                                                                                                                                                                                   \\ \midrule
+      A2       & \begin{tabular}[c]{@{}l@{}}The participant should find commit \commit{f33e9a34} and reference the Jira issue \issue{KAFKA-4936}.\\ The participant is expected to deliver a summary referencing the following motivation behind the change: \\ Allow users to dynamically choose which topic to send to at runtime, which can help remove the burden of having to update and restart KStreams applications. \end{tabular}                                                                                                                                                        \\ \midrule
+      B1       & \begin{tabular}[c]{@{}l@{}}Possible answers:\\ \commit{075b368d} (\issue{KAFKA-6958}) allows the user to define custom names for processors with the KStreams DSL to make complex topologies easier to understand.\\ \commit{3e64e5b9} (\issue{KAFKA-6761}) reduces the footprint of Kafka Streams, which reduces resource utilization. \\ \commit{c0353d8d} (\issue{KAFKA-6036}) optimizes when to use logical materialization, related to reducing the Kafka Streams footprint. \\ The participant should choose commits which improve some functionality in the \class{StreamsBuilder} class\\ and justify their answer by understanding commit author intent.\\ If the commit intends to fix a bug, the participant should describe the bug and how the commit resolved the bug.\\ The participant may not choose commits which only modify comments, fix typos, add newlines.\end{tabular} \\ \midrule
+      B2       & \begin{tabular}[c]{@{}l@{}}The participant should find commit \commit{e09d6d79} and reference the Jira issue \issue{KAFKA-7027}.\\ The overloaded \code{build} method provides the option to accept user-defined configurations which have the required values for \\ building the Kafka topology.\\ This controls optimization by leaving the construction of the topology to the overloaded build \code{method}.\end{tabular}                                                                                                                                                                                                                                                        \\ \bottomrule
       \end{tabular}
       \label{tab:Answer-Key}
   \end{table}
 \end{landscape}
+
+\subsection{Semi-structured Interview}
 
 The second part of the session consisted of asking a series of open-ended interview questions to gather information about 
 the participant's background with respect to software development and experience in examining commits and issues from an issue tracking system.
@@ -611,19 +631,6 @@ and the group who did not use Intelligent History.
 
 For question A2, participants who used Intelligent History examined a mean of 19.9\% of the commit history for the \class{Topology} class (see \autoref{tab:Results-Quantitative-BA}),
 while participants who did not use Intelligent History examined a mean of 39.1\% of the same commit history (see \autoref{tab:Results-Quantitative-AB}). 
-To answer A2, participants needed to find a commit that introduced further \code{addSink} method overloads later in the commit history as participants were informed that the initial commit in the commit history for the \class{Topology} class introduced a set of overloaded \code{addSink} methods to begin with.
-The specific commit which does this is commit \commitref{f33e9a34}{https://github.com/apache/kafka/commit/f33e9a346e22e29bb66e0ea0f3442903d136ca67} with the following commit message title:
-
-\begin{center}
-  \jira{KAFKA-4936:}{Add dynamic routing in Streams (\#5018)} 
-\end{center}
-
-Participants were not expected to be able to identify this commit based on its commit message title alone.
-However, participants were informed that the first commit in the \class{Topology} class introduced a series of \class{addSink} overloads already.
-Hence, participants were encouraged to locate a particular commit that introduced overloads later in the history 
-to understand why additional overloads were introduced to the \class{Topology} class.
-This could be done through examining diffs of potentially interesting commits for commits 
-that were made after the initial commit in the \class{StreamsBuilder} commit history.
 
 Interestingly, all of the participants who used Intelligent History to answer question set A 
 responded most positively to feature (\feature{1}) \textit{Highlight Important Changes} from Intelligent History \participants{BDFHJ} 
