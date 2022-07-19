@@ -59,13 +59,16 @@ found in the commit history in order to be able to answer these questions.
 \subsection{Observational Study}
 
 The observational study involved having participants explore the commit history of two Java classes 
-from the Apache Kafka project in the IntelliJ IDEA \entity{IDE} 
+from the open-source Apache Kafka project in the IntelliJ IDEA \entity{IDE} 
 to find answers to questions related to motivation and rationale behind changes in the classes.
 Apache Kafka is an event streaming platform used to collect, process, and store streaming event data.
 We chose to use Apache Kafka because the project's contribution guidelines mandates that
-each commit's message must be prefixed with a Jira issue ID, of the form \issue{KAFKA-XXXX},
-excluding minor commits prefixed with \issue{MINOR} or hotfixes prefixed with \issue{HOTFIX}.
-This convention in Apache Kafka will allow the user to exercise all of the features of Intelligent History
+each commit must be associated with a Jira issue and the commit's message 
+must be prefixed with the issue \entity{ID}, of the form \issue{KAFKA-XXXX}, 
+where \issue{XXXX} is a series of numbers for uniquely identifying an issue.
+The practice excludes minor commits or hotfixes, 
+which are instead prefixed with \issue{MINOR} or \issue{HOTFIX} respectively.
+This convention in Apache Kafka will allow the participant to exercise all of the features of Intelligent History
 as meaningful commits will generally be associated with a Jira issue in the Apache Kafka project.
 
 Moreover, Apache Kafka also has a practice of maintaing Kafka Improvement Proposals (\entity{KIP}s),
@@ -376,7 +379,7 @@ We characterize the structure of the graph for \participant{H} and their commit 
 to describe the participant's sequential exploration of the commit history.
 
 To analyze the participants' responses to the open-ended, semi-structured interview questions, 
-we create a flowchart to illustrate the relationship between each participant's experience with looking at issues and commits,
+we categorize each participant's experience with looking at issues and commits,
 the commit history exploration approach they exhibitied when searching for the answers to the question sets, 
 and the features of Intelligent History for which they expressed the most enthusiasm.
 In the interviews, we asked participants how often they looked at commits and issues 
@@ -389,12 +392,12 @@ We determined the feature of Intelligent History that a particiant found most fa
 based on a trend we observed in the participants' responses to interview question (4) from \autoref{fig:Interview-Questions}.
 When interviewed about comparing their experience with and without using Intelligent History,
 participants typically stated the feature of Intelligent History to which they responded most positively.
+We also create a flowchart to illustrate and observe if there is any 
+relationship between these categories for each participants.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
 \label{sec:Results}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{RQ1}
 \label{subsec:RQ1}
@@ -726,66 +729,27 @@ We found the utility of direct integration of issue information
 to be dependent on a participant's background with examing commits and issues,
 and the software history exploration approach they employ.
 The usefulness of direct integration of issue information is also dependent on 
-\emph{what} information is extracted from an issue and how it is presented in the \entity{IDE}.
+\emph{what} information is extracted from an issue and \emph{how} it is presented in the \entity{IDE}.
 
-\subsubsection{User Background and Exploration Approach}
+\subsubsection{Developer Background and Exploration Approach}
 
-The flowchart showing the relationship between each participant's background related to looking at commits and issues,
-the commit history exploration approach they used, and their preferred features 
-provided by Intelligent History is presented in \autoref{fig:Flow-Chart-Individual}.
+We present a table in \autoref{tab:Flow-Chart-Tabular} to show the
+categorization of each participant's background with regard to looking at commits
+and issues, the commit history exploration strategy they exhibited as determined
+using their commit history exploration graphs, and the feature of Intelligent History
+to which they were most partial to.
+The flowchart showing the relationship between each of these categories for each participant
+is illustrated in \autoref{fig:Flow-Chart-Aggregate}.
 Each participant tended to use the same commit history exploration strategy throughout the study, 
 irrespective of the nature of the question asked and the presence of Intelligent History.
 The features of Intelligent History are the actions we detailed in \autoref{sec:Implementation}, which are 
 (\feature{1}) \textit{Highlight Important Changes}; 
 (\feature{2}) \textit{Show Diff Metadata}; 
 and (\feature{3}) \textit{Show Jira Metadata}.
-We also present an aggregated version of the flowchart in \autoref{fig:Flow-Chart-Aggregate} 
-and a tabular form in \autoref{tab:Flow-Chart-Tabular}.
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=12cm]{./images/flow-chart-ind.png}
-  \caption{
-    The relationship between how often a participant looks at commits and issues, 
-    the approach they exhibited to exploring commit history overall, 
-    and the feature of Intelligent History they were most partial to.
-  }
-  \label{fig:Flow-Chart-Individual}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=8cm]{./images/flow-chart-aggr.png}
-  \caption{
-    An aggregation of the participants that fall into each of the categories from \autoref{fig:Flow-Chart-Individual} and \autoref{tab:Flow-Chart-Tabular}
-  }
-  \label{fig:Flow-Chart-Aggregate}
-\end{figure}
-
-Over half of the participants, 6 out of 10, preferred feature (\feature{1}) from Intelligent History the most,
-whereas the other 4 participants preferred feature (\feature{3}).
-Notably, all 5 of the participants who received question set A to answer with Intelligent History 
-responded most positively to commit history highlighting in (\feature{1}) as a feature \participants{BDFHJ}, 
-whereas 4 out of the 5 participants who received question set B to answer with Intelligent History 
-responded most positively to gaining quick access to Jira issue information within the \entity{IDE} in (\feature{3}) as a feature \participants{ACGI}.
-This signifies some degree of correlation between the question set and the participants' most preferred features of Intelligent History.
-
-None of the participants chose feature (\feature{2}), though we anticipated this outcome as (\feature{2}) 
-was provided to give the user context as to how Intelligent History highlights commits in (\feature{1}).
-Of the 3 participants who stated that they often look at commits and issues, none demonstrated \textit{commit message skimming} 
-as a strategy for exploring commit history.
-Similarly, of the 3 participants who rarely look at commits and issues, none of them employed a commit history exploration approach 
-that could be described as \textit{cyclic and backtracking}.
-There does not appear to be any concrete associations between the background of a participant with regard to looking at commits and issues,
-and their exhibited approach to exploring commit history.
-
-On the relationship between the commit history exploration approach a participant exhibited and their preferred feature from Intelligent History,
-3 out of 4 participants who demonstrated a \textit{cyclic and backtracking} approach expressed preference for (\feature{1}),
-while all 3 participants who exhibited a \textit{commit message skimming} strategy were most partial to (\feature{3}).
 
 \begin{table}
   \caption{
-    A tabular form of \autoref{fig:Flow-Chart-Individual}.
+    The categorization of each participants' qualitative responses and their demonstrated commit history exploration approach.
     Favourable features of Intelligent History are indicated as:
     (\feature{1}) \textit{Highlight Important Changes},
     (\feature{2}) \textit{Show Diff Metadata}, and
@@ -810,6 +774,42 @@ while all 3 participants who exhibited a \textit{commit message skimming} strate
   }%
   \label{tab:Flow-Chart-Tabular}
 \end{table}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=8cm]{./images/flow-chart-aggr.png}
+  \caption{
+    An aggregated version of the data in \autoref{tab:Flow-Chart-Tabular}.
+  }
+  \label{fig:Flow-Chart-Aggregate}
+\end{figure}
+
+Over half of the participants, 6 out of 10, preferred feature (\feature{1}) from Intelligent History the most,
+whereas the other 4 participants preferred feature (\feature{3}).
+Notably, all 5 of the participants who received question set A to answer with Intelligent History 
+responded most positively to commit history highlighting in (\feature{1}) as a feature \participants{BDFHJ}, 
+whereas 4 out of the 5 participants who received question set B to answer with Intelligent History 
+responded most positively to gaining quick access to Jira issue information within the \entity{IDE} in (\feature{3}) as a feature \participants{ACGI}.
+This signifies some degree of correlation between the question set and the participants' most preferred features of Intelligent History.
+
+None of the participants chose feature (\feature{2}), though we anticipated this outcome as (\feature{2}) 
+was provided to give the user context as to how Intelligent History highlights commits in (\feature{1}).
+Among the 3 participants who stated that they often look at commits and issues, none demonstrated \textit{commit message skimming} 
+as a strategy for exploring commit history.
+Similarly, of the 3 participants who rarely look at commits and issues, none employed a commit history exploration approach 
+that we could characterize as \textit{cyclic and backtracking}.
+There does not appear to be any concrete associations between how frequently a participant looks at commits and issues
+and their exhibited approach to exploring commit history in our observational study.
+
+On the relationship between the commit history exploration approach 
+a participant exhibited and their preferred feature from Intelligent History,
+we see that 2 out of 3 participants who exhibited a \textit{linear} strategy preferred feature (\feature{3}) \participants{CI},
+while 1 favoured feature (\feature{1}) \participants{H}.
+We observe that 2 out of 4 participants who demonstrated a \textit{cyclic and backtracking} 
+approach expressed preference for (\feature{1}) \participants{BF},
+while the other 2 participants favoured (\feature{3}) \participants{AG}.
+None of the participants who exhibited a \textit{commit message skimming} strategy 
+were most partial to (\feature{3}).
 
 \subsubsection{Breadth and Contextualization}
 
@@ -845,13 +845,19 @@ Participant \participant{I} mentioned:
   might be relevant and I can take a deeper look if needed.
 \end{quote}
 
-Of the 4 participants who favoured (\feature{3}), none demonstrated a commit message skimming approach to exploring commit history in the user study.
+Among the 4 participants who favoured (\feature{3}), none demonstrated a 
+\textit{commit message skimming} strategy to exploring commit history in the user study.
+As seen in \autoref{fig:Flow-Chart-Aggregate}, 2 of the participants exhibited 
+a \textit{linear} approach \participants{CI}, 
+while the other 2 participants exhibited a \textit{cyclic and backtracking} approach \participants{AG}.
 Only 1 of the participants reported looking at commits and issues often \participants{C},
-while 3 participants reported sometimes \participants{AGI}.
-Perhaps unsurprisingly, none of the participants who favoured (\feature{3}) reported looking at commits and issues rarely.
+while 3 participants reported sometimes looking at commits and issues \participants{AGI}.
+Unsurprisingly, all of the participants who favoured (\feature{3}) 
+did not report to rarely looking at commits and issues.
 
-While we observed there to be some notable difference in the group that used Intelligent History for question B1 and the group that did not use Intelligent History for the same question,
-there is less notable difference with question B2.
+While we observed that there was some notable difference in the group that used Intelligent History 
+and the group that did not use Intelligent History for question B1,
+there is less notable difference between the groups for question B2.
 Hence, we find that the primary question responsible for this bias is question B1.
 Given the nature of B1, we find direct integration of Jira issue information within the \entity{IDE} 
 to be useful for broad search and exploration of a commit history.
@@ -862,7 +868,7 @@ However, direct issue integration is potentially less useful for those with an a
 \subsubsection{Issue Content and Presentation}
 
 We found 2 participants mentioned a preference to see the full Jira issue information contextualized in the browser interface \participants{DF}.
-While participant \participant{F} mentioned that they were accustomed to viewing Jira issues in the browser,
+While participant \participant{F} explained that they were accustomed to viewing Jira issues in the browser,
 participant \participant{D} stated that they had a preference to view all items associated with a Jira issue, including all linked issues and pull requests:
 ``\textit{When I’m looking at a Jira ticket, I look at everything associated with the ticket to try to get a much broader context.}''
 On the other hand,
@@ -874,15 +880,17 @@ and the personal preferences and habits of the user.
 
 Similar in sentiment, participant \participant{G}, who favoured (\feature{3}), noted the hyperlinking of Jira issues for each commit
 was most helpful to them in the user study.
-\participant{G} observed that since some of the Jira issues included code fragments, it was difficult to read them in the \entity{IDE}.
+Participant \participant{G} observed that since some of the Jira issues 
+included code fragments, it was difficult to read them in the \entity{IDE}.
 This indicates the presentation of the issue information may be an impediment to its utility.
 
 \begin{summary}[RQ3]
-  Direct integration of issue information can help software developers contextualize source code changes 
-  and access the information in more issues than without,
-  particularly when searching for interesting or meaningful changes across a file's commit history.
-  However, the utility of direct integration of issue information is dependent on users' preferences preferences and habits 
-  with regard to the content they prefer to see from issues and how they would like them to be presented.
+  Direct integration of issue information might better assist software developers 
+  who use a \textit{linear} or \textit{cyclic and backtracking} approach to exploring commit history 
+  in contextualizing source code changes and providing access to the information in more issues than without.
+  However, the utility of direct integration of issue information is dependent on users' preferences 
+  for \emph{what} content they wish to see from issues and \emph{how} they would like 
+  the information to be presented.
 \end{summary}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -933,7 +941,7 @@ they may have tried to answer the questions in the same way they would have if t
 Consequently, in the semi-structured interview part of the study, 
 participants may have felt biased to feel a certain way about the plugin.
 
-We tried to mitigate bias in how a participant expects to use Intelligent History 
+We tried to avoid bias in how a participant expects to use Intelligent History 
 and the utility of Intelligent History to a particular question set 
 by alternating the order of the questions each participant received 
 and fixing the use of the plugin to the second question set that each participant receives.
@@ -947,9 +955,10 @@ exploring the commit history and answering the questions without being made awar
 
 The experience of the participants with regard to having worked on a project that uses an issue tracking system 
 and closely associating issues to commits impacts internal validity.
-We tried to mitigate the impact of participant experience on internal validity by formulating questions 
-that would require participants to justify their answers using source code and Jira issue information to
-encourage participants to view Jira issues.
+We tried to minimize the impact of a participant's background related 
+to looking at commit and issues on internal validity by formulating questions 
+that would require participants to justify their answers 
+using source code and Jira issue information to encourage participants to view Jira issues.
 
 \subsection{External Validity}
 
