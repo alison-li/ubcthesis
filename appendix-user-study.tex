@@ -35,44 +35,4 @@ You may also see the acronym ``KIP'' referenced in some commits or Jira issues i
 \end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Answer Key}
-\label{sec:Answer-Key}
-
-\begin{landscape}
-    \begin{table}[]
-        \centering
-        \footnotesize
-        \begin{tabular}{@{}cl@{}}
-        \toprule
-        Question & \multicolumn{1}{c}{Answer}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              \\ \midrule
-        A1       & \begin{tabular}[c]{@{}l@{}}The participant should find commit \commit{075bbcfe} and reference the Jira issue KAFKA-7523.\\ The change implicitly connects state stores to processors/transformers to avoid burdening the API user\\ with having to explicitly specify the stores.\end{tabular}                                                                                                                                                                                                                                                                                                                                                                   \\ \midrule
-        A2       & \begin{tabular}[c]{@{}l@{}}The participant should find commit \commit{f33e9a34} and reference the Jira issue KAFKA-4936.\\ The participant is expected to deliver a summary referencing the following motivation behind the change: \\ Allow users to dynamically choose which topic to send to at runtime, which can help remove the burden of having to update and restart KStreams applications. \end{tabular}                                                                                                                                                        \\ \midrule
-        B1       & \begin{tabular}[c]{@{}l@{}}Possible answers:\\ \commit{075b368d} (KAFKA-6958) allows the user to define custom names for processors with the KStreams DSL to make complex topologies easier to understand.\\ \commit{3e64e5b9} (KAFKA-6761) reduces the footprint of Kafka Streams, which reduces resource utilization. \\ \commit{c0353d8d} (KAFKA-6036) optimizes when to use logical materialization, related to reducing Kafka Streams footprint. \\ The participant should choose commits which improve some functionality in the \class{StreamsBuilder} class\\ and justify their answer by understanding commit author intent.\\ If the commit intends to fix a bug, the participant should describe the bug and how the commit resolved the bug.\\ The participant may not choose commits which only modify comments, fix typos, add newlines.\end{tabular} \\ \midrule
-        B2       & \begin{tabular}[c]{@{}l@{}}The participant should find commit \commit{e09d6d79} and reference the Jira issue KAFKA-7027.\\ The overloaded \code{build} method provides the option to accept user-defined configurations which have the required values for \\ building the Kafka topology.\\ This controls optimization by leaving the construction of the topology to the overloaded build \code{method}.\end{tabular}                                                                                                                                                                                                                                                        \\ \bottomrule
-        \end{tabular}
-    \end{table}
-\end{landscape}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Interview Questions}
-\label{sec:Interview-Questions}
-
-\begin{enumerate}
-    \item How many years of software development experience do you have, both professionally and non-professionally?
-    \item In your development experience, have you often looked at commits and the issues associated with them (e.g. GitHub issues/pull requests, Jira issues, Bugzilla, etc.)?
-        \begin{enumerate}
-            \item In what scenarios or kinds of tasks do you typically look at commits and issues?
-            \item How would you usually go about obtaining answers to questions about the intent behind the code you are reading?
-        \end{enumerate}
-    \item What types of code changes or content in diffs do you think are less useful or more useful when trying to understand why a developer wrote code a certain way or made a particular change? 
-        \begin{enumerate}
-            \item What changes in diffs do you think make a commit more important or less important to look at?
-        \end{enumerate}
-    \item For the task involving use of the plugin, which features did you find helpful/unhelpful to your exploration?
-    \item Are there any comments or feedback you would like to provide?
-\end{enumerate}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \endinput

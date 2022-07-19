@@ -244,7 +244,7 @@ For the fifth commit in the history, the developer sees refactorings in the diff
 to the overloaded \code{table}, \code{globalTable}, and \code{addGlobalStore} methods in the \code{StreamsBuilder} class as the diff contains changes to their method signatures and bodies.
 The developer reads the commit message: ``Add overloads for `table' and `globalTable' that use `Materialized' '' and finds it lacking in terms of explaining why this was done.
 The developer invokes (\feature{3}) and is able to obtain a reference to \entity{KIP}-182, 
-a Kafka Improvement Proposal\footnote{Kafka Improvement Proposals (\entity{KIP}s) in the Apache Kafka project are documents intended to capture the thought process behind major features introdcued and changes impacting the public Kafka \entity{API}s. 
+a Kafka Improvement Proposal\footnote{Kafka Improvement Proposals (\entity{KIP}s) in the Apache Kafka project are documents intended to capture the thought process behind major features introduced and changes that impact the public Kafka \entity{API}s. 
 \entity{KIPs} contain the following sections: Motivation, Proposed Change, New or Changed Public Interfaces, Migration Plan and Compatibility, and Rejected Alternatives.} stating the purpose of the change was to address the overall accumulation of heavy method overloading in the interfaces associated with the Kafka Streams Domain Specific Language (\entity{DSL}), 
 making it harder for consumers of the \entity{API} who use a modern \entity{IDE} to discover the interfaces and hence, was a usability problem.
 
