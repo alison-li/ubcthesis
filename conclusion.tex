@@ -1,5 +1,39 @@
 \chapter{Conclusion}
 \label{ch:Conclusion}
 
-In this thesis, our goal was to \dots
-To this end, \dots
+The navigation of large software revision histories, compounded by a software
+project's association with an equally large issue repository or issue tracking system
+presents a cognitive and temporal burden for software developers seeking 
+answers to code rationale questions.
+While issues are a significant source of code rationale information that
+can help to contextualize code changes with motivational information,
+developers must overcome the challenges of manually determining
+which commits in a large history are relevant and worth further investigation.
+Moreover, since issues are distributed across an issue tracking system,
+developers must context switch between the application they use to view
+source code and revision history and application they use to access a project's issue tracking system.
+
+Our goal was to reduce the cognitive and temporal costs of software history exploration.
+To that end, we presented Intelligent History, a plugin for the IntelliJ IDEA \entity{IDE}
+as an implementation of an approach to (1) automatically distinguish potentially interesting
+commits from less important commits and (2) provide better access to issue information 
+when examining commits in a revision history.
+Using a heuristics-based approach with regular expression patterns, 
+we implemented Intelligent History to use commit highlighting 
+to make the distinction between commits that it identifies as containing
+only non-essential changes and other commits, which might be potentially more meaningful to examine.
+We also automatically extract referenced Jira issue \entity{ID}s from a commit message title
+and display the issue title and description, along with metadata information, directly in the \entity{IDE}.
+
+We found the results of our evaluation of Intelligent History to show
+potential for our approach as there was overlap between at least half of the commits
+that participants examined without Intelligent History and the commits that Intelligent History
+highlighted. Participants who used Intelligent History examined significantly
+less commits than participants who did not use Intelligent History.
+Lastly, we found that direct integration of issue information in the \entity{IDE}
+with Intelligent History might support developers who employ a commit history exploration approach
+we describe as \textit{linear} or \textit{cyclic and backtracking} to contextualize
+source code changes quickly and view slightly more issues than if they did not have
+direct issue integration.
+Our analysis demonstrates promise for supporting developers in more
+efficiently exploring a commit history to answer code rationale questions.
