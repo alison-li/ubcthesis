@@ -139,25 +139,26 @@ Intelligent History has the following actions, which the user can invoke:
 \end{figure}
 
 \begin{figure}
-    \centering%
+    \centering
     \subfloat[\centering Pop-up \label{subfig:Intelligent-History-B-Popup}]{{\includegraphics[width=4cm]{./images/intelligent-history-B-a.png}}}%
     \qquad
     \subfloat[\centering Diff \label{subfig:Intelligent-History-B-Diff}]{{\includegraphics[width=12cm]{./images/intelligent-history-B-b.png}}}%
     \caption{
-        Feature (\feature{2}) \textit{Show Diff Metadata} invoked on commit \commit{c3475081}.\textsuperscript{*} The pop-up is shown in \autoref{subfig:Intelligent-History-B-Popup} and displays the metadata for the diff in \autoref{subfig:Intelligent-History-B-Diff}.
-    }%
-    \scriptsize\textsuperscript{*} \url{https://github.com/apache/kafka/commit/c3475081c5e8228e9bd3a45022a93d61e542f72e}
+        Feature (\feature{2}) \textit{Show Diff Metadata} invoked on commit \commit{c3475081}. 
+        The pop-up is shown in \autoref{subfig:Intelligent-History-B-Popup} 
+        and displays the metadata for the diff in \autoref{subfig:Intelligent-History-B-Diff}.
+    }
     \label{fig:Intelligent-History-B}%
 \end{figure}
 
 \begin{figure}
-    \center
+    \centering
     \includegraphics[width=7cm]{./images/intelligent-history-C.png}
     \caption{
-        Feature (\feature{3}) \textit{Show Jira Issue} invoked on commit \commit{908a6d2a}.\textsuperscript{*}
-        Shows the explicitly referenced Jira issue's title, assignee, reporter, description, priority, and metadata in a tool window. A hyperlink to the Jira issue is also provided.
+        Feature (\feature{3}) \textit{Show Jira Issue} invoked on commit \commit{908a6d2a}.
+        Shows the explicitly referenced Jira issue's title, assignee, reporter, description, priority, 
+        and metadata in a tool window. A hyperlink to the Jira issue is also provided.
     }
-    \scriptsize\textsuperscript{*} \url{https://github.com/apache/kafka/commit/908a6d2ad7807642b917231769c8d3b6a0c1ad16}
     \label{fig:Intelligent-History-C}
 \end{figure}
 
@@ -244,7 +245,9 @@ For the fifth commit in the history, the developer sees refactorings in the diff
 \end{center}
 
 to the overloaded \code{table}, \code{globalTable}, and \code{addGlobalStore} methods in the \code{StreamsBuilder} class as the diff contains changes to their method signatures and bodies.
-The developer reads the commit message: ``Add overloads for `table' and `globalTable' that use `Materialized' '' and finds it lacking in terms of explaining why this was done.
+The developer reads the commit message: 
+``Add overloads for `table' and `globalTable' that use `Materialized' '' 
+and finds it lacking in terms of explaining why this was done.
 The developer invokes (\feature{3}) and is able to obtain a reference to \entity{KIP}-182, 
 a Kafka Improvement Proposal\footnote{Kafka Improvement Proposals (\entity{KIP}s) in the Apache Kafka project are documents intended to capture the thought process behind major features introduced and changes that impact the public Kafka \entity{API}s. 
 \entity{KIPs} contain the following sections: Motivation, Proposed Change, New or Changed Public Interfaces, Migration Plan and Compatibility, and Rejected Alternatives.} stating the purpose of the change was to address the overall accumulation of heavy method overloading in the interfaces associated with the Kafka Streams Domain Specific Language (\entity{DSL}), 
