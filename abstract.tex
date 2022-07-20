@@ -13,17 +13,20 @@ when exploring software revision history in order to unearth questions about the
 This exploration results in a cognitive and temporal burden as developers
 context switch between their \entity{IDE}s and a project's \entity{ITS} to locate code rationale information
 associated with each commit.
+
 To reduce the costs of software revision history exploration,
 we introduce an approach using regular expression patterns to reduce the search space of commits in a revision history to signal to a developer which commits in a history merit further investigation.
 Additionally, our approach minimizes the distance between a developer's \entity{IDE} and issues from an \entity{ITS}
 by directly integrating issue information in the same context.
 We implemented these techniques in Intelligent History, a plugin for the IntelliJ IDEA \entity{IDE}.
+
 To evaluate the plugin, we conducted a user study consisting of an observational 
 study followed by a semi-structured interview and recruited 10 software developers.
 We asked two sets of questions related to the intent behind source code, requring the participants to explore 
 commit histories for two Java classes from the open-source Apache Kafka project.
 We also conduct a semi-structured interview on the participants' experiences with examining issues and commits 
 and their use of the plugin in the experiment.
+
 The results from our analysis shows that:
 (1) there was overlap between at least half of the commits
 that participants examined without Intelligent History and the commits that Intelligent History
