@@ -1,12 +1,14 @@
 \chapter{Related Work}
 \label{ch:Related-Work}
 
-Rationale questions ask why code was implemented a certain way, why alternative implementations were not chosen, and what the hidden criteria might have been behind motivating design choices about code \cite{latoza_hard-answer_2010}.
-Many empirical studies have established code rationale as a highly sought after category of information that is effective tool support to answer them \cite{latoza_maintaining_2006, latoza_hard-answer_2010, ko_information_2007}. 
-From a survey of software developers, LaToza \etal found 66\% of respondents reported understanding the intent behind a piece of code to be a serious problem, 
+Rationale questions ask why code was implemented a certain way, 
+why alternative implementations were not chosen, and what the hidden criteria might have been behind motivating design choices about code \cite{latoza_hard-answer_2010}.
+Many empirical studies have established code rationale as a highly sought after category of information that lacks effective tool support to answer them \cite{latoza_maintaining_2006, latoza_hard-answer_2010, ko_information_2007}. 
+From a survey of 157 software developers, LaToza \etal found 66\% of respondents report understanding the intent behind a piece of code to be a serious problem, 
 while 82\% report that it takes considerable effort to understand ``why the code is implemented the way it is'' \cite{latoza_maintaining_2006}.
-Further, 51\% agree understanding the history of a piece of a code to be a serious problem \cite{latoza_maintaining_2006}.
-In support of the findings by LaToza et al., the observational study by Ko \etal of 17 software developers found it was rarely enough for developers to understand the cause of a program's behaviour, as developers also sought after the historical reason for a program's current implementation \cite{ko_information_2007}.
+Further, 51\% agree that understanding the history of a piece of a code to be a serious problem.
+In support of the findings by LaToza et al., the observational study by Ko \etal of 17 software developers found it was rarely enough for developers to understand the cause of a program's behaviour, 
+as developers also sought after the historical reason for a program's current implementation \cite{ko_information_2007}.
 
 Two particular sources of information helpful for answering code rationale questions are a software project's revision history and the issues from a project's issue tracking system (\entity{ITS}). 
 In the absence of knowledgeable colleagues, several studies observe and show consensus on developers seeking answers to code rationale questions through code change histories and bug reports \cite{ko_information_2007, codoban_software_2015, robillard_turnover-induced_2021}.
@@ -16,14 +18,18 @@ In the absence of knowledgeable colleagues, several studies observe and show con
 
 Through interviews and surveys, Codoban \etal discovered existing history exploration tools to be limited by only presenting a linear, sequential view of history \cite{codoban_software_2015}.
 Current tools related to \entity{vcs} assume all history is equally important with a flat, non-hierarchical structure and only provide a temporal view of committed changes \cite{codoban_software_2015}.
-In other words, these tools only provide a temporal view of software revision history.
-However, developers frequently use revision history for recovering rationale behind code and for understanding the evolution of a project, which a temporal view alone does not effectively support \cite{codoban_software_2015}.
+In other words, these tools only offer a time-based view of software revision history.
+However, developers frequently use revision history for recovering rationale behind code and for understanding the evolution of a project, 
+which a time-based view alone does not effectively support \cite{codoban_software_2015}.
 
 Existing \entity{git} commands as tools for exploring revision history such as ``blame'' \cite{gitblame} annotate each line in a file with information about the revision and the author that last modified a particular line.
-If a developer was investigating the design choice for a particular variable's value, the most recent revisions that last affected a particular line might not give this insight.
-For example, the most recent changes could be fixing a typo in the variable's name or the most recent few revisions affecting the line could be due to moving the declaration line of the variable as part of a refactoring or modification in other parts of the file.
+If a developer was investigating the design choice for a particular variable's value, 
+the most recent revisions that last affected a particular line might not give this insight.
+For example, the most recent changes could be fixing a typo in the variable's name or the most recent few revisions affecting the line could be due to moving the declaration of the variable as part of a refactoring or modification in other parts of the file.
 In this case, the developer would need to go through several iterations of running ``blame'' to find the commit that first introduced the variable and hope the commit contains information about the choice behind the value set for it.
-If the variable's value changed and was changed across different revisions, then to further investigate what was changed, a developer would also have to use \entity{git} ``diff'' \cite{gitdiff} for showing the changes between two revisions or two versions of a file.
+If the variable's value was changed several times across different revisions, 
+then to further investigate what was changed, 
+a developer would also have to use \entity{git} ``diff'' \cite{gitdiff} for showing the changes between two revisions or two versions of a file.
 However, the participants in the study by Codoban \etal reported diffs were difficult to read due to the challenge of gaining any insight or intent of the change from a diff and needing to go through numerous diffs to understand a change \cite{codoban_software_2015}.
 
 Graphical user interfaces (\entity{gui}) for \entity{vcs} like GitExtensions \cite{gitextensions} and Sourcetree \cite{sourcetree} streamline a view of revisions alongside diffs, saving the user from manually executing calls of \entity{git} ``blame'' and ``diff.'' 
@@ -34,12 +40,15 @@ Third-party plugins such as GitToolBox \cite{gittoolbox} for IntelliJ and GitLen
 
 While \entity{gui}s make it more convenient to inspect revisions one at a time and refer or jump to different revisions at different points in time, they do not address the concern of having to go through several diffs. Many diffs can be irrelevant to a code segment of interest, making it time-consuming to find a meaningful explanation for the change.
 Moreover, plugins that make the information retrieved from \entity{git} commands more accessible still only cover the temporal view of software history.
-A developer would still need to go through several commits and diffs and meanwhile, several of the encountered commits could be trivial changes regarding the section of code or even the file they are interested in.
+A developer would nonetheless need to go through several commits and diffs and meanwhile, 
+several of the encountered commits could be trivial changes regarding the section of code or even the file that they are interested in.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Improving Revision History and Exploration}
 
-There have been many approaches to improving a developer's experience when exploring revision history in a software project. While these approaches do not focus on supporting code rationale questions, they do address the concern of improving the revision history for code changes in a software project.
+There have been many approaches to improving a developer's experience when exploring revision history in a software project. 
+While some approaches in existing work do not focus on supporting code rationale questions, 
+they all address the concern of improving the revision history for code changes in a software project.
 
 Kawrykow and Robillard \cite{kawrykow_non-essential_2011} propose a technique for detecting non-essential changes in software history and therefore an approach to finding more meaningful representations of software changes.
 In their work, ``non-essential'' changes refer to changes which are cosmetic in nature, generally behaviour-preserving, and unlikely to yield further insight into the roles of or relationships between the program entities they modify. 
@@ -53,7 +62,9 @@ The \emph{why} column in Rationalizer extracts the message from the last revisio
 In the worst case, commit messages may not contain any information.
 The analysis by Dyer \etal of over 23,000 Java SourceForge projects found 14\% of all commit messages to be completely empty \cite{dyer_boa_2013}.
 
-For reducing the volume of commits a developer must explore, Chronos \cite{servant_history_2012} uses history slicing, a technique for identifying the minimal number of code modifications across any number of revisions for any segment of code, and offers a visualization of the evolution of any piece of code in a software project's code base.
+For reducing the volume of commits a developer must explore, Chronos \cite{servant_history_2012} uses history slicing, 
+a technique for identifying the minimal number of code modifications across any number of revisions for any segment of code, 
+and offers a visualization of the evolution of any piece of code in a software project's code base.
 For reasoning about the evolution of source code, CodeShovel \cite{grund_codeshovel_2021} uses revision history to construct method-level histories where the revisions affecting a method have been labelled with change categories.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -61,7 +72,8 @@ For reasoning about the evolution of source code, CodeShovel \cite{grund_codesho
 
 Previous work has explored using non-source code project artifacts to enrich existing code rationale information embedded in source code. 
 A common source of code rationale information is a project's issue repository because these issues can contain useful discussion in the form of comments such as the hypothesized causes of bugs, approaches to fixing the bugs, and the motivation behind a feature implementation. 
-Issue repositories like Jira also support extensive organization for issues, which can designate Jira issues belonging to different levels of abstraction.
+Issue repositories like Jira also support extensive organization for issues,
+which can designate Jira issues belonging to different levels of abstraction.
 For example, an issue on Jira can be categorized as a bug, task or sub-task of a larger task, story, or epic \cite{jira-issue-types}.
 Jira issues can also be linked to each other by relationships such as ``caused by'' or ``relates to.''
 
@@ -73,7 +85,7 @@ Another tool recognizing Jira as a source of code rationale information is \enti
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Summary}
 
-One side of previous work has focused on improving software history exploration by making revision history a primary source of code change information easier to navigate and obtain the \emph{what} of code change.
+One facet of previous work has focused on improving software history exploration by making revision history a primary source of code change information easier to navigate and obtain the \emph{what} of code change.
 While this work has made it more convenient to explore software history by reducing the search space of changes, the cognitive burden of understanding the change still lies with the developer as these focus more on using source code and the changes in revisions.
 Using only the source changes contained in revisions and the commit messages in a revision history means any generated outcome lacks the context a change took place in.
 Meanwhile, the other side of previous work incorporates a project's issue repository for elaborating on the \emph{why} of code change but still lacks support for providing the developer with the efficiency to navigate commits themselves and associate meaningful changes with rationale.
