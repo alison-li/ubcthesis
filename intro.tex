@@ -106,35 +106,37 @@ Similarly, \jira{KAFKA-7523} committed after describes another topology configur
 These commits raise limitations in the Kafka Streams \entity{API} and user desire for more configuration support regarding topologies in Kafka, which lead to interesting discussion that a present developer viewing the history could read and understand as a historical concern surrounding the \class{Topology} class.
 
 \begin{figure}
-\begin{RaggedRight}
-	\jira{KAFKA-9847:}{add config to set default store type (KIP-591) (\#11705)} \\
-	\jira{KAFKA-12648:}{introduce TopologyConfig and TaskConfig for topology-level overrides (\#11272)} \\
-	\textcolor{gray}{\jira{KAFKA-10546:}{Deprecate old PAPI (\#10869)}} \\
-	\jira{KAFKA-12648:}{basic skeleton API for NamedTopology (\#10615)} \\
-	\textcolor{gray}{\jira{KAFKA-10036:}{Improve handling and documentation of Suppliers (\#9000)}} \\
-	\textcolor{gray}{\jira{MINOR:}{Clean-up streams javadoc warnings (\#9461)}} \\
-	\textcolor{gray}{\jira{KAFKA-10605:}{Deprecate old PAPI registration methods (\#9448)}} \\
-	\jira{KAFKA-10436:}{Implement KIP-478 Topology changes (\#9221)} \\
-	\jira{KAFKA-10379:}{Implement the KIP-478 StreamBuilder\#addGlobalStore() (\#9148)} \\
-	\jira{KAFKA-7523:}{Add ConnectedStoreProvider to Processor API (\#6824)} \\
-	\jira{MINOR:}{Fix generic types in StreamsBuilder and Topology (\#8273)} \\
-	\textcolor{gray}{\jira{KAFKA-6161}{Add default implementation to close() and configure() for Serdes (\#5348)}} \\
-	\textcolor{gray}{\jira{MINOR:}{Return correct instance of SessionWindowSerde (\#5546)}} \\
-	\textcolor{gray}{\jira{KAFKA-7021:}{Reuse source based on config (\#5163)}} \\
-	\jira{KAFKA-4936:}{Add dynamic routing in Streams (\#5018)} \\
-	\textcolor{gray}{\jira{MINOR:}{Add missing generics and surpress warning annotations (\#4518)}} \\
-	\jira{MINOR:}{add suppress warnings annotations in Streams API} \\
-	\textcolor{gray}{\jira{MINOR:}{JavaDoc improvements for new state store API}} \\
-	\jira{KAFKA-5873;}{add materialized overloads to StreamsBuilder} \\
-	\jira{KAFKA-5650;}{add StateStoreBuilder interface and implementations} \\
-	\textcolor{gray}{\jira{KAFKA-5671:}{Add StreamsBuilder and Deprecate KStreamBuilder}} \\
-	\jira{KAFKA-5670:}{(KIP-120) Add Topology and deprecate TopologyBuilder} \\
+	\begin{mdframed}
+	\begin{RaggedRight}
+		\jira{KAFKA-9847:}{add config to set default store type (KIP-591) (\#11705)} \\
+		\jira{KAFKA-12648:}{introduce TopologyConfig and TaskConfig for topology-level overrides (\#11272)} \\
+		\textcolor{gray}{\jira{KAFKA-10546:}{Deprecate old PAPI (\#10869)}} \\
+		\jira{KAFKA-12648:}{basic skeleton API for NamedTopology (\#10615)} \\
+		\textcolor{gray}{\jira{KAFKA-10036:}{Improve handling and documentation of Suppliers (\#9000)}} \\
+		\textcolor{gray}{\jira{MINOR:}{Clean-up streams javadoc warnings (\#9461)}} \\
+		\textcolor{gray}{\jira{KAFKA-10605:}{Deprecate old PAPI registration methods (\#9448)}} \\
+		\jira{KAFKA-10436:}{Implement KIP-478 Topology changes (\#9221)} \\
+		\jira{KAFKA-10379:}{Implement the KIP-478 StreamBuilder\#addGlobalStore() (\#9148)} \\
+		\jira{KAFKA-7523:}{Add ConnectedStoreProvider to Processor API (\#6824)} \\
+		\jira{MINOR:}{Fix generic types in StreamsBuilder and Topology (\#8273)} \\
+		\textcolor{gray}{\jira{KAFKA-6161}{Add default implementation to close() and configure() for Serdes (\#5348)}} \\
+		\textcolor{gray}{\jira{MINOR:}{Return correct instance of SessionWindowSerde (\#5546)}} \\
+		\textcolor{gray}{\jira{KAFKA-7021:}{Reuse source based on config (\#5163)}} \\
+		\jira{KAFKA-4936:}{Add dynamic routing in Streams (\#5018)} \\
+		\textcolor{gray}{\jira{MINOR:}{Add missing generics and surpress warning annotations (\#4518)}} \\
+		\jira{MINOR:}{add suppress warnings annotations in Streams API} \\
+		\textcolor{gray}{\jira{MINOR:}{JavaDoc improvements for new state store API}} \\
+		\jira{KAFKA-5873;}{add materialized overloads to StreamsBuilder} \\
+		\jira{KAFKA-5650;}{add StateStoreBuilder interface and implementations} \\
+		\textcolor{gray}{\jira{KAFKA-5671:}{Add StreamsBuilder and Deprecate KStreamBuilder}} \\
+		\jira{KAFKA-5670:}{(KIP-120) Add Topology and deprecate TopologyBuilder} \\
+	\end{RaggedRight}
+	\end{mdframed}
 	\caption{The commit history, shown by each commit message's subject, for \class{Topology} class in the open source Apache Kafka project. 
 		The history is in descending order, from the most recent commit to the oldest commit.
 		In total, \class{Topology} has 22 commits in its commit history. The greyed out commits contain changes deemed not meaningful due to being modifications only to documentation, annotations, imports, or newlines.
 	}
 	\label{fig:Topology-Commit-History}
-\end{RaggedRight}
 \end{figure}
 
 We hypothesize identifying important commits automatically and providing integrated access between commit and issue information could help a developer more effectively access the rationale for code.
