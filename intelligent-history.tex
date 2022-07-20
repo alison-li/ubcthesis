@@ -209,7 +209,7 @@ For each pair of commits, we take the contents of file $F$ in each individual co
 
 This categorical information for a user-selected commit is exposed as \emph{diff metadata} in a pop-up when the user invokes the \textit{Show Diff Metadata} action provided by Intelligent History.
 \autoref{subfig:Intelligent-History-B-Popup} illustrates the metadata information in a pop-up for the diff presented in \autoref{subfig:Intelligent-History-B-Diff}.
-As shown in \autoref{subfig:Intelligent-History-B-Diff}, the commit \commitref{16b2ce7d}{https://github.com/apache/kafka/commit/16b2ce7da72e60d88b6ca8a3eff853a28a1458f9} for \class{Topology.java} consists of deleting an \code{import} statement, inserting an \code{import} statement, and the modification of a Javadoc comment.
+As shown in \autoref{subfig:Intelligent-History-B-Diff}, the commit \commit{16b2ce7d} for \class{Topology.java} consists of deleting an \code{import} statement, inserting an \code{import} statement, and the modification of a Javadoc comment.
 Exposing this metadata to the user allows the user to obtain a summary about the lines changed from one commit to another commit and to also understand how Intelligent History highlights commits in a file's commit history.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -222,7 +222,9 @@ In \autoref{sec:Implementation}, we outlined the three actions a user can invoke
 (\feature{2}) \textit{Show Diff Metadata}; and 
 (\feature{3}) \textit{Show Jira Issue}.
 
-Suppose a developer who is new to the Apache Kafka project would like to obtain an overview of changes so far that have improved some functionality or usability of the \class{StreamsBuilder}\footnote{\url{https://github.com/apache/kafka/blob/trunk/streams/src/main/java/org/apache/kafka/streams/StreamsBuilder.java}, verified 6/14/2022.} class over time.
+Suppose a developer who is new to the Apache Kafka project would like to obtain an 
+overview of changes so far that have improved some functionality or usability of 
+the \class{StreamsBuilder} class over time.
 The commit history for \class{StreamsBuilder} contains a total of 45 commits.
 Upon invoking feature (\feature{1}), 19 of the commits become faded in the commit history.
 Further, the developer can select any commit from the commit history and call feature (\feature{2}) to understand how Intelligent History's highlighting has been applied on the \class{StreamsBuilder} commit history.
@@ -235,7 +237,7 @@ Among these 26 commits that reference Jira issue, the developer wishes to locate
 When a commit message is unsufficient for providing information about the rationale behind a commit, the developer invokes (\feature{3}).
 On the first 4 highlighted commits in the commit history, the developer is able to skip needing to perform an in-depth investigation into the Jira issues for commits with empty or un-informative Jira issue descriptions since the developer can know this beforehand using without leaving the \entity{IDE} by invoking feature (\feature{3}) on each highlighted commit.
 
-For the fifth commit in the history, the developer sees refactorings in the diff for commit \commitref{f2b74aa1}{https://github.com/apache/kafka/commit/f2b74aa1c36bf2882006c14f7cbd56b493f39d26} with the message:
+For the fifth commit in the history, the developer sees refactorings in the diff for commit \commit{f2b74aa1} with the message:
 
 \begin{center}
     \jira{KAFKA-5873:}{add materialized overloads to StreamsBuilder} 
