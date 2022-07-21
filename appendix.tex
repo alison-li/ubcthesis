@@ -2,12 +2,15 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Raw Diff Metadata}
+\section{Diff Metadata}
+\label{sec:Diff-Metadata}
 
-\subsection{\class{Topology}}
-\label{sec:Topology-Diff-Metadata}
+\begin{mdframed}
+\begin{lstlisting}[caption={The \emph{diff metadata}, as produced by the heuristics used in Intelligent History,
+    for the commit history of \file{Topology.java} from the Apache Kafka repository.
+    Ordered from the oldest commit to the most recent commit.}
+]
 
-\begin{lstlisting}
 commit 1844bf2b2f4cdf5a8209d7ceccb6701fc7dcf768 1501285594 ----sp 
 KAFKA-5670: (KIP-120) Add Topology and deprecate TopologyBuilder                                     
 [DOCUMENTATION: 416, ANNOTATION: 0, IMPORT: 18, NEWLINE: 31, OTHER: 175]
@@ -49,7 +52,8 @@ MINOR: Return correct instance of SessionWindowSerde (#5546)
 [DOCUMENTATION: 19, ANNOTATION: 0, IMPORT: 0, NEWLINE: 0, OTHER: 0]
 
 commit 35a0de32ee3823dfb548a1cd5d5faf4f7c99e4e0 1550768713 ----sp 
-KAFKA-6161 Add default implementation to close() and configure() for Serdes (#5348)
+KAFKA-6161 Add default implementation to close() and 
+    configure() for Serdes (#5348)
 [DOCUMENTATION: 0, ANNOTATION: 3, IMPORT: 0, NEWLINE: 1, OTHER: 0]
 
 commit 21cfd0b453c878780236f623249b3b5ddec52e6e 1584653355 ----sp 
@@ -61,7 +65,7 @@ KAFKA-7523: Add ConnectedStoreProvider to Processor API (#6824)
 [DOCUMENTATION: 2, ANNOTATION: 0, IMPORT: 2, NEWLINE: 0, OTHER: 6]
 
 commit 88d4bc4641064d21a481ba3b8562a4c97703d64d 1597950376 ----sp 
-KAFKA-10379: Implement the KIP-478 StreamBuilder#addGlobalStore() (#9148)                            
+KAFKA-10379: Implement the KIP-478 StreamBuilder#addGlobalStore() (#9148)
 [DOCUMENTATION: 0, ANNOTATION: 0, IMPORT: 1, NEWLINE: 0, OTHER: 2]
 
 commit 09d1498e3065eccc26a2d396ea13e7c8b553b974 1599673041 ----sp 
@@ -89,18 +93,24 @@ KAFKA-10546: Deprecate old PAPI (#10869)
 [DOCUMENTATION: 1, ANNOTATION: 0, IMPORT: 2, NEWLINE: 0, OTHER: 0]
 
 commit 908a6d2ad7807642b917231769c8d3b6a0c1ad16 1636572479 ----sp 
-KAFKA-12648: introduce TopologyConfig and TaskConfig for topology-level overrides (#11272)
+KAFKA-12648: introduce TopologyConfig and TaskConfig for 
+    topology-level overrides (#11272)
 [DOCUMENTATION: 0, ANNOTATION: 0, IMPORT: 0, NEWLINE: 2, OTHER: 7]
 
 commit fbe7fb941173c0907792a8b48e8e9122aabecbd8 1647483582 ----sp 
 KAFKA-9847: add config to set default store type (KIP-591) (#11705)                                  
 [DOCUMENTATION: 0, ANNOTATION: 0, IMPORT: 0, NEWLINE: 1, OTHER: 3]
 \end{lstlisting}
+\end{mdframed}
 
-\subsection{\class{StreamsBuilder}}
-\label{sec:StreamsBuilder-Diff-Metadata}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{lstlisting}
+\begin{mdframed}
+\begin{lstlisting}[caption={The \emph{diff metadata}, as produced by the heuristics used in Intelligent History,
+    for the commit history of \file{StreamsBuilder.java} from the Apache Kafka repository.
+    Ordered from the oldest commit to the most recent commit.}
+]
+
 commit da2205578be3228ce40eb5e59f6bbcb0c8da0aba 1501540139 ----sp
 KAFKA-5671: Add StreamsBuilder and Deprecate KStreamBuilder                                         
 [DOCUMENTATION: 926, ANNOTATION: 0, IMPORT: 19, NEWLINE: 44, OTHER: 222]
@@ -138,7 +148,8 @@ KAFKA-6157; Fix repeated words words in JavaDoc and comments.
 [DOCUMENTATION: 4, ANNOTATION: 0, IMPORT: 0, NEWLINE: 1, OTHER: 1]
 
 commit 1a1d923f252e9b1576dad6f7285f237feb064f64 1511896122 ----sp
-KAFKA-6274: Use topic plus dash as prefix of auto-generated state store names                       
+KAFKA-6274: Use topic plus dash as prefix of 
+    auto-generated state store names
 [DOCUMENTATION: 0, ANNOTATION: 0, IMPORT: 0, NEWLINE: 0, OTHER: 6]
 
 commit 9aad649fd0defa4b55f305e3e025883ebb567b34 1513647565 ----sp
@@ -170,7 +181,8 @@ KAFKA-7027: Add overloaded build method to StreamsBuilder (#5437)
 [DOCUMENTATION: 9, ANNOTATION: 0, IMPORT: 1, NEWLINE: 1, OTHER: 3]
 
 commit c19213ab4139aa1f56f89982448184a5c82f98a4 1533160878 ----sp
-KAFKA-6761: Construct Physical Plan using Graph, Reduce streams footprint part III (#5201)
+KAFKA-6761: Construct Physical Plan using Graph, Reduce streams 
+    footprint part III (#5201)
 [DOCUMENTATION: 0, ANNOTATION: 0, IMPORT: 0, NEWLINE: 1, OTHER: 2]
 
 commit 3e64e5b9c03f13f58e6a049ff1fed039c6a15d69 1534294000 ----sp
@@ -182,7 +194,8 @@ KAFKA-6036: Local Materialization for Source KTable (#5779)
 [DOCUMENTATION: 0, ANNOTATION: 0, IMPORT: 0, NEWLINE: 0, OTHER: 12]
 
 commit f982f61fbef07970114f3c59ddb212f3e223cd46 1544762005 ----sp
-MINOR: Update documentation for internal changelog when using table(). (#6021)                      
+MINOR: Update documentation for internal changelog 
+    when using table(). (#6021)
 [DOCUMENTATION: 12, ANNOTATION: 0, IMPORT: 0, NEWLINE: 0, OTHER: 0]
 
 commit 1c7bf4e4976e2b58826f68f1abe8ffc9fd41692c 1547053396 ----sp
@@ -210,7 +223,8 @@ commit 91ccbca4c25dba1671dfdd29053521ce93996f3e 1559214746 ----sp
 [DOCUMENTATION: 3, ANNOTATION: 0, IMPORT: 0, NEWLINE: 0, OTHER: 0]
 
 commit cd5618f866921d420e2abeb5b9c03862217ec3b2 1575669822 ----sp
-MINOR: clarify node grouping of input topics using pattern subscription (#7793)                     
+MINOR: clarify node grouping of input topics 
+    using pattern subscription (#7793)
 [DOCUMENTATION: 6, ANNOTATION: 0, IMPORT: 0, NEWLINE: 0, OTHER: 0]
 
 commit 059a81e3c95fd89a3cb444aa9ffd3578648b4549 1581226767 ----sp
@@ -218,7 +232,8 @@ KAFKA-7658: Follow up to original PR (#8027)
 [DOCUMENTATION: 0, ANNOTATION: 0, IMPORT: 0, NEWLINE: 0, OTHER: 3]
 
 commit 524182d7f4f5ce274da6cf6cdd2b648095bfe5e9 1583965535 ----sp
-MINOR: Update Streams IQ JavaDocs to not point to a deprecated method (#8271)                       
+MINOR: Update Streams IQ JavaDocs to not point 
+    to a deprecated method (#8271)
 [DOCUMENTATION: 3, ANNOTATION: 0, IMPORT: 1, NEWLINE: 0, OTHER: 0]
 
 commit 21cfd0b453c878780236f623249b3b5ddec52e6e 1584653355 ----sp
@@ -246,7 +261,8 @@ KAFKA-10379: Implement the KIP-478 StreamBuilder#addGlobalStore() (#9148)
 [DOCUMENTATION: 32, ANNOTATION: 1, IMPORT: 5, NEWLINE: 1, OTHER: 17]
 
 commit d1c82a9baf5f3a0d3bde3ec35157358f7a62ecc8 1601492771 ----sp
-KAFKA-10205: Documentation and handling of non deterministic Topologies (#9064)                     
+KAFKA-10205: Documentation and handling of 
+    non deterministic Topologies (#9064)
 [DOCUMENTATION: 8, ANNOTATION: 0, IMPORT: 0, NEWLINE: 0, OTHER: 0]
 
 commit 1f8ac6e6fee3aa404fc1a4c01ac2e0c48429a306 1602513272 ----sp
@@ -270,17 +286,20 @@ KAFKA-10546: Deprecate old PAPI (#10869)
 [DOCUMENTATION: 4, ANNOTATION: 0, IMPORT: 0, NEWLINE: 0, OTHER: 0]
 
 commit 6655a09e99125aff34cb96188924fca1df3387ad 1624638709 ----sp
-KAFKA-12849: KIP-744 TaskMetadata ThreadMetadata StreamsMetadata as API (#10840)                    
+KAFKA-12849: KIP-744 TaskMetadata ThreadMetadata 
+    StreamsMetadata as API (#10840)
 [DOCUMENTATION: 1, ANNOTATION: 0, IMPORT: 0, NEWLINE: 0, OTHER: 0]
 
 commit 908a6d2ad7807642b917231769c8d3b6a0c1ad16 1636572479 ----sp
-KAFKA-12648: introduce TopologyConfig and TaskConfig for topology-level overrides (#11272)
+KAFKA-12648: introduce TopologyConfig and TaskConfig for 
+    topology-level overrides (#11272)
 [DOCUMENTATION: 0, ANNOTATION: 0, IMPORT: 1, NEWLINE: 2, OTHER: 11]
 
 commit fbe7fb941173c0907792a8b48e8e9122aabecbd8 1647483582 ----sp
 KAFKA-9847: add config to set default store type (KIP-591) (#11705)                                 
 [DOCUMENTATION: 5, ANNOTATION: 0, IMPORT: 1, NEWLINE: 0, OTHER: 2]
 \end{lstlisting}
+\end{mdframed}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \endinput
