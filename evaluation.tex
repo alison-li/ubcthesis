@@ -1,10 +1,10 @@
 \chapter{Evaluation}
 \label{ch:Evaluation}
 
-To evaluate our hypothesis and the performance of Intelligent History, 
-we conducted a controlled laboratory study to observe software developers as they answer questions
+To evaluate the performance of Intelligent History, 
+we conducted a controlled laboratory study to gather data from software developers as they answer questions
 requiring them to explore commit histories and obtain code rationale information 
-about two Java classes from the Apache Kafka project.
+about two Java classes from the Apache Kafka repository.
 Participants answered a set of questions without Intelligent History,
 followed by a different second set of questions with Intelligent History.
 We divided up the participants such that we would be able to gather for
@@ -221,6 +221,7 @@ and to probe further about unexpected responses \cite{shull_guide_2007}.
 
 The laboratory sessions took place virtually over Zoom, where participants were asked to share their screen.
 We recorded all of the sessions and used the recordings to document each session with a summary.
+The documented summaries are available at Appendix \ref{sec:Summaries}.
 We design the study to have an estimated total duration of 1 to 1.5 hours for each participant,
 including setup, the controlled laboratory experiment, and interview.
 
@@ -311,7 +312,7 @@ for each participant's session to visualize how they explored commit history to 
 and the impact of Intelligent History on their exploration.
 We regard these graphs as \emph{commit history exploration graphs} and constructed a set of these graphs for each participant, 
 one for each question the participant worked on.
-We provide a sample of two commit history exploration graphs we constructed to illustrate 
+We use a sample of two commit history exploration graphs we constructed to illustrate 
 participants \participant{F} and \participant{H}’s exploration to answer question B1 
 from \autoref{tab:Question-Sets} in \autoref{fig:Exploration-Graphs}.
 For B1, both participant \participant{F} and \participant{H} did not use Intelligent History.
@@ -343,15 +344,17 @@ A participant's exploration approach is categorized as one of:
 We define \textit{linear} for directed graphs in which all of the nodes represent commits 
 that were examined in chronological order by timestamp. 
 We use \textit{cyclic and backtracking} to describe directed graphs 
-containing more than three cycles, indicating that the participant has backtracked to
-an earlier seen commit at least three times, causing a cycle. 
+containing at least two cycles, indicating that the participant has backtracked to
+an earlier seen commit at least twice, causing a cycle. 
 Lastly, \textit{commit message skimming} characterizes graphs where 
-at least half of the nodes are italicized commit hashes to indicate
+at least a third of the nodes are italicized commit hashes to indicate
 that the commit messages were only glanced at by the participant but the
 contents of the commit were not further inspected by the participant.
 If the condition for a graph to be categorized as \textit{commit message skimming} is met,
 we categorize the graph as such regardless of whether the graph meets the critiera for the other two categories.
 
+The complete set of commit history exploration graphs we constructed
+for each participant is available at Appendix \ref{sec:All-Exploration-Graphs}.
 For each participant, we use the commit history exploration graph for question B1
 as a starting point to characterize the participant's exploration approach since
 B1 requires interaction with the larger commit history of the two files the participants were asked to explore.
@@ -380,7 +383,7 @@ each commit sequentially in chronological order by each commit's timestamp.
 We characterize the structure of the graph for \participant{H} and their commit history exploration approach as \textit{linear} 
 to describe the participant's sequential exploration of the commit history.
 
-To analyze the participants' responses to the open-ended, semi-structured interview questions, 
+To analyze the participants' responses to the open-ended interview questions, 
 we categorize each participant's experience with looking at issues and commits,
 the commit history exploration approach they exhibitied when searching for the answers to the question sets, 
 and the features of Intelligent History for which they expressed the most enthusiasm.
@@ -409,9 +412,11 @@ relationship between these categories for each participants.
 We summarize the quantitative results collected through logs and screen recordings in \autoref{tab:Results-Quantitative-AB} 
 for participants who received question set A first, then set B.
 Likewise, the results for participants who received question set B first, then set A are summarized in \autoref{tab:Results-Quantitative-BA}.
-As stated in \autoref{sec:Method}, question set A corresponds to the \class{Topology} class, which contains 22 commits in its commit history, 
-while set B corresponds to the \class{StreamsBuilder} class, which contains 45 commits in its commit history.
-Overall, participants who did not use Intelligent History examined a higher mean proportion of commits for questions A1, A2, and B1.
+In addition to the total number and proportion of unique commits a participant examined as part of answering a question,
+we computed the proportion of those commits that would be highlighted commits according to Intelligent History.
+We did this to observe:
+(1) whether a large proportion of commits a participant inspects would be considered as important using Intelligent History
+and (2) the influence of Intelligent History's commit highlighting on which commits a participant chooses to examine.
 
 %% BEGIN: Large landscape tables
 \begin{landscape}
@@ -430,13 +435,13 @@ Overall, participants who did not use Intelligent History examined a higher mean
         \multicolumn{1}{l}{}                & \multicolumn{8}{c}{Set A (without plugin)}                                                                                                                            & \multicolumn{8}{c}{Set B (with plugin)}                                                                                                                                                                 \\ \midrule
         \multicolumn{1}{c|}{}               & \multicolumn{4}{c|}{A1}                                  & \multicolumn{4}{c|}{A2}                                                                                    & \multicolumn{4}{c|}{B1}                                                                     & \multicolumn{4}{c}{B2}                                                                                    \\ \midrule
         \multicolumn{1}{c|}{Pseudo-initial} & \%CE      & \%HC      & \#AS & \multicolumn{1}{l|}{\#IV} & \multicolumn{1}{l}{\%CE} & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} & \multicolumn{1}{l|}{\#IV} & \%CE      & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} & \multicolumn{1}{l|}{\#IV} & \multicolumn{1}{l}{\%CE} & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} & \multicolumn{1}{l}{\#IV} \\ \midrule
-        \multicolumn{1}{c|}{A}              & 40.9 (9)  & 55.6 (5)  & 1    & \multicolumn{1}{c|}{1}    & 27.3 (6)                 & 83.3 (5)                 & 1                        & \multicolumn{1}{c|}{1}    & 15.6 (7)  & 100.0 (7)                & 0                        & \multicolumn{1}{c|}{4}    & 6.7 (3)                  & 100.0 (3)                & 0                        & 1                        \\
-        \multicolumn{1}{c|}{C}              & 4.5 (1)   & 100.0 (1) & 1    & \multicolumn{1}{c|}{1}    & 27.3 (6)                 & 83.3 (5)                 & 1                        & \multicolumn{1}{c|}{1}    & 6.7 (3)   & 100.0 (3)                & 0                        & \multicolumn{1}{c|}{2}    & 0.0 (0)                  & N/A                      & 0                        & 0                        \\
-        \multicolumn{1}{c|}{E}              & 36.3 (8)  & 62.5 (5)  & 1    & \multicolumn{1}{c|}{1}    & 68.1 (15)                & 66.7 (10)                & 1                        & \multicolumn{1}{c|}{1}    & 35.6 (16) & 100.0 (16)               & 1                        & \multicolumn{1}{c|}{3}    & 8.9 (4)                  & 100.0 (4)                & 0                        & 1                        \\
-        \multicolumn{1}{c|}{G}              & 86.3 (19) & 57.9 (11) & 1    & \multicolumn{1}{c|}{1}    & 36.3 (8)                 & 75.0 (6)                 & 1                        & \multicolumn{1}{c|}{1}    & 13.3 (6)  & 100.0 (6)                & 3                        & \multicolumn{1}{c|}{5}    & 6.7 (3)                  & 100.0 (3)                & 1                        & 2                        \\
-        \multicolumn{1}{c|}{I}              & 4.5 (1)   & 83.3 (5)  & 1    & \multicolumn{1}{c|}{1}    & 36.3 (8)                 & 75.0 (6)                 & 1                        & \multicolumn{1}{c|}{1}    & 6.7 (3)   & 100.0 (3)                & 0                        & \multicolumn{1}{c|}{2}    & 6.7 (3)                  & 100.0 (3)                & 0                        & 1                        \\ \midrule
-        \multicolumn{1}{l|}{Mean}           & 34.5      & 68.5      & 1    & \multicolumn{1}{c|}{1}    & 39.1                     & 76.7                     & 1                        & \multicolumn{1}{c|}{1}    & 15.6      & 100.0                    & 0.8                      & \multicolumn{1}{c|}{3.2}  & 5.8                      & 100.0                    & 0.2                      & 1                        \\
-        \multicolumn{1}{l|}{Median}         & 36.3      & 62.5      & 1    & \multicolumn{1}{c|}{1}    & 36.3                     & 75.0                     & 1                        & \multicolumn{1}{c|}{1}    & 13.3      & 100.0                    & 0.0                      & \multicolumn{1}{c|}{3.0}  & 6.7                      & 100.0                    & 0.0                      & 1                        \\ \bottomrule
+        \multicolumn{1}{c|}{A}              & 40.9 (9)  & 55.6 (5)  & 1.0  & \multicolumn{1}{c|}{1}    & 27.3 (6)                 & 83.3 (5)                 & 1.0                      & \multicolumn{1}{c|}{1}    & 15.6 (7)  & 100.0 (7)                & 0.0                      & \multicolumn{1}{c|}{4}    & 6.7 (3)                  & 100.0 (3)                & 0.0                      & 1                        \\
+        \multicolumn{1}{c|}{C}              & 4.5 (1)   & 100.0 (1) & 1.0  & \multicolumn{1}{c|}{1}    & 27.3 (6)                 & 83.3 (5)                 & 1.0                      & \multicolumn{1}{c|}{1}    & 6.7 (3)   & 100.0 (3)                & 0.0                      & \multicolumn{1}{c|}{2}    & 0.0 (0)                  & N/A                      & 0.0                      & 0                        \\
+        \multicolumn{1}{c|}{E}              & 36.3 (8)  & 62.5 (5)  & 1.0  & \multicolumn{1}{c|}{1}    & 68.1 (15)                & 66.7 (10)                & 1.0                      & \multicolumn{1}{c|}{1}    & 35.6 (16) & 100.0 (16)               & 1.0                      & \multicolumn{1}{c|}{3}    & 8.9 (4)                  & 100.0 (4)                & 0.0                      & 1                        \\
+        \multicolumn{1}{c|}{G}              & 86.3 (19) & 57.9 (11) & 1.0  & \multicolumn{1}{c|}{1}    & 36.3 (8)                 & 75.0 (6)                 & 1.0                      & \multicolumn{1}{c|}{1}    & 13.3 (6)  & 100.0 (6)                & 3.0                      & \multicolumn{1}{c|}{5}    & 6.7 (3)                  & 100.0 (3)                & 1.0                      & 2                        \\
+        \multicolumn{1}{c|}{I}              & 4.5 (1)   & 83.3 (5)  & 1.0  & \multicolumn{1}{c|}{1}    & 36.3 (8)                 & 75.0 (6)                 & 1.0                      & \multicolumn{1}{c|}{1}    & 6.7 (3)   & 100.0 (3)                & 0.0                      & \multicolumn{1}{c|}{2}    & 6.7 (3)                  & 100.0 (3)                & 0.0                      & 1                        \\ \midrule
+        \multicolumn{1}{l|}{Mean}           & 34.5      & 68.5      & 1.0  & \multicolumn{1}{c|}{1}    & 39.1                     & 76.7                     & 1.0                      & \multicolumn{1}{c|}{1}    & 15.6      & 100.0                    & 0.8                      & \multicolumn{1}{c|}{3.2}  & 5.8                      & 100.0                    & 0.2                      & 1                        \\
+        \multicolumn{1}{l|}{Median}         & 36.3      & 62.5      & 1.0  & \multicolumn{1}{c|}{1}    & 36.3                     & 75.0                     & 1.0                      & \multicolumn{1}{c|}{1}    & 13.3      & 100.0                    & 0.0                      & \multicolumn{1}{c|}{3.0}  & 6.7                      & 100.0                    & 0.0                      & 1                        \\ \bottomrule
       \end{tabular}
     }%
     \label{tab:Results-Quantitative-AB}
@@ -456,13 +461,13 @@ Overall, participants who did not use Intelligent History examined a higher mean
         \multicolumn{1}{l}{}                & \multicolumn{8}{c}{Set A (with plugin)}                                                                                                                              & \multicolumn{8}{c}{Set B (without plugin)}                                                                                                                                                              \\ \midrule
         \multicolumn{1}{c|}{}               & \multicolumn{4}{c|}{A1}                                 & \multicolumn{4}{c|}{A2}                                                                                    & \multicolumn{4}{c|}{B1}                                                                     & \multicolumn{4}{c}{B2}                                                                                    \\ \midrule
         \multicolumn{1}{c|}{Pseudo-initial} & \%CE     & \%HC      & \#AS & \multicolumn{1}{l|}{\#IV} & \multicolumn{1}{l}{\%CE} & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} & \multicolumn{1}{l|}{\#IV} & \%CE      & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} & \multicolumn{1}{l|}{\#IV} & \multicolumn{1}{l}{\%CE} & \multicolumn{1}{l}{\%HC} & \multicolumn{1}{l}{\#AS} & \multicolumn{1}{l}{\#IV} \\ \midrule
-        \multicolumn{1}{c|}{B}              & 4.5 (1)  & 100.0 (1) & 1    & \multicolumn{1}{c|}{1}    & 9.0 (2)                  & 100.0 (2)                & 0                        & \multicolumn{1}{c|}{1}    & 35.6 (16) & 37.5 (6)                 & 2                        & \multicolumn{1}{c|}{2}    & 4.4 (2)                  & 100.0 (1)                & 0                        & 0                        \\
-        \multicolumn{1}{c|}{D}              & 31.8 (7) & 100.0 (1) & 1    & \multicolumn{1}{c|}{1}    & 13.3 (6)                 & 100.0 (1)                & 1                        & \multicolumn{1}{c|}{1}    & 20.0 (9)  & 55.6 (5)                 & 2                        & \multicolumn{1}{c|}{2}    & 8.9 (4)                  & 100.0 (4)                & 2                        & 2                        \\
-        \multicolumn{1}{c|}{F}              & 4.5 (1)  & 100.0 (1) & 1    & \multicolumn{1}{c|}{1}    & 13.6 (3)                 & 100.0 (3)                & 1                        & \multicolumn{1}{c|}{1}    & 42.2 (19) & 42.1 (8)                 & 1                        & \multicolumn{1}{c|}{1}    & 2.2 (1)                  & 100.0 (1)                & 1                        & 1                        \\
-        \multicolumn{1}{c|}{H}              & 4.5 (1)  & 100.0 (1) & 1    & \multicolumn{1}{c|}{1}    & 31.8 (7)                 & 85.7 (6)                 & 1                        & \multicolumn{1}{c|}{1}    & 22.2 (10) & 50.0 (5)                 & 3                        & \multicolumn{1}{c|}{3}    & 8.9 (4)                  & 100.0 (4)                & 1                        & 1                        \\
-        \multicolumn{1}{c|}{J}              & 4.5 (1)  & 100.0 (1) & 1    & \multicolumn{1}{c|}{1}    & 31.8 (7)                 & 100.0 (7)                & 0                        & \multicolumn{1}{c|}{1}    & 46.7 (21) & 71.4 (15)                & 2                        & \multicolumn{1}{c|}{2}    & 6.7 (3)                  & 100.0 (3)                & 1                        & 1                        \\ \midrule
-        \multicolumn{1}{l|}{Mean}           & 10.0     & 100.0     & 1    & \multicolumn{1}{c|}{1}    & 19.9                     & 97.1                     & 0.6                      & \multicolumn{1}{c|}{1}    & 33.3      & 51.3                     & 2                        & \multicolumn{1}{c|}{2}    & 6.2                      & 100.0                    & 1                        & 1                        \\
-        \multicolumn{1}{l|}{Median}         & 4.5      & 100.0     & 1    & \multicolumn{1}{c|}{1}    & 13.6                     & 100.0                    & 1                        & \multicolumn{1}{c|}{1}    & 35.6      & 50.0                     & 2                        & \multicolumn{1}{c|}{2}    & 6.7                      & 100.0                    & 1                        & 1                        \\ \bottomrule
+        \multicolumn{1}{c|}{B}              & 4.5 (1)  & 100.0 (1) & 1.0  & \multicolumn{1}{c|}{1}    & 9.0 (2)                  & 100.0 (2)                & 0.0                      & \multicolumn{1}{c|}{1}    & 35.6 (16) & 37.5 (6)                 & 2.0                      & \multicolumn{1}{c|}{2}    & 4.4 (2)                  & 100.0 (1)                & 0.0                      & 0                        \\
+        \multicolumn{1}{c|}{D}              & 31.8 (7) & 100.0 (1) & 1.0  & \multicolumn{1}{c|}{1}    & 13.3 (6)                 & 100.0 (1)                & 1.0                      & \multicolumn{1}{c|}{1}    & 20.0 (9)  & 55.6 (5)                 & 2.0                      & \multicolumn{1}{c|}{2}    & 8.9 (4)                  & 100.0 (4)                & 2.0                      & 2                        \\
+        \multicolumn{1}{c|}{F}              & 4.5 (1)  & 100.0 (1) & 1.0  & \multicolumn{1}{c|}{1}    & 13.6 (3)                 & 100.0 (3)                & 1.0                      & \multicolumn{1}{c|}{1}    & 42.2 (19) & 42.1 (8)                 & 1.0                      & \multicolumn{1}{c|}{1}    & 2.2 (1)                  & 100.0 (1)                & 1.0                      & 1                        \\
+        \multicolumn{1}{c|}{H}              & 4.5 (1)  & 100.0 (1) & 1.0  & \multicolumn{1}{c|}{1}    & 31.8 (7)                 & 85.7 (6)                 & 1.0                      & \multicolumn{1}{c|}{1}    & 22.2 (10) & 50.0 (5)                 & 3.0                      & \multicolumn{1}{c|}{3}    & 8.9 (4)                  & 100.0 (4)                & 1.0                      & 1                        \\
+        \multicolumn{1}{c|}{J}              & 4.5 (1)  & 100.0 (1) & 1.0  & \multicolumn{1}{c|}{1}    & 31.8 (7)                 & 100.0 (7)                & 0.0                      & \multicolumn{1}{c|}{1}    & 46.7 (21) & 71.4 (15)                & 2.0                      & \multicolumn{1}{c|}{2}    & 6.7 (3)                  & 100.0 (3)                & 1.0                      & 1                        \\ \midrule
+        \multicolumn{1}{l|}{Mean}           & 10.0     & 100.0     & 1.0  & \multicolumn{1}{c|}{1}    & 19.9                     & 97.1                     & 0.6                      & \multicolumn{1}{c|}{1}    & 33.3      & 51.3                     & 2.0                      & \multicolumn{1}{c|}{2}    & 6.2                      & 100.0                    & 1.0                      & 1                        \\
+        \multicolumn{1}{l|}{Median}         & 4.5      & 100.0     & 1.0  & \multicolumn{1}{c|}{1}    & 13.6                     & 100.0                    & 1.0                      & \multicolumn{1}{c|}{1}    & 35.6      & 50.0                     & 2.0                      & \multicolumn{1}{c|}{2}    & 6.7                      & 100.0                    & 1.0                      & 1                        \\ \bottomrule
       \end{tabular}
     }%
     \label{tab:Results-Quantitative-BA}
@@ -470,13 +475,7 @@ Overall, participants who did not use Intelligent History examined a higher mean
 \end{landscape}
 %% END: Large landscape tables
 
-In addition to the number of unique commits a participant examined as part of answering a question,
-we computed the proportion of those commits that would be highlighted commits according to Intelligent History.
-We did this to observe:
-(1) whether a large proportion of commits a participant inspects would be considered as important using Intelligent History
-and (2) the influence of Intelligent History's commit highlighting on which commits a participant chooses to examine.
-
-We found that for questions that participants completed without Intelligent History,
+We found for questions that participants completed without Intelligent History,
 over half of the commits that participants examined would have been highlighted by Intelligent History.
 For A1 and A2 respectively, a mean of 68.5\% and 76.7\% 
 of the commits that the participants examined would be highlighted commits (see \autoref{tab:Results-Quantitative-AB}).
@@ -527,8 +526,12 @@ that Intelligent History would highlight to indicate a potentially interesting c
 
 We define our measure for efficiency as the proportion of commits from a file's commit history 
 that a developer examines before obtaining the information they need to answer questions about the intent behind code changes.
+From \autoref{tab:Results-Quantitative-AB} and \autoref{tab:Results-Quantitative-BA}, 
+we observe that participants who did not use Intelligent History 
+examined a higher mean proportion of commits for questions A1, A2, and B1.
 The results of the $t$-tests for determining significant statistical differences in 
 the mean proportion of commits examined by each group for a question are summarized in \autoref{tab:t-test}.
+
 For questions A1 and B2, we fail to reject the null hypothesis, which states that the mean proportion of commits examined 
 by the group without Intelligent History and the group with Intelligent History are equal.
 However, for questions A2 and B1, we reject the null hypothesis, indicating the mean proportion of commits examined 
@@ -536,6 +539,10 @@ by the group without Intelligent History and the group without Intelligent Histo
 Thus, our findings show there is a significant difference in the mean proportion of commits examined between 
 the group that does not use Intelligent History and the group that does use Intelligent History to answer questions A2 and B1.
 We found that the results of the $t$-tests could be impacted by the differing natures between questions A1, A2 and B1, B2.
+A2 and B1 are concerned with navigating a broad commit history and using the components of a commit, such
+as the diff, messages, and issues, to identify whether a commit meets the conditions of a question.
+A1 and B2 are related to locating the information for specific fragments of code,
+where the commits affecting the section can be located without Intelligent History. 
 
 \begin{table}[h]
   \caption{
@@ -564,7 +571,8 @@ The participant must first examine the diffs to determine of the source code cha
 complies with what is asked in A2 and B1.
 Since many commit messages are empty or brief, the participant is encouraged to view
 the associated Jira issue to obtain the rationale information behind the code change.
-As we observed in \autoref{subsec:RQ1}, participants who had access to Intelligent History for a question
+As we observed in answering \entity{RQ1} (see \autoref{subsec:RQ1}), 
+participants who had access to Intelligent History for a question
 were more inclined to only examine highlighted commits.
 Hence, participants answering questions with Intelligent History may have examined less commits
 participants used highlighted commits as a way of prioritizing which commits to investigate further.
@@ -644,7 +652,8 @@ On the commit history highlighting feature, participant \participant{A} stated:
 Of the 6 participants that expressed a preference for feature (\feature{1}), 
 2 employed a commit history exploration approach that could be described as \textit{cyclic and backtracking} based on their commit history exploration graphs \participants{BF},
 3 used commit message skimming \participants{DJ}, and 1 used a linear approach \participants{H}.
-Thus, we find less of a relationship between a participant's software history exploration approach and their preference for feature (\feature{1}).
+Thus, we find there to be less of a relationship between a participant's software history exploration approach 
+and their preference for feature (\feature{1}).
 
 \subsubsection{Locating Rationale for a Code Fragment}
 
@@ -696,7 +705,7 @@ Thus, based on our analysis of A2 and B1 where there was a significant differenc
 the proportion of commits examined by participants using Intelligent History, 
 we observe that participants who use Intelligent History with its commit highlighting feature 
 look at a smaller proportion of commits from a file's commit history when answering questions related to
-identifying and finding meaningful source code changes over a broad commit history.
+identifying and finding meaningful source code changes over a general view of the commit history.
 In support of this observation, 
 participant \participant{A} expressed a beneficial use case of commit history highlighting 
 for reducing the number commits a software developer examines:
@@ -706,11 +715,12 @@ for reducing the number commits a software developer examines:
   then that [highlighting commits] would be very useful because it gets rid of all the changes that don’t matter. 
 \end{quote}
 
-We found highlighting to distinguish non-essential commits from other commits in a history
-for questions A2 and B1 is accompanied by a reduced percentage of commits examined when exploring a file's commit history 
+We found highlighting has the ability to distinguish non-essential commits from other commits in a commit history
+for questions A2 and B1.
+This is accompanied by a reduced percentage of commits examined when exploring a file's commit history 
 for questions related to identifying meaningful source changes 
-and the rationale behind those changes when the developer must navigate a broad commit history for a file. 
-However, for questions A1 and B2 which relate to finding the intent behind fragments of source code,
+and the intent behind those changes when the developer must navigate a broad commit history for a file. 
+For questions A1 and B2, which relate to finding the intent behind fragments of source code,
 we have insufficient evidence to show that there is a significant difference
 between the participant group that had highlighted commits and the group that did not have highlighted commits.
 

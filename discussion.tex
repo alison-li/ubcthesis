@@ -10,9 +10,9 @@ and suggestions for further investigation to expand on our work.
 
 \section{Project Selection}
 
-A limitation in our approach and findings is our use of a single open-source repository, Apache Kafka.
+A limitation in our approach and findings is our use of a single open-source repository written primarily in Java.
 We used the commit histories of two files from Apache Kafka to develop the heuristics for defining a commit that contains trivial changes.
-However, the generalizability of our results becomes limited to these files for Apache Kafka.
+However, the generalizability of our results becomes limited to these files for Apache Kafka and specific to Java as a programming language.
 Our approach to commit highlighting described in \autoref{sec:Heuristics}
 involves prioritizing pattern matching for categories of trivial changes in diffs.
 Our current implementation requires a commit's diff to have at least 1 uncategorized change
@@ -38,8 +38,11 @@ Additionally, a few participants described the utility of the commit highlightin
 approach for helping them ignore ``irrelevant'' commits \participants{DFI}.
 For developers, relevancy is in relation to a task or question.
 Hence, another suggestion for future work would be to explore how
-we can integrate task or context-sensitivity to our approach for distinguishing trivial or non-trivial
+we can integrate task-relevancy or context-sensitivity to our approach for distinguishing trivial or non-trivial
 commits in a commit history.
+The need for task-relevant and context-sensitive approaches in software engineering tools
+is emphasized and explored in existing work 
+\cite{cubranic_hipikat_2005,marques_task-relevant_2020,li_what-help_2013}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -55,10 +58,11 @@ issue tracking system (\entity{ITS}) beyond Jira.
 
 Another concern about our approach is our reliance on issues
 as a source of code rationale information.
-This arose as a concern among two participants, who mentioned working within projects
-with commits that are not explicitly structured or associated with specific issues
-from an \entity{ITS} \participants{AH}.
-On how issues play a role in participant \participant{A}'s daily work, they said:
+This arose as a concern after reviewing the feedback from two participants, 
+who mentioned working with projects in which commits are not structured or 
+have no explicit relationship with issues
+from an \entity{ITS}, despite their organization using an \entity{ITS} with the project \participants{AH}.
+On how issues play a role in participant \participant{A}'s daily work, they stated:
 
 \begin{quote}
     I don’t actually typically look at issues. 
@@ -66,6 +70,12 @@ On how issues play a role in participant \participant{A}'s daily work, they said
     It’s mostly my manager that uses Jira with the other managers. 
     [The people on my team] get assigned stuff but they don’t really interact with the issue at all.
 \end{quote}
+
+For issues that do not contain any substantial or useful discussion from
+the developers who author code in a commit,
+our approach to improving access to rationale information would not perform adequately.
+A direction for future work in this case would be to explore other sources of
+code rationale information that can be automatically retrieved and tied to commits.
 
 Not only does the performance of our approach depend on the specific
 \entity{ITS} used and the practice of explicitly linking issues to commits,
@@ -77,8 +87,16 @@ is highly distributed across commits, issues, and pull requests \cite{brunet_des
 Participant \participant{J} mentioned:
 ``\textit{Since each issue corresponded to a pull request, we usually put [rationale] information in the pull request. 
 The issue was just to explain the problem and the solution was in the pull request.}''
-Thus, we find that a direction for future work is to explore approaches for aggregating and pre-processing
-to improve the utility of an issue, and to present the aggregated or pre-processed information better in the \entity{IDE}.
+Thus, we find that a suggestion for future work is to explore approaches for effectively aggregating multiple issues
+or sources of information and transforming the aggregated information to improve the utility of an issue. 
+This could lead to presenting the transformed information in the \entity{IDE} to the developer,
+alleviating the burden of viewing multiple sources for code rationale information separate from the developer's
+source code editor.
+Similar work that draws on multiple different artifacts for retrieving relevant information exists,
+such as Hipikat \cite{cubranic_hipikat_2005}, which not only uses source source and documentation, 
+but also communications from electronic media, bug reports, and test plans.
+As mentioned in \autoref{ch:Related-Work}, Rastkar and Murphy have also explored
+producing natural language summaries for sets of multiple issues with hierarchical relations \cite{rastkar_why_2013}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -115,7 +133,7 @@ a suggestion we make for future work is to explore how this metadata information
 can be used to measure the essentiality or non-essentiality of a commit.
 This could help inform us of how to improve the presentation of important
 commits, such as indicating the degree of importance for each commit 
-instead of a binary decision on a commit as trivial or not trivial.
+instead of a binary decision on a commit as non-essential or otherwise.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \endinput
