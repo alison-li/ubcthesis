@@ -412,9 +412,11 @@ relationship between these categories for each participants.
 We summarize the quantitative results collected through logs and screen recordings in \autoref{tab:Results-Quantitative-AB} 
 for participants who received question set A first, then set B.
 Likewise, the results for participants who received question set B first, then set A are summarized in \autoref{tab:Results-Quantitative-BA}.
-As stated in \autoref{sec:Method}, question set A corresponds to the \class{Topology} class, which contains 22 commits in its commit history, 
-while set B corresponds to the \class{StreamsBuilder} class, which contains 45 commits in its commit history.
-Overall, participants who did not use Intelligent History examined a higher mean proportion of commits for questions A1, A2, and B1.
+In addition to the total number and proportion of unique commits a participant examined as part of answering a question,
+we computed the proportion of those commits that would be highlighted commits according to Intelligent History.
+We did this to observe:
+(1) whether a large proportion of commits a participant inspects would be considered as important using Intelligent History
+and (2) the influence of Intelligent History's commit highlighting on which commits a participant chooses to examine.
 
 %% BEGIN: Large landscape tables
 \begin{landscape}
@@ -473,13 +475,7 @@ Overall, participants who did not use Intelligent History examined a higher mean
 \end{landscape}
 %% END: Large landscape tables
 
-In addition to the number of unique commits a participant examined as part of answering a question,
-we computed the proportion of those commits that would be highlighted commits according to Intelligent History.
-We did this to observe:
-(1) whether a large proportion of commits a participant inspects would be considered as important using Intelligent History
-and (2) the influence of Intelligent History's commit highlighting on which commits a participant chooses to examine.
-
-We found that for questions that participants completed without Intelligent History,
+We found for questions that participants completed without Intelligent History,
 over half of the commits that participants examined would have been highlighted by Intelligent History.
 For A1 and A2 respectively, a mean of 68.5\% and 76.7\% 
 of the commits that the participants examined would be highlighted commits (see \autoref{tab:Results-Quantitative-AB}).
@@ -530,8 +526,12 @@ that Intelligent History would highlight to indicate a potentially interesting c
 
 We define our measure for efficiency as the proportion of commits from a file's commit history 
 that a developer examines before obtaining the information they need to answer questions about the intent behind code changes.
+From \autoref{tab:Results-Quantitative-AB} and \autoref{tab:Results-Quantitative-BA}, 
+we observe that participants who did not use Intelligent History 
+examined a higher mean proportion of commits for questions A1, A2, and B1.
 The results of the $t$-tests for determining significant statistical differences in 
 the mean proportion of commits examined by each group for a question are summarized in \autoref{tab:t-test}.
+
 For questions A1 and B2, we fail to reject the null hypothesis, which states that the mean proportion of commits examined 
 by the group without Intelligent History and the group with Intelligent History are equal.
 However, for questions A2 and B1, we reject the null hypothesis, indicating the mean proportion of commits examined 
@@ -571,7 +571,8 @@ The participant must first examine the diffs to determine of the source code cha
 complies with what is asked in A2 and B1.
 Since many commit messages are empty or brief, the participant is encouraged to view
 the associated Jira issue to obtain the rationale information behind the code change.
-As we observed in \autoref{subsec:RQ1}, participants who had access to Intelligent History for a question
+As we observed in answering \entity{RQ1} (see \autoref{subsec:RQ1}), 
+participants who had access to Intelligent History for a question
 were more inclined to only examine highlighted commits.
 Hence, participants answering questions with Intelligent History may have examined less commits
 participants used highlighted commits as a way of prioritizing which commits to investigate further.
