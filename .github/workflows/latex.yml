@@ -1,7 +1,7 @@
 name: ubcdiss CI
 on:
   push:
-    branches-ignore:
+    branches:
       - master
   pull_request:
   workflow_dispatch:
