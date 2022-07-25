@@ -10,15 +10,20 @@
 
 Software developers traverse several commits and issues from issue tracking systems 
 when exploring software revision history in order to unearth questions about the rationale behind presently written code.
-This exploration results in a cognitive and temporal burden as developers
-context switch between their \entity{IDE}s and a project's issue tracking system to locate code rationale information
-associated with each commit.
+\rev{This exploration results in a cognitive and temporal burden.
+Challenges to exploring software revision history and obtaining code rationale information effectively
+include overcoming the large volume of commits in a history, requiring the developer to filter
+through trivial changes.}
+Developers also must context switch between their \entity{IDE}s and a project's 
+issue tracking system to locate code rationale information associated with each commit.
+\rev{Thus, developers require more effective support for software revision history exploration
+to better uncover code rationale information.}
 
-To reduce the costs of software revision history exploration,
-we introduce an approach using regular expression patterns to reduce the search space of commits in a revision history to signal to a developer which commits in a history merit further investigation.
-Additionally, our approach minimizes the distance between a developer's \entity{IDE} and issues from an \entity{ITS}
+\rev{We introduce Intelligent History, a plugin for the IntelliJ IDEA \entity{IDE}. 
+Intelligent History uses commit history highlighting to reduce the search space of 
+commits in a revision history, recommending to a developer which commits in a history might merit further investigation.}
+Additionally, our approach minimizes the distance between a developer's \entity{IDE} and issues from an issue tracking system
 by directly integrating issue information in the same context.
-We implemented these techniques in Intelligent History, a plugin for the IntelliJ IDEA \entity{IDE}.
 
 To evaluate the Intelligent History, we conducted a controlled laboratory study and recruited 10 software developers.
 We asked two sets of questions related to the intent behind source code, requiring the participants to explore 
@@ -27,17 +32,16 @@ We also conduct a semi-structured interview on the participants' experiences wit
 and their use of Intelligent History in the experiment.
 
 The results from our analysis shows:
-(1) there was overlap between at least half of the commits
-that participants examined without Intelligent History and the commits that Intelligent History
-highlighted; (2) participants who used Intelligent History examined significantly
+\rev{(1)} participants who used Intelligent History examined significantly
 less commits than participants who did not use Intelligent History;
-and (3) direct integration of issue information in the \entity{IDE}
+(2) direct integration of issue information in the \entity{IDE}
 with Intelligent History might support developers who employ a commit history exploration approach
 we describe as \textit{linear} or \textit{cyclic and backtracking} to contextualize
 source code changes quickly and view slightly more issues than if they did not have
-direct issue integration.
-Our analysis demonstrates promise for the design and approach in Intelligent History
-for supporting developers in more effectively exploring a commit history to answer code rationale questions.
+direct issue integration; and
+\rev{(3)} there was overlap between at least half of the commits
+that participants examined without Intelligent History and the commits that Intelligent History
+highlighted.
 
 % Consider placing version information if you circulate multiple drafts
 % \vfill
