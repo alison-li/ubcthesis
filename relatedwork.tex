@@ -34,14 +34,19 @@ to be limited by only presenting a linear, sequential view of history \cite{codo
 Current tools related to \entity{vcs} assume all history is equally important 
 with a flat, non-hierarchical structure and only provide a temporal view of committed changes \cite{codoban_software_2015}.
 In other words, these tools only offer a time-based view of software revision history.
-However, developers frequently use revision history for recovering rationale behind code 
-and for understanding the evolution of a project, 
-which a time-based view alone does not effectively support \cite{codoban_software_2015}.
 \rev{Since a time-based view alone considers all commits to be equally important,
 developers face the challenge of having to navigate revision histories containing 
-large quantities of commits, which may consist of tangled changes.
-A developer seeking to understand the evolution of a particular file would have to 
-manually identify meaningful, non-trivial commits that may or may not contain rationale information in
+large quantities of commits, which may consist of tangled changes and distributed changes,
+where a single change is distributed across multiple scattered commits.}
+
+\rev{For developers who use revision history as a source of information}
+for recovering rationale behind code and for understanding the evolution of code, 
+developers \rev{require more than} a time-based view alone to effectively 
+and effficiently support their needs \cite{codoban_software_2015}.
+A developer seeking to understand the evolution of a particular file must 
+manually identify meaningful, non-trivial commits and mentally keep track of related
+changes across commits in a history.
+\rev{Some commits may or may not contain any rationale information in
 commit messages or referenced artifacts, like issues and design documents.
 Codoban \etal suggest that providing better grouping capabilities for
 grouping related commits and better filtering capabilities for commit types (\eg only showing non-merge commits) and diffs
@@ -80,13 +85,23 @@ for Visual Studio Code also integrate information from \entity{git} ``blame'' by
 inlining a preview of the commit message and the author of the revision that last modified the line in a file.
 
 While \entity{gui}s make it more convenient to inspect revisions one at a time and refer 
-or jump to different revisions at different points in time, they do not address the concern of having to go through several diffs. Many diffs can be irrelevant to a code segment of interest, making it time-consuming to find a meaningful explanation for the change.
+or jump to different revisions at different points in time, they do not address the concern 
+of having to go through several diffs
+\rev{in order to retrieve knowledge buried in software history}. 
+Many diffs can be irrelevant to a code segment of interest, 
+making it time-consuming to find a meaningful explanation for the change.
 Moreover, plugins that make the information retrieved from \entity{git} commands more 
 accessible still only cover the temporal view of software history.
 A developer would nonetheless need to go through several commits and diffs and meanwhile, 
 several of the encountered commits could be trivial changes regarding the section of code 
 or even the file that they are interested in.
-\FIXME{How is this an argument against a temporal view?}
+\rev{As 58\% of survey respondents from the study by Codoban \etal report
+that understanding the evolution of code to be a primary reason for
+referring to old history and expressed the desire to
+understand how previous versions of code relate to present code \cite{codoban_software_2015},
+the provision of more strategic ways for viewing, filtering, and 
+navigating revision history beyond a temporal view would benefit developers by 
+making the exploration of revision history more efficient.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
