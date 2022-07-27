@@ -111,16 +111,19 @@ There have been many approaches to improving a developer's experience when explo
 While some approaches in existing work do not focus on supporting code rationale questions, 
 they all address the concern of improving the revision history for code changes in a software project.
 
-Kawrykow and Robillard \cite{kawrykow_non-essential_2011} propose a technique 
-for detecting non-essential changes in software history and therefore an approach to finding 
+Kawrykow and Robillard \cite{kawrykow_non-essential_2011} \rev{propose \entity{DiffCat}, 
+a tool for} detecting non-essential changes in software history and therefore an approach to finding 
 more meaningful representations of software changes.
-In their work, ``non-essential'' changes refer to changes which are cosmetic in nature, 
+In their work, ``non-essential'' \rev{are characterized as} changes which are cosmetic in nature, 
 generally behaviour-preserving, and unlikely to yield further insight into the roles of or 
 relationships between the program entities they modify. 
 The approach in this thesis explores the use of heuristics for a similar purpose in reducing 
 the number of trivial commits a developer must go through in a file's revision history when searching 
 for code rationale information on why the code in a file looks the way it does.
-\FIXME{How is this work different from what Kawrykow and Robillard do?}
+\rev{Kawrykow and Robillard evaluate \entity{DiffCat} by measuring the prevalence and
+impact of non-essential differences in revision histories on code churn and method updates.
+Our work is focused on investigating the efficacy of eliminating non-essential changes
+to support software history exploration for obtaining code rationale information.}
 
 Bradley and Murphy \cite{bradley_supporting_2011} investigate two user interfaces, Deep Intellisense and Rationalizer, 
 for supporting software history exploration.
@@ -160,15 +163,22 @@ Jira issues can also be linked to each other by relationships such as ``caused b
 Rastkar and Murphy \cite{rastkar_why_2013} applied multi-document summarization techniques on Jira issues 
 at different levels of abstraction to generate summaries providing motivational information behind a code change.
 While Rastkar and Murphy's approach is a step towards finding and providing developers with the ``why'' of code changes, 
-the approach alone does not provide the ability to view and explore commits alongside the summaries.
-\FIXME{What does the approach lose in not doing this?}
+the approach alone does not provide the ability to view and explore commits alongside the summaries,
+\rev{resulting in a cognitive burden for the developer to mentally 
+keep track of and relate source code changes to rationale information}.
+
 Another tool recognizing Jira as a source of code rationale information is \entity{ARENA} \cite{moreno_arena_2017}, 
 which aims to answer the \emph{what} and \emph{why} of code change between releases by 
 using the commits in a project's versioning system and the issues from the project's Jira instance 
 to automatically generate release notes. 
-\entity{ARENA} summarizes the code changes between releases to answer \emph{what} 
-changed in a newer release and uses the information from Jira to explain \emph{why}.
-\FIXME{How does \entity{ARENA} address or does not address the problem we are interested in?}
+\entity{ARENA} summarizes related sets of code changes between releases to answer \emph{what} 
+changed in a newer release and uses change categorizations (\eg improvement, bug fix, new feature, \etc) 
+and Jira issue titles to account for the \emph{why} of code change between releases.
+\rev{However, \entity{ARENA} does not use the additional information, such as the description, 
+in an issue to enrich the rationale of code changes.
+While \entity{ARENA} is focused on the automatic generation of release notes for structural changes,
+we are primarily concerned with real-time co-exploration of source code revision history 
+and code rationale information.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -177,16 +187,24 @@ changed in a newer release and uses the information from Jira to explain \emph{w
 One facet of previous work has focused on improving software history exploration by making revision history 
 a primary source of code change information easier to navigate and obtain the \emph{what} of code change.
 While this work has made it more convenient to explore software history by reducing the search space of changes, 
-the cognitive burden of understanding the change still lies with the developer as these focus more on using source code and the changes in revisions.
+the cognitive burden of understanding the change still lies with the developer 
+as these focus more on using source code and the changes in revisions.
 Using only the source changes contained in revisions and the commit messages in a revision history 
 means any generated outcome lacks the context a change took place in.
 Meanwhile, the other side of previous work incorporates a project's issue repository for elaborating 
 on the \emph{why} of code change but still lacks support for providing the developer with the efficiency to 
 navigate commits themselves and associate meaningful changes with rationale.
+
 This thesis explores the development of an approach for making the exploration of the revision history 
 for a given file more efficient by emphasizing potentially more meaningful commits, while also making 
 access to the Jira issue information relevant to each commit in a file's revision history more convenient.
-\FIXME{Why do this at the file-level? Need to find some ground that suggests developers desire this at the file-level.}
+\rev{We propose to operate at the file-level to scope the determination of
+a commit as non-essential in terms of how the commit affects a file and
+its evolution. Participants in the study by Codoban \etal noted searching through
+each version of a file to indentify when particular features were
+implemented \cite{codoban_software_2015}. 
+Participants in their study also reported on a desire for 
+better visualization of the history of a file.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \endinput
