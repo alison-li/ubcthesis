@@ -40,7 +40,7 @@ For example:
 	\jira{KAFKA-3715:}{Add granular metrics to Kafka Streams and add hierarhical \sic logging levels to Metrics}
 \end{center}
 
-is the title of one commit in the \class{KafkaStreams} class from the Apache Kafka repository.\footnote{\url{https://github.com/apache/kafka}, verified 7/20/2022.}
+\noindent is the title of one commit in the \class{KafkaStreams} class from the Apache Kafka repository.\footnote{\url{https://github.com/apache/kafka}, verified 7/20/2022.}
 The bold portion identifies the key for the Jira issue associated with the commit, 
 which can be viewed on the Apache Software Foundation's Jira instance.\footnote{\url{https://issues.apache.org/}, verified 3/7/2022.}
 
@@ -60,7 +60,7 @@ Ultimately, a developer still must manually identify meaningful commits, visit a
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\rev{\section{Motivating Example}}
+\section{Motivating Example}
 
 We illustrate the cognitive and temporal burden of the process through a scenario.
 Suppose \rev{a developer is new to} the open-source Apache Kafka project. 
@@ -83,11 +83,11 @@ and for understanding the motivations behind code changes in the class,
 the developer manually inspects the diff between each of the 22 commits to understand 
 how the code has evolved along different commit authors' intentions.
 \rev{The developer encounters several commits 
-that, at first glance, seem relevant for understanding the evolution of the \class{Topology} class. 
+that, at first glance, seem relevant for understanding the evolution of the \class{Topology} class.}
 Despite some of these commits having commit message subjects that seem potentially 
 meaningful, such as introducing the implementation of a feature, 
 the developer finds they trivially affect the \class{Topology} class.
-These commits are composed only of changes affecting documentation, annotations, imports, or newlines.}
+These commits are composed only of changes affecting documentation, annotations, imports, or newlines.
 For example: 
 
 \begin{center}
@@ -157,8 +157,7 @@ and a cognitive cost of maintaining a mental model of the interactions and decis
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\pagebreak
-\rev{\section{Intelligent History}}
+\section{Intelligent History}
 
 This suggests the developer would benefit from an automatic and more streamlined approach to determining non-trivial commits to look at.
 Additionally, the ability to glean the Jira issue information could help the developer more efficiently decide which commits they can prioritize exploring for understanding the evolution and rationale behind changes in the \class{Topology} class.
@@ -217,10 +216,15 @@ to locate and access relevant issues referenced in a commit.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\rev{\section{Thesis Overview}}
+\section{Thesis Overview}
 
-We develop a set of heuristics on code changes and Jira issues that for supporting a developer in gauging the relevance of commits and related Jira issues when seeking answers to code rationale questions pertaining to a file.
-The design of the tool allows exploration of how effective the heuristics are for streamlining the process of viewing both commits and associated Jira issues in one interface, while also reducing the noise in a file's commit history.
+We develop a set of heuristics on code changes and Jira issues that for supporting a developer 
+in gauging the relevance of commits and related Jira issues when seeking answers 
+to code rationale questions pertaining to a file.
+The design of the tool allows exploration of how effective the heuristics are 
+for streamlining the process of viewing both commits and associated Jira issues in one interface, 
+while also reducing the noise in a file's commit history.
+
 We anticipate this approach will make it more convenient for a developer to gain insight into the evolution of code in a file that can further help to answer questions about the rationale behind the different changes in its evolution. 
 For example, with de-emphasis on trivial commits in a file's commit history, a user might be able to see more clearly which commits introduced features in a file and which commits in between feature introductions were bug fixes or updates to a feature.
 A developer who is new to a particular section of the code base that the file belongs to could then gain an understanding of any trends or historical bugs in that file, 
@@ -232,9 +236,9 @@ and conduct a controlled laboratory study with 10 participants using Intelligent
 We targeted the following research questions:
 
 \begin{itemize}[leftmargin=*]
-    \item[] \textbf{Research Question 1 (\entity{RQ1}):} \textit{Can we automatically identify the commits that software developers want to examine?}
-    \item[] \textbf{Research Question 2 (\entity{RQ2}):} \textit{Does highlighting important commits help software developers explore a file’s revision history more efficiently?}
-    \item[] \textbf{Research Question 3 (\entity{RQ3}):} \textit{How useful is direct integration of issue information in the IDE for helping a developer search for code rationale information?}
+    \item[] \textbf{\entity{RQ1}:} \textit{Can we automatically identify the commits that software developers want to examine?}
+    \item[] \textbf{\entity{RQ2}:} \textit{Does highlighting important commits help software developers explore a file’s revision history more efficiently?}
+    \item[] \textbf{\entity{RQ3}:} \textit{How useful is direct integration of issue information in the IDE for helping a developer search for code rationale information?}
 \end{itemize}
 
 Our findings demonstrate that Intelligent History is able to highlight at least half of
