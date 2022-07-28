@@ -49,12 +49,12 @@ is emphasized and explored in existing work
 \section{Code Rationale in Information Retrieval}
 
 Our \rev{tool, Intelligent History,} assumes a project uses Jira for tracking and managing issues and has
-a convention of explicitly referencing one Jira issue ID per commit.
+a convention of explicitly referencing one Jira issue \entity{ID} per commit.
 In an effort to reduce the distance between commits and issues in an \entity{IDE},
 our implementation in Intelligent History uses a regular expression pattern 
-to extract a Jira issue ID from a commit message title.
+to extract a Jira issue \entity{ID} from a commit message title.
 However, we may wish to consider how we can adapt our technique for a wider range of
-issue tracking system (\entity{ITS}) beyond Jira.
+issue tracking systems (\entity{ITS}) beyond Jira.
 
 Another concern about our approach is our reliance on issues
 as a source of code rationale information.
@@ -68,7 +68,7 @@ On how issues play a role in participant \participant{A}'s daily work, they stat
     I don’t actually typically look at issues. 
     The issues aren’t generally helpful because a lot of the people on my team don’t really use Jira. 
     It’s mostly my manager that uses Jira with the other managers. 
-    [The people on my team] get assigned stuff but they don’t really interact with the issue at all.
+    [The members of my team] get assigned stuff but they don’t really interact with the issue at all.
 \end{quote}
 
 For issues that do not contain any substantial or useful discussion from
