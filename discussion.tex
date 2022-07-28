@@ -15,9 +15,9 @@ We used the commit histories of two files from Apache Kafka to develop the heuri
 However, the generalizability of our results becomes limited to these files for Apache Kafka and specific to Java as a programming language.
 Our approach to commit highlighting described in \autoref{sec:Heuristics}
 involves prioritizing pattern matching for categories of trivial changes in diffs.
-Our current implementation requires a commit's diff to have at least 1 uncategorized change
+Our current implementation requires a commit's diff to have at least \rev{one} uncategorized change
 for the commit to be highlighted in the commit history.
-Else, the commit is faded out from the history if it only contains trivial changes according to the regular expression patterns
+\rev{Otherwise}, the commit is faded out from the history if it only contains trivial changes according to the regular expression patterns
 we developed for detecting trivial changes.
 
 For the two files or Java classes we selected from Apache Kafka,
@@ -37,7 +37,7 @@ develop heuristics for commit histories involving tangled changes.
 Additionally, a few participants described the utility of the commit highlighting
 approach for helping them ignore ``irrelevant'' commits \participants{DFI}.
 For developers, relevancy is in relation to a task or question.
-Hence, another suggestion for future work would be to explore how
+Hence, another suggestion for future work would be to investigate how
 we can integrate task-relevancy or context-sensitivity to our approach for distinguishing trivial or non-trivial
 commits in a commit history.
 The need for task-relevant and context-sensitive approaches in software engineering tools
@@ -48,7 +48,7 @@ is emphasized and explored in existing work
 
 \section{Code Rationale in Information Retrieval}
 
-Our approach assumes a project uses Jira for tracking and managing issues and has
+Our \rev{tool, Intelligent History,} assumes a project uses Jira for tracking and managing issues and has
 a convention of explicitly referencing one Jira issue ID per commit.
 In an effort to reduce the distance between commits and issues in an \entity{IDE},
 our implementation in Intelligent History uses a regular expression pattern 
@@ -81,7 +81,9 @@ Not only does the performance of our approach depend on the specific
 \entity{ITS} used and the practice of explicitly linking issues to commits,
 but also the availability of code rationale information in the issues themselves.
 As previously mentioned in \autoref{subsec:RQ3},
-participant \participant{E} raised a point about the discussion in an issue as difficult to grokk.
+participant \participant{E} raised a point about the discussion in an issue as difficult to 
+\rev{follow and indicated that they typically looked at the source code instead
+as a concrete outcome from a discussion.}
 Additionally, discussion about design, particularly in open-source projects,
 is highly distributed across commits, issues, and pull requests \cite{brunet_design_2014}.
 Participant \participant{J} mentioned:
@@ -102,8 +104,7 @@ producing natural language summaries for sets of multiple issues with hierarchic
 
 \section{Diff and Issue Metadata}
 
-In our implementation of Intelligent History,
-we computed and integrated metadata metrics to summarize 
+In Intelligent History, we computed and integrated metadata metrics to summarize 
 the content in commit diffs as \emph{diff metadata} and Jira issues as \emph{issue metadata} 
 and displayed these metrics as additional information to the developer.
 We exposed diff metadata to the developer to raise their confidence in how Intelligent History
