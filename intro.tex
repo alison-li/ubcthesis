@@ -63,16 +63,16 @@ Ultimately, a developer still must manually identify meaningful commits, visit a
 \section{Motivating Example}
 
 We illustrate the cognitive and temporal burden of the process through a scenario.
-Suppose \rev{a developer is new to} the open-source Apache Kafka project. 
+Suppose a developer is new to the open-source Apache Kafka project. 
 Apache Kafka is an open-source streaming platform used for working with streaming data. 
 Apache Kafka is most commonly used for real-time data processing and provides five core \entity{API}s: 
 Producer, Consumer, Streams, Connect, and Admin.
 Apache Kafka requires all non-trivial changes to have a corresponding Jira issue. 
-\rev{The new developer is assigned the task to add support for configuring topologies in the Kafka \entity{API}.
+The new developer is assigned the task to add support for configuring topologies in the Kafka \entity{API}.
 Hence, the developer opens \file{Topology.java} as a relevant file to their task.
 To gain a sense of the changes that have taken place in the file,
 which can help them determine if the file is relevant to the change they are tasked with making,
-the developer is motivated to examine the commit history for the \class{Topology} class.}
+the developer is motivated to examine the commit history for the \class{Topology} class.
 In the context of the Kafka architecture, a ``topology'' is a directed acyclic graph of stream processing nodes 
 that defines the stream processing logic for an application using Apache Kafka.
 When viewing the commit history for the \class{Topology} class, the developer sees 22 commits.
@@ -82,8 +82,8 @@ To gain a sense of how \class{Topology} has evolved over time
 and for understanding the motivations behind code changes in the class, 
 the developer manually inspects the diff between each of the 22 commits to understand 
 how the code has evolved along different commit authors' intentions.
-\rev{The developer encounters several commits 
-that, at first glance, seem relevant for understanding the evolution of the \class{Topology} class.}
+The developer encounters several commits that, at first glance, 
+seem relevant for understanding the evolution of the \class{Topology} class.
 Despite some of these commits having commit message subjects that seem potentially 
 meaningful, such as introducing the implementation of a feature, 
 the developer finds they trivially affect the \class{Topology} class.
@@ -117,7 +117,7 @@ We find 9 commits only affect documentation, annotations, and newlines.
 If this were indicated in advance to the developer, this could have made the developer's search more efficient 
 by considering the indication and have the choice to skip examining these commits.
 
-\rev{Further, several of the messages for the commits contain insufficient information
+Further, several of the messages for the commits contain insufficient information
 for helping the developer understand the rationale behind the code changes in them.
 For example, one commit has the message title:
 
@@ -147,7 +147,7 @@ to gain more information about the motivation behind the code changed.
 If the developer knew beforehand whether a commit's associated Jira issue
 contained any additional insight on the rationale behind the change,
 their search for rationale information to gain a better understanding
-about the evolution of the file could be more efficient.}
+about the evolution of the file could be more efficient.
 
 In traversing the whole commit history for the \class{Topology} class,
 the developer must maintain a mental model of the file's evolution 
@@ -159,8 +159,11 @@ and a cognitive cost of maintaining a mental model of the interactions and decis
 
 \section{Intelligent History}
 
-This suggests the developer would benefit from an automatic and more streamlined approach to determining non-trivial commits to look at.
-Additionally, the ability to glean the Jira issue information could help the developer more efficiently decide which commits they can prioritize exploring for understanding the evolution and rationale behind changes in the \class{Topology} class.
+The \rev{motivating example} suggests the developer would benefit from an automatic 
+and more streamlined approach to determining non-trivial commits to \rev{consider from a file's software revision history}.
+Additionally, the ability to glean the Jira issue information could help the developer 
+more efficiently decide which commits \rev{to} prioritize \rev{when exploring software revision history to understand} 
+the evolution and rationale behind changes in the \class{Topology} class.
 If such a tool could spotlight the remaining 13 of 22 commits to prioritize examining, the developer would be able to efficiently piece together the following about the \class{Topology} class. 
 There were several refactoring commits: \jira{KAFKA-5670} is the first commit in the file and introduces \class{Topology} as a refactoring of a former class due to leakage of internal methods in the Kafka Streams \entity{API} that should not be public. 
 The next commit \jira{KAFKA-5650} updates the \class{Topology} class to use newly added interfaces for reducing heavy method overloading.
@@ -210,7 +213,9 @@ These commits raise limitations in the Kafka Streams \entity{API} and user desir
 We hypothesize identifying important commits automatically and providing integrated access between commit 
 and issue information could help a developer more effectively access the rationale for code.
 This approach to presenting a commit history would reduce the cognitive and temporal costs of software history examination. 
-This thesis investigates the design of \rev{an \entity{IDE} plugin} to spotlight potentially meaningful commits and de-emphasize 
+This thesis investigates the design of a \rev{tool we name Intelligent History, 
+which is implemented as a plugin to a popular integrated development environment (\entity{IDE})} 
+to spotlight potentially meaningful commits and de-emphasize 
 less meaningful commits in the commit history for a file in a project and to make it more convenient 
 to locate and access relevant issues referenced in a commit. 
 
@@ -218,10 +223,10 @@ to locate and access relevant issues referenced in a commit.
 
 \section{Thesis Overview}
 
-We develop a set of heuristics on code changes and Jira issues that for supporting a developer 
+We develop a set of heuristics on code changes and Jira issues that \rev{can support} a developer 
 in gauging the relevance of commits and related Jira issues when seeking answers 
 to code rationale questions pertaining to a file.
-The design of the tool allows exploration of how effective the heuristics are 
+The design of the tool \rev{supports experimentation about} how effective the heuristics are 
 for streamlining the process of viewing both commits and associated Jira issues in one interface, 
 while also reducing the noise in a file's commit history.
 
@@ -236,7 +241,7 @@ and conduct a controlled laboratory study with 10 participants using Intelligent
 We targeted the following research questions:
 
 \begin{itemize}[leftmargin=*]
-    \item[] \textbf{\entity{RQ1}:} \textit{\rev{Does Intelligent History accurately identify the commits that software developers want to examine?}}
+    \item[] \textbf{\entity{RQ1}:} \textit{Does Intelligent History accurately identify the commits that software developers want to examine?}
     \item[] \textbf{\entity{RQ2}:} \textit{Does highlighting important commits help software developers explore a file’s revision history more efficiently?}
     \item[] \textbf{\entity{RQ3}:} \textit{How useful is direct integration of issue information in the IDE for helping a developer search for code rationale information?}
 \end{itemize}
@@ -246,7 +251,7 @@ the commits that participants examine, showing promising performance for
 an automatic approach to distinguish non-trivial commits from potentially
 more meaningful commits based on regular expression patterns for heuristics.
 We also observe that participants who used Intelligent History examined significantly
-less commits than participants who did not use Intelligent History for answering
+less commits than participants who did not use Intelligent History \rev{to successfully answer}
 questions about the broader commit history of a file.
 Finally, we found that direct integration of issue information in the \entity{IDE}
 with Intelligent History might support developers who employ a commit history exploration approach
