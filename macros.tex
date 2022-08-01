@@ -16,7 +16,7 @@
 \newcommand{\NA}{\textsc{n/a}}	% for "not applicable"
 \newcommand{\eg}{e.g.,\ }	% proper form of examples (\eg a, b, c)
 \newcommand{\ie}{i.e.,\ }	% proper form for that is (\ie a, b, c)
-\newcommand{\etc}{etc.\ }
+\newcommand{\etc}{etc.}
 \newcommand{\etal}{et al. }
 \newcommand{\sic}{\ [sic]\ }
 
@@ -76,6 +76,9 @@
 % \FIXME{} is a useful macro for noting things needing to be changed.
 % The following definition will also output a warning to the console
 \newcommand{\FIXME}[1]{{\color{red}\textbf{[FIXME: #1]}}}
-\newcommand{\TODO}[1]{{\color{violet}\textbf{[TODO: #1]}}}
+\newcommand{\TODO}[1]{{\color{red}\textbf{[TODO: #1]}}}
+
+% For highlighting or emphasizing changes.
+\newcommand{\rev}[1]{{\color{blue} #1}}
 
 % END

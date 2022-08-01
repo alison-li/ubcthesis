@@ -9,16 +9,20 @@
 % There is a single scholarly abstract for the entire work, and it must not exceed 350 words in length.
 
 Software developers traverse several commits and issues from issue tracking systems 
-when exploring software revision history in order to unearth questions about the rationale behind presently written code.
-This exploration results in a cognitive and temporal burden as developers
-context switch between their \entity{IDE}s and a project's issue tracking system to locate code rationale information
-associated with each commit.
+when exploring software revision history \rev{to answer questions} about the rationale behind presently written code.
+\rev{Existing tools impose a cognitive burden on developers as developers 
+must sift through many commits and must transition between commit information 
+and issue tracking information presented separately.}
+Developers also must context switch between their \entity{IDE}s and a project's 
+issue tracking system to locate code rationale information associated with each commit.
+\rev{More effective support for software revision history exploration would 
+reduce the cognitive burden for developers, allowing them to answer code 
+rationale questions in the limited time available for tasks.}
 
-To reduce the costs of software revision history exploration,
-we introduce an approach using regular expression patterns to reduce the search space of commits in a revision history to signal to a developer which commits in a history merit further investigation.
-Additionally, our approach minimizes the distance between a developer's \entity{IDE} and issues from an \entity{ITS}
+We introduce Intelligent History\rev{, which uses} commit history highlighting to reduce the search space of 
+commits in a revision history, recommending to a developer which commits in a history might merit further investigation.
+Additionally, \rev{Intelligent History} minimizes the distance between a developer's \entity{IDE} and issues from an issue tracking system
 by directly integrating issue information in the same context.
-We implemented these techniques in Intelligent History, a plugin for the IntelliJ IDEA \entity{IDE}.
 
 To evaluate the Intelligent History, we conducted a controlled laboratory study and recruited 10 software developers.
 We asked two sets of questions related to the intent behind source code, requiring the participants to explore 
@@ -27,17 +31,16 @@ We also conduct a semi-structured interview on the participants' experiences wit
 and their use of Intelligent History in the experiment.
 
 The results from our analysis shows:
-(1) there was overlap between at least half of the commits
+(1) participants who used Intelligent History examined significantly
+less commits than participants who did not use Intelligent History
+\rev{while producing correct answers to questions posed};
+(2) direct integration of issue information in the \entity{IDE}
+with Intelligent History \rev{supports} developers who employ a commit history exploration approach
+we describe as \textit{linear} or \textit{cyclic and backtracking} to view slightly more issues than if they did not have
+direct issue integration; and
+(3) \rev{our heuristics were accurate to the extent that there was} overlap between at least half of the commits
 that participants examined without Intelligent History and the commits that Intelligent History
-highlighted; (2) participants who used Intelligent History examined significantly
-less commits than participants who did not use Intelligent History;
-and (3) direct integration of issue information in the \entity{IDE}
-with Intelligent History might support developers who employ a commit history exploration approach
-we describe as \textit{linear} or \textit{cyclic and backtracking} to contextualize
-source code changes quickly and view slightly more issues than if they did not have
-direct issue integration.
-Our analysis demonstrates promise for the design and approach in Intelligent History
-for supporting developers in more effectively exploring a commit history to answer code rationale questions.
+highlighted.
 
 % Consider placing version information if you circulate multiple drafts
 % \vfill
