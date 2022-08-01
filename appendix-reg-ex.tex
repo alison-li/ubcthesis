@@ -1,0 +1,30 @@
+\chapter{Tool Implementation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Regular Expression Patterns}
+\label{sec:Reg-Ex-Patterns}
+
+\begin{figure}[h]
+    \begin{verbatim}
+        \\s*\\W(\\*|/\\*|//)(.*)
+    \end{verbatim}
+    \caption{The regular expression pattern for identifying \textit{documentation} changes.}
+\end{figure}
+
+\begin{figure}[h]
+    \begin{verbatim}
+        import(.*)
+    \end{verbatim}
+    \caption{The regular expression pattern for identifying \textit{import} changes.}
+\end{figure}
+
+\begin{figure}[h]
+    \begin{verbatim}
+        \\s*@(Deprecated|Suppress[A-Za-z]*)(.*)
+    \end{verbatim}
+    \caption{The regular expression pattern for identifying \textit{annotation} changes.}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\endinput
