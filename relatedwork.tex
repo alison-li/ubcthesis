@@ -117,14 +117,15 @@ In their work, ``non-essential'' changes are characterized as changes which are 
 generally behaviour-preserving, and unlikely to yield further insight into the roles of or 
 relationships between the program entities they modify.
 \rev{
-Kawrykow and Robillard catalog trivial type declaration updates made to variables,
+As part of their implementation for detecting non-essential changes, 
+Kawrykow and Robillard catalog trivial type declaration updates made to entities,
 local variable extractions (\ie the use of temporary variables to store expressions),
 rename-induced modifications, trivial keyword modifications (\eg \code{this} in Java), 
 local variable renames, and whitespace and documentation-related updates.
 Kawrykow and Robillard evaluate DiffCat by measuring the prevalence and
 impact of non-essential differences in revision histories on code churn and method updates.
 As part of the implementation for detecting non-essential changes, Kawrykow and Robillard use
-a technique that works with Abstract Syntax Tree (\entity{AST}) representations of
+a Partial Program Analysis (\entity{PPA}) technique that works with Abstract Syntax Tree (\entity{AST}) representations of
 Java and \entity{AST}-differencing.
 }
 
