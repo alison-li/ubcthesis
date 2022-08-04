@@ -5,11 +5,17 @@
 \section{Regular Expression Patterns}
 \label{sec:Reg-Ex-Patterns}
 
+Figures \ref{fig:Documentation-Reg-Ex}, \ref{fig:Import-Reg-Ex}, and \ref{fig:Annotation-Reg-Ex}
+document the regular expressions that Intelligent History uses as part of identifying trivial changes in a commit.
+
+\vspace{50px}
+
 \begin{figure}[h]
     \begin{verbatim}
         \\s*\\W(\\*|/\\*|//)(.*)
     \end{verbatim}
     \caption{The regular expression pattern for identifying \textit{documentation} changes.}
+    \label{fig:Documentation-Reg-Ex}
 \end{figure}
 
 \begin{figure}[h]
@@ -17,6 +23,7 @@
         import(.*)
     \end{verbatim}
     \caption{The regular expression pattern for identifying \textit{import} changes.}
+    \label{fig:Import-Reg-Ex}
 \end{figure}
 
 \begin{figure}[h]
@@ -24,6 +31,7 @@
         \\s*@(Deprecated|Suppress[A-Za-z]*)(.*)
     \end{verbatim}
     \caption{The regular expression pattern for identifying \textit{annotation} changes.}
+    \label{fig:Annotation-Reg-Ex}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

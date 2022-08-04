@@ -9,22 +9,20 @@
 % There is a single scholarly abstract for the entire work, and it must not exceed 350 words in length.
 
 Software developers traverse several commits and issues from issue tracking systems 
-when exploring software revision history \rev{to answer questions} about the rationale behind presently written code.
-\rev{Existing tools impose a cognitive burden on developers as developers 
+when exploring software revision history to answer questions about the rationale behind presently written code.
+Existing tools impose a cognitive burden on developers as developers 
 must sift through many commits and must transition between commit information 
-and issue tracking information presented separately.}
-Developers also must context switch between their \entity{IDE}s and a project's 
-issue tracking system to locate code rationale information associated with each commit.
-\rev{More effective support for software revision history exploration would 
+and issue tracking information presented separately.
+More effective support for software revision history exploration would 
 reduce the cognitive burden for developers, allowing them to answer code 
-rationale questions in the limited time available for tasks.}
+rationale questions in the limited time available for tasks.
 
-We introduce Intelligent History\rev{, which uses} commit history highlighting to reduce the search space of 
+We introduce Intelligent History, which uses commit history highlighting to reduce the search space of 
 commits in a revision history, recommending to a developer which commits in a history might merit further investigation.
-Additionally, \rev{Intelligent History} minimizes the distance between a developer's \entity{IDE} and issues from an issue tracking system
+Additionally, Intelligent History minimizes the distance between a developer's \entity{IDE} and issues from an issue tracking system
 by directly integrating issue information in the same context.
 
-To evaluate the Intelligent History, we conducted a controlled laboratory study and recruited 10 software developers.
+To evaluate Intelligent History, we conducted a controlled laboratory study and recruited 10 software developers.
 We asked two sets of questions related to the intent behind source code, requiring the participants to explore 
 commit histories for two Java classes from the open-source Apache Kafka project.
 We also conduct a semi-structured interview on the participants' experiences with examining issues and commits 
@@ -33,12 +31,12 @@ and their use of Intelligent History in the experiment.
 The results from our analysis shows:
 (1) participants who used Intelligent History examined significantly
 less commits than participants who did not use Intelligent History
-\rev{while producing correct answers to questions posed};
+while producing correct answers to questions posed;
 (2) direct integration of issue information in the \entity{IDE}
-with Intelligent History \rev{supports} developers who employ a commit history exploration approach
-we describe as \textit{linear} or \textit{cyclic and backtracking} \rev{to} view slightly more issues than if they did not have
+with Intelligent History supports developers who employ a commit history exploration approach
+we describe as \textit{linear} or \textit{cyclic and backtracking} to view slightly more issues than if they did not have
 direct issue integration; and
-(3) \rev{our heuristics were accurate to the extent that there was} overlap between at least half of the commits
+(3) our heuristics were accurate to the extent that there was overlap between at least half of the commits
 that participants examined without Intelligent History and the commits that Intelligent History
 highlighted.
 
