@@ -78,7 +78,7 @@ Thus, $c$ would be identified as trivial for $F$ and would be presented as a fad
 The identification of less important commits in Intelligent History is based on heuristics.
 Under Kawrykow and Robillard's definition of a \emph{non-essential} change being cosmetic in nature, 
 generally behaviour-preserving, and unlikely to provide further insight into the roles or relationships of program elements \cite{kawrykow_non-essential_2011}, 
-we devise four categories of changes to use for identifying less important commits based \rev{on} their diff content.
+we devise four categories of changes to use for identifying less important commits based on their diff content.
 Specific to the Java programming language, we regard a commit as less important if the changed lines in a commit's diff contains only changes related to: 
 \emph{documentation}, \emph{annotations}, \emph{newlines}, and \emph{import} statements.
 These heuristics are conservative to mitigate false positives in terms of a non-important change and to maintain generalizability across projects.
@@ -145,7 +145,7 @@ and displays a history of commits that affected a single file or directory.
 \begin{figure}
     \includegraphics[width=\textwidth]{./images/intellij-overview.png}
     \caption{
-        A \rev{screen} capture of IntelliJ IDEA. 
+        A screen capture of IntelliJ IDEA. 
         The revision history for the currently open \class{Topology} class 
         from Apache Kafka is visible in the bottom half tool window and circled in grey.
         Individuals' names and email addresses have been obfuscated.
@@ -250,8 +250,8 @@ To assess the performance of our regular expression patterns,
 we apply them on two Java classes from the Apache Kafka repository and attempt to maximize coverage of the proportion of trivial commits.
 We first manually identified the set of commits we considered trivial according to Kawrykow and Robillard's definition of non-essential changes \cite{kawrykow_non-essential_2011} and devised a set of categories, represented by regular expressions, to cover the patterns we observed in these lines of changes.
 Recall in \autoref{fig:Topology-Commit-History}, the heuristics-based approach determines 41\% (9 out of 22) of the commits in the commit history for \class{Topology} to be less important.
-For the commit history of \rev{the file \file{StreamsBuilder.java}, another Java class from the Apache Kafka project 
-representing the high-level Kafka Streams Domain Specific Language (\entity{DSL}) for Kafka Streams,} 
+For the commit history of the file \file{StreamsBuilder.java}, another Java class from the Apache Kafka project 
+representing the high-level Kafka Streams Domain Specific Language (\entity{DSL}) for Kafka Streams, 
 the heuristics-based approach detects 42\% (19 out of 45) of the commits from the commit history to be less important.
 The diff metadata information for each commit in the commit history of \class{Topology} 
 and \class{StreamsBuilder} are available in a public repository.\footnote{\url{https://github.com/Alison-Li/ubcthesis-dataset}, verified 7/25/2022.}
@@ -265,12 +265,12 @@ which discouraged us from using them \cite{fluri_change_2007,pawlik_RTED_2011,fa
 The goal of our approach is to understand if a minimal set of patterns for 
 expressing trivial code changes can be effective at supporting a software developer in more efficiently navigating 
 software history when searching for code rationale information.
-\rev{Similar to Kawrykow and Robillard \cite{kawrykow_non-essential_2011}, 
+Similar to Kawrykow and Robillard \cite{kawrykow_non-essential_2011}, 
 we maintain a conservative definition of trivial changes as the significance of changes will largely 
 depend on the individual context in which a change is studied and
-the goal of the developer studying the change.}
+the goal of the developer studying the change.
 
-Represented as regular expression patterns for the Java programming language \rev{(see Appendix \ref{sec:Reg-Ex-Patterns})}, 
+Represented as regular expression patterns for the Java programming language (see Appendix \ref{sec:Reg-Ex-Patterns}), 
 our approach for detecting trivial commits uses the following categories for a line of code 
 that has been changed and presented as such in a diff: 
 

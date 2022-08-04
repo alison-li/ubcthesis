@@ -13,8 +13,8 @@ LaToza \etal found the most serious problem software developers face is understa
 In agreement, Ko \etal report that finding the intent behind code is the most difficult information need to satisfy \cite{ko_information_2007}. 
 In further agreement, LaToza and Myers unearth code rationale as the single most frequently reported “hard-to-answer” question category in software development \cite{latoza_hard-answer_2010}. 
 Code rationale includes questions not clearly answered by examining code itself, such as algorithm choice, optimization choice, and hidden criteria that motivate design choices \cite{latoza_hard-answer_2010}. 
-One common information source \rev{for rationale identified by} LaToza \etal is colleagues. 
-However, the practice of seeking knowledgeable colleagues is challenging in \rev{many projects given turnover in a development team}. 
+One common information source for rationale identified by LaToza \etal is colleagues. 
+However, the practice of seeking knowledgeable colleagues is challenging in many projects given turnover in a development team. 
 In the context of colleague turnover, LaToza et al.'s assertion of the existence of a quintessential ``team historian'' in a software development team \cite{latoza_maintaining_2006} becomes wishful thinking:
 
 \begin{quote}
@@ -25,7 +25,7 @@ code. Often this person is the developer lead and has been with the code base th
 What does one do when such a historian does not exist in a team? Or when a team experiences turnover?
 There is a danger in relying solely on individuals for knowledge on intent behind the code in a large software system.
 Confronted with turnover-induced knowledge loss, Robillard emphasizes developers leveraging artifacts from 
-project history after a colleague’s departure to understand developer intent behind code \rev{written by a now} departed colleague wrote \cite{robillard_turnover-induced_2021}. 
+project history after a colleague’s departure to understand developer intent behind code written by a now departed colleague wrote \cite{robillard_turnover-induced_2021}. 
 However, developers often choose to forego investigating design documents due to the difficulties and cost of locating them \cite{latoza_maintaining_2006}.
 It therefore becomes all the more important to reduce the cost for developers in using artifacts from a project's history to obtain code rationale. 
 
@@ -159,10 +159,10 @@ and a cognitive cost of maintaining a mental model of the interactions and decis
 
 \section{Intelligent History}
 
-The \rev{motivating example} suggests the developer would benefit from an automatic 
-and more streamlined approach to determining non-trivial commits to \rev{consider from a file's software revision history}.
+The motivating example suggests the developer would benefit from an automatic 
+and more streamlined approach to determining non-trivial commits to consider from a file's software revision history.
 Additionally, the ability to glean the Jira issue information could help the developer 
-more efficiently decide which commits \rev{to} prioritize \rev{when exploring software revision history to understand} 
+more efficiently decide which commits to prioritize when exploring software revision history to understand 
 the evolution and rationale behind changes in the \class{Topology} class.
 If such a tool could spotlight the remaining 13 of 22 commits to prioritize examining, the developer would be able to efficiently piece together the following about the \class{Topology} class. 
 There were several refactoring commits: \jira{KAFKA-5670} is the first commit in the file and introduces \class{Topology} as a refactoring of a former class due to leakage of internal methods in the Kafka Streams \entity{API} that should not be public. 
@@ -213,8 +213,8 @@ These commits raise limitations in the Kafka Streams \entity{API} and user desir
 We hypothesize identifying important commits automatically and providing integrated access between commit 
 and issue information could help a developer more effectively access the rationale for code.
 This approach to presenting a commit history would reduce the cognitive and temporal costs of software history examination. 
-This thesis investigates the design of a \rev{tool we name Intelligent History, 
-which is implemented as a plugin to a popular integrated development environment (\entity{IDE})} 
+This thesis investigates the design of a tool we name Intelligent History, 
+which is implemented as a plugin to a popular integrated development environment (\entity{IDE}) 
 to spotlight potentially meaningful commits and de-emphasize 
 less meaningful commits in the commit history for a file in a project and to make it more convenient 
 to locate and access relevant issues referenced in a commit. 
@@ -223,10 +223,10 @@ to locate and access relevant issues referenced in a commit.
 
 \section{Thesis Overview}
 
-We develop a set of heuristics on code changes and Jira issues that \rev{can support} a developer 
+We develop a set of heuristics on code changes and Jira issues that can support a developer 
 in gauging the relevance of commits and related Jira issues when seeking answers 
 to code rationale questions pertaining to a file.
-The design of the tool \rev{supports experimentation about} how effective the heuristics are 
+The design of the tool supports experimentation about how effective the heuristics are 
 for streamlining the process of viewing both commits and associated Jira issues in one interface, 
 while also reducing the noise in a file's commit history.
 
@@ -251,7 +251,7 @@ the commits that participants examine, showing promising performance for
 an automatic approach to distinguish non-trivial commits from potentially
 more meaningful commits based on regular expression patterns for heuristics.
 We also observe that participants who used Intelligent History examined significantly
-less commits than participants who did not use Intelligent History \rev{to successfully answer}
+less commits than participants who did not use Intelligent History to successfully answer
 questions about the broader commit history of a file.
 Finally, we found that direct integration of issue information in the \entity{IDE}
 with Intelligent History might support developers who employ a commit history exploration approach
