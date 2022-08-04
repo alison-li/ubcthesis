@@ -13,8 +13,8 @@ LaToza \etal found the most serious problem software developers face is understa
 In agreement, Ko \etal report that finding the intent behind code is the most difficult information need to satisfy \cite{ko_information_2007}. 
 In further agreement, LaToza and Myers unearth code rationale as the single most frequently reported “hard-to-answer” question category in software development \cite{latoza_hard-answer_2010}. 
 Code rationale includes questions not clearly answered by examining code itself, such as algorithm choice, optimization choice, and hidden criteria that motivate design choices \cite{latoza_hard-answer_2010}. 
-One common information source LaToza \etal report on is colleagues. 
-However, the practice of seeking knowledgeable colleagues is challenging in projects experiencing turnover. 
+One common information source \rev{for rationale identified by} LaToza \etal is colleagues. 
+However, the practice of seeking knowledgeable colleagues is challenging in \rev{many projects given turnover in a development team}. 
 In the context of colleague turnover, LaToza et al.'s assertion of the existence of a quintessential ``team historian'' in a software development team \cite{latoza_maintaining_2006} becomes wishful thinking:
 
 \begin{quote}
@@ -24,7 +24,8 @@ code. Often this person is the developer lead and has been with the code base th
 
 What does one do when such a historian does not exist in a team? Or when a team experiences turnover?
 There is a danger in relying solely on individuals for knowledge on intent behind the code in a large software system.
-Confronted with turnover-induced knowledge loss, Robillard emphasizes developers leveraging artifacts from project history after a colleague’s departure to understand developer intent behind code a departed colleague wrote \cite{robillard_turnover-induced_2021}. 
+Confronted with turnover-induced knowledge loss, Robillard emphasizes developers leveraging artifacts from 
+project history after a colleague’s departure to understand developer intent behind code \rev{written by a now} departed colleague wrote \cite{robillard_turnover-induced_2021}. 
 However, developers often choose to forego investigating design documents due to the difficulties and cost of locating them \cite{latoza_maintaining_2006}.
 It therefore becomes all the more important to reduce the cost for developers in using artifacts from a project's history to obtain code rationale. 
 
@@ -46,10 +47,9 @@ which can be viewed on the Apache Software Foundation's Jira instance.\footnote{
 
 While commit history accessed from version control systems like Git provides information on lines of code changed at a point in time, 
 the information from a commit's associated issue on an issue tracking platform 
-such as Jira \cite{jira} can provide context around a commit through the issue's discussion, labels, number of developers subscribed, and priority among other aspects.
-Through the commit history for a file and its linked Jira issues, 
-we therefore get a change in time paired with a potential discussion or post at a point in time.
-There are many tools that exist to explore commit history and manage the use of VCS. 
+such as Jira \cite{jira} can provide context around a commit through the issue's discussion, labels, 
+number of developers subscribed, and priority among other aspects.
+There are many tools that exist to explore commit history and manage the use of \entity{VCS}. 
 For example, \entity{git} ``blame'' \cite{gitblame}, graphical user interfaces such as Sourcetree \cite{sourcetree} and GitExtensions \cite{gitextensions}. 
 Popular editors like Visual Studio Code \cite{vscode}, Eclipse \cite{eclipse}, and IntelliJ IDEA \cite{intellij} have native Git integrations and plugins that make the usage of Git more convenient and thereby make it easier to examine commits in a project's history. 
 However, to the best of our knowledge, none of these tools provide support for easily gaining a synthesized view of the contents in a commit and the issue information associated with a commit.

@@ -115,15 +115,30 @@ a tool for detecting non-essential changes in software history and therefore an 
 more meaningful representations of software changes.
 In their work, ``non-essential'' changes are characterized as changes which are cosmetic in nature, 
 generally behaviour-preserving, and unlikely to yield further insight into the roles of or 
-relationships between the program entities they modify. 
-The approach in this thesis explores the use of heuristics for a similar purpose in reducing 
-the number of trivial commits a developer must go through in a file's revision history when searching 
-for code rationale information on why the code in a file looks the way it does.
+relationships between the program entities they modify.
+\rev{
+As part of their implementation for detecting non-essential changes, 
+Kawrykow and Robillard catalog trivial type declaration updates made to entities,
+local variable extractions (\ie the use of temporary variables to store expressions),
+rename-induced modifications, trivial keyword modifications (\eg \code{this} in Java), 
+local variable renames, and whitespace and documentation-related updates.
 Kawrykow and Robillard evaluate DiffCat by measuring the prevalence and
 impact of non-essential differences in revision histories on code churn and method updates.
+As part of the implementation for detecting non-essential changes, Kawrykow and Robillard use
+a Partial Program Analysis (\entity{PPA}) technique that works with Abstract Syntax Tree (\entity{AST}) representations of
+Java and \entity{AST}-differencing.
+}
+
+\rev{By contrast,} the approach in this thesis explores the use of \rev{a subset of their catalog of trivial changes
+as heuristics} for \rev{the purpose of} reducing 
+the number of trivial commits a developer must go through in a file's revision history when searching 
+for code rationale information on why the code in a file looks the way it does.
+\rev{Our subset of non-essential changes includes changes related to documentation, whitespace,
+newlines, import statements and specific Java keywords such as annotations.}
 Our work is focused on investigating the efficacy of eliminating non-essential changes
-to support software history exploration for obtaining code rationale information.
-\FIXME{How do your heuristics compare to what they detect as non-essential?}
+to support software history exploration for obtaining code rationale information
+\rev{and uses an approach incorportating regular expression patterns for detecting
+trivial changes as a lightweight technique to support efficient use for developers.}
 
 Bradley and Murphy \cite{bradley_supporting_2011} investigate two user interfaces, Deep Intellisense and Rationalizer, 
 for supporting software history exploration.

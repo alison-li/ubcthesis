@@ -262,7 +262,13 @@ The categories of code changes expressed as regular expressions also make the re
 Though the advantage of \entity{AST}-level granularity is that it produces edit scripts that directly refer to the structure of code, 
 \entity{AST} matching and differencing techniques can have negative performance on runtime and memory consumption, 
 which discouraged us from using them \cite{fluri_change_2007,pawlik_RTED_2011,falleri_fine-grained_2014}.
-The goal of our approach is to understand if a minimal set of patterns for expressing trivial code changes can be effective at supporting a software developer in more efficiently navigating software history when searching for code rationale information.
+The goal of our approach is to understand if a minimal set of patterns for 
+expressing trivial code changes can be effective at supporting a software developer in more efficiently navigating 
+software history when searching for code rationale information.
+\rev{Similar to Kawrykow and Robillard \cite{kawrykow_non-essential_2011}, 
+we maintain a conservative definition of trivial changes as the significance of changes will largely 
+depend on the individual context in which a change is studied and
+the goal of the developer studying the change.}
 
 Represented as regular expression patterns for the Java programming language \rev{(see Appendix \ref{sec:Reg-Ex-Patterns})}, 
 our approach for detecting trivial commits uses the following categories for a line of code 
