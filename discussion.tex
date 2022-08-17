@@ -4,7 +4,7 @@
 % What questions would people ask about the work after reading up to this point?
 
 In this chapter, we discuss the implications and limitations of our findings 
-and suggestions for further investigation to expand on our work.
+and \rev{provide} suggestions for further investigation to expand on our work.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -29,8 +29,8 @@ However, if we were to apply this technique to another repository where the comm
 dominated by \emph{tangled changes} or the grouping of several changes into single commits, 
 then this would impact the performance of our technique.
 Tangled changes compromise the accuracy of analysis on a commit history \cite{herzig_tangled_2013}.
-In our case, if every trivial change in a file was paired with a non-trivial change according to our heuristics,
-then none of the commits in a file's commit history would be highlighted.
+In our case, if trivial \rev{changes} in a file \rev{were combined} with a non-trivial change \rev{to produce a single commit, then} according to our heuristics,
+none of the commits in a file's commit history would be highlighted.
 Consequently, one area of investigation for future work would be on how to
 develop heuristics for commit histories involving tangled changes.
 
@@ -54,14 +54,14 @@ In an effort to reduce the distance between commits and issues in an \entity{IDE
 our implementation in Intelligent History uses a regular expression pattern 
 to extract a Jira issue \entity{ID} from a commit message title.
 However, we may wish to consider how we can adapt our technique for a wider range of
-issue tracking systems (\entity{ITS}) beyond Jira.
+issue tracking systems beyond Jira.
 
 Another concern about our approach is our reliance on issues
 as a source of code rationale information.
 This arose as a concern after reviewing the feedback from two participants, 
 who mentioned working with projects in which commits are not structured or 
 have no explicit relationship with issues
-from an \entity{ITS}, despite their organization using an \entity{ITS} with the project \participants{AH}.
+from an issue tracking system, despite their organization using an issue tracking system with the project \participants{AH}.
 On how issues play a role in participant \participant{A}'s daily work, they stated:
 
 \begin{quote}
@@ -78,10 +78,9 @@ A direction for future work in this case would be to explore other sources of
 code rationale information that can be automatically retrieved and tied to commits.
 
 Not only does the performance of our approach depend on the specific
-\entity{ITS} used and the practice of explicitly linking issues to commits,
+issue tracking system used and the practice of explicitly linking issues to commits,
 but also the availability of code rationale information in the issues themselves.
-As previously mentioned in \autoref{subsec:RQ3},
-participant \participant{E} raised a point about the discussion in an issue as difficult to 
+As mentioned in \autoref{subsec:RQ3}, participant \participant{E} \rev{commented about the discussions in issues being} difficult to 
 follow and indicated that they typically looked at the source code instead
 as a concrete outcome from a discussion.
 Additionally, discussion about design, particularly in open-source projects,
@@ -98,7 +97,7 @@ Similar work that draws on multiple different artifacts for retrieving relevant 
 such as Hipikat \cite{cubranic_hipikat_2005}, which not only uses source source and documentation, 
 but also communications from electronic media, bug reports, and test plans.
 As mentioned in \autoref{ch:Related-Work}, Rastkar and Murphy have also explored
-producing natural language summaries for sets of multiple issues with hierarchical relations \cite{rastkar_why_2013}.
+producing natural language summaries for sets of issues with hierarchical relations \cite{rastkar_why_2013}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -115,7 +114,7 @@ to improve our heuristics is to examine framework-specific changes that develope
 trivial. To support the use of Intelligent History with non-Java systems,
 further investigation into the types of changes that developers would consider as part of trivial changes
 in a diff for different programming languages would be required. 
-Additionally, to support projects that use a non-Jira \entity{ITS},
+Additionally, to support projects that use a non-Jira issue tracking system,
 further exploration into the common conventions that different projects use in commit messages
 to link commits to issues would be needed.
 For example, projects that use GitHub issues and pull requests typically
@@ -127,8 +126,8 @@ where ``\issue{X}'' is a number identifying the issue or pull request in the pro
 \section{Diff and Issue Metadata}
 
 In Intelligent History, we computed and integrated metadata metrics to summarize 
-the content in commit diffs as \emph{diff metadata} and Jira issues as \emph{issue metadata} 
-and displayed these metrics as additional information to the developer.
+the content in commit diffs as \emph{diff metadata} and Jira issues as \emph{issue metadata}, 
+and \rev{we} displayed these metrics as additional information to the developer.
 We exposed diff metadata to the developer to raise their confidence in how Intelligent History
 determines commits to be highlighted or faded in a file's commit history.
 We presented issue metadata to give the developer a summary of metrics about
@@ -138,11 +137,11 @@ However, the results of our laboratory study demonstrated that this metadata inf
 Two participants mentioned they were less motivated to use the (\feature{2}) \textit{Show Diff Metadata} feature
 because accessing the information required a button click \participants{EF}.
 A possible improvement could be to make this information available in a non-intrusive presentation,
-such as by providing the metadata information upon a user hovering a commit.
+such as by providing the metadata information upon a user hovering \rev{over} a commit.
 
 For the issue metadata information embedded in (\feature{3}) \textit{Show Jira Metadata},
-only two participants commented on using an issue's priority and other provided metrics added as part the presentation
-of a Jira issue in the \entity{IDE} to determine whether the issue was worth further investigation \participants{IJ}.
+only two participants commented on using an issue's priority and other provided metrics added as part \rev{of} the presentation
+of a Jira issue in the \entity{IDE} to determine whether the issue was worth further investigation \participants{IC}.
 Participant \participant{I} stated: 
 ``\textit{I liked how I was able to see the priority [of an issue] because if something has a higher priority, it usually involves heavier changes.}''
 Similarly, participant \participant{C} commented:
