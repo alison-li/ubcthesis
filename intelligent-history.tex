@@ -96,7 +96,7 @@ Several studies confirm developers look through change histories and associated 
 or bug reports for hints about code implementation and rationale \cite{ko_information_2007,robillard_turnover-induced_2021, rastkar_why_2013}.
 The issues in issue repositories \rev{are} a valuable for obtaining rationale information 
 as \rev{they} contain past discussions about design aspects \cite{brunet_design_2014,hassan_road_2008}.
-Issues from an issue tracking system (\entity{ITS}) typically contain a title, 
+Issues from an issue tracking system typically contain a title, 
 description, administrative metadata, such as the status of an issue, priority, 
 and comments by developers discussing various aspects of the issue.
 The comments for an issue provide insight into technical details 
@@ -104,7 +104,8 @@ and opinions \rev{about} the ``why'' of certain design choices in those changes 
 
 Some software projects have adopted a convention of adding a prefix referencing 
 the issue associated with a change in a commit's subject message \cite{rastkar_why_2013,moreno_arena_2017}.
-Although the practice of explicitly linking each commit to an issue is helpful when looking for relevant issues from an \entity{ITS}, the developer still experiences cognitive load from switching between their \entity{IDE} and browser when reading and synthesizing the information from several issues.
+Although the practice of explicitly linking each commit to an issue is helpful when looking for relevant issues from an issue tracking system, 
+the developer still experiences cognitive load from switching between their \entity{IDE} and browser when reading and synthesizing the information from several issues.
 A software developer examining several issues related to several commits also must maintain a mental model that interleaves the contextual information discovered from issues with code changes in diffs.
 \autoref{fig:Cognitive-Load} demonstrates how the distributed nature of commits and issue information can result in cognitive load for a developer browsing the commit history for a file, while also synthesizing the information gained from checking issues related to commits in a separate application.
 
@@ -123,7 +124,7 @@ In some cases, an issue may not contain any discussion at all or the description
 or too vague to yield any insight on a specific code change or the evolution of code changes in a file.
 Thus, in the design of Intelligent History, we found it crucial to co-present commits with issue information in the \entity{IDE}.
 Developers also face information overload from the presentation of issues and 
-various metadata about issues from an \entity{ITS} \cite{baysal_issue-overload_2014,bertram_social-nature_2010}.
+various metadata about issues from an issue tracking system \cite{baysal_issue-overload_2014,bertram_social-nature_2010}.
 We propose comput\rev{ing} a subset of information from issues as metadata and \rev{then displaying the} relevant metadata
 alongside issues to the developer.
 \rev{This information and presentation} could potentially signal to a developer whether a commit's associated issue
@@ -141,7 +142,7 @@ As part of the effort to reduce the cognitive and temporal costs of software his
 we chose to develop a plugin to augment the existing rich features an \entity{IDE} already provides.
 Unlike a stand-alone desktop or web application, a plugin minimizes the number of external application windows a developer needs to maintain and explore to gain context around revisions. 
 This is because the information \rev{that} Intelligent History offers is integrated within the \entity{IDE}, 
-reducing the number of switches a developer has to perform between a separate browser window for searching an issue tracking system (\entity{ITS})
+reducing the number of switches a developer has to perform between a separate browser window for searching an issue tracking system 
 and their \entity{IDE} for examining source code and revision history.
 IntelliJ provides a built-in Git client \entity{GUI} for navigating a software project's revision history and inspecting revisions. 
 In particular, the ``Show History'' feature in IntelliJ is available for directories and files, 
