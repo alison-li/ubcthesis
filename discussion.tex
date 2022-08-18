@@ -4,7 +4,7 @@
 % What questions would people ask about the work after reading up to this point?
 
 In this chapter, we discuss the implications and limitations of our findings 
-and \rev{provide} suggestions for further investigation to expand on our work.
+and provide suggestions for further investigation to expand on our work.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -29,7 +29,7 @@ However, if we were to apply this technique to another repository where the comm
 dominated by \emph{tangled changes} or the grouping of several changes into single commits, 
 then this would impact the performance of our technique.
 Tangled changes compromise the accuracy of analysis on a commit history \cite{herzig_tangled_2013}.
-In our case, if trivial \rev{changes} in a file \rev{were combined} with a non-trivial change \rev{to produce a single commit, then} according to our heuristics,
+In our case, if trivial changes in a file were combined with a non-trivial change to produce a single commit, then according to our heuristics,
 none of the commits in a file's commit history would be highlighted.
 Consequently, one area of investigation for future work would be on how to
 develop heuristics for commit histories involving tangled changes.
@@ -80,7 +80,7 @@ code rationale information that can be automatically retrieved and tied to commi
 Not only does the performance of our approach depend on the specific
 issue tracking system used and the practice of explicitly linking issues to commits,
 but also the availability of code rationale information in the issues themselves.
-As mentioned in \autoref{subsec:RQ3}, participant \participant{E} \rev{commented about the discussions in issues being} difficult to 
+As mentioned in \autoref{subsec:RQ3}, participant \participant{E} commented about the discussions in issues being difficult to 
 follow and indicated that they typically looked at the source code instead
 as a concrete outcome from a discussion.
 Additionally, discussion about design, particularly in open-source projects,
@@ -105,7 +105,7 @@ producing natural language summaries for sets of issues with hierarchical relati
 
 When asked about their experience using Intelligent History, 
 two participants raised points about the extensibility of the heuristics to other programming languages \participants{BD}.
-Particant \participant{B} commented on the feasibility of using the same regular expressions in our heuristics 
+Participant \participant{B} commented on the feasibility of using the same regular expressions in our heuristics 
 to other programming languages as well as the use of crowd-sourcing to build a set of commonly useful patterns.
 Participant \participant{D} suggested language and framework-specific patterns that could
 be considered in our heuristics, such as dependency injections in the Spring Framework for Java.\footnote{\url{https://spring.io/}, verified 8/3/2022.}
@@ -127,7 +127,7 @@ where ``\issue{X}'' is a number identifying the issue or pull request in the pro
 
 In Intelligent History, we computed and integrated metadata metrics to summarize 
 the content in commit diffs as \emph{diff metadata} and Jira issues as \emph{issue metadata}, 
-and \rev{we} displayed these metrics as additional information to the developer.
+and we displayed these metrics as additional information to the developer.
 We exposed diff metadata to the developer to raise their confidence in how Intelligent History
 determines commits to be highlighted or faded in a file's commit history.
 We presented issue metadata to give the developer a summary of metrics about
@@ -137,10 +137,10 @@ However, the results of our laboratory study demonstrated that this metadata inf
 Two participants mentioned they were less motivated to use the (\feature{2}) \textit{Show Diff Metadata} feature
 because accessing the information required a button click \participants{EF}.
 A possible improvement could be to make this information available in a non-intrusive presentation,
-such as by providing the metadata information upon a user hovering \rev{over} a commit.
+such as by providing the metadata information upon a user hovering over a commit.
 
 For the issue metadata information embedded in (\feature{3}) \textit{Show Jira Metadata},
-only two participants commented on using an issue's priority and other provided metrics added as part \rev{of} the presentation
+only two participants commented on using an issue's priority and other provided metrics added as part of the presentation
 of a Jira issue in the \entity{IDE} to determine whether the issue was worth further investigation \participants{CI}.
 Participant \participant{C} commented:
 ``\textit{[The number of comments in an issue] might show you how active an issue is but the priority should be the main indicator.}''
