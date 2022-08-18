@@ -17,15 +17,15 @@ for a software project results in cognitive load for developers \cite{codoban_so
 The study found that developers manually employed various strategies that would 
 reduce the number of commits they needed to closely analyze.
 To reduce the number of commits, developers may recall a date range in which 
-a change was made and only examine commits \rev{in} the date range.
+a change was made and only examine commits in the date range.
 Developers also filter commits based on certain keywords and skim the diffs 
 in commits to look for only the commits that are relevant to their current task.
 Combined with the strategy of reducing the search space of commits, 
 developers further describe iterating through past versions of a file to find when specific functionality was implemented.
-The need to navigate \rev{numerous} commits in a revision history 
-makes \rev{it more challenging to: locate} information about how a change affected a code segment, 
-\rev{identify} the broader modification \rev{that the} change was part of, 
-and \rev{indicate} how the code segment interacted with surrounding code at a specific point in time.
+The need to navigate numerous commits in a revision history 
+makes it more challenging to: locate information about how a change affected a code segment, 
+identify the broader modification that the change was part of, 
+and indicate how the code segment interacted with surrounding code at a specific point in time.
 
 Additionally, developers need more convenient access
 to information that can reveal the context and motivation behind code.
@@ -53,9 +53,9 @@ To address (2), we propose an approach to integrating the contextual information
 We propose an approach to relieve cognitive load for developers by automatically reducing the search space of commits.
 Our approach involves analyzing the diffs between commits in a file's commit history to determine 
 which commits may be less significant in terms of the lines of code changed in the diff.
-We convey the outcome of this analysis visually to the developer by \rev{highlighting} a file's revision history, 
+We convey the outcome of this analysis visually to the developer by highlighting a file's revision history, 
 colouring less important commits with a background colour and allowing the remaining commits to appear more prominently in the foreground.
-Diffs that solely contain \rev{unimportant} changes, such as white spaces and line-endings, are inefficient 
+Diffs that solely contain unimportant changes, such as white spaces and line-endings, are inefficient 
 for a developer sifting through several commits in a commit history \cite{codoban_software_2015}.
 We highlight the commits that have a diff containing code changes beyond a set of non-important changes 
 and fade the other less important commits into the background.
@@ -64,11 +64,11 @@ The entire history remains visible for the developer to browse
 and the developer can interpret the highlighting as a suggestion for which commits to prioritize in their information search.
 
 In particular, \emph{tangled changes} pose an obstacle to efficient software revision history exploration 
-and \rev{are} a significant source of noise in commit histories \cite{herzig_tangled_2013}.
+and are a significant source of noise in commit histories \cite{herzig_tangled_2013}.
 Tangled changes refer to a set of changes for two or more separate tasks. 
-Murphy-Hill \etal \cite{murphy-hill_refactor_2012} found refactorings are often committed with \rev{combined} changes for separate tasks. 
+Murphy-Hill \etal \cite{murphy-hill_refactor_2012} found refactorings are often committed with combined changes for separate tasks. 
 From a study of five open-source Java projects, Herzig and Zeller \cite{herzig_tangled_2013} 
-revealed \rev{that} up to 15\% of all bug fixes consist of tangled changes and, 
+revealed that up to 15\% of all bug fixes consist of tangled changes and, 
 on average, at least 16.5\% of all source files are incorrectly associated with bug reports. 
 54\% of survey respondents from the study by Codoban \etal reported tangled changes to be a problem
 in understanding commit history \cite{codoban_software_2015}.
@@ -94,13 +94,13 @@ The details of how Intelligent History uses heuristics to determine trivial comm
 
 Several studies confirm developers look through change histories and associated issue 
 or bug reports for hints about code implementation and rationale \cite{ko_information_2007,robillard_turnover-induced_2021, rastkar_why_2013}.
-The issues in issue repositories \rev{are} valuable for obtaining rationale information 
-as \rev{they} contain past discussions about design aspects \cite{brunet_design_2014,hassan_road_2008}.
+The issues in issue repositories are valuable for obtaining rationale information 
+as they contain past discussions about design aspects \cite{brunet_design_2014,hassan_road_2008}.
 Issues from an issue tracking system typically contain a title, 
 description, administrative metadata, such as the status of an issue, priority, 
 and comments by developers discussing various aspects of the issue.
 The comments for an issue provide insight into technical details 
-and opinions \rev{about} the ``why'' of certain design choices in those changes \cite{ortu_jira_2015}.
+and opinions about the ``why'' of certain design choices in those changes \cite{ortu_jira_2015}.
 
 Some software projects have adopted a convention of adding a prefix referencing 
 the issue associated with a change in a commit's subject message \cite{rastkar_why_2013,moreno_arena_2017}.
@@ -115,7 +115,7 @@ A software developer examining several issues related to several commits also mu
     \caption{
         Three Jira issues opened in individual browser windows (left), corresponding to three commits in the file commit history (centre) of the \code{Topology} class in Apache Kafka. 
         The diffs of each commit (right) must also be maintained in the developer's mental model of the changes in history. 
-        \rev{This} illustrates the distributed nature of code change and rationale information between the \entity{IDE} and browser.
+        This illustrates the distributed nature of code change and rationale information between the \entity{IDE} and browser.
     }
     \label{fig:Cognitive-Load}
 \end{figure}
@@ -125,9 +125,9 @@ or too vague to yield any insight on a specific code change or the evolution of 
 Thus, in the design of Intelligent History, we found it crucial to co-present commits with issue information in the \entity{IDE}.
 Developers also face information overload from the presentation of issues and 
 various metadata about issues from an issue tracking system \cite{baysal_issue-overload_2014,bertram_social-nature_2010}.
-We propose comput\rev{ing} a subset of information from issues as metadata and \rev{then displaying the} relevant metadata
+We propose computing a subset of information from issues as metadata and then displaying the relevant metadata
 alongside issues to the developer.
-\rev{This information and presentation} could potentially signal to a developer whether a commit's associated issue
+This information and presentation could potentially signal to a developer whether a commit's associated issue
 may contain any meaningful rationale information. 
 For instance, a higher number of comments on an issue that have been
 posted by the commit's author may prompt a developer to further investigate the Jira issue to check if the
@@ -141,7 +141,7 @@ We describe all of the metrics we compute as part of an issue's metadata in \aut
 As part of the effort to reduce the cognitive and temporal costs of software history exploration, 
 we chose to develop a plugin to augment the existing rich features an \entity{IDE} already provides.
 Unlike a stand-alone desktop or web application, a plugin minimizes the number of external application windows a developer needs to maintain and explore to gain context around revisions. 
-This is because the information \rev{that} Intelligent History offers is integrated within the \entity{IDE}, 
+This is because the information that Intelligent History offers is integrated within the \entity{IDE}, 
 reducing the number of switches a developer has to perform between a separate browser window for searching an issue tracking system 
 and their \entity{IDE} for examining source code and revision history.
 IntelliJ provides a built-in Git client \entity{GUI} for navigating a software project's revision history and inspecting revisions. 
@@ -162,7 +162,7 @@ and displays a history of commits that affected a single file or directory.
 
 We developed Intelligent History using the IntelliJ Platform \entity{SDK}.\footnote{\url{https://www.jetbrains.com/opensource/idea/}, verified 5/23/2022}
 As a plugin, Intelligent History integrates with IntelliJ's ``Show History'' feature seamlessly as the plugin adds actions that can be invoked from a toolbar in IntelliJ's existing interface for exploring a file's commit history. 
-This makes the features of Intelligent History \rev{complementary} to IntelliJ's existing version control interface.
+This makes the features of Intelligent History complementary to IntelliJ's existing version control interface.
 We designed Intelligent History to support the following questions a developer might ask when searching for code rationale information in a file's revision history:
 
 \begin{enumerate}[label={(\arabic*)}]
@@ -189,12 +189,12 @@ Intelligent History has the following actions, also regarded as features, which 
     \item[(\feature{3})] \textit{Show Jira Issue}: 
         An action that extracts the Jira issue \entity{ID} for a user-selected commit in a file's commit history and fetches and displays the Jira issue information in a dedicated tool window. 
         The Jira issue ID is extracted from a commit's message using regular expressions. Along with the Jira issue information, 
-        this action also provides a metadata summary of the Jira issue containing metrics that could indicate an issue as likely to contain rationale information \rev{for} an
+        this action also provides a metadata summary of the Jira issue containing metrics that could indicate an issue as likely to contain rationale information for an
         important change or rationale information provided in the comments by a commit author or other project members. 
         The metadata includes metrics on the number of comments on the Jira issue made by commit author, 
-        the total number of comments on the Jira issue \rev{excluding} bot comments, 
+        the total number of comments on the Jira issue excluding bot comments, 
         the total number of unique people involved in the Jira issue based on comments including the Jira issue assignee, 
-        the number of people subscribed to the Jira issue (``watches''), the number of votes on the Jira issue, the number \rev{of} issue links, 
+        the number of people subscribed to the Jira issue (``watches''), the number of votes on the Jira issue, the number of issue links, 
         and the number of sub-tasks. \autoref{fig:Intelligent-History-C} illustrates the tool window showing the information extracted for an automatically identified Jira \entity{ID} from a selected commit.
 \end{itemize}
 
@@ -234,7 +234,7 @@ Intelligent History has the following actions, also regarded as features, which 
     \includegraphics[width=7cm]{./images/intelligent-history-C.png}
     \caption{
         Feature (\feature{3}) \textit{Show Jira Issue} invoked on commit \commit{908a6d2a}.
-        \rev{This} shows the explicitly referenced Jira issue's title, assignee, reporter, description, priority, 
+        This shows the explicitly referenced Jira issue's title, assignee, reporter, description, priority, 
         and metadata in a tool window. A hyperlink to the Jira issue is also provided.
     }
     \label{fig:Intelligent-History-C}
@@ -262,7 +262,7 @@ For the commit history of the file \file{StreamsBuilder.java}, another Java clas
 representing the high-level Kafka Streams Domain Specific Language (\entity{DSL}) for Kafka Streams, 
 the heuristics-based approach detects 42\% (19 out of 45) of the commits from the commit history to be less important.
 The diff metadata information for each commit in the commit history of \class{Topology} 
-and \class{StreamsBuilder} are available in a public repository.\footnote{\url{https://github.com/Alison-Li/ubcthesis-dataset}, verified 7/25/2022.}
+and \class{StreamsBuilder}, as well as the versions of the respective Java classes, are available in a public repository.\footnote{\url{https://github.com/Alison-Li/ubcthesis-dataset}, verified 7/25/2022.}
 
 While using heuristics for developing the regular expression patterns sacrifices some degree of accuracy on what is considered a non-essential or trivial line of code change to a user,
 our heuristics as regular expression patterns have the advantage of being lightweight for efficiently analyzing diffs over other approaches to detecting code changes in programs, such as abstract syntax tree (\entity{AST}) matching and differencing techniques.
@@ -286,7 +286,7 @@ that has been changed and presented as such in a diff:
     \item \textit{Documentation}: Changes that insert, delete, or modify lines representing Javadoc documentation and single-line or multi-line comments. We consider changes made to documentation in code as cosmetic.
     \item \textit{Annotation}: \sloppy Changes that insert, delete, or modify lines representing \code{@Deprecated} annotations or \code{@SuppressWarnings} annotations. The \code{@Deprecated} annotation indicates elements that should no longer be used but remain in source code to avoid breaking backward compatibility. We consider the marking of deprecated code as generally behaviour-preserving. The \code{@SuppressWarnings} annotation indicates named compiler warnings that should be hidden in the annotated element. We consider the marking of  suppressed elements as generally behaviour-preserving.
     \item \textit{Import}: Changes which involve the insertion, deletion, or modification of \code{import} statements. We consider these changes to be related refactoring, which is generally behaviour-preserving and unlikely to yield any further insight.
-    \item \textit{Newline}: Changes involving the insertion or deletion of newlines. We consider these changes as \rev{cosmetic} and unlikely to yield any further insight.
+    \item \textit{Newline}: Changes involving the insertion or deletion of newlines. We consider these changes as cosmetic and unlikely to yield any further insight.
     \item \textit{Other}: Any change not classified by the above categories. If a commit has a diff containing at least one change that is not classified by any of the above categories, then the commit is regarded as potentially interesting. Else, a commit is considered less interesting and will be presented as a faded out commit when the user invokes the \emph{Highlight Import Changes} action.
 \end{itemize}
 
@@ -310,7 +310,7 @@ For each pair of commits, we take the contents of file $F$ in each individual co
 This categorical information for a user-selected commit is exposed as \emph{diff metadata} in a pop-up when the user invokes the \textit{Show Diff Metadata} action provided by Intelligent History.
 \autoref{subfig:Intelligent-History-B-Popup} illustrates the metadata information in a pop-up for the diff presented in \autoref{subfig:Intelligent-History-B-Diff}.
 As shown in \autoref{subfig:Intelligent-History-B-Diff}, the commit \commit{16b2ce7d} for \class{Topology.java} consists of deleting an \code{import} statement, 
-inserting an \code{import} statement, and \rev{modifying} a Javadoc comment.
+inserting an \code{import} statement, and modifying a Javadoc comment.
 Exposing this metadata to the user allows the user to obtain a summary about the lines changed from one commit to another commit, 
 and understand how Intelligent History highlights commits in a file's commit history.
 
@@ -333,11 +333,11 @@ Further, the developer can select any commit from the commit history and call fe
 Browsing through the remaining 26 highlighted commits in the \class{StreamsBuilder} commit history, the developer can scan the messages of the commits to identify potentially interesting commit titles.
 For any commits of interest that have a commit message prefixed with a Jira issue \entity{ID}, the developer can use (\feature{3}) to access a summary of the Jira issue information within their \entity{IDE}.
 
-The Jira issues open \rev{as tabs} in a separate tool window in IntelliJ to allow the developer to view several issues at a time and compare them.
+The Jira issues open as tabs in a separate tool window in IntelliJ to allow the developer to view several issues at a time and compare them.
 The developer scans commit messages and the diffs for the 26 highlighted commits in the \code{StreamsBuilder} commit history.
-Among these 26 commits that reference \rev{a} Jira issue, the developer wishes to locate commits that contain information about the motivation and design choices involved in the changes they see in the diff.
-When a commit message is \rev{insufficient} for providing information about the rationale behind a commit, the developer invokes (\feature{3}).
-On the first 4 highlighted commits in the commit history, the developer is able to skip perform\rev{ing} an in-depth investigation into the Jira issues for commits with empty or un-informative Jira issue descriptions since the developer can know this beforehand using without leaving the \entity{IDE} by invoking feature (\feature{3}) on each highlighted commit.
+Among these 26 commits that reference a Jira issue, the developer wishes to locate commits that contain information about the motivation and design choices involved in the changes they see in the diff.
+When a commit message is insufficient for providing information about the rationale behind a commit, the developer invokes (\feature{3}).
+On the first 4 highlighted commits in the commit history, the developer is able to skip performing an in-depth investigation into the Jira issues for commits with empty or un-informative Jira issue descriptions since the developer can know this beforehand using without leaving the \entity{IDE} by invoking feature (\feature{3}) on each highlighted commit.
 
 For the fifth commit in the history, the developer sees refactorings in the diff for commit \commit{f2b74aa1} with the message:
 
@@ -357,7 +357,7 @@ introduced and changes that impact the public Kafka \entity{API}s.
 and Rejected Alternatives.
 \issue{KIP-182} states the purpose of the change was to address the overall accumulation of heavy method overloading in the 
 interfaces associated with the Kafka Streams Domain Specific Language (\entity{DSL}), 
-making it harder for consumers of the \entity{API} who use a modern \entity{IDE} to discover the interfaces and hence, \rev{it} was a usability problem.
+making it harder for consumers of the \entity{API} who use a modern \entity{IDE} to discover the interfaces and hence, it was a usability problem.
 
 Similar to our illustration of the developer's process of finding and synthesizing information about the 
 change history of \class{StreamsBuilder} through the first 5 commits of its commit history, 
@@ -366,9 +366,9 @@ to efficiently locate and access rationale information for changes over time.
 The use of feature (\feature{1}) allows the developer to reduce the number of commits they would have 
 to manually skim to check if the commit contains a meaningful change, while feature (\feature{2}) provides the developer with the option to retrieve a quick summary of Intelligent History's highlighting approach to the file's commit history.
 Finally, the developer can use feature (\feature{3}) on commits of interest to check if the Jira issue 
-associated with the commit can further enrich a commit's message and diff without further explanation \rev{about} the motivation and rationale behind a commit's changes.
-Overall, the features of Intelligent History reduce the time it \rev{takes} for a developer 
-in this example to manually determine relevant commits, and \rev{the features} minimize the switches the developer \rev{needs} 
+associated with the commit can further enrich a commit's message and diff without further explanation about the motivation and rationale behind a commit's changes.
+Overall, the features of Intelligent History reduce the time it takes for a developer 
+in this example to manually determine relevant commits, and the features minimize the switches the developer needs 
 to make between their \entity{IDE} and browser to find and read the associated Jira issue.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
