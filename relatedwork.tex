@@ -7,7 +7,7 @@ behind motivating design choices about code \cite{latoza_hard-answer_2010}.
 Many empirical studies have established code rationale as a highly sought after category of 
 information that lacks effective tool support to answer them \cite{latoza_maintaining_2006, latoza_hard-answer_2010, ko_information_2007}. 
 From a survey of 157 software developers, LaToza \etal found 66\% of respondents report understanding 
-the intent behind a piece of code \rev{is} a serious problem, 
+the intent behind a piece of code is a serious problem, 
 while 82\% report that it takes considerable effort to understand ``why the code is implemented the way it is'' \cite{latoza_maintaining_2006}.
 Further, 51\% agree that understanding the history of a piece of a code to be a serious problem.
 In support of the findings by LaToza et al., the observational study by Ko \etal of 17 software 
@@ -51,7 +51,7 @@ Codoban \etal suggest that providing better grouping capabilities for
 grouping related commits and better filtering capabilities for commit types (\eg only showing non-merge commits) and diffs
 can help developers mitigate these challenges to exploring software history.
 
-Existing \rev{Git} commands as tools for exploring revision history such 
+Existing Git commands as tools for exploring revision history such 
 as ``\code{git blame}'' \cite{gitblame} annotate each line in a file with information about the revision 
 and the author that last modified a particular line.
 If a developer was investigating the design choice for a particular variable's value, 
@@ -94,11 +94,11 @@ accessible still only cover the temporal view of software history.
 A developer would nonetheless need to go through several commits and diffs and meanwhile, 
 several of the encountered commits could be trivial changes regarding the section of code 
 or even the file that they are interested in.
-\rev{In fact,} 58\% of survey respondents from the study by Codoban \etal report\rev{ed}
-that understanding the evolution of code \rev{is} a primary reason for
+In fact, 58\% of survey respondents from the study by Codoban \etal reported
+that understanding the evolution of code is a primary reason for
 referring to old history and expressed the desire to
 understand how previous versions of code relate to present code \cite{codoban_software_2015}.
-\rev{Thus,} the provision of more strategic ways for viewing, filtering, and 
+Thus, the provision of more strategic ways for viewing, filtering, and 
 navigating revision history beyond a temporal view would benefit developers by 
 making the exploration of revision history more efficient.
 
@@ -216,8 +216,8 @@ each version of a file to identify when particular features were
 implemented \cite{codoban_software_2015}. 
 Participants in their study also reported a desire for 
 better visualization of the history of a file.
-Thus, we propose to operate at the file-level, \rev{meaning we} scope the determination of
-a commit as non-essential in terms of how the commit \rev{impacts} a \rev{specific file and the evolution of the file}.
+Thus, we propose to operate at the file-level, meaning we scope the determination of
+a commit as non-essential in terms of how the commit impacts a specific file and the evolution of the file.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \endinput
